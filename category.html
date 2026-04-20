@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElderCareMatters — Category Results</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/homepage.css">
+<link rel="stylesheet" href="assets/css/inner.css">
+</head>
+<body>
+
+<!-- Location Modal -->
+<div class="modal-overlay" id="locationModal">
+  <div class="modal">
+    <h3>Set your location</h3>
+    <p>Searching for a parent in a different city? Enter their location.</p>
+    <input type="text" name="zip" placeholder="City or ZIP code…">
+    <div class="modal-divider">or</div>
+    <select name="state">
+      <option value="">Select state…</option>
+      <option>Alabama</option><option>Alaska</option><option>Arizona</option>
+      <option>Arkansas</option><option>California</option><option>Colorado</option>
+      <option>Connecticut</option><option>Delaware</option><option>Florida</option>
+      <option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+      <option>Illinois</option><option>Indiana</option><option>Iowa</option>
+      <option>Kansas</option><option>Kentucky</option><option>Louisiana</option>
+      <option>Maine</option><option>Maryland</option><option>Massachusetts</option>
+      <option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+      <option>Missouri</option><option>Montana</option><option>Nebraska</option>
+      <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
+      <option>New Mexico</option><option>New York</option><option>North Carolina</option>
+      <option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+      <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+      <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option>
+      <option>Texas</option><option>Utah</option><option>Vermont</option>
+      <option>Virginia</option><option>Washington</option><option>West Virginia</option>
+      <option>Wisconsin</option><option>Wyoming</option>
+    </select>
+    <div class="modal-actions">
+      <button class="btn-outline" type="button" data-modal-cancel>Cancel</button>
+      <button class="btn-sage" type="button" data-modal-submit>Update Location</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    ElderCareMatters
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="search.html">Find Care</a></li>
+    <li><a href="index.html#faq">Resources</a></li>
+    <li><a href="index.html#provider-cta">For Providers</a></li>
+    <li><a href="#" class="nav-cta">Provider Login</a></li>
+  </ul>
+  <div class="nav-location-badge" data-open-location-modal>
+    📍 <span class="js-location-full">Detecting…</span> · Change
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="search.html">Categories</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current" id="breadcrumb-current">Loading…</span>
+</div>
+
+<!-- Category Hero -->
+<section class="inner-hero">
+  <div class="inner-hero-text">
+    <div class="inner-hero-eyebrow">
+      <span class="inner-hero-eyebrow-icon" id="category-icon">🏠</span>
+      <span id="category-name">Category</span>
+    </div>
+    <h1 class="inner-hero-title">Find <em id="category-inline">home care</em> in <em class="js-location-city">your area</em></h1>
+    <p class="inner-hero-sub" id="category-blurb">Loading description…</p>
+    <div class="inner-hero-ctas">
+      <button type="button" class="btn-primary-lg" data-open-form-modal>
+        📋 Get Matched Free
+        <span class="btn-arrow">→</span>
+      </button>
+      <button type="button" class="btn-ghost" data-open-chat>💬 Talk to advisor</button>
+    </div>
+    <div class="inner-hero-meta">
+      <div class="inner-hero-meta-item"><span class="inner-hero-meta-icon">✓</span> <span id="hero-meta-count">… providers verified</span></div>
+      <div class="inner-hero-meta-item"><span class="inner-hero-meta-icon">🔒</span> Free for families</div>
+      <div class="inner-hero-meta-item"><span class="inner-hero-meta-icon">⭐</span> 4.9 avg rating</div>
+    </div>
+  </div>
+  <div class="inner-hero-image">
+    <img id="city-image" src="" alt="">
+    <div class="inner-hero-image-badge">
+      <span class="dot"></span>
+      <span><strong id="city-badge-name">Dallas</strong> · <span id="city-badge-tagline">loading…</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Providers in [City] -->
+<section class="inner-section inner-section--warm" id="featured-section" style="display:none">
+  <div class="inner-section-header">
+    <div>
+      <h2>Featured providers in <em class="js-location-city">your area</em></h2>
+      <p>Pre-screened, top-rated — reach out to these first for the fastest response.</p>
+    </div>
+    <div class="inner-section-aside">
+      <span>Max 3 providers per lead</span>
+    </div>
+  </div>
+  <div class="provider-grid" id="featured-grid"></div>
+</section>
+
+<!-- Top Packages (Upsell tiers) -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>Popular <em id="category-inline-2">home care</em> packages</h2>
+      <p>Three price points for every budget — compare what's included and pick the level that fits.</p>
+    </div>
+  </div>
+  <div class="package-grid" id="package-grid"></div>
+</section>
+
+<!-- All Providers in [City] -->
+<section class="inner-section inner-section--warm">
+  <div class="inner-section-header">
+    <div>
+      <h2>All providers in <em class="js-location-city">your area</em></h2>
+      <p>Sorted by tier and rating. Click any card to see full details.</p>
+    </div>
+  </div>
+  <div class="filter-row" id="filter-row">
+    <button class="filter-chip active" data-filter="all">All tiers</button>
+    <button class="filter-chip" data-filter="featured">Featured</button>
+    <button class="filter-chip" data-filter="premium">Premium</button>
+    <button class="filter-chip" data-filter="basic">Basic</button>
+  </div>
+  <div class="provider-grid" id="all-providers-grid"></div>
+  <div id="no-providers-msg" class="empty-state" style="display:none">
+    <div class="empty-state-icon">🌱</div>
+    <h3>We're still growing in this area</h3>
+    <p>No direct matches in your city yet — but the providers below in nearby cities also serve <span class="js-location-city">your area</span>.</p>
+    <button type="button" class="btn-primary-lg" data-open-form-modal>📋 Request a match</button>
+  </div>
+</section>
+
+<!-- Nearby City Packages -->
+<section class="inner-section inner-section--cream" id="nearby-section" style="display:none">
+  <div class="inner-section-header">
+    <div>
+      <h2>Available in nearby cities</h2>
+      <p>Many of these providers also serve families in <span class="js-location-city">your area</span>.</p>
+    </div>
+  </div>
+  <div class="nearby-grid" id="nearby-grid"></div>
+</section>
+
+<!-- Cross-sell -->
+<div class="cross-sell" id="cross-sell-section">
+  <div class="cross-sell-header">
+    <div class="cross-sell-eyebrow">Often needed together</div>
+    <div class="cross-sell-title">Families arranging <em id="category-inline-3">home care</em> often also need…</div>
+  </div>
+  <div class="cross-sell-grid" id="cross-sell-grid"></div>
+</div>
+
+<!-- Guides / Content -->
+<section class="inner-section inner-section--warm">
+  <div class="inner-section-header">
+    <div>
+      <h2>Guides for families in <em class="js-location-city">your area</em></h2>
+      <p>Short, practical reads from our advisors and partner providers.</p>
+    </div>
+    <div class="inner-section-aside"><a href="#">All guides →</a></div>
+  </div>
+  <div class="content-grid">
+    <a class="content-card" href="#">
+      <div class="content-card-img"><img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?w=600&auto=format&fit=crop" alt=""></div>
+      <div class="content-card-body">
+        <div class="content-tag">Getting Started</div>
+        <div class="content-title">How to choose the right level of elder care</div>
+        <p class="content-excerpt">A quick framework for deciding between home care, assisted living, and memory care.</p>
+        <div class="content-read-time">5 min read</div>
+      </div>
+    </a>
+    <a class="content-card" href="#">
+      <div class="content-card-img"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop" alt=""></div>
+      <div class="content-card-body">
+        <div class="content-tag">Costs</div>
+        <div class="content-title">What home care really costs in Texas (2026)</div>
+        <p class="content-excerpt">Hourly rates, insurance, and what Medicaid waivers do and don't cover.</p>
+        <div class="content-read-time">7 min read</div>
+      </div>
+    </a>
+    <a class="content-card" href="#">
+      <div class="content-card-img"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&auto=format&fit=crop" alt=""></div>
+      <div class="content-card-body">
+        <div class="content-tag">Family</div>
+        <div class="content-title">Talking to a parent about accepting help</div>
+        <p class="content-excerpt">Scripts and framing for the conversation no one wants to have — from care managers who do it daily.</p>
+        <div class="content-read-time">6 min read</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA band -->
+<div class="cta-band">
+  <div>
+    <h2>Still deciding? <em>We'll guide you.</em></h2>
+    <p>Our free care advisor will walk you through options in under 2 minutes.</p>
+  </div>
+  <div class="cta-band-actions">
+    <button type="button" class="btn-primary-lg" data-open-form-modal>📋 Start Your Free Match →</button>
+    <button type="button" class="btn-ghost" data-open-chat style="color:#fff;border-color:rgba(255,255,255,0.3);">💬 Chat with advisor</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">🌿 ElderCareMatters</a>
+      <p class="footer-tagline">Connecting families with trusted elder care providers across the United States.</p>
+      <div class="footer-trust">
+        <div class="trust-item">✓ Verified Providers</div>
+        <div class="trust-item">🔒 Privacy Protected</div>
+        <div class="trust-item">⭐ Free for Families</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>For Families</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="search.html">Find Providers</a></li>
+        <li><a href="#">My Care Dashboard</a></li>
+        <li><a href="#">Guides &amp; Resources</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>For Providers</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#provider-cta">Provider Overview</a></li>
+        <li><a href="#">Pricing &amp; Plans</a></li>
+        <li><a href="#">Provider Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Browse Care</h4>
+      <ul class="footer-links">
+        <li><a href="search.html">All Categories</a></li>
+        <li><a href="#">Elder Care Guides</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ElderCareMatters. All rights reserved.</span>
+    <div class="footer-bottom-right">
+      <a href="#">Free for families</a>
+      <a href="#">Verified providers</a>
+      <a href="#">No spam</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Quick Form Modal -->
+<div class="modal-overlay form-modal" id="formModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
+    <h3>Tell us what you need</h3>
+    <p>We'll match you with verified providers in <em class="js-location-city">your area</em>. Takes under a minute.</p>
+    <form class="intake-form" onsubmit="return false;">
+      <div class="form-field">
+        <label for="care-type">What kind of help?</label>
+        <select id="care-type" name="care-type">
+          <option value="">Select care type…</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="city">Location</label>
+        <input id="city" name="city" type="text" placeholder="City or ZIP">
+      </div>
+      <div class="form-field">
+        <label>How soon do you need help?</label>
+        <div class="urgency-chips">
+          <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
+          <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
+          <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Find Providers →</button>
+    </form>
+  </div>
+</div>
+
+<!-- Floating Chat FAB + Popup -->
+<button class="chat-fab" id="chatFab" type="button" aria-label="Chat with our care advisor">
+  <span class="chat-fab-icon chat-fab-icon--chat">💬</span>
+  <span class="chat-fab-icon chat-fab-icon--close">×</span>
+  <span class="chat-fab-pulse"></span>
+</button>
+<div class="chat-popup" id="chatPopup">
+  <div class="chat-popup-header">
+    <div class="chat-avatar-sm">👩‍⚕️</div>
+    <div class="chat-meta">
+      <div class="chat-meta-name">ECM Care Advisor</div>
+      <div class="chat-meta-status"><span class="status-dot"></span> Online · Avg reply &lt; 1 min</div>
+    </div>
+    <div class="chat-step-badge">Step 1 of 4</div>
+    <button class="chat-popup-close" type="button" data-close-chat aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body"></div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/location.js"></script>
+<script src="assets/js/intake.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/category.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Care — ElderCareMatters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/homepage.css">
+<link rel="stylesheet" href="assets/css/inner.css">
+</head>
+<body>
+
+<!-- Location Modal -->
+<div class="modal-overlay" id="locationModal">
+  <div class="modal">
+    <h3>Set your location</h3>
+    <p>Searching for a parent in a different city? Enter their location.</p>
+    <input type="text" name="zip" placeholder="City or ZIP code…">
+    <div class="modal-divider">or</div>
+    <select name="state">
+      <option value="">Select state…</option>
+      <option>California</option><option>Florida</option><option>Illinois</option>
+      <option>New York</option><option>Texas</option><option>Washington</option>
+    </select>
+    <div class="modal-actions">
+      <button class="btn-outline" type="button" data-modal-cancel>Cancel</button>
+      <button class="btn-sage" type="button" data-modal-submit>Update Location</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    ElderCareMatters
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="search.html">Find Care</a></li>
+    <li><a href="index.html#faq">Resources</a></li>
+    <li><a href="index.html#provider-cta">For Providers</a></li>
+    <li><a href="#" class="nav-cta">Provider Login</a></li>
+  </ul>
+  <div class="nav-location-badge" data-open-location-modal>
+    📍 <span class="js-location-full">Detecting…</span> · Change
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Find Care</span>
+</div>
+
+<!-- Search Hero -->
+<section class="search-hero">
+  <h1>Find the right care in <em class="js-location-city">your area</em></h1>
+  <p>Search verified elder care providers by need, city, or name.</p>
+  <form class="search-bar" onsubmit="return false;" role="search">
+    <input type="text" id="search-q" name="q" placeholder="Try 'memory care' or 'Sunrise'…" autocomplete="off">
+    <select id="search-category" name="category">
+      <option value="">All categories</option>
+    </select>
+    <select id="search-city" name="city">
+      <option value="">All cities</option>
+    </select>
+    <button type="submit" class="search-bar-btn" id="search-btn">Search</button>
+  </form>
+</section>
+
+<!-- Quick Category Chips -->
+<section class="inner-section inner-section--warm" style="padding-top:28px">
+  <div class="filter-row" id="category-chip-row"></div>
+
+  <div class="search-meta">
+    <div class="search-meta-count"><strong id="result-count">—</strong> providers matching your search</div>
+    <div>
+      <select id="sort-select" class="filter-chip" style="padding:6px 14px;background:var(--warm-white);appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 viewBox=%220 0 12 8%22%3E%3Cpath d=%22M1 1l5 5 5-5%22 stroke=%22%238A8A8A%22 stroke-width=%221.5%22 fill=%22none%22 stroke-linecap=%22round%22/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;cursor:pointer">
+        <option value="tier">Sort: Recommended</option>
+        <option value="rating">Sort: Highest rated</option>
+        <option value="reviews">Sort: Most reviewed</option>
+        <option value="price">Sort: Lowest price</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="provider-grid" id="search-grid"></div>
+
+  <div class="empty-state" id="empty-state" style="display:none">
+    <div class="empty-state-icon">🔍</div>
+    <h3>No providers match that search</h3>
+    <p>Try a different category or let our care advisor help you find what you need.</p>
+    <button type="button" class="btn-primary-lg" data-open-form-modal>📋 Request a match</button>
+  </div>
+</section>
+
+<!-- CTA band -->
+<div class="cta-band">
+  <div>
+    <h2>Can't find the right fit? <em>We'll match you.</em></h2>
+    <p>Tell us what you need — we'll hand-pick up to 3 verified providers.</p>
+  </div>
+  <div class="cta-band-actions">
+    <button type="button" class="btn-primary-lg" data-open-form-modal>📋 Start Your Free Match →</button>
+    <button type="button" class="btn-ghost" data-open-chat style="color:#fff;border-color:rgba(255,255,255,0.3);">💬 Chat with advisor</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">🌿 ElderCareMatters</a>
+      <p class="footer-tagline">Connecting families with trusted elder care providers across the United States.</p>
+      <div class="footer-trust">
+        <div class="trust-item">✓ Verified Providers</div>
+        <div class="trust-item">🔒 Privacy Protected</div>
+        <div class="trust-item">⭐ Free for Families</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>For Families</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="search.html">Find Providers</a></li>
+        <li><a href="#">Guides &amp; Resources</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>For Providers</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#provider-cta">Provider Overview</a></li>
+        <li><a href="#">Pricing &amp; Plans</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Browse Care</h4>
+      <ul class="footer-links">
+        <li><a href="search.html">All Categories</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ElderCareMatters. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Quick Form Modal -->
+<div class="modal-overlay form-modal" id="formModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
+    <h3>Tell us what you need</h3>
+    <p>We'll match you with verified providers in <em class="js-location-city">your area</em>. Takes under a minute.</p>
+    <form class="intake-form" onsubmit="return false;">
+      <div class="form-field">
+        <label for="care-type">What kind of help?</label>
+        <select id="care-type" name="care-type"><option value="">Select care type…</option></select>
+      </div>
+      <div class="form-field">
+        <label for="city">Location</label>
+        <input id="city" name="city" type="text" placeholder="City or ZIP">
+      </div>
+      <div class="form-field">
+        <label>How soon do you need help?</label>
+        <div class="urgency-chips">
+          <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
+          <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
+          <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Find Providers →</button>
+    </form>
+  </div>
+</div>
+
+<!-- Chat FAB -->
+<button class="chat-fab" id="chatFab" type="button" aria-label="Chat with our care advisor">
+  <span class="chat-fab-icon chat-fab-icon--chat">💬</span>
+  <span class="chat-fab-icon chat-fab-icon--close">×</span>
+  <span class="chat-fab-pulse"></span>
+</button>
+<div class="chat-popup" id="chatPopup">
+  <div class="chat-popup-header">
+    <div class="chat-avatar-sm">👩‍⚕️</div>
+    <div class="chat-meta">
+      <div class="chat-meta-name">ECM Care Advisor</div>
+      <div class="chat-meta-status"><span class="status-dot"></span> Online · Avg reply &lt; 1 min</div>
+    </div>
+    <div class="chat-step-badge">Step 1 of 4</div>
+    <button class="chat-popup-close" type="button" data-close-chat aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body"></div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/location.js"></script>
+<script src="assets/js/intake.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/search.js"></script>
+</body>
+</html>

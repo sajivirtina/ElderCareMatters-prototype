@@ -26,17 +26,14 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
 
-  // Category cards: log the payload so developers see the Phase 2 hand-off contract.
-  // The href is set by location.js, so the default anchor navigation already carries
-  // ?type=…&city=…&state=… — we just add an observable console log.
+  // Category cards: href is set by location.js with ?type=…&city=…&state=…
+  // Default anchor navigation takes the user to category.html.
   function wireCategoryCards() {
     document.querySelectorAll('.js-category-card').forEach(card => {
-      card.addEventListener('click', (e) => {
+      card.addEventListener('click', () => {
         const type = card.getAttribute('data-category');
         const loc = (window.ECM && window.ECM.getLocation && window.ECM.getLocation()) || {};
         console.log('[ECM] Category clicked →', { type, city: loc.city, state: loc.state });
-        // Since category.html doesn't exist yet in Phase 1, keep the user on the page.
-        e.preventDefault();
       });
     });
   }

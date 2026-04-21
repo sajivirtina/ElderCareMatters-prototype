@@ -198,7 +198,6 @@
     const formEl = modal.querySelector('.intake-form');
 
     const careSel    = formEl.querySelector('select[name="care-type"]');
-    const stateEl    = formEl.querySelector('select[name="state"]');
     const cityEl     = formEl.querySelector('select[name="city"]');
     const chips      = formEl.querySelectorAll('.urgency-chip');
     const submitBtn  = formEl.querySelector('.form-submit');
@@ -215,54 +214,79 @@
       careSel.appendChild(opt);
     });
 
-    // ── Populate State + City from ECM_DATA ──
+    // ── US States lookup (shared by populateLocationSelects + filterCitiesByState + prefillLocation) ──
+    const US_STATES = [
+      { abbr: 'AL', name: 'Alabama' },        { abbr: 'AK', name: 'Alaska' },
+      { abbr: 'AZ', name: 'Arizona' },        { abbr: 'AR', name: 'Arkansas' },
+      { abbr: 'CA', name: 'California' },     { abbr: 'CO', name: 'Colorado' },
+      { abbr: 'CT', name: 'Connecticut' },    { abbr: 'DE', name: 'Delaware' },
+      { abbr: 'FL', name: 'Florida' },        { abbr: 'GA', name: 'Georgia' },
+      { abbr: 'HI', name: 'Hawaii' },         { abbr: 'ID', name: 'Idaho' },
+      { abbr: 'IL', name: 'Illinois' },       { abbr: 'IN', name: 'Indiana' },
+      { abbr: 'IA', name: 'Iowa' },           { abbr: 'KS', name: 'Kansas' },
+      { abbr: 'KY', name: 'Kentucky' },       { abbr: 'LA', name: 'Louisiana' },
+      { abbr: 'ME', name: 'Maine' },          { abbr: 'MD', name: 'Maryland' },
+      { abbr: 'MA', name: 'Massachusetts' },  { abbr: 'MI', name: 'Michigan' },
+      { abbr: 'MN', name: 'Minnesota' },      { abbr: 'MS', name: 'Mississippi' },
+      { abbr: 'MO', name: 'Missouri' },       { abbr: 'MT', name: 'Montana' },
+      { abbr: 'NE', name: 'Nebraska' },       { abbr: 'NV', name: 'Nevada' },
+      { abbr: 'NH', name: 'New Hampshire' },  { abbr: 'NJ', name: 'New Jersey' },
+      { abbr: 'NM', name: 'New Mexico' },     { abbr: 'NY', name: 'New York' },
+      { abbr: 'NC', name: 'North Carolina' }, { abbr: 'ND', name: 'North Dakota' },
+      { abbr: 'OH', name: 'Ohio' },           { abbr: 'OK', name: 'Oklahoma' },
+      { abbr: 'OR', name: 'Oregon' },         { abbr: 'PA', name: 'Pennsylvania' },
+      { abbr: 'RI', name: 'Rhode Island' },   { abbr: 'SC', name: 'South Carolina' },
+      { abbr: 'SD', name: 'South Dakota' },   { abbr: 'TN', name: 'Tennessee' },
+      { abbr: 'TX', name: 'Texas' },          { abbr: 'UT', name: 'Utah' },
+      { abbr: 'VT', name: 'Vermont' },        { abbr: 'VA', name: 'Virginia' },
+      { abbr: 'WA', name: 'Washington' },     { abbr: 'WV', name: 'West Virginia' },
+      { abbr: 'WI', name: 'Wisconsin' },      { abbr: 'WY', name: 'Wyoming' }
+    ];
+
+    // ── Populate City dropdown from ECM_DATA (all cities, grouped by state) ──
     function populateLocationSelects() {
       const D = window.ECM_DATA;
       if (!D) return;
-
       const byState = {};
       Object.values(D.cities).forEach(c => {
         if (!byState[c.state]) byState[c.state] = [];
         byState[c.state].push(c);
       });
-
-      // State dropdown — all 50 US states with full names displayed.
-      // value stays as the 2-letter abbreviation so prefillLocation() keeps working.
-      const US_STATES = [
-        { abbr: 'AL', name: 'Alabama' },        { abbr: 'AK', name: 'Alaska' },
-        { abbr: 'AZ', name: 'Arizona' },        { abbr: 'AR', name: 'Arkansas' },
-        { abbr: 'CA', name: 'California' },     { abbr: 'CO', name: 'Colorado' },
-        { abbr: 'CT', name: 'Connecticut' },    { abbr: 'DE', name: 'Delaware' },
-        { abbr: 'FL', name: 'Florida' },        { abbr: 'GA', name: 'Georgia' },
-        { abbr: 'HI', name: 'Hawaii' },         { abbr: 'ID', name: 'Idaho' },
-        { abbr: 'IL', name: 'Illinois' },       { abbr: 'IN', name: 'Indiana' },
-        { abbr: 'IA', name: 'Iowa' },           { abbr: 'KS', name: 'Kansas' },
-        { abbr: 'KY', name: 'Kentucky' },       { abbr: 'LA', name: 'Louisiana' },
-        { abbr: 'ME', name: 'Maine' },          { abbr: 'MD', name: 'Maryland' },
-        { abbr: 'MA', name: 'Massachusetts' },  { abbr: 'MI', name: 'Michigan' },
-        { abbr: 'MN', name: 'Minnesota' },      { abbr: 'MS', name: 'Mississippi' },
-        { abbr: 'MO', name: 'Missouri' },       { abbr: 'MT', name: 'Montana' },
-        { abbr: 'NE', name: 'Nebraska' },       { abbr: 'NV', name: 'Nevada' },
-        { abbr: 'NH', name: 'New Hampshire' },  { abbr: 'NJ', name: 'New Jersey' },
-        { abbr: 'NM', name: 'New Mexico' },     { abbr: 'NY', name: 'New York' },
-        { abbr: 'NC', name: 'North Carolina' }, { abbr: 'ND', name: 'North Dakota' },
-        { abbr: 'OH', name: 'Ohio' },           { abbr: 'OK', name: 'Oklahoma' },
-        { abbr: 'OR', name: 'Oregon' },         { abbr: 'PA', name: 'Pennsylvania' },
-        { abbr: 'RI', name: 'Rhode Island' },   { abbr: 'SC', name: 'South Carolina' },
-        { abbr: 'SD', name: 'South Dakota' },   { abbr: 'TN', name: 'Tennessee' },
-        { abbr: 'TX', name: 'Texas' },          { abbr: 'UT', name: 'Utah' },
-        { abbr: 'VT', name: 'Vermont' },        { abbr: 'VA', name: 'Virginia' },
-        { abbr: 'WA', name: 'Washington' },     { abbr: 'WV', name: 'West Virginia' },
-        { abbr: 'WI', name: 'Wisconsin' },      { abbr: 'WY', name: 'Wyoming' }
-      ];
-      US_STATES.forEach(s => {
-        const opt = document.createElement('option');
-        opt.value = s.abbr;
-        opt.textContent = s.name;
-        stateEl.appendChild(opt);
+      Object.keys(byState).sort().forEach(abbr => {
+        const stateName = (US_STATES.find(s => s.abbr === abbr) || {}).name || abbr;
+        const grp = document.createElement('optgroup');
+        grp.label = stateName;
+        byState[abbr].forEach(c => {
+          const opt = document.createElement('option');
+          opt.value = c.key;
+          opt.dataset.state = c.state;
+          opt.textContent = c.name;
+          grp.appendChild(opt);
+        });
+        cityEl.appendChild(grp);
       });
+    }
 
-      // City dropdown — optgroups per state (full state name as group label)
+    // ── Filter city dropdown to a specific state abbreviation ──
+    // Pass '' or null to show all cities.
+    // If the state has no cities in DB, falls back to showing all cities.
+    function filterCitiesByState(stateAbbr) {
+      const D = window.ECM_DATA;
+      if (!D) return;
+      // Clear all options/optgroups except the placeholder
+      while (cityEl.options.length > 1) cityEl.remove(1);
+      cityEl.querySelectorAll('optgroup').forEach(g => g.remove());
+
+      // Check whether DB has any cities for this state; fall back to all if not
+      const hasMatch = stateAbbr && Object.values(D.cities).some(c => c.state === stateAbbr);
+      const effectiveAbbr = hasMatch ? stateAbbr : '';
+
+      const byState = {};
+      Object.values(D.cities).forEach(c => {
+        if (effectiveAbbr && c.state !== effectiveAbbr) return;
+        if (!byState[c.state]) byState[c.state] = [];
+        byState[c.state].push(c);
+      });
       Object.keys(byState).sort().forEach(abbr => {
         const stateName = (US_STATES.find(s => s.abbr === abbr) || {}).name || abbr;
         const grp = document.createElement('optgroup');
@@ -280,24 +304,24 @@
 
     populateLocationSelects();
 
-    // ── Prefill state + city from current detected/stored location ──
+    // ── Prefill state label + city from current detected/stored location ──
     function prefillLocation() {
       const loc = currentLocation();
       const D = window.ECM_DATA;
       if (!D) return;
       const stateAbbr = loc.state ? (loc.state.length === 2 ? loc.state.toUpperCase() : loc.state) : '';
-      if (stateAbbr) stateEl.value = stateAbbr;
+
+      // Update inline state display label
+      const stateDisplay = formEl.querySelector('#form-state-display');
+      if (stateDisplay) {
+        const stateName = (US_STATES.find(s => s.abbr === stateAbbr) || {}).name || '';
+        stateDisplay.textContent = stateName || 'your state';
+      }
+
+      // Rebuild city dropdown filtered to this state, then pre-select matching city
+      filterCitiesByState(stateAbbr);
       const cityKey = D.normalizeCityKey(loc.city || '');
       if (cityKey && D.cities[cityKey]) cityEl.value = cityKey;
-
-      // Update the change-link to show detected location context
-      const changeLink = formEl.querySelector('.location-change-link');
-      if (changeLink) {
-        const cityName = (D.cities[cityKey] || {}).name || loc.city || '';
-        changeLink.textContent = (cityName && stateAbbr)
-          ? `Not ${cityName}, ${stateAbbr}? Change →`
-          : 'Change location →';
-      }
     }
 
     // Prefill immediately once options exist (covers the DOMContentLoaded path)
@@ -330,7 +354,6 @@
       const done = card.querySelector('.intake-complete');
       if (done) done.remove();
       careSel.value = '';
-      stateEl.value = '';
       cityEl.value = '';
       chips.forEach(c => c.classList.remove('selected'));
       urgency = null;
@@ -396,7 +419,7 @@
 
       // Standard flow: location + urgency required, then redirect
       const cityKey  = cityEl.value;
-      const stateVal = stateEl.value;
+      const stateVal = (cityEl.selectedOptions[0] && cityEl.selectedOptions[0].dataset.state) || '';
       if (!cityKey) { cityEl.focus(); return; }
       if (!urgency) {
         chips.forEach(c => c.animate(

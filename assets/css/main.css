@@ -225,3 +225,33 @@ footer {
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
 }
+
+/* ── FORM MODAL: inline location label row ── */
+.location-label-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.location-label-row label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin: 0;
+}
+.form-state-display {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--sage);
+}
+.location-label-row .location-change-link {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: var(--sage);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  font-family: inherit;
+}

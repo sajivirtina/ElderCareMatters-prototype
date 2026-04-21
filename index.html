@@ -442,18 +442,15 @@
       <!-- Standard location + urgency block -->
       <div id="standard-location-block">
         <div class="form-field">
-          <label>Location</label>
-          <div class="location-row">
-            <select id="form-state" name="state">
-              <option value="">State…</option>
-              <!-- populated by intake.js -->
-            </select>
-            <select id="form-city" name="city">
-              <option value="">City…</option>
-              <!-- populated by intake.js with optgroups -->
-            </select>
+          <div class="location-label-row">
+            <label>Location</label>
+            <span id="form-state-display" class="form-state-display">Texas</span>
+            <button type="button" class="location-change-link" data-open-location-modal>Change →</button>
           </div>
-          <button type="button" class="location-change-link" data-open-location-modal>Change location →</button>
+          <select id="form-city" name="city">
+            <option value="">City…</option>
+            <!-- populated & filtered by intake.js -->
+          </select>
         </div>
         <div class="form-field">
           <label>How soon do you need help?</label>

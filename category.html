@@ -279,27 +279,61 @@
   <div class="modal modal-lg">
     <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
     <h3>Tell us what you need</h3>
-    <p>We'll match you with verified providers in <em class="js-location-city">your area</em>. Takes under a minute.</p>
+    <p>We'll match you with verified providers in your city. Takes under a minute.</p>
     <form class="intake-form" onsubmit="return false;">
+
+      <!-- Care type -->
       <div class="form-field">
         <label for="care-type">What kind of help?</label>
         <select id="care-type" name="care-type">
           <option value="">Select care type…</option>
+          <!-- populated by intake.js -->
         </select>
       </div>
-      <div class="form-field">
-        <label for="city">Location</label>
-        <input id="city" name="city" type="text" placeholder="City or ZIP">
+
+      <!-- "Other" description — hidden by default -->
+      <div class="form-field" id="other-desc-field" style="display:none;">
+        <label for="other-desc">Briefly describe what you need</label>
+        <textarea id="other-desc" name="other-desc" rows="3" placeholder="E.g. looking for overnight respite care for a week…"></textarea>
       </div>
-      <div class="form-field">
-        <label>How soon do you need help?</label>
-        <div class="urgency-chips">
-          <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
-          <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
-          <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+
+      <!-- Standard location + urgency block -->
+      <div id="standard-location-block">
+        <div class="form-field">
+          <label>Location</label>
+          <div class="location-row">
+            <select id="form-state" name="state">
+              <option value="">State…</option>
+            </select>
+            <select id="form-city" name="city">
+              <option value="">City…</option>
+            </select>
+          </div>
+          <button type="button" class="location-change-link" data-open-location-modal>Change location →</button>
+        </div>
+        <div class="form-field">
+          <label>How soon do you need help?</label>
+          <div class="urgency-chips">
+            <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
+            <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
+            <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+          </div>
         </div>
       </div>
-      <button type="submit" class="form-submit">Find Providers →</button>
+
+      <!-- "Other" contact block — hidden by default -->
+      <div id="other-contact-block" style="display:none;">
+        <div class="form-field">
+          <label for="other-phone">Phone number</label>
+          <input id="other-phone" name="phone" type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-field">
+          <label for="other-email">Email address</label>
+          <input id="other-email" name="email" type="email" placeholder="you@example.com">
+        </div>
+      </div>
+
+      <button type="submit" class="form-submit" id="form-submit-btn">Find Providers →</button>
     </form>
   </div>
 </div>

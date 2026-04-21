@@ -294,7 +294,7 @@
     const featuredGrid    = document.getElementById('featured-grid');
     const noMsg           = document.getElementById('no-providers-msg');
 
-    setText('#hero-meta-count', `${D.providers.filter(p => p.category === cat.key).length} providers verified`);
+    setText('#hero-meta-count', `${providers.length} providers verified in ${cityInfo.name}`);
 
     if (featured.length > 0) {
       featuredSection.style.display = '';

@@ -83,7 +83,7 @@
     <h1 class="inner-hero-title">Find <em id="category-inline">home care</em> in <em class="js-location-city">your area</em></h1>
     <p class="inner-hero-sub" id="category-blurb">Loading description…</p>
     <div class="inner-hero-ctas">
-      <button type="button" class="btn-primary-lg" data-open-form-modal>
+      <button type="button" class="btn-primary-lg" id="hero-cta-btn" data-open-form-modal>
         📋 Get Matched Free
         <span class="btn-arrow">→</span>
       </button>
@@ -118,17 +118,6 @@
   <div class="provider-grid" id="featured-grid"></div>
 </section>
 
-<!-- Top Packages (Upsell tiers) -->
-<section class="inner-section inner-section--cream">
-  <div class="inner-section-header">
-    <div>
-      <h2>Popular <em id="category-inline-2">home care</em> packages</h2>
-      <p>Three price points for every budget — compare what's included and pick the level that fits.</p>
-    </div>
-  </div>
-  <div class="package-grid" id="package-grid"></div>
-</section>
-
 <!-- All Providers in [City] -->
 <section class="inner-section inner-section--warm">
   <div class="inner-section-header">
@@ -137,11 +126,25 @@
       <p>Sorted by tier and rating. Click any card to see full details.</p>
     </div>
   </div>
+  <div class="providers-toolbar">
+    <input type="search" id="providers-search" class="providers-search-input"
+      placeholder="Search by name or specialty…" autocomplete="off">
+    <div class="sort-row">
+      <span class="sort-label">Sort by</span>
+      <select id="providers-sort" class="sort-select">
+        <option value="recommended">Recommended</option>
+        <option value="rating">Highest Rating</option>
+        <option value="price">Lowest Price</option>
+        <option value="distance">Nearest First</option>
+      </select>
+    </div>
+  </div>
   <div class="filter-row" id="filter-row">
-    <button class="filter-chip active" data-filter="all">All tiers</button>
-    <button class="filter-chip" data-filter="featured">Featured</button>
+    <button class="filter-chip active" data-filter="all">All</button>
+    <button class="filter-chip" data-filter="featured">⭐ Featured</button>
     <button class="filter-chip" data-filter="premium">Premium</button>
     <button class="filter-chip" data-filter="basic">Basic</button>
+    <button class="filter-chip filter-chip--free" data-filter="free">Free Listings</button>
   </div>
   <div class="provider-grid" id="all-providers-grid"></div>
   <div id="no-providers-msg" class="empty-state" style="display:none">

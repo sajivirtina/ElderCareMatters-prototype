@@ -60,11 +60,14 @@
       const params = new URLSearchParams({ type, city, state: state || '' });
       card.setAttribute('href', `category.html?${params.toString()}`);
     });
+
+    // Allow page scripts (e.g. category.js) to react to location renders
+    if (typeof window.ECM._onRender === 'function') window.ECM._onRender(loc);
   }
 
   function setLocation(city, state, opts) {
     opts = opts || {};
-    const loc = { city: city || '', state: state || '', auto: !!opts.auto };
+    const loc = { city: city || '', state: state || '', auto: !!opts.auto, lat: opts.lat || null, lon: opts.lon || null };
     write(loc);
     render(loc);
     return loc;
@@ -108,7 +111,7 @@
       const coords = await detectViaGeolocation();
       const geo = await reverseGeocode(coords.latitude, coords.longitude);
       if (geo.city) {
-        setLocation(geo.city, geo.state, { auto: true });
+        setLocation(geo.city, geo.state, { auto: true, lat: coords.latitude, lon: coords.longitude });
       }
     } catch (e) {
       // Denied / timeout / offline → keep default, don't nag the user
@@ -155,6 +158,7 @@
   window.ECM = window.ECM || {};
   window.ECM.getLocation = function () { return read() || DEFAULT_LOCATION; };
   window.ECM.setLocation = setLocation;
+  window.ECM._onRender = null; // page scripts can set this to react to location updates
 
   document.addEventListener('DOMContentLoaded', () => {
     wireModal();

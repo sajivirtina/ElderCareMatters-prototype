@@ -2,12 +2,12 @@
   'use strict';
 
   const CITIES = {
-    'dallas':      { key: 'dallas',      name: 'Dallas',      state: 'TX', nearby: ['fort-worth', 'plano', 'arlington'], image: 'https://images.unsplash.com/photo-1545194445-dddb8f4487c6?w=1200&auto=format&fit=crop', tagline: 'The Dallas–Fort Worth Metroplex is home to 500+ licensed elder care providers.' },
-    'fort-worth':  { key: 'fort-worth',  name: 'Fort Worth',  state: 'TX', nearby: ['dallas', 'arlington', 'plano'],      image: 'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=1200&auto=format&fit=crop', tagline: 'Fort Worth blends Texas heritage with a growing network of senior care services.' },
-    'plano':       { key: 'plano',       name: 'Plano',       state: 'TX', nearby: ['dallas', 'fort-worth', 'arlington'], image: 'https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=1200&auto=format&fit=crop', tagline: 'Plano is consistently ranked among the best Texas cities for senior living.' },
-    'arlington':   { key: 'arlington',   name: 'Arlington',   state: 'TX', nearby: ['fort-worth', 'dallas', 'plano'],     image: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200&auto=format&fit=crop', tagline: 'Arlington sits at the heart of the Metroplex with dedicated memory care communities.' },
-    'austin':      { key: 'austin',      name: 'Austin',      state: 'TX', nearby: ['round-rock', 'cedar-park'],          image: 'https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=1200&auto=format&fit=crop', tagline: 'Austin\u2019s senior care scene has grown 40% in the last five years.' },
-    'houston':     { key: 'houston',     name: 'Houston',     state: 'TX', nearby: ['sugar-land', 'katy'],                image: 'https://images.unsplash.com/photo-1572205796404-90d62d8d7d45?w=1200&auto=format&fit=crop', tagline: 'Houston has the largest concentration of hospice and palliative care providers in Texas.' }
+    'dallas':      { key: 'dallas',      name: 'Dallas',      state: 'TX', lat: 32.7767, lon: -96.7970, nearby: ['fort-worth', 'plano', 'arlington'], image: 'https://images.unsplash.com/photo-1545194445-dddb8f4487c6?w=1200&auto=format&fit=crop', tagline: 'The Dallas–Fort Worth Metroplex is home to 500+ licensed elder care providers.' },
+    'fort-worth':  { key: 'fort-worth',  name: 'Fort Worth',  state: 'TX', lat: 32.7555, lon: -97.3308, nearby: ['dallas', 'arlington', 'plano'],      image: 'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=1200&auto=format&fit=crop', tagline: 'Fort Worth blends Texas heritage with a growing network of senior care services.' },
+    'plano':       { key: 'plano',       name: 'Plano',       state: 'TX', lat: 33.0198, lon: -96.6989, nearby: ['dallas', 'fort-worth', 'arlington'], image: 'https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=1200&auto=format&fit=crop', tagline: 'Plano is consistently ranked among the best Texas cities for senior living.' },
+    'arlington':   { key: 'arlington',   name: 'Arlington',   state: 'TX', lat: 32.7357, lon: -97.1081, nearby: ['fort-worth', 'dallas', 'plano'],     image: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200&auto=format&fit=crop', tagline: 'Arlington sits at the heart of the Metroplex with dedicated memory care communities.' },
+    'austin':      { key: 'austin',      name: 'Austin',      state: 'TX', lat: 30.2672, lon: -97.7431, nearby: ['round-rock', 'cedar-park'],          image: 'https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=1200&auto=format&fit=crop', tagline: 'Austin\u2019s senior care scene has grown 40% in the last five years.' },
+    'houston':     { key: 'houston',     name: 'Houston',     state: 'TX', lat: 29.7604, lon: -95.3698, nearby: ['sugar-land', 'katy'],                image: 'https://images.unsplash.com/photo-1572205796404-90d62d8d7d45?w=1200&auto=format&fit=crop', tagline: 'Houston has the largest concentration of hospice and palliative care providers in Texas.' }
   };
 
   const CATEGORIES = {
@@ -94,7 +94,12 @@
     // Hospice
     { id: 'compassion-hospice',    name: 'Compassion Hospice',          category: 'hospice',         city: 'dallas',     tier: 'featured', rating: 4.9, reviews: 109, boost: 1.00, color: '#7A9E7E', tagline: 'Medicare-certified hospice with music & pet therapy',   specialties: ['Pain management', 'Bereavement'],                                about: 'Full interdisciplinary team including chaplains, social workers, and volunteer musicians. 24/7 on-call nursing.' },
     { id: 'serenity-hospice',      name: 'Serenity Hospice TX',         category: 'hospice',         city: 'arlington',  tier: 'premium',  rating: 4.8, reviews: 81,  boost: 0.95, color: '#0891B2', tagline: 'Patient-first hospice serving Tarrant County',          specialties: ['Comfort care', 'Family counseling'],                             about: 'A non-profit hospice agency — every dollar goes back into patient and family support.' },
-    { id: 'peaceful-transitions',  name: 'Peaceful Transitions',        category: 'hospice',         city: 'fort-worth', tier: 'basic',    rating: 4.5, reviews: 35,  boost: 0.90, color: '#9333EA', tagline: 'Compassionate end-of-life care at home',                 specialties: ['In-home hospice'],                                               about: 'Small hospice team serving Fort Worth families in the comfort of their own homes.' }
+    { id: 'peaceful-transitions',  name: 'Peaceful Transitions',        category: 'hospice',         city: 'fort-worth', tier: 'basic',    rating: 4.5, reviews: 35,  boost: 0.90, color: '#9333EA', tagline: 'Compassionate end-of-life care at home',                 specialties: ['In-home hospice'],                                               about: 'Small hospice team serving Fort Worth families in the comfort of their own homes.' },
+
+    // Free (unclaimed) listings
+    { id: 'allcare-home-dallas',  name: 'AllCare Home Services',        category: 'home-care',       city: 'dallas',     tier: 'free',     rating: 3.9, reviews: 5,   boost: 0.80, color: '#A0A0A0', tagline: 'Home care services in the Dallas area.',               specialties: ['Companion care'],                                                about: 'Unclaimed listing.', claimed: false },
+    { id: 'sunridge-assisted',    name: 'Sunridge Assisted Care',       category: 'assisted-living', city: 'dallas',     tier: 'free',     rating: 4.0, reviews: 8,   boost: 0.80, color: '#B0B0B0', tagline: 'Assisted living community in Dallas.',                 specialties: ['Daily assistance'],                                              about: 'Unclaimed listing.', claimed: false },
+    { id: 'maplewood-memory',     name: 'Maplewood Memory Unit',        category: 'memory-care',     city: 'dallas',     tier: 'free',     rating: 3.8, reviews: 3,   boost: 0.80, color: '#C0C0C0', tagline: 'Memory care services in Dallas.',                      specialties: ['Dementia'],                                                      about: 'Unclaimed listing.', claimed: false }
   ];
 
   // Reusable review blurbs (recycled across providers for prototype data).
@@ -111,7 +116,7 @@
     initials: seed.name.split(' ').slice(0, 2).map(w => w[0]).join(''),
     verified: true,
     response: seed.tier === 'featured' ? 'Responds within 1 hour' : (seed.tier === 'premium' ? 'Responds within 4 hours' : 'Responds within 24 hours'),
-    packages: packagesFor(seed.category, seed.boost),
+    packages: seed.tier === 'free' ? [] : packagesFor(seed.category, seed.boost),
     reviews_list: [REVIEW_POOL[idx % REVIEW_POOL.length], REVIEW_POOL[(idx + 2) % REVIEW_POOL.length]]
   }));
 

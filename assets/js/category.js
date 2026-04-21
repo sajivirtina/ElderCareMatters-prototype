@@ -262,9 +262,19 @@
     const cityKey = resolveCityKey(cityHint);
     const cityInfo = D.cities[cityKey];
 
+    // ── Determine heading display name ──
+    // When the user selected a state only (e.g. "Florida") with no specific city,
+    // loc.city is the full state name and won't match any DB city key.
+    // In that case show the state name in all headings instead of the fallback
+    // city ("Dallas"), which would be misleading.
+    const loc = (window.ECM && window.ECM.getLocation && window.ECM.getLocation()) || {};
+    const locCityKey = D.normalizeCityKey(loc.city || '');
+    const stateOnlyMode = loc.city && !D.cities[locCityKey];
+    const displayCityName = stateOnlyMode ? loc.city : cityInfo.name;
+
     // ── Hero + breadcrumb ──
-    document.title = `${cat.name} in ${cityInfo.name} | ElderCareMatters`;
-    setText('#breadcrumb-current', `${cat.name} in ${cityInfo.name}`);
+    document.title = `${cat.name} in ${displayCityName} | ElderCareMatters`;
+    setText('#breadcrumb-current', `${cat.name} in ${displayCityName}`);
     setText('#category-icon', cat.icon);
     setText('#category-name', cat.name);
     setText('#category-inline', cat.name.toLowerCase());
@@ -279,27 +289,21 @@
     const heroBtn = document.getElementById('hero-cta-btn');
     if (heroBtn) heroBtn.innerHTML = `📋 Talk to a ${escapeHtml(cat.name)} Advisor <span class="btn-arrow">→</span>`;
 
-    // Override .js-location-city spans on this page to show the RESOLVED city.
-    document.querySelectorAll('.js-location-city').forEach(el => { el.textContent = cityInfo.name; });
+    // Override .js-location-city spans with the display city name.
+    // In state-only mode this is the state name ("Florida"); for a real
+    // city selection it is the resolved city ("Dallas", "Austin", etc.).
+    document.querySelectorAll('.js-location-city').forEach(el => { el.textContent = displayCityName; });
 
-    // Re-apply resolved city whenever location.js fires async updates (fix geolocation race)
+    // Re-apply whenever location.js fires async updates (fix geolocation race)
     window.ECM._onRender = function () {
-      document.querySelectorAll('.js-location-city').forEach(el => { el.textContent = cityInfo.name; });
+      document.querySelectorAll('.js-location-city').forEach(el => { el.textContent = displayCityName; });
     };
 
     // ── Providers in city ──
     const providers = D.getProvidersByCategoryCity(cat.key, cityKey);
-    const featured  = providers.filter(p => p.tier === 'featured').slice(0, 3);
-    const featuredSection = document.getElementById('featured-section');
-    const featuredGrid    = document.getElementById('featured-grid');
-    const noMsg           = document.getElementById('no-providers-msg');
+    const noMsg     = document.getElementById('no-providers-msg');
 
     setText('#hero-meta-count', 'Grow your Business');
-
-    if (featured.length > 0) {
-      featuredSection.style.display = '';
-      featuredGrid.innerHTML = featured.map(p => renderProviderCard(p, cityInfo)).join('');
-    }
 
     // Initial no-providers state (wireProviders handles the grid render itself)
     if (providers.length === 0) {

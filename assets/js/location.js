@@ -125,7 +125,20 @@
     if (!overlay) return;
 
     const badges = document.querySelectorAll('[data-open-location-modal]');
-    badges.forEach(b => b.addEventListener('click', () => overlay.classList.add('active')));
+    badges.forEach(b => b.addEventListener('click', () => {
+      // Pre-populate inputs from current stored/detected location
+      const loc = read() || DEFAULT_LOCATION;
+      const zipInput = overlay.querySelector('input[name="zip"]');
+      const stateSel = overlay.querySelector('select[name="state"]');
+      if (zipInput) zipInput.value = '';  // Clear ZIP — stored city names aren't valid ZIPs
+      if (stateSel && loc.state) {
+        // Stored state is a 2-letter abbreviation (e.g. "TX");
+        // the <select> uses full names ("Texas"), so reverse-map via STATE_ABBR
+        const fullName = Object.keys(STATE_ABBR).find(k => STATE_ABBR[k] === loc.state.toUpperCase());
+        stateSel.value = fullName || '';
+      }
+      overlay.classList.add('active');
+    }));
 
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) overlay.classList.remove('active');
@@ -146,7 +159,10 @@
         // For a prototype we use the ZIP literal as the city label.
         setLocation(zip, state, { auto: false });
       } else if (state) {
-        setLocation(state, state, { auto: false });
+        // Use full state name as the city display label (e.g. "Maryland")
+        // so the heading reads "Find Trusted Elder Care in Maryland".
+        // toAbbr() stores the 2-letter code as the state field.
+        setLocation(state, toAbbr(state), { auto: false });
       }
       overlay.classList.remove('active');
       if (zipInput) zipInput.value = '';

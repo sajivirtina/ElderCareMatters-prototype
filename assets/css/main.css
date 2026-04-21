@@ -40,6 +40,8 @@ a { color: inherit; }
   justify-content: center;
 }
 .modal-overlay.active { display: flex; }
+/* Location modal must always stack above other modals (e.g. form modal) */
+#locationModal.active { z-index: 1100; }
 .modal {
   background: var(--warm-white);
   border-radius: 20px;

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources &amp; Guides | ElderCareMatters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/homepage.css">
+<link rel="stylesheet" href="assets/css/inner.css">
+</head>
+<body>
+
+<!-- Location Modal -->
+<div class="modal-overlay" id="locationModal">
+  <div class="modal">
+    <h3>Set your location</h3>
+    <p>Searching for a parent in a different city? Enter their location.</p>
+    <input type="text" name="zip" placeholder="City or ZIP code…">
+    <div class="modal-divider">or</div>
+    <select name="state">
+      <option value="">Select state…</option>
+      <option>Alabama</option><option>Alaska</option><option>Arizona</option>
+      <option>Arkansas</option><option>California</option><option>Colorado</option>
+      <option>Connecticut</option><option>Delaware</option><option>Florida</option>
+      <option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+      <option>Illinois</option><option>Indiana</option><option>Iowa</option>
+      <option>Kansas</option><option>Kentucky</option><option>Louisiana</option>
+      <option>Maine</option><option>Maryland</option><option>Massachusetts</option>
+      <option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+      <option>Missouri</option><option>Montana</option><option>Nebraska</option>
+      <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
+      <option>New Mexico</option><option>New York</option><option>North Carolina</option>
+      <option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+      <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+      <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option>
+      <option>Texas</option><option>Utah</option><option>Vermont</option>
+      <option>Virginia</option><option>Washington</option><option>West Virginia</option>
+      <option>Wisconsin</option><option>Wyoming</option>
+    </select>
+    <div class="modal-actions">
+      <button class="btn-outline" type="button" data-modal-cancel>Cancel</button>
+      <button class="btn-sage" type="button" data-modal-submit>Update Location</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    ElderCareMatters
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="search.html">Find Care</a></li>
+    <li><a href="blog.html" style="color:var(--sage);font-weight:600">Resources</a></li>
+    <li><a href="index.html#provider-cta">For Providers</a></li>
+    <li><a href="#" class="nav-cta">Provider Login</a></li>
+  </ul>
+  <div class="nav-location-badge" data-open-location-modal>
+    📍 <span class="js-location-full">Detecting…</span> · Change
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Resources &amp; Guides</span>
+</div>
+
+<!-- Blog Hero -->
+<section class="blog-hero">
+  <div class="blog-hero-eyebrow">📚 Elder Care Resources</div>
+  <h1 class="blog-hero-title">Resources &amp; <em>Guides</em></h1>
+  <p class="blog-hero-sub">Expert-written articles to help families navigate every stage of elder care, from the first conversation to finding the right provider.</p>
+
+  <div class="blog-stat-bar">
+    <div class="blog-stat">
+      <span class="blog-stat-val">50+</span>
+      <div class="blog-stat-label">Expert Guides</div>
+    </div>
+    <div class="blog-stat">
+      <span class="blog-stat-val">Free</span>
+      <div class="blog-stat-label">Always Free</div>
+    </div>
+    <div class="blog-stat">
+      <span class="blog-stat-val">6</span>
+      <div class="blog-stat-label">Care Categories</div>
+    </div>
+    <div class="blog-stat">
+      <span class="blog-stat-val">50+</span>
+      <div class="blog-stat-label">Cities Covered</div>
+    </div>
+  </div>
+</section>
+
+<!-- Category Filter Bar + Featured -->
+<section class="inner-section inner-section--warm" style="padding-top:28px">
+
+  <div class="blog-filter-bar" style="padding-left:0;padding-right:0">
+    <button class="filter-chip active" data-blog-filter="all">All Guides</button>
+    <button class="filter-chip" data-blog-filter="home-care">🏠 Home Care</button>
+    <button class="filter-chip" data-blog-filter="assisted-living">🏢 Assisted Living</button>
+    <button class="filter-chip" data-blog-filter="memory-care">🧠 Memory Care</button>
+    <button class="filter-chip" data-blog-filter="legal">⚖️ Legal &amp; Financial</button>
+    <button class="filter-chip" data-blog-filter="hospice">🕊️ Hospice</button>
+    <button class="filter-chip" data-blog-filter="checklist">✅ Checklists</button>
+  </div>
+
+  <!-- Featured / Editor's Pick -->
+  <a class="blog-featured" href="blog-detail.html">
+    <div class="blog-featured-img">🏠</div>
+    <div class="blog-featured-body">
+      <div class="blog-featured-badge">⭐ Editor's Pick</div>
+      <div class="blog-featured-title">The Complete Guide to Home Care in 2026</div>
+      <p class="blog-featured-excerpt">Everything a family needs to know before hiring a home care agency, from vetting credentials to understanding Medicare coverage and what to expect on day one.</p>
+      <div class="blog-featured-meta">
+        <span>March 15, 2026</span>
+        <span class="blog-featured-meta-sep">·</span>
+        <span>8 min read</span>
+        <span class="blog-featured-meta-sep">·</span>
+        <span>Home Care</span>
+      </div>
+      <div class="blog-featured-cta">Read the guide →</div>
+    </div>
+  </a>
+
+</section>
+
+<!-- Blog Grid -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>Latest <em>Guides</em></h2>
+      <p>Practical articles written by elder care advisors and verified providers.</p>
+    </div>
+    <div class="inner-section-aside"><a href="#">View all guides →</a></div>
+  </div>
+
+  <div class="blog-grid">
+
+    <a class="blog-card" href="blog-detail.html">
+      <div class="blog-card-icon" style="background:#e6f4ea">🏠</div>
+      <div class="blog-card-body">
+        <span class="blog-card-cat blog-cat--home-care">Home Care</span>
+        <div class="blog-card-title">How to Choose a Home Care Agency</div>
+        <p class="blog-card-excerpt">A step-by-step checklist for vetting agencies, asking the right questions, and avoiding common pitfalls families face.</p>
+      </div>
+      <div class="blog-card-footer">
+        <span>Mar 10, 2026 · 6 min read</span>
+        <span class="blog-card-footer-link">Read more →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-detail.html">
+      <div class="blog-card-icon" style="background:#e8f0fe">🏢</div>
+      <div class="blog-card-body">
+        <span class="blog-card-cat blog-cat--assisted-living">Assisted Living</span>
+        <div class="blog-card-title">Signs It's Time for Assisted Living</div>
+        <p class="blog-card-excerpt">Recognizing the signs that a parent needs more support than home care can provide, and how to start that conversation.</p>
+      </div>
+      <div class="blog-card-footer">
+        <span>Mar 8, 2026 · 5 min read</span>
+        <span class="blog-card-footer-link">Read more →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-detail.html">
+      <div class="blog-card-icon" style="background:#fce8d5">🧠</div>
+      <div class="blog-card-body">
+        <span class="blog-card-cat blog-cat--memory-care">Memory Care</span>
+        <div class="blog-card-title">Understanding Dementia Stages</div>
+        <p class="blog-card-excerpt">A plain-language overview of the seven stages of dementia, what each looks like, and how care needs change over time.</p>
+      </div>
+      <div class="blog-card-footer">
+        <span>Mar 5, 2026 · 7 min read</span>
+        <span class="blog-card-footer-link">Read more →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-detail.html">
+      <div class="blog-card-icon" style="background:#f3e8fd">⚖️</div>
+      <div class="blog-card-body">
+        <span class="blog-card-cat blog-cat--legal">Legal &amp; Financial</span>
+        <div class="blog-card-title">Medicare vs Medicaid Explained</div>
+        <p class="blog-card-excerpt">The key differences between Medicare and Medicaid, what each covers for elder care, and how to apply for benefits.</p>
+      </div>
+      <div class="blog-card-footer">
+        <span>Mar 3, 2026 · 8 min read</span>
+        <span class="blog-card-footer-link">Read more →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-detail.html">
+      <div class="blog-card-icon" style="background:#fde8ee">🕊️</div>
+      <div class="blog-card-body">
+        <span class="blog-card-cat blog-cat--hospice">Hospice</span>
+        <div class="blog-card-title">What Hospice Care Really Means</div>
+        <p class="blog-card-excerpt">Dispelling common myths about hospice, when to consider it, and how it can improve quality of life for your loved one.</p>
+      </div>
+      <div class="blog-card-footer">
+        <span>Feb 28, 2026 · 5 min read</span>
+        <span class="blog-card-footer-link">Read more →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-detail.html">
+      <div class="blog-card-icon" style="background:#e8fdf5">✅</div>
+      <div class="blog-card-body">
+        <span class="blog-card-cat blog-cat--checklist">Checklist</span>
+        <div class="blog-card-title">Moving Your Parent: The Ultimate Checklist</div>
+        <p class="blog-card-excerpt">A 40-point checklist covering everything from sorting belongings to notifying Medicare when transitioning to a care facility.</p>
+      </div>
+      <div class="blog-card-footer">
+        <span>Feb 24, 2026 · 4 min read</span>
+        <span class="blog-card-footer-link">Read more →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-detail.html">
+      <div class="blog-card-icon" style="background:#e6f4ea">🏠</div>
+      <div class="blog-card-body">
+        <span class="blog-card-cat blog-cat--home-care">Home Care</span>
+        <div class="blog-card-title">In-Home vs. Facility Care: Pros &amp; Cons</div>
+        <p class="blog-card-excerpt">A balanced comparison to help families decide whether aging in place or transitioning to a facility is the right choice.</p>
+      </div>
+      <div class="blog-card-footer">
+        <span>Feb 20, 2026 · 6 min read</span>
+        <span class="blog-card-footer-link">Read more →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-detail.html">
+      <div class="blog-card-icon" style="background:#fce8d5">🧠</div>
+      <div class="blog-card-body">
+        <span class="blog-card-cat blog-cat--memory-care">Memory Care</span>
+        <div class="blog-card-title">Talking to a Parent About Memory Loss</div>
+        <p class="blog-card-excerpt">Scripts, timing, and framing strategies from care managers who have this difficult conversation every week.</p>
+      </div>
+      <div class="blog-card-footer">
+        <span>Feb 17, 2026 · 5 min read</span>
+        <span class="blog-card-footer-link">Read more →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-detail.html">
+      <div class="blog-card-icon" style="background:#f3e8fd">⚖️</div>
+      <div class="blog-card-body">
+        <span class="blog-card-cat blog-cat--legal">Legal &amp; Financial</span>
+        <div class="blog-card-title">Power of Attorney: A Step-by-Step Guide</div>
+        <p class="blog-card-excerpt">How to establish durable power of attorney for an aging parent, what documents you need, and common mistakes to avoid.</p>
+      </div>
+      <div class="blog-card-footer">
+        <span>Feb 12, 2026 · 7 min read</span>
+        <span class="blog-card-footer-link">Read more →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- Local Resources by City -->
+<section class="inner-section inner-section--warm">
+  <div class="inner-section-header">
+    <div>
+      <h2>Resources <em>by City</em></h2>
+      <p>Find elder care guides, provider directories, and local resources near you.</p>
+    </div>
+  </div>
+
+  <div class="blog-city-grid">
+    <a class="blog-city-link" href="category.html?type=home-care&city=dallas">📍 Dallas, TX</a>
+    <a class="blog-city-link" href="category.html?type=home-care&city=fort-worth">📍 Fort Worth, TX</a>
+    <a class="blog-city-link" href="category.html?type=home-care&city=plano">📍 Plano, TX</a>
+    <a class="blog-city-link" href="category.html?type=home-care&city=arlington">📍 Arlington, TX</a>
+    <a class="blog-city-link" href="category.html?type=home-care&city=austin">📍 Austin, TX</a>
+    <a class="blog-city-link" href="category.html?type=home-care&city=houston">📍 Houston, TX</a>
+    <a class="blog-city-link" href="search.html">📍 San Antonio, TX</a>
+    <a class="blog-city-link" href="search.html">📍 Phoenix, AZ</a>
+    <a class="blog-city-link" href="search.html">📍 Denver, CO</a>
+    <a class="blog-city-link" href="search.html">📍 Chicago, IL</a>
+    <a class="blog-city-link" href="search.html">📍 Miami, FL</a>
+    <a class="blog-city-link" href="search.html">📍 Atlanta, GA</a>
+    <a class="blog-city-link" href="search.html">📍 Seattle, WA</a>
+    <a class="blog-city-link" href="search.html">📍 Boston, MA</a>
+    <a class="blog-city-link" href="search.html">📍 Los Angeles, CA</a>
+    <a class="blog-city-link" href="search.html">📍 New York, NY</a>
+  </div>
+</section>
+
+<!-- Newsletter Subscribe -->
+<div class="blog-subscribe">
+  <div>
+    <h3>Get guides delivered to your <em>inbox</em></h3>
+    <p>Join 12,000+ families receiving our free weekly elder care digest. No spam, unsubscribe any time.</p>
+  </div>
+  <div>
+    <form class="blog-subscribe-form" onsubmit="return false;">
+      <input type="email" class="blog-subscribe-input" placeholder="Your email address…">
+      <button type="submit" class="blog-subscribe-btn">Subscribe Free</button>
+    </form>
+    <p style="font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:10px">We respect your privacy. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<!-- CTA band -->
+<div class="cta-band">
+  <div>
+    <h2>Ready to find care? <em>We'll match you.</em></h2>
+    <p>Tell us what you need, we'll hand-pick up to 3 verified providers near you.</p>
+  </div>
+  <div class="cta-band-actions">
+    <button type="button" class="btn-primary-lg" data-open-form-modal>📋 Start Your Free Match →</button>
+    <button type="button" class="btn-ghost" data-open-chat style="color:#fff;border-color:rgba(255,255,255,0.3);">💬 Chat with advisor</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">🌿 ElderCareMatters</a>
+      <p class="footer-tagline">Connecting families with trusted elder care providers across the United States.</p>
+      <div class="footer-trust">
+        <div class="trust-item">✓ Verified Providers</div>
+        <div class="trust-item">🔒 Privacy Protected</div>
+        <div class="trust-item">⭐ Free for Families</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>For Families</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="search.html">Find Providers</a></li>
+        <li><a href="blog.html">Guides &amp; Resources</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>For Providers</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#provider-cta">Provider Overview</a></li>
+        <li><a href="#">Pricing &amp; Plans</a></li>
+        <li><a href="#">Provider Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Browse Care</h4>
+      <ul class="footer-links">
+        <li><a href="search.html">All Categories</a></li>
+        <li><a href="blog.html">Elder Care Guides</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ElderCareMatters. All rights reserved.</span>
+    <div class="footer-bottom-right">
+      <a href="#">Free for families</a>
+      <a href="#">Verified providers</a>
+      <a href="#">No spam</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Quick Form Modal -->
+<div class="modal-overlay form-modal" id="formModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
+    <h3>Tell us what you need</h3>
+    <p>We'll match you with verified providers in your city. Takes under a minute.</p>
+    <form class="intake-form" onsubmit="return false;">
+
+      <!-- Care type -->
+      <div class="form-field">
+        <label for="care-type">What kind of help?</label>
+        <select id="care-type" name="care-type">
+          <option value="">Select care type…</option>
+        </select>
+      </div>
+
+      <!-- "Other" description, hidden by default -->
+      <div class="form-field" id="other-desc-field" style="display:none;">
+        <label for="other-desc">Briefly describe what you need</label>
+        <textarea id="other-desc" name="other-desc" rows="3" placeholder="E.g. looking for overnight respite care for a week…"></textarea>
+      </div>
+
+      <!-- Standard location + urgency block -->
+      <div id="standard-location-block">
+        <div class="form-field">
+          <label>Location</label>
+          <div class="location-row">
+            <select id="form-state" name="state">
+              <option value="">State…</option>
+            </select>
+            <select id="form-city" name="city">
+              <option value="">City…</option>
+            </select>
+          </div>
+          <button type="button" class="location-change-link" data-open-location-modal>Change location →</button>
+        </div>
+        <div class="form-field">
+          <label>How soon do you need help?</label>
+          <div class="urgency-chips">
+            <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
+            <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
+            <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- "Other" contact block, hidden by default -->
+      <div id="other-contact-block" style="display:none;">
+        <div class="form-field">
+          <label for="other-phone">Phone number</label>
+          <input id="other-phone" name="phone" type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-field">
+          <label for="other-email">Email address</label>
+          <input id="other-email" name="email" type="email" placeholder="you@example.com">
+        </div>
+      </div>
+
+      <button type="submit" class="form-submit" id="form-submit-btn">Find Providers →</button>
+    </form>
+  </div>
+</div>
+
+<!-- Chat FAB -->
+<button class="chat-fab" id="chatFab" type="button" aria-label="Chat with our care advisor">
+  <span class="chat-fab-icon chat-fab-icon--chat">💬</span>
+  <span class="chat-fab-icon chat-fab-icon--close">×</span>
+  <span class="chat-fab-pulse"></span>
+</button>
+<div class="chat-popup" id="chatPopup">
+  <div class="chat-popup-header">
+    <div class="chat-avatar-sm">👩‍⚕️</div>
+    <div class="chat-meta">
+      <div class="chat-meta-name">ECM Care Advisor</div>
+      <div class="chat-meta-status"><span class="status-dot"></span> Online · Avg reply &lt; 1 min</div>
+    </div>
+    <div class="chat-step-badge">Step 1 of 4</div>
+    <button class="chat-popup-close" type="button" data-close-chat aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body"></div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/location.js"></script>
+<script src="assets/js/intake.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -7,7 +7,8 @@
     { key: 'memory-care',     icon: '🧠', label: 'Memory Care' },
     { key: 'elder-law',       icon: '⚖️', label: 'Elder Law Attorney' },
     { key: 'care-management', icon: '📋', label: 'Care Management' },
-    { key: 'hospice',         icon: '🤝', label: 'Hospice' }
+    { key: 'hospice',         icon: '🤝', label: 'Hospice' },
+    { key: 'other',           icon: '✏️', label: 'Other' }
   ];
 
   const URGENCY_OPTIONS = [
@@ -196,11 +197,17 @@
     const card = modal.querySelector('.modal');
     const formEl = modal.querySelector('.intake-form');
 
-    const careSel = formEl.querySelector('select[name="care-type"]');
-    const cityInput = formEl.querySelector('input[name="city"]');
-    const chips = formEl.querySelectorAll('.urgency-chip');
-    const submit = formEl.querySelector('.form-submit');
+    const careSel    = formEl.querySelector('select[name="care-type"]');
+    const stateEl    = formEl.querySelector('select[name="state"]');
+    const cityEl     = formEl.querySelector('select[name="city"]');
+    const chips      = formEl.querySelectorAll('.urgency-chip');
+    const submitBtn  = formEl.querySelector('.form-submit');
 
+    const otherDescField       = formEl.querySelector('#other-desc-field');
+    const standardLocationBlock = formEl.querySelector('#standard-location-block');
+    const otherContactBlock    = formEl.querySelector('#other-contact-block');
+
+    // ── Populate care type select ──
     CARE_TYPES.forEach(c => {
       const opt = document.createElement('option');
       opt.value = c.key;
@@ -208,14 +215,65 @@
       careSel.appendChild(opt);
     });
 
-    const syncCity = () => {
-      const loc = currentLocation();
-      if (!cityInput.dataset.touched) cityInput.value = loc.city || '';
-    };
-    syncCity();
-    setInterval(syncCity, 1500); // cheap: lets auto-detected city flow in
-    cityInput.addEventListener('input', () => { cityInput.dataset.touched = '1'; });
+    // ── Populate State + City from ECM_DATA ──
+    function populateLocationSelects() {
+      const D = window.ECM_DATA;
+      if (!D) return;
 
+      const byState = {};
+      Object.values(D.cities).forEach(c => {
+        if (!byState[c.state]) byState[c.state] = [];
+        byState[c.state].push(c);
+      });
+
+      // State dropdown — unique abbreviations from the dataset
+      Object.keys(byState).sort().forEach(abbr => {
+        const opt = document.createElement('option');
+        opt.value = abbr;
+        opt.textContent = abbr;
+        stateEl.appendChild(opt);
+      });
+
+      // City dropdown — optgroups per state
+      Object.keys(byState).sort().forEach(abbr => {
+        const grp = document.createElement('optgroup');
+        grp.label = abbr;
+        byState[abbr].forEach(c => {
+          const opt = document.createElement('option');
+          opt.value = c.key;
+          opt.dataset.state = c.state;
+          opt.textContent = c.name;
+          grp.appendChild(opt);
+        });
+        cityEl.appendChild(grp);
+      });
+    }
+
+    populateLocationSelects();
+
+    // ── Prefill state + city from current detected/stored location ──
+    function prefillLocation() {
+      const loc = currentLocation();
+      const D = window.ECM_DATA;
+      if (!D) return;
+      const stateAbbr = loc.state ? (loc.state.length === 2 ? loc.state.toUpperCase() : loc.state) : '';
+      if (stateAbbr) stateEl.value = stateAbbr;
+      const cityKey = D.normalizeCityKey(loc.city || '');
+      if (cityKey && D.cities[cityKey]) cityEl.value = cityKey;
+    }
+
+    // ── Toggle Other vs Standard UI ──
+    function syncOtherMode() {
+      const isOther = careSel.value === 'other';
+      otherDescField.style.display        = isOther ? '' : 'none';
+      standardLocationBlock.style.display = isOther ? 'none' : '';
+      otherContactBlock.style.display     = isOther ? '' : 'none';
+      submitBtn.textContent               = isOther ? 'Submit Request →' : 'Find Providers →';
+    }
+
+    careSel.addEventListener('change', syncOtherMode);
+
+    // ── Urgency chips ──
     let urgency = null;
     chips.forEach(chip => {
       chip.addEventListener('click', () => {
@@ -225,21 +283,33 @@
       });
     });
 
+    // ── Reset ──
     function resetForm() {
       formEl.style.display = '';
       const done = card.querySelector('.intake-complete');
       if (done) done.remove();
       careSel.value = '';
-      cityInput.value = currentLocation().city || '';
-      delete cityInput.dataset.touched;
+      stateEl.value = '';
+      cityEl.value = '';
       chips.forEach(c => c.classList.remove('selected'));
       urgency = null;
+      // Reset Other fields
+      const otherDesc = formEl.querySelector('#other-desc');
+      const otherPhone = formEl.querySelector('#other-phone');
+      const otherEmail = formEl.querySelector('#other-email');
+      if (otherDesc)  otherDesc.value  = '';
+      if (otherPhone) otherPhone.value = '';
+      if (otherEmail) otherEmail.value = '';
+      syncOtherMode();
+      prefillLocation();
     }
 
-    function openModal() { modal.classList.add('active'); }
+    function openModal() {
+      modal.classList.add('active');
+      prefillLocation();
+    }
     function closeModal() {
       modal.classList.remove('active');
-      // Reset after the close transition so the next open is fresh
       setTimeout(resetForm, 200);
     }
 
@@ -250,13 +320,43 @@
 
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-    submit.addEventListener('click', (e) => {
+    // ── Submit ──
+    submitBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const careType = careSel.value;
-      const city = cityInput.value.trim();
-
       if (!careType) { careSel.focus(); return; }
-      if (!city) { cityInput.focus(); return; }
+
+      if (careType === 'other') {
+        const otherDesc  = formEl.querySelector('#other-desc');
+        const otherPhone = formEl.querySelector('#other-phone');
+        const otherEmail = formEl.querySelector('#other-email');
+        const desc  = otherDesc  ? otherDesc.value.trim()  : '';
+        const phone = otherPhone ? otherPhone.value.trim() : '';
+        const email = otherEmail ? otherEmail.value.trim() : '';
+        if (!desc)  { if (otherDesc)  otherDesc.focus();  return; }
+        if (!phone && !email) { if (otherPhone) otherPhone.focus(); return; }
+
+        // Show completion card for Other (no redirect)
+        formEl.style.display = 'none';
+        const existing = card.querySelector('.intake-complete');
+        if (existing) existing.remove();
+        const completionEl = document.createElement('div');
+        completionEl.className = 'intake-complete';
+        completionEl.innerHTML = `
+          <div class="intake-complete-icon">✓</div>
+          <h4>Request received!</h4>
+          <p>Our care advisor will reach out within 24 hours to understand your specific needs and connect you with the right providers.</p>
+          <button class="form-submit" type="button" data-restart>Start over</button>
+        `;
+        card.appendChild(completionEl);
+        completionEl.querySelector('[data-restart]').addEventListener('click', () => resetForm());
+        return;
+      }
+
+      // Standard flow: location + urgency required, then redirect
+      const cityKey  = cityEl.value;
+      const stateVal = stateEl.value;
+      if (!cityKey) { cityEl.focus(); return; }
       if (!urgency) {
         chips.forEach(c => c.animate(
           [{ transform: 'translateX(0)' }, { transform: 'translateX(-4px)' }, { transform: 'translateX(4px)' }, { transform: 'translateX(0)' }],
@@ -265,16 +365,23 @@
         return;
       }
 
-      state.careType = careType;
-      state.urgency = urgency;
-      state.confirmedLocation = true;
-
-      formEl.style.display = 'none';
-      const existing = card.querySelector('.intake-complete');
-      if (existing) existing.remove();
-
-      appendCompletionCard(card, () => resetForm());
+      const D = window.ECM_DATA;
+      const cityInfo = D && D.cities[cityKey];
+      const cityName = cityInfo ? cityInfo.name : cityKey;
+      const params = new URLSearchParams({ type: careType, city: cityName, state: stateVal });
+      window.location.href = `category.html?${params.toString()}`;
     });
+
+    // Re-prefill when location modal closes (user may have updated their city)
+    const locationModal = document.getElementById('locationModal');
+    if (locationModal) {
+      const obs = new MutationObserver(() => {
+        if (!locationModal.classList.contains('active') && modal.classList.contains('active')) {
+          prefillLocation();
+        }
+      });
+      obs.observe(locationModal, { attributes: true, attributeFilter: ['class'] });
+    }
   }
 
   document.addEventListener('DOMContentLoaded', () => {

@@ -69,7 +69,7 @@
 
   <div class="hero-left">
     <div class="hero-eyebrow">✦ Trusted Care Matching · Free for Families</div>
-    <h1 class="hero-title">Find Trusted Elder Care in <em class="js-location-city">your area</em></h1>
+    <h1 class="hero-title">Find Trusted Elder Care in <em class="js-location-city">your area</em> <button type="button" class="city-change-link" data-open-location-modal>[Change]</button></h1>
     <p class="hero-sub">One need. One location. Matched in under 2 minutes. Our free care advisor connects you with verified local providers — no spam, no obligation.</p>
 
     <div class="hero-cta-row">
@@ -87,46 +87,38 @@
     </div>
   </div>
 
-  <!-- Avvo-style visual cluster -->
+  <!-- Editorial hero photo + floating trust tiles -->
   <div class="hero-right">
-    <div class="hero-cluster" aria-hidden="true">
-      <div class="hero-cluster-orbit hero-cluster-orbit--outer"></div>
-      <div class="hero-cluster-orbit hero-cluster-orbit--inner"></div>
-
-      <div class="hero-cluster-center">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop" alt="">
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1000&auto=format&fit=crop" alt="Caregiver supporting an elderly person">
       </div>
 
-      <!-- Floating chat dots bubble -->
-      <div class="hero-bubble hero-bubble--dots">···</div>
-
-      <!-- Top bubble: provider offering help -->
-      <div class="hero-bubble hero-bubble--1">
-        <div class="hero-bubble-avatar">
-          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&auto=format&fit=crop" alt="">
+      <!-- Rating / families tile (top-left) -->
+      <div class="hero-float-card hero-float-card--rating">
+        <div class="hero-float-stars">★★★★★</div>
+        <div class="hero-float-title"><strong>4.9</strong> · 12k+ families matched</div>
+        <div class="hero-float-avatars">
+          <span class="hero-float-avatar" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop')"></span>
+          <span class="hero-float-avatar" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&auto=format&fit=crop')"></span>
+          <span class="hero-float-avatar" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&auto=format&fit=crop')"></span>
+          <span class="hero-float-avatar hero-float-avatar--more">+12k</span>
         </div>
-        <div class="hero-bubble-text"><span class="hero-bubble-icon">💡</span> I can help with memory care…</div>
       </div>
 
-      <!-- Right bubble: another provider -->
-      <div class="hero-bubble hero-bubble--2">
-        <div class="hero-bubble-avatar">
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&auto=format&fit=crop" alt="">
+      <!-- Verified tile (middle-right) -->
+      <div class="hero-float-card hero-float-card--verified">
+        <div class="hero-float-badge-icon">✓</div>
+        <div>
+          <div class="hero-float-badge-title">Verified</div>
+          <div class="hero-float-badge-sub">Provider network</div>
         </div>
-        <div class="hero-bubble-text"><span class="hero-bubble-icon">💡</span> I'd recommend…</div>
       </div>
 
-      <!-- Left search bubble -->
-      <div class="hero-bubble hero-bubble--3">
-        <div class="hero-bubble-text"><span class="hero-bubble-search-icon">🔍</span> How do I find home care?</div>
-      </div>
-
-      <!-- Bottom-left caregiver bubble -->
-      <div class="hero-bubble hero-bubble--4">
-        <div class="hero-bubble-avatar">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop" alt="">
-        </div>
-        <div class="hero-bubble-text"><span class="hero-bubble-icon">💡</span> Here's what I'd do…</div>
+      <!-- Speed tile (bottom) -->
+      <div class="hero-float-card hero-float-card--matched">
+        <div class="hero-float-stat"><span class="hero-float-emoji">⏱</span> <strong>&lt; 2 min</strong></div>
+        <div class="hero-float-stat-label">to your first match</div>
       </div>
     </div>
   </div>
@@ -429,27 +421,63 @@
   <div class="modal modal-lg">
     <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
     <h3>Tell us what you need</h3>
-    <p>We'll match you with verified providers in <em class="js-location-city">your area</em>. Takes under a minute.</p>
+    <p>We'll match you with verified providers in your city. Takes under a minute.</p>
     <form class="intake-form" onsubmit="return false;">
+
+      <!-- Care type -->
       <div class="form-field">
         <label for="care-type">What kind of help?</label>
         <select id="care-type" name="care-type">
           <option value="">Select care type…</option>
+          <!-- populated by intake.js -->
         </select>
       </div>
-      <div class="form-field">
-        <label for="city">Location</label>
-        <input id="city" name="city" type="text" placeholder="City or ZIP">
+
+      <!-- "Other" description — hidden by default -->
+      <div class="form-field" id="other-desc-field" style="display:none;">
+        <label for="other-desc">Briefly describe what you need</label>
+        <textarea id="other-desc" name="other-desc" rows="3" placeholder="E.g. looking for overnight respite care for a week…"></textarea>
       </div>
-      <div class="form-field">
-        <label>How soon do you need help?</label>
-        <div class="urgency-chips">
-          <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
-          <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
-          <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+
+      <!-- Standard location + urgency block -->
+      <div id="standard-location-block">
+        <div class="form-field">
+          <label>Location</label>
+          <div class="location-row">
+            <select id="form-state" name="state">
+              <option value="">State…</option>
+              <!-- populated by intake.js -->
+            </select>
+            <select id="form-city" name="city">
+              <option value="">City…</option>
+              <!-- populated by intake.js with optgroups -->
+            </select>
+          </div>
+          <button type="button" class="location-change-link" data-open-location-modal>📍 Use my detected location</button>
+        </div>
+        <div class="form-field">
+          <label>How soon do you need help?</label>
+          <div class="urgency-chips">
+            <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
+            <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
+            <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+          </div>
         </div>
       </div>
-      <button type="submit" class="form-submit">Find Providers →</button>
+
+      <!-- "Other" contact block — hidden by default -->
+      <div id="other-contact-block" style="display:none;">
+        <div class="form-field">
+          <label for="other-phone">Phone number</label>
+          <input id="other-phone" name="phone" type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-field">
+          <label for="other-email">Email address</label>
+          <input id="other-email" name="email" type="email" placeholder="you@example.com">
+        </div>
+      </div>
+
+      <button type="submit" class="form-submit" id="form-submit-btn">Find Providers →</button>
     </form>
   </div>
 </div>

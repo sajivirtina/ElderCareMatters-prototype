@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings | ECM Provider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/provider.css">
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="prov-topbar">
+  <a href="provider-dashboard.html" class="prov-topbar-logo">Elder<span>Care</span>Matters</a>
+  <div class="prov-topbar-right">
+    <a href="for-providers.html" class="prov-topbar-link">← Back to site</a>
+    <span class="prov-topbar-link" style="color:rgba(255,255,255,0.45)">Sunrise Home Care</span>
+  </div>
+</header>
+
+<!-- Layout -->
+<div class="dash-layout">
+
+  <!-- Sidebar -->
+  <aside class="dash-sidebar">
+    <div class="sidebar-section">
+      <nav>
+        <a href="provider-dashboard.html" class="sidebar-link"><span class="sidebar-icon">📊</span> Dashboard</a>
+        <a href="provider-leads.html"     class="sidebar-link"><span class="sidebar-icon">📋</span> Lead Inbox</a>
+        <a href="provider-content.html"   class="sidebar-link"><span class="sidebar-icon">✍️</span> My Content</a>
+        <a href="provider-billing.html"   class="sidebar-link"><span class="sidebar-icon">💳</span> Billing</a>
+        <a href="provider-profile.html"   class="sidebar-link"><span class="sidebar-icon">🏢</span> My Profile</a>
+        <a href="provider-settings.html"  class="sidebar-link active"><span class="sidebar-icon">⚙️</span> Settings</a>
+      </nav>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="sidebar-upgrade">
+        <strong>Featured Plan</strong>
+        Exclusive 24h lead access enabled.
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="dash-main">
+    <div class="dash-main__header">
+      <div>
+        <div class="dash-main__title">Settings</div>
+        <div class="dash-main__sub">Manage notifications, lead preferences, and account details</div>
+      </div>
+    </div>
+
+    <div class="dash-main__body">
+
+      <!-- Notifications -->
+      <div class="settings-section">
+        <div class="settings-section__title">Notifications</div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">New lead available</div>
+            <div class="setting-desc">Get notified when a new geo-matched lead appears in your inbox.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Lead purchased confirmation</div>
+            <div class="setting-desc">Receive a confirmation email when you successfully purchase a lead.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Consumer message received</div>
+            <div class="setting-desc">Alert when a family you've contacted sends a message through ECM.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Monthly billing summary</div>
+            <div class="setting-desc">Receive a monthly email summarising your spend and ROI.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">ECM platform updates</div>
+            <div class="setting-desc">News about new features, improvements, and best practices.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div style="margin-top:16px;">
+          <button class="btn--primary btn--sm" onclick="showToast('Notification preferences saved.', 'success')">Save Preferences</button>
+        </div>
+      </div>
+
+      <!-- Lead Preferences -->
+      <div class="settings-section">
+        <div class="settings-section__title">Lead Preferences</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
+          <div class="form-group">
+            <label for="max-price">Max lead price</label>
+            <select id="max-price">
+              <option>No limit</option>
+              <option>Up to $25</option>
+              <option selected>Up to $50</option>
+              <option>Up to $75</option>
+              <option>Up to $100</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="min-lqs">Min Lead Quality Score (LQS)</label>
+            <select id="min-lqs">
+              <option>Any</option>
+              <option>60+</option>
+              <option selected>70+</option>
+              <option>80+</option>
+              <option>90+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="min-lis">Min Intent Score (LIS)</label>
+            <select id="min-lis">
+              <option>Any</option>
+              <option>60+</option>
+              <option selected>70+</option>
+              <option>80+</option>
+              <option>90+</option>
+            </select>
+          </div>
+        </div>
+        <p style="font-size:0.78rem;color:var(--gray-500);margin-bottom:16px;">
+          Leads below these thresholds will still appear in your inbox but will be visually flagged.
+        </p>
+        <button class="btn--primary btn--sm" onclick="showToast('Lead preferences saved.', 'success')">Save Preferences</button>
+      </div>
+
+      <!-- Account -->
+      <div class="settings-section">
+        <div class="settings-section__title">Account</div>
+        <div class="form-grid" style="max-width:480px;">
+          <div class="form-group form-full">
+            <label for="acc-email">Login Email</label>
+            <input id="acc-email" type="email" value="jennifer@sunrisehomecare.com" readonly style="background:var(--gray-50);color:var(--gray-500);">
+          </div>
+          <div class="form-group form-full">
+            <label for="acc-pw">New Password</label>
+            <input id="acc-pw" type="password" placeholder="Enter new password…">
+          </div>
+          <div class="form-group form-full">
+            <label for="acc-pw2">Confirm Password</label>
+            <input id="acc-pw2" type="password" placeholder="Confirm new password…">
+          </div>
+        </div>
+        <div style="margin-top:16px;">
+          <button class="btn--primary btn--sm" onclick="showToast('Password updated.', 'success')">Update Password</button>
+        </div>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="danger-zone">
+        <div class="danger-zone__title">⚠ Danger Zone</div>
+        <div class="danger-zone__desc">
+          These actions are irreversible. Pausing your account will hide your profile from families until you reactivate. Deleting your account permanently removes all your data.
+        </div>
+        <div class="danger-actions">
+          <button class="btn--secondary btn--sm" onclick="showToast('Account paused. You can reactivate anytime.', 'info')">Pause Account</button>
+          <button class="btn--danger btn--sm" onclick="if(confirm('Are you sure? This cannot be undone.')) showToast('Account deletion requested.', 'error')">Delete Account</button>
+        </div>
+      </div>
+
+    </div><!-- end body -->
+  </main>
+</div>
+
+<script src="assets/js/provider-script.js"></script>
+</body>
+</html>

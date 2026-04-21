@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Inbox | ECM Provider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/provider.css">
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="prov-topbar">
+  <a href="provider-dashboard.html" class="prov-topbar-logo">Elder<span>Care</span>Matters</a>
+  <div class="prov-topbar-right">
+    <a href="for-providers.html" class="prov-topbar-link">← Back to site</a>
+    <span class="prov-topbar-link" style="color:rgba(255,255,255,0.45)">Sunrise Home Care</span>
+  </div>
+</header>
+
+<!-- Layout -->
+<div class="dash-layout">
+
+  <!-- Sidebar -->
+  <aside class="dash-sidebar">
+    <div class="sidebar-section">
+      <nav>
+        <a href="provider-dashboard.html" class="sidebar-link"><span class="sidebar-icon">📊</span> Dashboard</a>
+        <a href="provider-leads.html"     class="sidebar-link active"><span class="sidebar-icon">📋</span> Lead Inbox</a>
+        <a href="provider-content.html"   class="sidebar-link"><span class="sidebar-icon">✍️</span> My Content</a>
+        <a href="provider-billing.html"   class="sidebar-link"><span class="sidebar-icon">💳</span> Billing</a>
+        <a href="provider-profile.html"   class="sidebar-link"><span class="sidebar-icon">🏢</span> My Profile</a>
+        <a href="provider-settings.html"  class="sidebar-link"><span class="sidebar-icon">⚙️</span> Settings</a>
+      </nav>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="sidebar-upgrade">
+        <strong>Featured Plan</strong>
+        Exclusive 24h lead access enabled.
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="dash-main">
+    <div class="dash-main__header">
+      <div>
+        <div class="dash-main__title">Lead Inbox</div>
+        <div class="dash-main__sub">Leads matched to Austin, TX and surrounding areas</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:0.82rem;color:var(--gray-500);">8 credits remaining</span>
+        <a href="provider-billing.html" class="btn--secondary btn--sm">Buy Credits</a>
+      </div>
+    </div>
+
+    <div class="dash-main__body">
+
+      <!-- Featured exclusive banner -->
+      <div class="featured-banner">
+        <div class="featured-crown">👑</div>
+        <div class="featured-info">
+          <h3>Featured Exclusive Access Window</h3>
+          <p>You have first access to new leads for 24 hours before Premium providers see them.</p>
+        </div>
+        <div id="feat-countdown" class="featured-countdown">
+          <div>
+            <div class="featured-countdown-label">Window closes in</div>
+            <span class="h">18</span>:<span class="m">42</span>:<span class="s">07</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="leads-tabs">
+        <button class="leads-tab active" onclick="switchTab('available', this)">Available <span class="tab-count">5</span></button>
+        <button class="leads-tab" onclick="switchTab('purchased', this)">Purchased <span class="tab-count">2</span></button>
+        <button class="leads-tab" onclick="switchTab('expired', this)">Expired <span class="tab-count">1</span></button>
+      </div>
+
+      <!-- Filter row -->
+      <div class="filter-row">
+        <select class="filter-select" onchange="filterLeads()">
+          <option value="">All Care Types</option>
+          <option>Home Care</option>
+          <option>Assisted Living</option>
+          <option>Memory Care</option>
+          <option>Elder Law</option>
+          <option>Hospice</option>
+        </select>
+        <select class="filter-select" onchange="filterLeads()">
+          <option value="">All Urgency</option>
+          <option>Urgent</option>
+          <option>Within 1 month</option>
+          <option>1–3 months</option>
+          <option>Just researching</option>
+        </select>
+        <select class="filter-select" onchange="sortLeads(this.value)">
+          <option value="newest">Newest First</option>
+          <option value="lqs">Highest LQS</option>
+          <option value="lis">Highest LIS</option>
+          <option value="price_asc">Price ↑</option>
+          <option value="price_desc">Price ↓</option>
+        </select>
+        <div class="score-legend">
+          <span><span class="score-legend-dot" style="background:var(--green-600)"></span> LQS = Lead Quality</span>
+          <span><span class="score-legend-dot" style="background:var(--blue-500)"></span> LIS = Intent Score</span>
+        </div>
+      </div>
+
+      <!-- ── AVAILABLE PANEL ── -->
+      <div id="panel-available" class="lead-panel active">
+
+        <!-- L001: Featured + timer -->
+        <div class="lead-card-v2 lead-card-v2--featured" id="card-L001">
+          <div class="lead-ribbon">Featured Exclusive</div>
+          <div class="lead-info">
+            <div class="lead-chips">
+              <span class="lead-type-chip">🏠 Home Care</span>
+              <span class="urgency-chip--urgent">Urgent</span>
+              <span class="time-chip">Posted 45 min ago</span>
+            </div>
+            <div class="lead-meta">
+              <span>📍 Austin, TX</span>
+              <span>💰 Budget: $3,000–$4,000/mo</span>
+              <span>👤 Adult child (decision-maker)</span>
+            </div>
+            <div class="lead-locked">🔒 Name, phone &amp; email hidden until purchased</div>
+            <div class="lead-timer" id="timer-L001">
+              ⏱ Exclusive window: <span class="h">02</span>:<span class="m">14</span>:<span class="s">33</span>
+            </div>
+            <div class="buyers-bar">
+              Slots:
+              <div class="buyers-slots">
+                <div class="buyers-slot buyers-slot--taken" title="Taken"></div>
+                <div class="buyers-slot" title="Available"></div>
+                <div class="buyers-slot" title="Available"></div>
+              </div>
+              1 of 3 taken
+            </div>
+          </div>
+          <div class="lead-scores">
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LQS</span><span>82</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lqs" style="width:82%"></div></div>
+              <div class="score-sub">High quality signal</div>
+            </div>
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LIS</span><span>78</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lis" style="width:78%"></div></div>
+              <div class="score-sub">Strong intent</div>
+            </div>
+          </div>
+          <div class="lead-action">
+            <div class="lead-price">$38</div>
+            <div class="price-tooltip-wrap">
+              <span class="price-breakdown-link" onclick="toggleTooltip('tt-L001')">See price breakdown</span>
+              <div class="price-tooltip" id="tt-L001">
+                Base (Austin TX): $28<br>
+                × Quality (0.82): ×0.82<br>
+                × Intent (0.78): ×0.78<br>
+                × Geo (1.0): ×1.0<br>
+                <strong>= $38</strong>
+              </div>
+            </div>
+            <button class="btn-purchase" onclick="purchaseLeadV2('L001', this)">Purchase Lead</button>
+          </div>
+        </div>
+
+        <!-- L002 -->
+        <div class="lead-card-v2" id="card-L002">
+          <div class="lead-info">
+            <div class="lead-chips">
+              <span class="lead-type-chip">🏠 Home Care</span>
+              <span class="urgency-chip--month">Within 1 month</span>
+              <span class="time-chip">Posted 2h ago</span>
+            </div>
+            <div class="lead-meta">
+              <span>📍 Round Rock, TX</span>
+              <span>💰 Budget: $2,000–$3,000/mo</span>
+              <span>👤 Spouse (decision-maker)</span>
+            </div>
+            <div class="lead-locked">🔒 Name, phone &amp; email hidden until purchased</div>
+            <div class="buyers-bar">
+              Slots:
+              <div class="buyers-slots">
+                <div class="buyers-slot buyers-slot--taken" title="Taken"></div>
+                <div class="buyers-slot" title="Available"></div>
+                <div class="buyers-slot" title="Available"></div>
+              </div>
+              1 of 3 taken
+            </div>
+          </div>
+          <div class="lead-scores">
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LQS</span><span>74</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lqs" style="width:74%"></div></div>
+              <div class="score-sub">Good quality</div>
+            </div>
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LIS</span><span>65</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lis" style="width:65%"></div></div>
+              <div class="score-sub">Moderate intent</div>
+            </div>
+          </div>
+          <div class="lead-action">
+            <div class="lead-price">$31</div>
+            <div class="price-tooltip-wrap">
+              <span class="price-breakdown-link" onclick="toggleTooltip('tt-L002')">See price breakdown</span>
+              <div class="price-tooltip" id="tt-L002">
+                Base (Round Rock): $24<br>
+                × Quality (0.74): ×0.74<br>
+                × Intent (0.65): ×0.65<br>
+                × Geo (0.9): ×0.9<br>
+                <strong>= $31</strong>
+              </div>
+            </div>
+            <button class="btn-purchase" onclick="purchaseLeadV2('L002', this)">Purchase Lead</button>
+          </div>
+        </div>
+
+        <!-- L003 -->
+        <div class="lead-card-v2" id="card-L003">
+          <div class="lead-info">
+            <div class="lead-chips">
+              <span class="lead-type-chip">⚖️ Elder Law</span>
+              <span class="urgency-chip--urgent">Urgent</span>
+              <span class="time-chip">Posted 3h ago</span>
+            </div>
+            <div class="lead-meta">
+              <span>📍 Austin, TX</span>
+              <span>💰 POA &amp; estate planning needed</span>
+              <span>👤 Adult child (decision-maker)</span>
+            </div>
+            <div class="lead-locked">🔒 Name, phone &amp; email hidden until purchased</div>
+            <div class="buyers-bar">
+              Slots:
+              <div class="buyers-slots">
+                <div class="buyers-slot" title="Available"></div>
+                <div class="buyers-slot" title="Available"></div>
+                <div class="buyers-slot" title="Available"></div>
+              </div>
+              0 of 3 taken
+            </div>
+          </div>
+          <div class="lead-scores">
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LQS</span><span>91</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lqs" style="width:91%"></div></div>
+              <div class="score-sub">Excellent quality</div>
+            </div>
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LIS</span><span>85</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lis" style="width:85%"></div></div>
+              <div class="score-sub">Very high intent</div>
+            </div>
+          </div>
+          <div class="lead-action">
+            <div class="lead-price">$52</div>
+            <div class="price-tooltip-wrap">
+              <span class="price-breakdown-link" onclick="toggleTooltip('tt-L003')">See price breakdown</span>
+              <div class="price-tooltip" id="tt-L003">
+                Base (Austin TX): $35<br>
+                × Quality (0.91): ×0.91<br>
+                × Intent (0.85): ×0.85<br>
+                × Geo (1.0): ×1.0<br>
+                <strong>= $52</strong>
+              </div>
+            </div>
+            <button class="btn-purchase" onclick="purchaseLeadV2('L003', this)">Purchase Lead</button>
+          </div>
+        </div>
+
+        <!-- L004 -->
+        <div class="lead-card-v2" id="card-L004">
+          <div class="lead-info">
+            <div class="lead-chips">
+              <span class="lead-type-chip">🧠 Memory Care</span>
+              <span class="urgency-chip--quarter">1–3 months</span>
+              <span class="time-chip">Posted 5h ago</span>
+            </div>
+            <div class="lead-meta">
+              <span>📍 Austin, TX</span>
+              <span>💰 Budget: $4,500–$6,000/mo</span>
+              <span>👤 Adult child (decision-maker)</span>
+            </div>
+            <div class="lead-locked">🔒 Name, phone &amp; email hidden until purchased</div>
+            <div class="buyers-bar">
+              Slots:
+              <div class="buyers-slots">
+                <div class="buyers-slot buyers-slot--taken" title="Taken"></div>
+                <div class="buyers-slot buyers-slot--taken" title="Taken"></div>
+                <div class="buyers-slot" title="Available"></div>
+              </div>
+              2 of 3 taken — 1 slot left!
+            </div>
+          </div>
+          <div class="lead-scores">
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LQS</span><span>68</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lqs" style="width:68%"></div></div>
+              <div class="score-sub">Moderate quality</div>
+            </div>
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LIS</span><span>71</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lis" style="width:71%"></div></div>
+              <div class="score-sub">Good intent</div>
+            </div>
+          </div>
+          <div class="lead-action">
+            <div class="lead-price">$29</div>
+            <div class="price-tooltip-wrap">
+              <span class="price-breakdown-link" onclick="toggleTooltip('tt-L004')">See price breakdown</span>
+              <div class="price-tooltip" id="tt-L004">
+                Base (Austin TX): $28<br>
+                × Quality (0.68): ×0.68<br>
+                × Intent (0.71): ×0.71<br>
+                × Geo (1.0): ×1.0<br>
+                <strong>= $29</strong>
+              </div>
+            </div>
+            <button class="btn-purchase" onclick="purchaseLeadV2('L004', this)">Purchase Lead</button>
+          </div>
+        </div>
+
+        <!-- L005 -->
+        <div class="lead-card-v2" id="card-L005">
+          <div class="lead-info">
+            <div class="lead-chips">
+              <span class="lead-type-chip">🏢 Assisted Living</span>
+              <span class="urgency-chip--passive">Just researching</span>
+              <span class="time-chip">Posted 8h ago</span>
+            </div>
+            <div class="lead-meta">
+              <span>📍 Georgetown, TX</span>
+              <span>💰 Budget: Not specified</span>
+              <span>👤 Adult child (decision-maker)</span>
+            </div>
+            <div class="lead-locked">🔒 Name, phone &amp; email hidden until purchased</div>
+            <div class="buyers-bar">
+              Slots:
+              <div class="buyers-slots">
+                <div class="buyers-slot" title="Available"></div>
+                <div class="buyers-slot" title="Available"></div>
+                <div class="buyers-slot" title="Available"></div>
+              </div>
+              0 of 3 taken
+            </div>
+          </div>
+          <div class="lead-scores">
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LQS</span><span>55</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lqs" style="width:55%"></div></div>
+              <div class="score-sub">Lower quality</div>
+            </div>
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LIS</span><span>48</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lis" style="width:48%"></div></div>
+              <div class="score-sub">Early research</div>
+            </div>
+          </div>
+          <div class="lead-action">
+            <div class="lead-price">$18</div>
+            <div class="price-tooltip-wrap">
+              <span class="price-breakdown-link" onclick="toggleTooltip('tt-L005')">See price breakdown</span>
+              <div class="price-tooltip" id="tt-L005">
+                Base (Georgetown): $22<br>
+                × Quality (0.55): ×0.55<br>
+                × Intent (0.48): ×0.48<br>
+                × Geo (0.85): ×0.85<br>
+                <strong>= $18</strong>
+              </div>
+            </div>
+            <button class="btn-purchase" onclick="purchaseLeadV2('L005', this)">Purchase Lead</button>
+          </div>
+        </div>
+
+      </div><!-- end panel-available -->
+
+      <!-- ── PURCHASED PANEL ── -->
+      <div id="panel-purchased" class="lead-panel">
+
+        <div class="lead-card-v2 lead-card-v2--purchased">
+          <div class="lead-info">
+            <div class="lead-chips">
+              <span class="lead-type-chip">🏠 Home Care</span>
+              <span class="urgency-chip--urgent">Urgent</span>
+            </div>
+            <div class="lead-meta">
+              <span>📍 Cedar Park, TX</span>
+              <span>💰 Budget: $3,500+/mo</span>
+            </div>
+            <div class="unlocked-contact">
+              ✅ <strong>Sarah M.</strong><br>
+              📞 (512) 555-0147<br>
+              📧 sarah.m@example.com<br>
+              💬 "Looking for immediate help for my mother after a fall."
+            </div>
+          </div>
+          <div class="lead-scores">
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LQS</span><span>88</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lqs" style="width:88%"></div></div>
+            </div>
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LIS</span><span>91</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lis" style="width:91%"></div></div>
+            </div>
+          </div>
+          <div class="lead-action">
+            <div class="lead-price" style="font-size:1.1rem;color:var(--green-700);">$41 paid</div>
+            <div class="btn-unlocked">✓ Unlocked</div>
+            <div style="font-size:0.72rem;color:var(--gray-500);text-align:center;">Won · Apr 18</div>
+          </div>
+        </div>
+
+        <div class="lead-card-v2 lead-card-v2--purchased">
+          <div class="lead-info">
+            <div class="lead-chips">
+              <span class="lead-type-chip">🧠 Memory Care</span>
+              <span class="urgency-chip--month">Within 1 month</span>
+            </div>
+            <div class="lead-meta">
+              <span>📍 Round Rock, TX</span>
+              <span>💰 Budget: $5,000–$7,000/mo</span>
+            </div>
+            <div class="unlocked-contact">
+              ✅ <strong>Maria K.</strong><br>
+              📞 (512) 555-0219<br>
+              📧 maria.k@example.com<br>
+              💬 "Father was recently diagnosed. Need help understanding options."
+            </div>
+          </div>
+          <div class="lead-scores">
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LQS</span><span>74</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lqs" style="width:74%"></div></div>
+            </div>
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LIS</span><span>68</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lis" style="width:68%"></div></div>
+            </div>
+          </div>
+          <div class="lead-action">
+            <div class="lead-price" style="font-size:1.1rem;color:var(--green-700);">$29 paid</div>
+            <div class="btn-unlocked">✓ Unlocked</div>
+            <div style="font-size:0.72rem;color:var(--gray-500);text-align:center;">Contacted · Apr 16</div>
+          </div>
+        </div>
+
+      </div><!-- end panel-purchased -->
+
+      <!-- ── EXPIRED PANEL ── -->
+      <div id="panel-expired" class="lead-panel">
+        <div class="lead-card-v2 lead-card-v2--expired">
+          <div class="lead-info">
+            <div class="lead-chips">
+              <span class="lead-type-chip">🏢 Assisted Living</span>
+              <span class="urgency-chip--quarter">1–3 months</span>
+            </div>
+            <div class="lead-meta">
+              <span>📍 Austin, TX</span>
+              <span>All 3 slots filled before you purchased</span>
+            </div>
+            <div class="lead-locked">This lead has expired and is no longer available.</div>
+          </div>
+          <div class="lead-scores">
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LQS</span><span>71</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lqs" style="width:71%"></div></div>
+            </div>
+            <div class="score-bar-group">
+              <div class="score-bar-label"><span>LIS</span><span>63</span></div>
+              <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--lis" style="width:63%"></div></div>
+            </div>
+          </div>
+          <div class="lead-action">
+            <div class="lead-price" style="color:var(--gray-400);">$26</div>
+            <div class="btn-expired">Expired</div>
+          </div>
+        </div>
+      </div><!-- end panel-expired -->
+
+    </div><!-- end body -->
+  </main>
+</div>
+
+<!-- Purchase overlay modal -->
+<div class="purchase-overlay hidden" id="purchaseOverlay" onclick="closePurchaseModal(event)">
+  <div class="purchase-modal" id="purchaseModal">
+    <div class="purchase-modal__icon">🎉</div>
+    <h3>Lead Unlocked!</h3>
+    <p>Here is the contact information for this lead. Reach out within the hour for best results.</p>
+    <div class="contact-box" id="purchaseContactBox">Loading…</div>
+    <div class="modal-actions">
+      <button class="btn--primary" onclick="closePurchaseModal({target:null})">View in Purchased →</button>
+      <button class="btn--secondary" onclick="closePurchaseModal({target:null})">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/provider-script.js"></script>
+<script>
+/* ── LEAD CONTACT DATA ── */
+var LEAD_CONTACTS = {
+  L001: { name: 'Patricia W.', phone: '(512) 555-0183', email: 'p.w@example.com', note: '"Mom needs help immediately following hospital discharge."' },
+  L002: { name: 'Robert T.',   phone: '(737) 555-0092', email: 'r.t@example.com', note: '"Looking for in-home help for my wife within the next few weeks."' },
+  L003: { name: 'Diana C.',    phone: '(512) 555-0311', email: 'd.c@example.com', note: '"Need to set up power of attorney urgently for my father."' },
+  L004: { name: 'Thomas B.',   phone: '(512) 555-0467', email: 't.b@example.com', note: '"Father was recently diagnosed. Exploring memory care options."' },
+  L005: { name: 'Linda F.',    phone: '(512) 555-0228', email: 'l.f@example.com', note: '"Just starting to research assisted living for my mother."' }
+};
+
+/* ── TAB SWITCHING ── */
+function switchTab(name, btn) {
+  document.querySelectorAll('.lead-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.leads-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── FILTER / SORT (stubs) ── */
+function filterLeads() {}
+function sortLeads(v) {}
+
+/* ── PRICE TOOLTIP ── */
+function toggleTooltip(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var vis = el.classList.contains('visible');
+  document.querySelectorAll('.price-tooltip').forEach(function(t) { t.classList.remove('visible'); });
+  if (!vis) el.classList.add('visible');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.classList.contains('price-breakdown-link')) {
+    document.querySelectorAll('.price-tooltip').forEach(function(t) { t.classList.remove('visible'); });
+  }
+});
+
+/* ── PURCHASE LEAD ── */
+function purchaseLeadV2(leadId, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Processing…';
+  setTimeout(function() {
+    var c = LEAD_CONTACTS[leadId];
+    if (c) {
+      document.getElementById('purchaseContactBox').innerHTML =
+        '✅ <strong>' + c.name + '</strong><br>' +
+        '📞 ' + c.phone + '<br>' +
+        '📧 ' + c.email + '<br>' +
+        '💬 ' + c.note;
+    }
+    document.getElementById('purchaseOverlay').classList.remove('hidden');
+
+    /* Update card state */
+    var card = document.getElementById('card-' + leadId);
+    if (card) {
+      card.classList.add('lead-card-v2--purchased');
+      card.classList.remove('lead-card-v2--featured');
+      btn.className = 'btn-unlocked';
+      btn.textContent = '✓ Unlocked';
+      btn.onclick = null;
+    }
+    showToast('Lead unlocked! Contact info revealed.', 'success');
+  }, 900);
+}
+
+/* ── CLOSE MODAL ── */
+function closePurchaseModal(e) {
+  if (!e.target || e.target === document.getElementById('purchaseOverlay')) {
+    document.getElementById('purchaseOverlay').classList.add('hidden');
+  }
+}
+
+/* ── COUNTDOWN TIMERS ── */
+document.addEventListener('DOMContentLoaded', function() {
+  startCountdown('#feat-countdown', 18 * 3600 + 42 * 60 + 7);
+  startCountdown('#timer-L001', 2 * 3600 + 14 * 60 + 33);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile | ECM Provider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/provider.css">
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="prov-topbar">
+  <a href="provider-dashboard.html" class="prov-topbar-logo">Elder<span>Care</span>Matters</a>
+  <div class="prov-topbar-right">
+    <a href="for-providers.html" class="prov-topbar-link">← Back to site</a>
+    <span class="prov-topbar-link" style="color:rgba(255,255,255,0.45)">Sunrise Home Care</span>
+  </div>
+</header>
+
+<!-- Layout -->
+<div class="dash-layout">
+
+  <!-- Sidebar -->
+  <aside class="dash-sidebar">
+    <div class="sidebar-section">
+      <nav>
+        <a href="provider-dashboard.html" class="sidebar-link"><span class="sidebar-icon">📊</span> Dashboard</a>
+        <a href="provider-leads.html"     class="sidebar-link"><span class="sidebar-icon">📋</span> Lead Inbox</a>
+        <a href="provider-content.html"   class="sidebar-link"><span class="sidebar-icon">✍️</span> My Content</a>
+        <a href="provider-billing.html"   class="sidebar-link"><span class="sidebar-icon">💳</span> Billing</a>
+        <a href="provider-profile.html"   class="sidebar-link active"><span class="sidebar-icon">🏢</span> My Profile</a>
+        <a href="provider-settings.html"  class="sidebar-link"><span class="sidebar-icon">⚙️</span> Settings</a>
+      </nav>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="sidebar-upgrade">
+        <strong>Featured Plan</strong>
+        Exclusive 24h lead access enabled.
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="dash-main">
+    <div class="dash-main__header">
+      <div>
+        <div class="dash-main__title">My Profile</div>
+        <div class="dash-main__sub">Your public listing shown to families on ElderCareMatters</div>
+      </div>
+      <button class="btn--primary" onclick="showToast('Profile saved successfully!', 'success')">Save Profile</button>
+    </div>
+
+    <div class="dash-main__body">
+
+      <!-- Verification -->
+      <div class="profile-section">
+        <div class="profile-section__title">Verification Status</div>
+        <div class="badge-row">
+          <span class="badge-ecm">✓ ECM Verified</span>
+          <span style="font-size:0.82rem;color:var(--gray-600);">Your profile has been verified by the ElderCareMatters team.</span>
+        </div>
+        <p style="font-size:0.82rem;color:var(--gray-600);line-height:1.6;">
+          Verified providers appear higher in search results and display the ECM Verified badge on their profile, increasing trust with families.
+        </p>
+      </div>
+
+      <!-- Business Information -->
+      <div class="profile-section">
+        <div class="profile-section__title">Business Information</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="biz-name">Business Name</label>
+            <input id="biz-name" type="text" value="Sunrise Home Care">
+          </div>
+          <div class="form-group">
+            <label for="contact-name">Primary Contact Name</label>
+            <input id="contact-name" type="text" value="Jennifer Alvarez">
+          </div>
+          <div class="form-group">
+            <label for="biz-email">Email Address</label>
+            <input id="biz-email" type="email" value="jennifer@sunrisehomecare.com">
+          </div>
+          <div class="form-group">
+            <label for="biz-phone">Phone Number</label>
+            <input id="biz-phone" type="tel" value="(512) 555-0198">
+          </div>
+          <div class="form-group form-full">
+            <label for="biz-desc">Business Description</label>
+            <textarea id="biz-desc" rows="4">Sunrise Home Care has proudly served Austin-area families since 2012. We specialize in personalized in-home care for seniors, including memory care, companionship, and daily living assistance. All our caregivers are licensed, bonded, and background-checked.</textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services & Coverage -->
+      <div class="profile-section">
+        <div class="profile-section__title">Services &amp; Coverage</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="prov-type">Provider Type</label>
+            <select id="prov-type">
+              <option selected>Home Care Agency</option>
+              <option>Assisted Living Facility</option>
+              <option>Memory Care Facility</option>
+              <option>Elder Law Attorney</option>
+              <option>Geriatric Care Manager</option>
+              <option>Hospice Provider</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="primary-city">Primary City</label>
+            <input id="primary-city" type="text" value="Austin, TX">
+          </div>
+          <div class="form-group form-full">
+            <label>Services Offered</label>
+            <div class="service-tags" id="serviceTags">
+              <span class="service-tag">Home Care <button onclick="removeTag(this)" title="Remove">×</button></span>
+              <span class="service-tag">Memory Care <button onclick="removeTag(this)" title="Remove">×</button></span>
+              <span class="service-tag">Respite Care <button onclick="removeTag(this)" title="Remove">×</button></span>
+              <button class="tag-add-btn" onclick="addServiceTag()">+ Add service</button>
+            </div>
+          </div>
+          <div class="form-group form-full">
+            <label for="coverage">Coverage Area</label>
+            <textarea id="coverage" rows="2">Austin, Round Rock, Cedar Park, Georgetown, TX</textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Credentials -->
+      <div class="profile-section">
+        <div class="profile-section__title">Credentials &amp; Licences</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="licence">State Licence Number</label>
+            <input id="licence" type="text" value="TX-HHA-20419">
+          </div>
+          <div class="form-group">
+            <label for="years-op">Years in Operation</label>
+            <input id="years-op" type="text" value="12 years">
+          </div>
+          <div class="form-group form-full">
+            <label for="certs">Certifications</label>
+            <input id="certs" type="text" value="Texas DADS Licensed, CPR Certified Staff, Alzheimer's Association Training">
+          </div>
+        </div>
+        <div style="margin-top:16px;">
+          <button class="btn--primary" onclick="showToast('Profile saved successfully!', 'success')">Save Profile</button>
+        </div>
+      </div>
+
+    </div><!-- end body -->
+  </main>
+</div>
+
+<script src="assets/js/provider-script.js"></script>
+<script>
+function removeTag(btn) {
+  btn.parentElement.remove();
+}
+function addServiceTag() {
+  var name = prompt('Enter service name:');
+  if (!name || !name.trim()) return;
+  var tags = document.getElementById('serviceTags');
+  var addBtn = tags.querySelector('.tag-add-btn');
+  var tag = document.createElement('span');
+  tag.className = 'service-tag';
+  tag.innerHTML = name.trim() + ' <button onclick="removeTag(this)" title="Remove">×</button>';
+  tags.insertBefore(tag, addBtn);
+  showToast('Service "' + name.trim() + '" added.', 'success');
+}
+</script>
+</body>
+</html>

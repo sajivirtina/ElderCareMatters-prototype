@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | ECM Provider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/provider.css">
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="prov-topbar">
+  <a href="provider-dashboard.html" class="prov-topbar-logo">Elder<span>Care</span>Matters</a>
+  <div class="prov-topbar-right">
+    <a href="for-providers.html" class="prov-topbar-link">← Back to site</a>
+    <span class="prov-topbar-link" style="color:rgba(255,255,255,0.45)">Sunrise Home Care</span>
+  </div>
+</header>
+
+<!-- Layout -->
+<div class="dash-layout">
+
+  <!-- Sidebar -->
+  <aside class="dash-sidebar">
+    <div class="sidebar-section">
+      <nav>
+        <a href="provider-dashboard.html" class="sidebar-link active"><span class="sidebar-icon">📊</span> Dashboard</a>
+        <a href="provider-leads.html"     class="sidebar-link"><span class="sidebar-icon">📋</span> Lead Inbox</a>
+        <a href="provider-content.html"   class="sidebar-link"><span class="sidebar-icon">✍️</span> My Content</a>
+        <a href="provider-billing.html"   class="sidebar-link"><span class="sidebar-icon">💳</span> Billing</a>
+        <a href="provider-profile.html"   class="sidebar-link"><span class="sidebar-icon">🏢</span> My Profile</a>
+        <a href="provider-settings.html"  class="sidebar-link"><span class="sidebar-icon">⚙️</span> Settings</a>
+      </nav>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="sidebar-upgrade">
+        <strong>Featured Plan</strong>
+        Exclusive 24h lead access enabled.
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="dash-main">
+
+    <!-- Greeting bar -->
+    <div class="greeting-bar">
+      <div class="greeting-text">
+        <h2>Good morning, Sunrise Home Care</h2>
+        <p>Austin, TX · 5 new leads today</p>
+        <div class="plan-chip"><span class="plan-chip-dot"></span> Featured Plan</div>
+      </div>
+      <div class="greeting-actions">
+        <a href="provider-leads.html" class="btn--primary">Browse Leads →</a>
+      </div>
+    </div>
+
+    <div class="dash-main__body">
+
+      <!-- KPI row -->
+      <div class="kpi-row">
+        <div class="kpi-card kpi-card--blue">
+          <div class="kpi-label">New Leads This Week</div>
+          <div class="kpi-value">5</div>
+          <div class="kpi-delta kpi-delta--up">↑ 2 vs last week</div>
+        </div>
+        <div class="kpi-card kpi-card--green">
+          <div class="kpi-label">Conversions This Month</div>
+          <div class="kpi-value">3</div>
+          <div class="kpi-delta kpi-delta--up">↑ 1 vs last month</div>
+        </div>
+        <div class="kpi-card kpi-card--amber">
+          <div class="kpi-label">Monthly Spend</div>
+          <div class="kpi-value">$284</div>
+          <div class="kpi-delta kpi-delta--flat">Same as last month</div>
+        </div>
+        <div class="kpi-card kpi-card--teal">
+          <div class="kpi-label">Cost Per Acquisition</div>
+          <div class="kpi-value">$94</div>
+          <div class="kpi-delta kpi-delta--down">↓ $12 improvement</div>
+        </div>
+      </div>
+
+      <!-- Two-column layout -->
+      <div style="display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start;">
+
+        <!-- Left column -->
+        <div>
+
+          <!-- ROI Summary -->
+          <div class="dash-card" style="margin-bottom:20px;">
+            <div class="dash-card__header">
+              <div class="dash-card__title">ROI Summary</div>
+              <span style="font-size:0.78rem;color:var(--gray-500)">April 2026</span>
+            </div>
+            <div class="dash-card__body">
+              <div class="roi-metrics">
+                <div class="roi-metric">
+                  <div class="roi-metric__val">$284</div>
+                  <div class="roi-metric__label">Total spend</div>
+                </div>
+                <div class="roi-metric">
+                  <div class="roi-metric__val">3</div>
+                  <div class="roi-metric__label">New clients</div>
+                </div>
+                <div class="roi-metric">
+                  <div class="roi-metric__val">$94</div>
+                  <div class="roi-metric__label">Cost per client</div>
+                </div>
+              </div>
+              <div class="roi-insight">🚀 <span>34× return on ECM investment this month</span></div>
+            </div>
+          </div>
+
+          <!-- Conversion Funnel -->
+          <div class="dash-card" style="margin-bottom:20px;">
+            <div class="dash-card__header">
+              <div class="dash-card__title">Conversion Funnel</div>
+              <span style="font-size:0.78rem;color:var(--gray-500)">Last 30 days</span>
+            </div>
+            <div class="dash-card__body">
+              <div class="funnel">
+                <div class="funnel-step">
+                  <span class="funnel-step-label">Notified</span>
+                  <div class="funnel-bar"><div class="funnel-fill funnel-fill--notify"></div></div>
+                  <span class="funnel-pct">100% · 12</span>
+                </div>
+                <div class="funnel-step">
+                  <span class="funnel-step-label">Purchased</span>
+                  <div class="funnel-bar"><div class="funnel-fill funnel-fill--purchase"></div></div>
+                  <span class="funnel-pct">75% · 9</span>
+                </div>
+                <div class="funnel-step">
+                  <span class="funnel-step-label">Contacted</span>
+                  <div class="funnel-bar"><div class="funnel-fill funnel-fill--contact"></div></div>
+                  <span class="funnel-pct">58% · 7</span>
+                </div>
+                <div class="funnel-step">
+                  <span class="funnel-step-label">Converted</span>
+                  <div class="funnel-bar"><div class="funnel-fill funnel-fill--convert"></div></div>
+                  <span class="funnel-pct">25% · 3</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Leads -->
+          <div class="dash-card">
+            <div class="dash-card__header">
+              <div class="dash-card__title">Recent Leads</div>
+              <a href="provider-leads.html" style="font-size:0.8rem;color:var(--blue-600);font-weight:600;">View all →</a>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="leads-table">
+                <thead>
+                  <tr>
+                    <th>Consumer</th>
+                    <th>Care Type</th>
+                    <th>Location</th>
+                    <th>LQS / LIS</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Patricia W.</strong></td>
+                    <td>Home Care</td>
+                    <td>Austin, TX</td>
+                    <td><span style="color:var(--green-600);font-weight:700;">82</span> / <span style="color:var(--blue-600);font-weight:700;">78</span></td>
+                    <td><span class="status-badge status-badge--new">New</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>James R.</strong></td>
+                    <td>Elder Law</td>
+                    <td>Austin, TX</td>
+                    <td><span style="color:var(--green-600);font-weight:700;">91</span> / <span style="color:var(--blue-600);font-weight:700;">85</span></td>
+                    <td><span class="status-badge status-badge--new">New</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Maria K.</strong></td>
+                    <td>Memory Care</td>
+                    <td>Round Rock, TX</td>
+                    <td><span style="color:var(--green-600);font-weight:700;">74</span> / <span style="color:var(--blue-600);font-weight:700;">68</span></td>
+                    <td><span class="status-badge status-badge--contacted">Contacted</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sarah M.</strong></td>
+                    <td>Home Care</td>
+                    <td>Cedar Park, TX</td>
+                    <td><span style="color:var(--green-600);font-weight:700;">88</span> / <span style="color:var(--blue-600);font-weight:700;">91</span></td>
+                    <td><span class="status-badge status-badge--won">Won</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Linda F.</strong></td>
+                    <td>Assisted Living</td>
+                    <td>Georgetown, TX</td>
+                    <td><span style="color:var(--green-600);font-weight:700;">65</span> / <span style="color:var(--blue-600);font-weight:700;">72</span></td>
+                    <td><span class="status-badge status-badge--lost">Lost</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right column: Notifications -->
+        <div>
+          <div class="dash-card" id="notifCard">
+            <div class="dash-card__header">
+              <div class="dash-card__title">
+                Notifications
+                <span class="notif-badge" id="notifBadge" style="margin-left:8px;">3</span>
+              </div>
+              <button onclick="markAllRead(this)" class="btn--secondary btn--sm" style="white-space:nowrap;">Mark all read</button>
+            </div>
+            <div class="notif-list" id="notifList">
+              <!-- Unread -->
+              <div class="notif-item notif-item--unread">
+                <div class="notif-icon notif-icon--lead">📋</div>
+                <div class="notif-body">
+                  <strong>New lead available</strong>
+                  <p>Home Care · Austin, TX · LQS 91 — exclusive window open</p>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+                  <span class="notif-time">2m ago</span>
+                  <span class="notif-dot"></span>
+                </div>
+              </div>
+              <div class="notif-item notif-item--unread">
+                <div class="notif-icon notif-icon--lead">📋</div>
+                <div class="notif-body">
+                  <strong>New lead available</strong>
+                  <p>Elder Law · Round Rock, TX · LQS 82 — 0 slots taken</p>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+                  <span class="notif-time">18m ago</span>
+                  <span class="notif-dot"></span>
+                </div>
+              </div>
+              <div class="notif-item notif-item--unread">
+                <div class="notif-icon notif-icon--conv">🎉</div>
+                <div class="notif-body">
+                  <strong>Conversion recorded</strong>
+                  <p>Sarah M. marked as Won — great work!</p>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+                  <span class="notif-time">2h ago</span>
+                  <span class="notif-dot"></span>
+                </div>
+              </div>
+              <!-- Read -->
+              <div class="notif-item">
+                <div class="notif-icon notif-icon--content">✍️</div>
+                <div class="notif-body">
+                  <strong>Article driving leads</strong>
+                  <p>Your "Home Care in Austin" article generated 3 leads this week.</p>
+                </div>
+                <span class="notif-time">1d ago</span>
+              </div>
+              <div class="notif-item">
+                <div class="notif-icon notif-icon--lead">📋</div>
+                <div class="notif-body">
+                  <strong>Lead purchased</strong>
+                  <p>Maria K. — Memory Care, Round Rock, TX</p>
+                </div>
+                <span class="notif-time">2d ago</span>
+              </div>
+              <div class="notif-item">
+                <div class="notif-icon notif-icon--sys">⚙️</div>
+                <div class="notif-body">
+                  <strong>Billing reminder</strong>
+                  <p>Your Professional plan renews in 17 days.</p>
+                </div>
+                <span class="notif-time">3d ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end two-column -->
+
+      <!-- Content promo -->
+      <div class="content-promo">
+        <div>
+          <h4>Boost your profile with content</h4>
+          <p>8 leads generated from your articles this month. Write more to grow your visibility.</p>
+        </div>
+        <a href="provider-content.html" class="btn--ghost" style="flex-shrink:0;">Write an Article →</a>
+      </div>
+
+    </div><!-- end body -->
+  </main>
+</div>
+
+<script src="assets/js/provider-script.js"></script>
+<script>
+function markAllRead(btn) {
+  var list = document.getElementById('notifList');
+  var badge = document.getElementById('notifBadge');
+  var unread = list.querySelectorAll('.notif-item--unread');
+  unread.forEach(function(item) {
+    item.classList.remove('notif-item--unread');
+    var dot = item.querySelector('.notif-dot');
+    if (dot) dot.remove();
+  });
+  badge.style.display = 'none';
+  btn.textContent = 'All read ✓';
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>

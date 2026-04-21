@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Billing | ECM Provider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/provider.css">
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="prov-topbar">
+  <a href="provider-dashboard.html" class="prov-topbar-logo">Elder<span>Care</span>Matters</a>
+  <div class="prov-topbar-right">
+    <a href="for-providers.html" class="prov-topbar-link">← Back to site</a>
+    <span class="prov-topbar-link" style="color:rgba(255,255,255,0.45)">Sunrise Home Care</span>
+  </div>
+</header>
+
+<!-- Layout -->
+<div class="dash-layout">
+
+  <!-- Sidebar -->
+  <aside class="dash-sidebar">
+    <div class="sidebar-section">
+      <nav>
+        <a href="provider-dashboard.html" class="sidebar-link"><span class="sidebar-icon">📊</span> Dashboard</a>
+        <a href="provider-leads.html"     class="sidebar-link"><span class="sidebar-icon">📋</span> Lead Inbox</a>
+        <a href="provider-content.html"   class="sidebar-link"><span class="sidebar-icon">✍️</span> My Content</a>
+        <a href="provider-billing.html"   class="sidebar-link active"><span class="sidebar-icon">💳</span> Billing</a>
+        <a href="provider-profile.html"   class="sidebar-link"><span class="sidebar-icon">🏢</span> My Profile</a>
+        <a href="provider-settings.html"  class="sidebar-link"><span class="sidebar-icon">⚙️</span> Settings</a>
+      </nav>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="sidebar-upgrade">
+        <strong>Featured Plan</strong>
+        Exclusive 24h lead access enabled.
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="dash-main">
+    <div class="dash-main__header">
+      <div>
+        <div class="dash-main__title">Billing &amp; Subscription</div>
+        <div class="dash-main__sub">Manage your plan, credits, and payment details</div>
+      </div>
+    </div>
+
+    <div class="dash-main__body">
+
+      <!-- Plan + Credits row -->
+      <div class="billing-grid">
+
+        <!-- Current Plan -->
+        <div class="billing-card">
+          <div class="billing-card__title">
+            Current Plan
+            <span class="plan-badge">Professional</span>
+          </div>
+          <div class="plan-info">
+            <strong>$299 / month</strong><br>
+            Renews May 8, 2026<br>
+            City + 25 mile radius coverage<br>
+            Up to 25 leads per month
+          </div>
+          <div class="billing-actions">
+            <button class="btn--secondary btn--sm" onclick="showToast('Plan change coming soon.')">Change Plan</button>
+            <button class="btn--danger btn--sm" onclick="showToast('Cancellation request sent.', 'info')">Cancel Subscription</button>
+          </div>
+        </div>
+
+        <!-- Lead Credits -->
+        <div class="billing-card">
+          <div class="billing-card__title">Lead Credits</div>
+          <div class="credit-row">
+            <div class="credit-box">
+              <div class="credit-box__num" style="color:var(--green-600);">8</div>
+              <div class="credit-box__label">Remaining</div>
+            </div>
+            <div class="credit-box">
+              <div class="credit-box__num">12</div>
+              <div class="credit-box__label">Used this month</div>
+            </div>
+            <div class="credit-box">
+              <div class="credit-box__num">20</div>
+              <div class="credit-box__label">Monthly allowance</div>
+            </div>
+          </div>
+          <div class="credit-packs">
+            <button class="btn--secondary btn--sm" onclick="showToast('5 credits added for $75.', 'success')">+ 5 credits — $75</button>
+            <button class="btn--secondary btn--sm" onclick="showToast('10 credits added for $130.', 'success')">+ 10 — $130</button>
+            <button class="btn--secondary btn--sm" onclick="showToast('25 credits added for $275.', 'success')">+ 25 — $275</button>
+          </div>
+        </div>
+
+      </div><!-- end billing-grid -->
+
+      <!-- Payment Method -->
+      <div class="billing-card" style="margin-bottom:20px;">
+        <div class="billing-card__title">Payment Method</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:48px;height:32px;background:var(--blue-700);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;">💳</div>
+            <div>
+              <div style="font-weight:600;color:var(--gray-900);font-size:0.9rem;">Visa ending in 4242</div>
+              <div style="font-size:0.78rem;color:var(--gray-500);">Expires 09/27</div>
+            </div>
+          </div>
+          <button class="btn--secondary btn--sm" onclick="showToast('Card update coming soon.', 'info')">Update Card</button>
+        </div>
+      </div>
+
+      <!-- Invoice History -->
+      <div class="billing-card">
+        <div class="billing-card__title">Invoice History</div>
+        <div style="overflow-x:auto;">
+          <table class="invoice-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Apr 8, 2026</td>
+                <td>Professional Plan — April 2026</td>
+                <td><strong>$299.00</strong></td>
+                <td><span class="status-paid">✓ Paid</span></td>
+                <td><span class="invoice-dl" onclick="showToast('Downloading invoice…', 'info')">Download PDF</span></td>
+              </tr>
+              <tr>
+                <td>Apr 3, 2026</td>
+                <td>Lead Credits — 10 pack</td>
+                <td><strong>$130.00</strong></td>
+                <td><span class="status-paid">✓ Paid</span></td>
+                <td><span class="invoice-dl" onclick="showToast('Downloading invoice…', 'info')">Download PDF</span></td>
+              </tr>
+              <tr>
+                <td>Mar 8, 2026</td>
+                <td>Professional Plan — March 2026</td>
+                <td><strong>$299.00</strong></td>
+                <td><span class="status-paid">✓ Paid</span></td>
+                <td><span class="invoice-dl" onclick="showToast('Downloading invoice…', 'info')">Download PDF</span></td>
+              </tr>
+              <tr>
+                <td>Feb 8, 2026</td>
+                <td>Professional Plan — February 2026</td>
+                <td><strong>$299.00</strong></td>
+                <td><span class="status-paid">✓ Paid</span></td>
+                <td><span class="invoice-dl" onclick="showToast('Downloading invoice…', 'info')">Download PDF</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- end body -->
+  </main>
+</div>
+
+<script src="assets/js/provider-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Providers | ElderCareMatters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/homepage.css">
+<link rel="stylesheet" href="assets/css/inner.css">
+<style>
+/* ── FOR-PROVIDERS PAGE STYLES ── */
+.fp-hero {
+  padding: 72px 5% 64px;
+  background: linear-gradient(135deg, var(--charcoal) 0%, #1a2a3a 100%);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+}
+.fp-hero-left { color: #fff; }
+.fp-hero-eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--sage-light); margin-bottom: 16px;
+}
+.fp-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.15;
+  margin-bottom: 18px; color: #fff;
+}
+.fp-hero-title em { font-style: italic; color: var(--sage-light); }
+.fp-hero-sub { font-size: 1rem; color: rgba(255,255,255,0.72); line-height: 1.65; margin-bottom: 28px; max-width: 480px; }
+.fp-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+.fp-btn-primary {
+  background: var(--sage); color: #fff; border: none;
+  padding: 13px 26px; border-radius: 10px; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 700;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: background 0.2s;
+}
+.fp-btn-primary:hover { background: #6a8e6e; }
+.fp-btn-ghost {
+  background: transparent; color: rgba(255,255,255,0.8);
+  border: 1.5px solid rgba(255,255,255,0.3); padding: 13px 26px; border-radius: 10px; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.2s;
+}
+.fp-btn-ghost:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.fp-trust-bullets { display: flex; gap: 20px; flex-wrap: wrap; }
+.fp-trust-bullet { font-size: 0.8rem; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 6px; }
+.fp-trust-bullet::before { content: '✓'; color: var(--sage-light); font-weight: 700; }
+
+/* Hero lead cards */
+.fp-hero-right { display: flex; flex-direction: column; gap: 14px; }
+.fp-lead-card {
+  background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.15); border-radius: 16px;
+  padding: 18px 20px; color: #fff;
+}
+.fp-lead-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.fp-lead-type { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sage-light); }
+.fp-lead-price { font-size: 1.3rem; font-weight: 700; color: #fff; }
+.fp-lead-meta { font-size: 0.8rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+.fp-lead-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 9999px; padding: 3px 10px; font-size: 0.7rem; margin-top: 10px;
+}
+.fp-lead-badge-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; }
+.fp-new-badge { background: rgba(59,130,246,0.3); color: #93c5fd; border-radius: 9999px; padding: 2px 8px; font-size: 0.68rem; font-weight: 700; }
+
+/* Trust bar */
+.fp-trust-bar {
+  display: flex; justify-content: space-around; align-items: center;
+  padding: 32px 5%; background: #fff; border-bottom: 1px solid var(--border);
+  flex-wrap: wrap; gap: 16px;
+}
+.fp-trust-stat { text-align: center; }
+.fp-trust-stat-val {
+  font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700;
+  color: var(--charcoal); display: block;
+}
+.fp-trust-stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+/* How it works (provider) */
+.fp-steps {
+  padding: 64px 5%;
+  background: var(--cream);
+}
+.fp-section-eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 10px;
+}
+.fp-section-title {
+  font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 700; color: var(--charcoal); line-height: 1.25; margin-bottom: 8px;
+}
+.fp-section-title em { font-style: italic; color: var(--sage); }
+.fp-section-sub { font-size: 0.95rem; color: var(--mid); max-width: 520px; line-height: 1.65; margin-bottom: 48px; }
+.fp-steps-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.fp-step {
+  background: #fff; border: 1.5px solid var(--border); border-radius: 20px;
+  padding: 28px 24px;
+}
+.fp-step-num {
+  width: 36px; height: 36px; background: var(--sage); color: #fff;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem; margin-bottom: 16px;
+}
+.fp-step-title { font-weight: 700; color: var(--charcoal); font-size: 0.97rem; margin-bottom: 8px; }
+.fp-step-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
+
+/* Lead distribution flow */
+.fp-dist {
+  padding: 64px 5%; background: var(--warm-white);
+}
+.fp-dist-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 24px; }
+.fp-dist-card {
+  border-radius: 20px; padding: 28px 24px; position: relative; overflow: hidden;
+}
+.fp-dist-card--featured { background: linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%); color: #fff; }
+.fp-dist-card--premium  { background: var(--sage-pale); color: var(--charcoal); border: 1.5px solid var(--sage-light); }
+.fp-dist-card--basic    { background: #fff; color: var(--charcoal); border: 1.5px solid var(--border); }
+.fp-dist-tier {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 12px; display: inline-block; padding: 3px 10px; border-radius: 9999px;
+}
+.fp-dist-card--featured .fp-dist-tier { background: rgba(255,255,255,0.2); color: #fff; }
+.fp-dist-card--premium  .fp-dist-tier { background: var(--sage); color: #fff; }
+.fp-dist-card--basic    .fp-dist-tier { background: var(--border); color: var(--mid); }
+.fp-dist-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+.fp-dist-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+.fp-dist-card--featured .fp-dist-name { color: #fff; }
+.fp-dist-time { font-size: 0.8rem; opacity: 0.75; margin-bottom: 12px; }
+.fp-dist-desc { font-size: 0.82rem; opacity: 0.8; line-height: 1.6; }
+.fp-dist-security {
+  background: var(--cream); border: 1px solid var(--border); border-radius: 14px;
+  padding: 14px 20px; font-size: 0.85rem; color: var(--mid);
+  display: flex; align-items: center; gap: 10px;
+}
+
+/* Benefits grid */
+.fp-benefits { padding: 64px 5%; background: var(--sage-pale); }
+.fp-benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 28px; }
+.fp-benefit-card {
+  background: #fff; border-radius: 18px; padding: 24px;
+  border: 1px solid var(--border);
+}
+.fp-benefit-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
+.fp-benefit-title { font-weight: 700; color: var(--charcoal); font-size: 0.95rem; margin-bottom: 8px; }
+.fp-benefit-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
+.fp-formula-box {
+  background: var(--charcoal); color: #fff; border-radius: 16px;
+  padding: 24px 28px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.fp-formula-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sage-light); margin-bottom: 6px; }
+.fp-formula-text { font-family: 'DM Sans', monospace; font-size: 0.95rem; color: rgba(255,255,255,0.9); }
+.fp-formula-text span { color: var(--sage-light); font-weight: 700; }
+
+/* Pricing */
+.fp-pricing { padding: 72px 5%; background: #fff; }
+.fp-pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+.fp-plan-card {
+  border-radius: 24px; padding: 32px 28px;
+  border: 1.5px solid var(--border);
+  position: relative; display: flex; flex-direction: column;
+}
+.fp-plan-card--highlight {
+  border-color: var(--sage); background: var(--sage-pale);
+  box-shadow: 0 16px 40px rgba(122,158,126,0.2);
+}
+.fp-plan-popular {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--sage); color: #fff; border-radius: 9999px;
+  padding: 4px 16px; font-size: 0.72rem; font-weight: 700; white-space: nowrap;
+}
+.fp-plan-name { font-size: 0.85rem; font-weight: 700; color: var(--mid); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.fp-plan-price {
+  font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700;
+  color: var(--charcoal); line-height: 1; margin-bottom: 4px;
+}
+.fp-plan-price span { font-size: 1rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+.fp-plan-coverage { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.fp-plan-features { list-style: none; padding: 0; margin: 0 0 24px; flex: 1; }
+.fp-plan-features li {
+  font-size: 0.85rem; color: var(--mid); padding: 7px 0;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.fp-plan-features li::before { content: '✓'; color: var(--sage); font-weight: 700; flex-shrink: 0; }
+.fp-plan-features li.cross::before { content: '×'; color: var(--muted); }
+.fp-plan-cta {
+  display: block; text-align: center; padding: 12px;
+  background: var(--charcoal); color: #fff; border-radius: 10px; font-weight: 600;
+  font-size: 0.87rem; text-decoration: none; transition: background 0.2s;
+}
+.fp-plan-card--highlight .fp-plan-cta { background: var(--sage); }
+.fp-plan-cta:hover { opacity: 0.9; }
+
+/* Pay-per-lead */
+.fp-ppl {
+  background: var(--cream); border: 1.5px solid var(--border); border-radius: 20px;
+  padding: 28px 32px; display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+}
+.fp-ppl-left h4 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--charcoal); margin-bottom: 4px; }
+.fp-ppl-left p { font-size: 0.85rem; color: var(--mid); }
+.fp-credit-cards { display: flex; gap: 10px; flex-wrap: wrap; }
+.fp-credit-card {
+  background: #fff; border: 1.5px solid var(--border); border-radius: 14px;
+  padding: 14px 18px; text-align: center; min-width: 120px;
+  cursor: pointer; transition: border-color 0.2s;
+}
+.fp-credit-card:hover { border-color: var(--sage); }
+.fp-credit-card-count { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--charcoal); }
+.fp-credit-card-label { font-size: 0.72rem; color: var(--muted); margin: 2px 0; }
+.fp-credit-card-price { font-size: 0.95rem; font-weight: 700; color: var(--sage); }
+
+/* CTA banner */
+.fp-cta-band {
+  background: linear-gradient(135deg, var(--charcoal) 0%, #1a2a3a 100%);
+  padding: 64px 5%; text-align: center; color: #fff;
+}
+.fp-cta-band h2 {
+  font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700; margin-bottom: 12px; color: #fff;
+}
+.fp-cta-band h2 em { font-style: italic; color: var(--sage-light); }
+.fp-cta-band p { font-size: 0.95rem; color: rgba(255,255,255,0.65); margin-bottom: 28px; }
+.fp-cta-band-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .fp-hero { grid-template-columns: 1fr; gap: 40px; }
+  .fp-hero-right { display: none; }
+  .fp-steps-grid { grid-template-columns: 1fr 1fr; }
+  .fp-dist-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto 24px; }
+  .fp-benefits-grid { grid-template-columns: 1fr 1fr; }
+  .fp-pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto 40px; }
+}
+@media (max-width: 720px) {
+  .fp-hero { padding: 48px 5% 40px; }
+  .fp-steps-grid { grid-template-columns: 1fr; }
+  .fp-benefits-grid { grid-template-columns: 1fr; }
+  .fp-trust-bar { gap: 24px; }
+  .fp-ppl { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- Location Modal -->
+<div class="modal-overlay" id="locationModal">
+  <div class="modal">
+    <h3>Set your location</h3>
+    <p>Searching for a parent in a different city? Enter their location.</p>
+    <input type="text" name="zip" placeholder="City or ZIP code…">
+    <div class="modal-divider">or</div>
+    <select name="state">
+      <option value="">Select state…</option>
+      <option>California</option><option>Florida</option><option>Illinois</option>
+      <option>New York</option><option>Texas</option><option>Washington</option>
+    </select>
+    <div class="modal-actions">
+      <button class="btn-outline" type="button" data-modal-cancel>Cancel</button>
+      <button class="btn-sage" type="button" data-modal-submit>Update Location</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    ElderCareMatters
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="search.html">Find Care</a></li>
+    <li><a href="blog.html">Resources</a></li>
+    <li><a href="for-providers.html" style="color:var(--sage);font-weight:600">For Providers</a></li>
+    <li><a href="provider-dashboard.html" class="nav-cta">Provider Login</a></li>
+  </ul>
+  <div class="nav-location-badge" data-open-location-modal>
+    📍 <span class="js-location-full">Detecting…</span> · Change
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="fp-hero">
+  <div class="fp-hero-left">
+    <div class="fp-hero-eyebrow">For Care Providers</div>
+    <h1 class="fp-hero-title">A Predictable Source of <em>Qualified, Geo-Matched</em> Leads</h1>
+    <p class="fp-hero-sub">Connect with families actively searching for elder care in your city. Every lead is scored, geo-matched, and shared with a maximum of 3 providers.</p>
+    <div class="fp-hero-actions">
+      <a href="#pricing" class="fp-btn-primary">See Plans &amp; Pricing →</a>
+      <a href="provider-dashboard.html" class="fp-btn-ghost">View Demo Dashboard</a>
+    </div>
+    <div class="fp-trust-bullets">
+      <span class="fp-trust-bullet">No setup fee</span>
+      <span class="fp-trust-bullet">Cancel anytime</span>
+      <span class="fp-trust-bullet">Max 3 providers per lead</span>
+    </div>
+  </div>
+
+  <div class="fp-hero-right">
+    <!-- Sample Lead Card 1 -->
+    <div class="fp-lead-card">
+      <div class="fp-lead-card-header">
+        <span class="fp-lead-type">🏠 Home Care</span>
+        <span class="fp-lead-price">$38</span>
+      </div>
+      <div class="fp-lead-meta">
+        📍 Austin, TX · Urgency: Immediate<br>
+        LQS 82 &nbsp;|&nbsp; LIS 78 &nbsp;|&nbsp; 1 of 3 slots taken
+      </div>
+      <div class="fp-lead-badge"><span class="fp-lead-badge-dot"></span> Featured Exclusive · 02:14:33 remaining</div>
+    </div>
+    <!-- Sample Lead Card 2 -->
+    <div class="fp-lead-card">
+      <div class="fp-lead-card-header">
+        <span class="fp-lead-type">⚖️ Elder Law</span>
+        <span class="fp-lead-price">$29</span>
+      </div>
+      <div class="fp-lead-meta">
+        📍 Round Rock, TX · Urgency: Within 1 month<br>
+        LQS 74 &nbsp;|&nbsp; LIS 65 &nbsp;|&nbsp; 0 of 3 slots taken
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;">
+        <span class="fp-new-badge">NEW</span>
+        <span style="font-size:0.75rem;color:rgba(255,255,255,0.5)">Posted 2 hours ago</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust bar -->
+<div class="fp-trust-bar">
+  <div class="fp-trust-stat"><span class="fp-trust-stat-val">500+</span><span class="fp-trust-stat-label">Verified Providers</span></div>
+  <div class="fp-trust-stat"><span class="fp-trust-stat-val">12,000+</span><span class="fp-trust-stat-label">Leads Delivered</span></div>
+  <div class="fp-trust-stat"><span class="fp-trust-stat-val">Max 3</span><span class="fp-trust-stat-label">Providers Per Lead</span></div>
+  <div class="fp-trust-stat"><span class="fp-trust-stat-val">4.9 ★</span><span class="fp-trust-stat-label">Provider Rating</span></div>
+</div>
+
+<!-- How It Works -->
+<section class="fp-steps">
+  <div class="fp-section-eyebrow">Provider Journey</div>
+  <h2 class="fp-section-title">How It <em>Works</em></h2>
+  <p class="fp-section-sub">From signup to your first client, it takes less than a week.</p>
+  <div class="fp-steps-grid">
+    <div class="fp-step">
+      <div class="fp-step-num">1</div>
+      <div class="fp-step-title">Create Your Profile</div>
+      <div class="fp-step-desc">Tell us about your services, coverage area, and credentials. Get your ECM Verified badge.</div>
+    </div>
+    <div class="fp-step">
+      <div class="fp-step-num">2</div>
+      <div class="fp-step-title">Browse Geo-Matched Leads</div>
+      <div class="fp-step-desc">See leads that match your service area. Each one scored for quality and intent before it reaches you.</div>
+    </div>
+    <div class="fp-step">
+      <div class="fp-step-num">3</div>
+      <div class="fp-step-title">Purchase &amp; Unlock</div>
+      <div class="fp-step-desc">Pay only for the leads you want. Name, phone, and email are revealed immediately after purchase.</div>
+    </div>
+    <div class="fp-step">
+      <div class="fp-step-num">4</div>
+      <div class="fp-step-title">Contact &amp; Convert</div>
+      <div class="fp-step-desc">Reach the family directly. Our providers average a 25% conversion rate from purchased lead to client.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Lead Distribution Flow -->
+<section class="fp-dist">
+  <div class="fp-section-eyebrow">Tiered Access Model</div>
+  <h2 class="fp-section-title">Lead <em>Distribution</em> Flow</h2>
+  <p class="fp-section-sub">Leads move through three tiers. The earlier your plan, the earlier you see the lead.</p>
+  <div class="fp-dist-grid">
+    <div class="fp-dist-card fp-dist-card--featured">
+      <span class="fp-dist-tier">Featured</span>
+      <span class="fp-dist-icon">👑</span>
+      <div class="fp-dist-name">First Access</div>
+      <div class="fp-dist-time">Exclusive 24-hour window</div>
+      <div class="fp-dist-desc">See the lead before anyone else. Exclusive access window before it opens to Premium providers.</div>
+    </div>
+    <div class="fp-dist-card fp-dist-card--premium">
+      <span class="fp-dist-tier">Premium</span>
+      <span class="fp-dist-icon">⭐</span>
+      <div class="fp-dist-name">Second Access</div>
+      <div class="fp-dist-time">After Featured window closes</div>
+      <div class="fp-dist-desc">Access opens after the Featured window. Still early, with fewer providers than open access.</div>
+    </div>
+    <div class="fp-dist-card fp-dist-card--basic">
+      <span class="fp-dist-tier">Basic</span>
+      <span class="fp-dist-icon">🔓</span>
+      <div class="fp-dist-name">Open Access</div>
+      <div class="fp-dist-time">After Featured + Premium windows</div>
+      <div class="fp-dist-desc">Full marketplace access. Compete on response speed and profile quality to win the lead.</div>
+    </div>
+  </div>
+  <div class="fp-dist-security">
+    🛡️ <strong>Capped marketplace:</strong> A maximum of 3 providers can purchase any single lead. Your investment is never diluted by unlimited competition.
+  </div>
+</section>
+
+<!-- Benefits Grid -->
+<section class="fp-benefits">
+  <div class="fp-section-eyebrow">Why ECM</div>
+  <h2 class="fp-section-title">Built for <em>Provider ROI</em></h2>
+  <p class="fp-section-sub">Every feature is designed to lower your cost per acquisition and increase conversion.</p>
+  <div class="fp-benefits-grid">
+    <div class="fp-benefit-card">
+      <span class="fp-benefit-icon">📍</span>
+      <div class="fp-benefit-title">Geo-Matched Leads</div>
+      <div class="fp-benefit-desc">Leads are matched to your exact service area. No wasted spend on out-of-range inquiries.</div>
+    </div>
+    <div class="fp-benefit-card">
+      <span class="fp-benefit-icon">📊</span>
+      <div class="fp-benefit-title">Quality Scored</div>
+      <div class="fp-benefit-desc">Every lead gets an LQS (quality) and LIS (intent) score so you can prioritize high-value opportunities.</div>
+    </div>
+    <div class="fp-benefit-card">
+      <span class="fp-benefit-icon">💡</span>
+      <div class="fp-benefit-title">Transparent Pricing</div>
+      <div class="fp-benefit-desc">See exactly how each lead price was calculated before you buy. No surprises, no hidden fees.</div>
+    </div>
+    <div class="fp-benefit-card">
+      <span class="fp-benefit-icon">🏆</span>
+      <div class="fp-benefit-title">Limited Competition</div>
+      <div class="fp-benefit-desc">Never more than 3 providers per lead. Your conversion odds are dramatically higher than open directories.</div>
+    </div>
+    <div class="fp-benefit-card">
+      <span class="fp-benefit-icon">📈</span>
+      <div class="fp-benefit-title">Proven ROI</div>
+      <div class="fp-benefit-desc">Our top providers see a 30x+ return on their ECM investment, driven by high lead intent and low competition.</div>
+    </div>
+    <div class="fp-benefit-card">
+      <span class="fp-benefit-icon">✅</span>
+      <div class="fp-benefit-title">ECM Verified Badge</div>
+      <div class="fp-benefit-desc">Build trust with families. The ECM Verified badge signals credibility and is prominently displayed on your profile.</div>
+    </div>
+  </div>
+  <div class="fp-formula-box">
+    <div>
+      <div class="fp-formula-label">Lead Pricing Formula</div>
+      <div class="fp-formula-text">
+        Lead Price = <span>Base City Price</span> × <span>Quality Score</span> × <span>Intent Score</span> × <span>Geo Relevance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="fp-pricing" id="pricing">
+  <div style="text-align:center;margin-bottom:48px;">
+    <div class="fp-section-eyebrow" style="display:inline-block;margin-bottom:10px;">Simple Pricing</div>
+    <h2 class="fp-section-title" style="text-align:center;margin-bottom:8px;">Choose Your <em>Plan</em></h2>
+    <p style="font-size:0.95rem;color:var(--mid);max-width:480px;margin:0 auto;">All plans include the ECM Verified badge, access to our provider dashboard, and the Content Engine.</p>
+  </div>
+  <div class="fp-pricing-grid">
+
+    <!-- Basic -->
+    <div class="fp-plan-card">
+      <div class="fp-plan-name">Basic</div>
+      <div class="fp-plan-price">$149<span>/mo</span></div>
+      <div class="fp-plan-coverage">City coverage only</div>
+      <ul class="fp-plan-features">
+        <li>Up to 10 leads per month</li>
+        <li>Open access (after Featured + Premium)</li>
+        <li>ECM Verified badge</li>
+        <li>Provider dashboard access</li>
+        <li>Standard support</li>
+        <li class="cross">Featured lead window</li>
+        <li class="cross">Content Engine</li>
+        <li class="cross">Dedicated CSM</li>
+      </ul>
+      <a href="provider-dashboard.html" class="fp-plan-cta">Get Started</a>
+    </div>
+
+    <!-- Premium (highlighted) -->
+    <div class="fp-plan-card fp-plan-card--highlight">
+      <div class="fp-plan-popular">Most Popular</div>
+      <div class="fp-plan-name">Premium</div>
+      <div class="fp-plan-price">$299<span>/mo</span></div>
+      <div class="fp-plan-coverage">City + 25 mile radius</div>
+      <ul class="fp-plan-features">
+        <li>Up to 25 leads per month</li>
+        <li>Second access (after Featured only)</li>
+        <li>ECM Verified badge</li>
+        <li>Provider dashboard access</li>
+        <li>Priority support</li>
+        <li>Featured listing on category pages</li>
+        <li>Content Engine included</li>
+        <li class="cross">Dedicated CSM</li>
+      </ul>
+      <a href="provider-dashboard.html" class="fp-plan-cta">Get Started</a>
+    </div>
+
+    <!-- Featured -->
+    <div class="fp-plan-card">
+      <div class="fp-plan-name">Featured</div>
+      <div class="fp-plan-price">Custom</div>
+      <div class="fp-plan-coverage">Custom geographic coverage</div>
+      <ul class="fp-plan-features">
+        <li>Unlimited leads</li>
+        <li>Exclusive 24h first-access window</li>
+        <li>ECM Verified badge</li>
+        <li>Provider dashboard access</li>
+        <li>White-glove onboarding</li>
+        <li>Top placement on all listings</li>
+        <li>Content Engine included</li>
+        <li>Dedicated CSM</li>
+      </ul>
+      <a href="provider-dashboard.html" class="fp-plan-cta">Contact Sales</a>
+    </div>
+
+  </div>
+
+  <!-- Pay-per-lead box -->
+  <div class="fp-ppl">
+    <div class="fp-ppl-left">
+      <h4>Not ready for a subscription?</h4>
+      <p>Buy lead credits individually. No subscription required.</p>
+    </div>
+    <div class="fp-credit-cards">
+      <div class="fp-credit-card">
+        <div class="fp-credit-card-count">5</div>
+        <div class="fp-credit-card-label">lead credits</div>
+        <div class="fp-credit-card-price">$75</div>
+      </div>
+      <div class="fp-credit-card">
+        <div class="fp-credit-card-count">10</div>
+        <div class="fp-credit-card-label">lead credits</div>
+        <div class="fp-credit-card-price">$130</div>
+      </div>
+      <div class="fp-credit-card">
+        <div class="fp-credit-card-count">25</div>
+        <div class="fp-credit-card-label">lead credits</div>
+        <div class="fp-credit-card-price">$275</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Band -->
+<div class="fp-cta-band">
+  <h2>Ready to start <em>receiving leads</em>?</h2>
+  <p>No setup fee. Cancel anytime. Your first lead could arrive within 24 hours.</p>
+  <div class="fp-cta-band-actions">
+    <a href="#pricing" class="fp-btn-primary">Get Started Free →</a>
+    <a href="provider-dashboard.html" class="fp-btn-ghost">View Demo Dashboard</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">🌿 ElderCareMatters</a>
+      <p class="footer-tagline">Connecting families with trusted elder care providers across the United States.</p>
+      <div class="footer-trust">
+        <div class="trust-item">✓ Verified Providers</div>
+        <div class="trust-item">🔒 Privacy Protected</div>
+        <div class="trust-item">⭐ Free for Families</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>For Families</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="search.html">Find Providers</a></li>
+        <li><a href="blog.html">Guides &amp; Resources</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>For Providers</h4>
+      <ul class="footer-links">
+        <li><a href="for-providers.html">Provider Overview</a></li>
+        <li><a href="#pricing">Pricing &amp; Plans</a></li>
+        <li><a href="provider-dashboard.html">Provider Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Browse Care</h4>
+      <ul class="footer-links">
+        <li><a href="search.html">All Categories</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ElderCareMatters. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Quick Form Modal -->
+<div class="modal-overlay form-modal" id="formModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
+    <h3>Tell us what you need</h3>
+    <p>We'll match you with verified providers in <em class="js-location-city">your area</em>. Takes under a minute.</p>
+    <form class="intake-form" onsubmit="return false;">
+      <div class="form-field">
+        <label for="care-type">What kind of help?</label>
+        <select id="care-type" name="care-type"><option value="">Select care type…</option></select>
+      </div>
+      <div class="form-field" id="other-desc-field" style="display:none;">
+        <label for="other-desc">Briefly describe what you need</label>
+        <textarea id="other-desc" name="other-desc" rows="3" placeholder="E.g. looking for overnight respite care for a week…"></textarea>
+      </div>
+      <div id="standard-location-block">
+        <div class="form-field">
+          <label>Location</label>
+          <div class="location-row">
+            <select id="form-state" name="state"><option value="">State…</option></select>
+            <select id="form-city" name="city"><option value="">City…</option></select>
+          </div>
+          <button type="button" class="location-change-link" data-open-location-modal>Change location →</button>
+        </div>
+        <div class="form-field">
+          <label>How soon do you need help?</label>
+          <div class="urgency-chips">
+            <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
+            <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
+            <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+          </div>
+        </div>
+      </div>
+      <div id="other-contact-block" style="display:none;">
+        <div class="form-field">
+          <label for="other-phone">Phone number</label>
+          <input id="other-phone" name="phone" type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-field">
+          <label for="other-email">Email address</label>
+          <input id="other-email" name="email" type="email" placeholder="you@example.com">
+        </div>
+      </div>
+      <button type="submit" class="form-submit" id="form-submit-btn">Find Providers →</button>
+    </form>
+  </div>
+</div>
+
+<!-- Chat FAB -->
+<button class="chat-fab" id="chatFab" type="button" aria-label="Chat with our care advisor">
+  <span class="chat-fab-icon chat-fab-icon--chat">💬</span>
+  <span class="chat-fab-icon chat-fab-icon--close">×</span>
+  <span class="chat-fab-pulse"></span>
+</button>
+<div class="chat-popup" id="chatPopup">
+  <div class="chat-popup-header">
+    <div class="chat-avatar-sm">👩‍⚕️</div>
+    <div class="chat-meta">
+      <div class="chat-meta-name">ECM Care Advisor</div>
+      <div class="chat-meta-status"><span class="status-dot"></span> Online · Avg reply &lt; 1 min</div>
+    </div>
+    <div class="chat-step-badge">Step 1 of 4</div>
+    <button class="chat-popup-close" type="button" data-close-chat aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body"></div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/location.js"></script>
+<script src="assets/js/intake.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

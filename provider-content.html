@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Content | ECM Provider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/provider.css">
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="prov-topbar">
+  <a href="provider-dashboard.html" class="prov-topbar-logo">Elder<span>Care</span>Matters</a>
+  <div class="prov-topbar-right">
+    <a href="for-providers.html" class="prov-topbar-link">← Back to site</a>
+    <span class="prov-topbar-link" style="color:rgba(255,255,255,0.45)">Sunrise Home Care</span>
+  </div>
+</header>
+
+<!-- Layout -->
+<div class="dash-layout">
+
+  <!-- Sidebar -->
+  <aside class="dash-sidebar">
+    <div class="sidebar-section">
+      <nav>
+        <a href="provider-dashboard.html" class="sidebar-link"><span class="sidebar-icon">📊</span> Dashboard</a>
+        <a href="provider-leads.html"     class="sidebar-link"><span class="sidebar-icon">📋</span> Lead Inbox</a>
+        <a href="provider-content.html"   class="sidebar-link active"><span class="sidebar-icon">✍️</span> My Content</a>
+        <a href="provider-billing.html"   class="sidebar-link"><span class="sidebar-icon">💳</span> Billing</a>
+        <a href="provider-profile.html"   class="sidebar-link"><span class="sidebar-icon">🏢</span> My Profile</a>
+        <a href="provider-settings.html"  class="sidebar-link"><span class="sidebar-icon">⚙️</span> Settings</a>
+      </nav>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="sidebar-upgrade">
+        <strong>Content Engine</strong>
+        Writing articles boosts your profile visibility.
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="dash-main">
+    <div class="dash-main__header">
+      <div>
+        <div class="dash-main__title">My Content</div>
+        <div class="dash-main__sub">Articles you publish appear on ElderCareMatters and boost your lead visibility</div>
+      </div>
+    </div>
+
+    <div class="dash-main__body">
+
+      <!-- Content stats -->
+      <div class="content-stats">
+        <div class="cstat">
+          <div class="cstat__label">Articles Published</div>
+          <div class="cstat__value">3</div>
+          <div class="cstat__delta">↑ 1 this month</div>
+        </div>
+        <div class="cstat">
+          <div class="cstat__label">Profile Views</div>
+          <div class="cstat__value">1,240</div>
+          <div class="cstat__delta">↑ 3× since first article</div>
+        </div>
+        <div class="cstat">
+          <div class="cstat__label">Leads from Content</div>
+          <div class="cstat__value">8</div>
+          <div class="cstat__delta">↑ 4 this month</div>
+        </div>
+        <div class="cstat">
+          <div class="cstat__label">Drafts in Progress</div>
+          <div class="cstat__value">1</div>
+          <div class="cstat__delta" style="color:var(--amber-700);">Continue writing</div>
+        </div>
+      </div>
+
+      <!-- Two-column layout -->
+      <div class="content-cols">
+
+        <!-- Left: Articles + Editor -->
+        <div>
+          <div class="articles-card">
+            <div class="articles-card__header">
+              <span class="articles-card__title">Your Articles</span>
+              <button class="btn--primary btn--sm" onclick="openEditor()">+ New Article</button>
+            </div>
+
+            <!-- Published articles -->
+            <div class="article-row">
+              <div class="article-row__icon">📄</div>
+              <div class="article-row__body">
+                <div class="article-row__title">Home Care in Austin: What Families Need to Know</div>
+                <div class="article-row__meta">Published Apr 10, 2026 · 342 views · 3 leads</div>
+              </div>
+              <div class="article-row__status">
+                <span class="status--published">Published</span>
+                <button class="btn--secondary btn--sm" onclick="openEditorExisting('Home Care in Austin: What Families Need to Know')">Edit</button>
+              </div>
+            </div>
+
+            <div class="article-row">
+              <div class="article-row__icon">📄</div>
+              <div class="article-row__body">
+                <div class="article-row__title">Signs It's Time to Hire a Home Caregiver</div>
+                <div class="article-row__meta">Published Mar 22, 2026 · 518 views · 4 leads</div>
+              </div>
+              <div class="article-row__status">
+                <span class="status--published">Published</span>
+                <button class="btn--secondary btn--sm" onclick="openEditorExisting('Signs It\'s Time to Hire a Home Caregiver')">Edit</button>
+              </div>
+            </div>
+
+            <div class="article-row">
+              <div class="article-row__icon">📄</div>
+              <div class="article-row__body">
+                <div class="article-row__title">Understanding Respite Care: A Guide for Family Caregivers</div>
+                <div class="article-row__meta">Published Feb 15, 2026 · 380 views · 1 lead</div>
+              </div>
+              <div class="article-row__status">
+                <span class="status--published">Published</span>
+                <button class="btn--secondary btn--sm" onclick="openEditorExisting('Understanding Respite Care: A Guide for Family Caregivers')">Edit</button>
+              </div>
+            </div>
+
+            <!-- Draft -->
+            <div class="article-row">
+              <div class="article-row__icon">✏️</div>
+              <div class="article-row__body">
+                <div class="article-row__title">Memory Care vs. Home Care: Which Is Right for Your Parent?</div>
+                <div class="article-row__meta">Draft · Last edited Apr 19, 2026</div>
+              </div>
+              <div class="article-row__status">
+                <span class="status--draft">Draft</span>
+                <button class="btn--primary btn--sm" onclick="openEditorDraft()">Continue</button>
+              </div>
+            </div>
+
+          </div><!-- end articles-card -->
+
+          <!-- Inline editor -->
+          <div class="editor-panel hidden" id="editorPanel">
+            <div class="editor-panel__header">
+              <span class="editor-panel__title" id="editorTitle">New Article</span>
+              <span class="status--draft">Draft</span>
+              <button class="btn--secondary btn--sm" style="margin-left:auto;" onclick="closeEditor()">✕ Close</button>
+            </div>
+            <div class="editor-toolbar">
+              <button class="toolbar-btn" title="Bold"><strong>B</strong></button>
+              <button class="toolbar-btn" title="Italic"><em>I</em></button>
+              <button class="toolbar-btn" title="Heading">H2</button>
+              <button class="toolbar-btn" title="List">≡</button>
+              <button class="toolbar-btn" title="Link">🔗</button>
+              <button class="toolbar-btn" title="Image">🖼</button>
+            </div>
+            <input class="editor-title-input" id="editorTitleInput" type="text" placeholder="Article title…">
+            <textarea class="editor-body-input" id="editorBodyInput" placeholder="Start writing your article here. Tip: include location keywords like 'Austin, TX' to boost local search visibility."></textarea>
+            <div class="editor-actions">
+              <button class="btn--secondary btn--sm" onclick="saveDraft()">Save Draft</button>
+              <button class="btn--primary btn--sm" onclick="publishArticle()">Publish Article →</button>
+              <span class="autosave-label" id="autosaveLabel">Auto-save in 3s…</span>
+            </div>
+          </div>
+
+        </div><!-- end left col -->
+
+        <!-- Right: Sidebar -->
+        <div>
+
+          <!-- Keyword Suggestions -->
+          <div class="sidebar-card">
+            <div class="sidebar-card__header">
+              🔍 Keyword Suggestions
+              <span style="font-size:0.72rem;color:var(--gray-500);font-weight:400;">Austin, TX</span>
+            </div>
+            <div class="sidebar-card__body">
+              <div class="kw-item">
+                <span class="kw-text">home care Austin TX</span>
+                <span class="kw-vol">880/mo</span>
+                <span class="kw-diff kw-diff--easy">Easy</span>
+                <span class="kw-add" onclick="addKeyword('home care Austin TX')">+ add</span>
+              </div>
+              <div class="kw-item">
+                <span class="kw-text">in-home senior care</span>
+                <span class="kw-vol">590/mo</span>
+                <span class="kw-diff kw-diff--easy">Easy</span>
+                <span class="kw-add" onclick="addKeyword('in-home senior care')">+ add</span>
+              </div>
+              <div class="kw-item">
+                <span class="kw-text">memory care Austin</span>
+                <span class="kw-vol">320/mo</span>
+                <span class="kw-diff kw-diff--med">Medium</span>
+                <span class="kw-add" onclick="addKeyword('memory care Austin')">+ add</span>
+              </div>
+              <div class="kw-item">
+                <span class="kw-text">elder care Round Rock TX</span>
+                <span class="kw-vol">210/mo</span>
+                <span class="kw-diff kw-diff--easy">Easy</span>
+                <span class="kw-add" onclick="addKeyword('elder care Round Rock TX')">+ add</span>
+              </div>
+              <div class="kw-item">
+                <span class="kw-text">senior home care near me</span>
+                <span class="kw-vol">1.2k/mo</span>
+                <span class="kw-diff kw-diff--hard">Hard</span>
+                <span class="kw-add" onclick="addKeyword('senior home care near me')">+ add</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Writing Assistant -->
+          <div class="sidebar-card">
+            <div class="sidebar-card__header">
+              ✨ AI Writing Assistant
+            </div>
+            <div class="sidebar-card__body">
+              <div class="ai-chip">✨ AI-powered</div>
+              <p style="font-size:0.78rem;color:var(--gray-600);margin-bottom:10px;">Suggested intro for your next article:</p>
+              <div class="ai-suggestion">
+                "Caring for an aging parent is one of the most important — and challenging — journeys a family takes. Whether you're exploring in-home help for the first time or transitioning from family caregiving, Sunrise Home Care is here to guide you every step of the way in Austin, TX."
+              </div>
+              <button class="btn-ai-use" onclick="insertAISuggestion()">Use this intro →</button>
+
+              <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--gray-100);">
+                <p style="font-size:0.78rem;color:var(--gray-600);margin-bottom:8px;">Alternative intro:</p>
+                <div class="ai-suggestion">
+                  "Families across the Austin area trust Sunrise Home Care to provide compassionate, professional support for their loved ones. Here's what you need to know about home care options in Central Texas."
+                </div>
+                <button class="btn-ai-use" onclick="insertAISuggestion2()">Use this intro →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Performance -->
+          <div class="sidebar-card">
+            <div class="sidebar-card__header">📈 Content Performance</div>
+            <div class="sidebar-card__body">
+              <div class="perf-table">
+                <div class="perf-header">
+                  <span class="perf-header-title">Article</span>
+                  <span style="width:50px;text-align:right;font-size:0.68rem;">Views</span>
+                  <span style="width:50px;text-align:right;font-size:0.68rem;">Leads</span>
+                </div>
+                <div class="perf-row">
+                  <span class="perf-row__title">Home Care in Austin…</span>
+                  <span class="perf-row__views">342</span>
+                  <span class="perf-row__leads">3</span>
+                </div>
+                <div class="perf-row">
+                  <span class="perf-row__title">Signs It's Time…</span>
+                  <span class="perf-row__views">518</span>
+                  <span class="perf-row__leads">4</span>
+                </div>
+                <div class="perf-row">
+                  <span class="perf-row__title">Understanding Respite…</span>
+                  <span class="perf-row__views">380</span>
+                  <span class="perf-row__leads">1</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- end right sidebar -->
+
+      </div><!-- end content-cols -->
+
+    </div><!-- end body -->
+  </main>
+</div>
+
+<script src="assets/js/provider-script.js"></script>
+<script>
+var autoSaveTimer = null;
+
+function openEditor() {
+  var panel = document.getElementById('editorPanel');
+  document.getElementById('editorTitle').textContent = 'New Article';
+  document.getElementById('editorTitleInput').value = '';
+  document.getElementById('editorBodyInput').value = '';
+  document.getElementById('autosaveLabel').textContent = 'Auto-save in 3s…';
+  panel.classList.remove('hidden');
+  setTimeout(function() { document.getElementById('editorTitleInput').focus(); }, 100);
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function openEditorExisting(title) {
+  var panel = document.getElementById('editorPanel');
+  document.getElementById('editorTitle').textContent = 'Edit Article';
+  document.getElementById('editorTitleInput').value = title;
+  document.getElementById('editorBodyInput').value = 'Start editing your article here…';
+  document.getElementById('autosaveLabel').textContent = 'Saved';
+  panel.classList.remove('hidden');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function openEditorDraft() {
+  var panel = document.getElementById('editorPanel');
+  document.getElementById('editorTitle').textContent = 'Continue Draft';
+  document.getElementById('editorTitleInput').value = 'Memory Care vs. Home Care: Which Is Right for Your Parent?';
+  document.getElementById('editorBodyInput').value = 'When a parent starts showing signs of cognitive decline, families face a difficult decision: Is in-home care enough, or is it time to consider a memory care facility?\n\nThe answer depends on several factors, including the stage of dementia, available family support, and your parent\'s personal preferences…';
+  document.getElementById('autosaveLabel').textContent = 'Last saved Apr 19';
+  panel.classList.remove('hidden');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closeEditor() {
+  document.getElementById('editorPanel').classList.add('hidden');
+}
+
+function saveDraft() {
+  document.getElementById('autosaveLabel').textContent = 'Saved ✓';
+  showToast('Draft saved.', 'info');
+}
+
+function publishArticle() {
+  var title = document.getElementById('editorTitleInput').value.trim();
+  if (!title) { showToast('Please enter a title before publishing.', 'error'); return; }
+  showToast('"' + title + '" published!', 'success');
+  document.getElementById('editorPanel').classList.add('hidden');
+}
+
+function addKeyword(kw) {
+  var body = document.getElementById('editorBodyInput');
+  if (document.getElementById('editorPanel').classList.contains('hidden')) openEditor();
+  body.value = (body.value ? body.value + ' ' : '') + kw;
+  showToast('Keyword "' + kw + '" added to editor.', 'info');
+}
+
+function insertAISuggestion() {
+  var body = document.getElementById('editorBodyInput');
+  if (document.getElementById('editorPanel').classList.contains('hidden')) openEditor();
+  body.value = 'Caring for an aging parent is one of the most important — and challenging — journeys a family takes. Whether you\'re exploring in-home help for the first time or transitioning from family caregiving, Sunrise Home Care is here to guide you every step of the way in Austin, TX.\n\n' + body.value;
+  showToast('AI intro inserted.', 'success');
+}
+
+function insertAISuggestion2() {
+  var body = document.getElementById('editorBodyInput');
+  if (document.getElementById('editorPanel').classList.contains('hidden')) openEditor();
+  body.value = 'Families across the Austin area trust Sunrise Home Care to provide compassionate, professional support for their loved ones. Here\'s what you need to know about home care options in Central Texas.\n\n' + body.value;
+  showToast('AI intro inserted.', 'success');
+}
+
+/* Auto-save on input */
+['editorTitleInput', 'editorBodyInput'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('input', function() {
+    clearTimeout(autoSaveTimer);
+    document.getElementById('autosaveLabel').textContent = 'Saving…';
+    autoSaveTimer = setTimeout(function() {
+      document.getElementById('autosaveLabel').textContent = 'Auto-saved ✓';
+    }, 2000);
+  });
+});
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@
 
   function startingFrom(provider) {
     const p = (provider.packages || [])[0];
-    if (!p || !p.price) return '—';
+    if (!p || !p.price) return '';
     return `$${p.price.toLocaleString()}<span style="font-size:0.72rem;color:var(--muted);font-weight:400">${p.unit}</span>`;
   }
 

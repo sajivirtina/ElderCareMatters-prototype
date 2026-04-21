@@ -37,7 +37,7 @@
 
   function startingFrom(provider) {
     const p = provider.packages[0];
-    if (!p || !p.price) return '—';
+    if (!p || !p.price) return '';
     return `$${p.price.toLocaleString()}<span style="font-size:0.72rem;color:var(--muted);font-weight:400">${p.unit}</span>`;
   }
 
@@ -263,7 +263,7 @@
     const cityInfo = D.cities[cityKey];
 
     // ── Hero + breadcrumb ──
-    document.title = `${cat.name} in ${cityInfo.name} — ElderCareMatters`;
+    document.title = `${cat.name} in ${cityInfo.name} | ElderCareMatters`;
     setText('#breadcrumb-current', `${cat.name} in ${cityInfo.name}`);
     setText('#category-icon', cat.icon);
     setText('#category-name', cat.name);

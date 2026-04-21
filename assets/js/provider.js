@@ -77,7 +77,7 @@
     const city = D.cities[provider.city];
 
     // Title + breadcrumb
-    document.title = `${provider.name} — ElderCareMatters`;
+    document.title = `${provider.name} | ElderCareMatters`;
     setText('#breadcrumb-current', provider.name);
     const breadCat = document.getElementById('breadcrumb-category');
     if (breadCat) {

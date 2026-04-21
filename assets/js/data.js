@@ -11,11 +11,11 @@
   };
 
   const CATEGORIES = {
-    'home-care':       { key: 'home-care',       name: 'Home Care',            icon: '🏠', blurb: 'Daily non-medical support delivered in the comfort of home — bathing, meals, medication reminders, companionship.', cross: ['care-management', 'memory-care', 'elder-law'] },
+    'home-care':       { key: 'home-care',       name: 'Home Care',            icon: '🏠', blurb: 'Daily non-medical support delivered in the comfort of home,bathing, meals, medication reminders, companionship.', cross: ['care-management', 'memory-care', 'elder-law'] },
     'assisted-living': { key: 'assisted-living', name: 'Assisted Living',      icon: '🏡', blurb: 'Community living with on-site staff, meals, activities, and medical support.',                                       cross: ['memory-care', 'care-management', 'home-care'] },
     'memory-care':     { key: 'memory-care',     name: 'Memory Care',          icon: '🧠', blurb: 'Specialized support for Alzheimer\u2019s, dementia, and other memory conditions in a secure setting.',                  cross: ['assisted-living', 'home-care', 'hospice'] },
     'elder-law':       { key: 'elder-law',       name: 'Elder Law Attorney',   icon: '⚖️', blurb: 'Guardianship, estate planning, Medicaid, and power of attorney from locally licensed attorneys.',                     cross: ['care-management', 'home-care', 'hospice'] },
-    'care-management': { key: 'care-management', name: 'Care Management',      icon: '📋', blurb: 'A dedicated care manager coordinates every service — one family point of contact for the whole plan.',                cross: ['home-care', 'elder-law', 'assisted-living'] },
+    'care-management': { key: 'care-management', name: 'Care Management',      icon: '📋', blurb: 'A dedicated care manager coordinates every service,one family point of contact for the whole plan.',                cross: ['home-care', 'elder-law', 'assisted-living'] },
     'hospice':         { key: 'hospice',         name: 'Hospice',              icon: '🤝', blurb: 'Compassionate end-of-life care at home or in a dedicated facility, with full family support.',                        cross: ['care-management', 'elder-law', 'memory-care'] }
   };
 
@@ -66,10 +66,10 @@
     }));
   }
 
-  // Providers — compact definitions, packages generated from template.
+  // Providers,compact definitions, packages generated from template.
   const PROVIDER_SEEDS = [
     // Home Care
-    { id: 'sunrise-home-care',     name: 'Sunrise Home Care',           category: 'home-care',       city: 'dallas',     tier: 'featured', rating: 4.9, reviews: 128, boost: 1.00, color: '#C4933A', tagline: 'Compassionate in-home caregivers since 2008', specialties: ['Dementia care', 'Post-surgery', 'Companion care'], about: 'Sunrise has served DFW families for 17 years with fully vetted, bonded caregivers. Our care plans are built around your loved one\u2019s routine — not the other way around.' },
+    { id: 'sunrise-home-care',     name: 'Sunrise Home Care',           category: 'home-care',       city: 'dallas',     tier: 'featured', rating: 4.9, reviews: 128, boost: 1.00, color: '#C4933A', tagline: 'Compassionate in-home caregivers since 2008', specialties: ['Dementia care', 'Post-surgery', 'Companion care'], about: 'Sunrise has served DFW families for 17 years with fully vetted, bonded caregivers. Our care plans are built around your loved one\u2019s routine,not the other way around.' },
     { id: 'carefirst-dallas',      name: 'CareFirst Dallas',            category: 'home-care',       city: 'dallas',     tier: 'premium',  rating: 4.7, reviews: 92,  boost: 0.95, color: '#7A9E7E', tagline: 'Family-owned, locally run home care',                   specialties: ['Mobility support', 'Chronic illness'],                           about: 'A family-owned agency matching caregivers to clients by personality and care needs. Clear hourly rates, no long contracts.' },
     { id: 'lone-star-aides',       name: 'Lone Star Home Aides',        category: 'home-care',       city: 'fort-worth', tier: 'premium',  rating: 4.8, reviews: 74,  boost: 0.98, color: '#8B5CF6', tagline: 'Fort Worth\u2019s trusted caregiver network',           specialties: ['Overnight care', 'Diabetes management'],                         about: 'Covering all of Tarrant County with 40+ certified caregivers on staff. Same-day starts available.' },
     { id: 'comfortcare-plano',     name: 'ComfortCare Plano',           category: 'home-care',       city: 'plano',      tier: 'basic',    rating: 4.5, reviews: 41,  boost: 0.85, color: '#3B82F6', tagline: 'Hourly and live-in care in North Dallas',               specialties: ['Companion care', 'Meal preparation'],                            about: 'Plano\u2019s neighborhood home care agency. Simple pricing, flexible hours.' },
@@ -89,11 +89,11 @@
 
     // Care Management
     { id: 'guided-care-mgmt',      name: 'Guided Care Management',      category: 'care-management', city: 'dallas',     tier: 'featured', rating: 4.9, reviews: 66,  boost: 1.00, color: '#7A9E7E', tagline: 'One point of contact for everything',                   specialties: ['Complex care coordination'],                                     about: 'Board-certified geriatric care managers who coordinate every doctor, therapist, and caregiver so families can breathe.' },
-    { id: 'plano-care-advisors',   name: 'Plano Care Advisors',         category: 'care-management', city: 'plano',      tier: 'premium',  rating: 4.7, reviews: 42,  boost: 0.95, color: '#D97706', tagline: 'Senior care navigation in North Dallas',                specialties: ['Transition planning', 'Family mediation'],                       about: 'We guide families through the toughest transitions — from hospital discharge to long-term care placement.' },
+    { id: 'plano-care-advisors',   name: 'Plano Care Advisors',         category: 'care-management', city: 'plano',      tier: 'premium',  rating: 4.7, reviews: 42,  boost: 0.95, color: '#D97706', tagline: 'Senior care navigation in North Dallas',                specialties: ['Transition planning', 'Family mediation'],                       about: 'We guide families through the toughest transitions,from hospital discharge to long-term care placement.' },
 
     // Hospice
     { id: 'compassion-hospice',    name: 'Compassion Hospice',          category: 'hospice',         city: 'dallas',     tier: 'featured', rating: 4.9, reviews: 109, boost: 1.00, color: '#7A9E7E', tagline: 'Medicare-certified hospice with music & pet therapy',   specialties: ['Pain management', 'Bereavement'],                                about: 'Full interdisciplinary team including chaplains, social workers, and volunteer musicians. 24/7 on-call nursing.' },
-    { id: 'serenity-hospice',      name: 'Serenity Hospice TX',         category: 'hospice',         city: 'arlington',  tier: 'premium',  rating: 4.8, reviews: 81,  boost: 0.95, color: '#0891B2', tagline: 'Patient-first hospice serving Tarrant County',          specialties: ['Comfort care', 'Family counseling'],                             about: 'A non-profit hospice agency — every dollar goes back into patient and family support.' },
+    { id: 'serenity-hospice',      name: 'Serenity Hospice TX',         category: 'hospice',         city: 'arlington',  tier: 'premium',  rating: 4.8, reviews: 81,  boost: 0.95, color: '#0891B2', tagline: 'Patient-first hospice serving Tarrant County',          specialties: ['Comfort care', 'Family counseling'],                             about: 'A non-profit hospice agency,every dollar goes back into patient and family support.' },
     { id: 'peaceful-transitions',  name: 'Peaceful Transitions',        category: 'hospice',         city: 'fort-worth', tier: 'basic',    rating: 4.5, reviews: 35,  boost: 0.90, color: '#9333EA', tagline: 'Compassionate end-of-life care at home',                 specialties: ['In-home hospice'],                                               about: 'Small hospice team serving Fort Worth families in the comfort of their own homes.' },
 
     // Free (unclaimed) listings
@@ -104,7 +104,7 @@
 
   // Reusable review blurbs (recycled across providers for prototype data).
   const REVIEW_POOL = [
-    { author: 'Jennifer L.', rating: 5, date: 'Mar 2026', text: 'Absolutely wonderful team. Within a day we had a caregiver lined up for my father post-surgery — they really listened.' },
+    { author: 'Jennifer L.', rating: 5, date: 'Mar 2026', text: 'Absolutely wonderful team. Within a day we had a caregiver lined up for my father post-surgery,they really listened.' },
     { author: 'Robert M.',   rating: 5, date: 'Feb 2026', text: 'They matched us with a caregiver who felt like family within a week. Highly recommend.' },
     { author: 'Anita G.',    rating: 4, date: 'Feb 2026', text: 'Professional team, clear pricing. We needed more help on short notice and they made it work.' },
     { author: 'Diego R.',    rating: 5, date: 'Jan 2026', text: 'The coordinator checked in every week. Made a stressful time so much easier for our family.' },

@@ -260,7 +260,19 @@
       if (stateAbbr) stateEl.value = stateAbbr;
       const cityKey = D.normalizeCityKey(loc.city || '');
       if (cityKey && D.cities[cityKey]) cityEl.value = cityKey;
+
+      // Update the change-link to show detected location context
+      const changeLink = formEl.querySelector('.location-change-link');
+      if (changeLink) {
+        const cityName = (D.cities[cityKey] || {}).name || loc.city || '';
+        changeLink.textContent = (cityName && stateAbbr)
+          ? `Not ${cityName}, ${stateAbbr}? Change →`
+          : 'Change location →';
+      }
     }
+
+    // Prefill immediately once options exist (covers the DOMContentLoaded path)
+    prefillLocation();
 
     // ── Toggle Other vs Standard UI ──
     function syncOtherMode() {

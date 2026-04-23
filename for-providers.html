@@ -11,240 +11,350 @@
 <link rel="stylesheet" href="assets/css/inner.css">
 <style>
 /* ── FOR-PROVIDERS PAGE STYLES ── */
-.fp-hero {
-  padding: 72px 5% 64px;
-  background: linear-gradient(135deg, var(--charcoal) 0%, #1a2a3a 100%);
-  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
-}
-.fp-hero-left { color: #fff; }
-.fp-hero-eyebrow {
+
+/* Section base */
+.fp-section { padding: 72px 5%; }
+.fp-section--cream    { background: var(--cream); }
+.fp-section--pale     { background: var(--sage-pale); }
+.fp-section--white    { background: #fff; }
+.fp-section--dark     { background: linear-gradient(135deg, var(--charcoal) 0%, #1a2a3a 100%); }
+
+.fp-eyebrow {
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--sage-light); margin-bottom: 16px;
+  text-transform: uppercase; color: var(--sage); margin-bottom: 12px; display: block;
+}
+.fp-h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 2.8vw, 2.3rem); font-weight: 700;
+  color: var(--charcoal); line-height: 1.2; margin-bottom: 14px;
+}
+.fp-h2 em { font-style: italic; color: var(--sage); }
+.fp-h2--white { color: #fff; }
+.fp-h2--white em { color: var(--sage-light); }
+.fp-lead {
+  font-size: 1rem; color: var(--mid); line-height: 1.7;
+  max-width: 560px; margin-bottom: 36px;
+}
+.fp-lead--white { color: rgba(255,255,255,0.72); }
+.fp-center { text-align: center; }
+.fp-center .fp-lead { margin-left: auto; margin-right: auto; }
+
+/* ── HERO ── */
+.fp-hero {
+  padding: 80px 5% 72px;
+  background: linear-gradient(135deg, var(--charcoal) 0%, #1a2a3a 100%);
+  display: grid; grid-template-columns: 1fr 480px; gap: 60px; align-items: center;
+}
+.fp-hero-eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sage-light); margin-bottom: 18px;
 }
 .fp-hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.15;
-  margin-bottom: 18px; color: #fff;
+  font-size: clamp(2.1rem, 3.5vw, 3rem); font-weight: 700; line-height: 1.13;
+  color: #fff; margin-bottom: 20px;
 }
 .fp-hero-title em { font-style: italic; color: var(--sage-light); }
-.fp-hero-sub { font-size: 1rem; color: rgba(255,255,255,0.72); line-height: 1.65; margin-bottom: 28px; max-width: 480px; }
-.fp-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
-.fp-btn-primary {
-  background: var(--sage); color: #fff; border: none;
-  padding: 13px 26px; border-radius: 10px; cursor: pointer;
-  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 700;
-  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-  transition: background 0.2s;
+.fp-hero-sub {
+  font-size: 1.05rem; color: rgba(255,255,255,0.7); line-height: 1.7;
+  margin-bottom: 32px; max-width: 500px;
 }
-.fp-btn-primary:hover { background: #6a8e6e; }
-.fp-btn-ghost {
-  background: transparent; color: rgba(255,255,255,0.8);
-  border: 1.5px solid rgba(255,255,255,0.3); padding: 13px 26px; border-radius: 10px; cursor: pointer;
-  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
-  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-  transition: all 0.2s;
+.fp-hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--sage); color: #fff;
+  padding: 15px 30px; border-radius: 12px;
+  font-size: 0.95rem; font-weight: 700; text-decoration: none;
+  transition: background 0.2s; margin-bottom: 28px;
 }
-.fp-btn-ghost:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.fp-trust-bullets { display: flex; gap: 20px; flex-wrap: wrap; }
-.fp-trust-bullet { font-size: 0.8rem; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 6px; }
-.fp-trust-bullet::before { content: '✓'; color: var(--sage-light); font-weight: 700; }
+.fp-hero-cta:hover { background: #6a8e6e; }
+.fp-hero-trust {
+  display: flex; gap: 22px; flex-wrap: wrap;
+}
+.fp-hero-trust-item {
+  font-size: 0.8rem; color: rgba(255,255,255,0.5);
+  display: flex; align-items: center; gap: 6px;
+}
+.fp-hero-trust-item::before { content: '✓'; color: var(--sage-light); font-weight: 700; }
 
-/* Hero lead cards */
-.fp-hero-right { display: flex; flex-direction: column; gap: 14px; }
-.fp-lead-card {
-  background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.15); border-radius: 16px;
-  padding: 18px 20px; color: #fff;
+/* Hero right panel */
+.fp-hero-panel {
+  background: rgba(255,255,255,0.06); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
+  padding: 32px 28px; color: #fff;
 }
-.fp-lead-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.fp-lead-type { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sage-light); }
-.fp-lead-price { font-size: 1.3rem; font-weight: 700; color: #fff; }
-.fp-lead-meta { font-size: 0.8rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
-.fp-lead-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 9999px; padding: 3px 10px; font-size: 0.7rem; margin-top: 10px;
+.fp-hero-panel-title {
+  font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700;
+  margin-bottom: 24px; color: #fff;
 }
-.fp-lead-badge-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; }
-.fp-new-badge { background: rgba(59,130,246,0.3); color: #93c5fd; border-radius: 9999px; padding: 2px 8px; font-size: 0.68rem; font-weight: 700; }
+.fp-panel-item {
+  display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px;
+  padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.fp-panel-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.fp-panel-icon {
+  width: 40px; height: 40px; background: rgba(255,255,255,0.1);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.fp-panel-text strong { font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 3px; }
+.fp-panel-text span { font-size: 0.8rem; color: rgba(255,255,255,0.58); line-height: 1.5; }
 
-/* Trust bar */
-.fp-trust-bar {
+/* ── STAT BAR ── */
+.fp-stat-bar {
   display: flex; justify-content: space-around; align-items: center;
-  padding: 32px 5%; background: #fff; border-bottom: 1px solid var(--border);
+  padding: 30px 5%; background: #fff; border-bottom: 1px solid var(--border);
   flex-wrap: wrap; gap: 16px;
 }
-.fp-trust-stat { text-align: center; }
-.fp-trust-stat-val {
-  font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700;
+.fp-stat { text-align: center; }
+.fp-stat-val {
+  font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700;
   color: var(--charcoal); display: block;
 }
-.fp-trust-stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+.fp-stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
 
-/* How it works (provider) */
-.fp-steps {
-  padding: 64px 5%;
-  background: var(--cream);
+/* ── VALUE PROP ── */
+.fp-value-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
 }
-.fp-section-eyebrow {
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--sage); margin-bottom: 10px;
+.fp-value-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem); font-weight: 600; font-style: italic;
+  color: var(--charcoal); line-height: 1.45;
+  border-left: 4px solid var(--sage); padding-left: 24px;
 }
-.fp-section-title {
-  font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-  font-weight: 700; color: var(--charcoal); line-height: 1.25; margin-bottom: 8px;
+.fp-value-points { display: flex; flex-direction: column; gap: 16px; }
+.fp-value-point {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 18px; background: var(--sage-pale); border-radius: 14px;
 }
-.fp-section-title em { font-style: italic; color: var(--sage); }
-.fp-section-sub { font-size: 0.95rem; color: var(--mid); max-width: 520px; line-height: 1.65; margin-bottom: 48px; }
-.fp-steps-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+.fp-value-point-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+.fp-value-point-text strong { font-weight: 700; color: var(--charcoal); font-size: 0.92rem; display: block; margin-bottom: 3px; }
+.fp-value-point-text span { font-size: 0.82rem; color: var(--mid); }
+
+/* ── DIFFERENTIATION ── */
+.fp-diff-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 28px;
 }
-.fp-step {
-  background: #fff; border: 1.5px solid var(--border); border-radius: 20px;
-  padding: 28px 24px;
+.fp-diff-card {
+  background: #fff; border: 1.5px solid var(--border); border-radius: 18px;
+  padding: 28px 24px; border-top: 4px solid var(--sage);
+}
+.fp-diff-not {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px; display: block;
+}
+.fp-diff-title { font-weight: 700; color: var(--charcoal); font-size: 1rem; margin-bottom: 10px; }
+.fp-diff-desc { font-size: 0.84rem; color: var(--mid); line-height: 1.65; }
+.fp-result-box {
+  background: var(--charcoal); color: #fff; border-radius: 14px;
+  padding: 20px 28px; display: flex; align-items: center; gap: 16px;
+}
+.fp-result-label {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--sage-light); margin-bottom: 4px;
+}
+.fp-result-text { font-size: 0.95rem; color: rgba(255,255,255,0.88); line-height: 1.5; }
+
+/* ── EXPERIENCE GRID ── */
+.fp-exp-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 20px;
+}
+.fp-exp-card {
+  background: #fff; border: 1px solid var(--border); border-radius: 16px;
+  padding: 24px; display: flex; gap: 16px; align-items: flex-start;
+}
+.fp-exp-icon {
+  width: 44px; height: 44px; background: var(--sage-pale); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.fp-exp-title { font-weight: 700; color: var(--charcoal); font-size: 0.93rem; margin-bottom: 5px; }
+.fp-exp-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
+.fp-disclaimer {
+  font-size: 0.78rem; color: var(--muted); font-style: italic; padding: 12px 16px;
+  background: var(--cream); border-radius: 10px; border-left: 3px solid var(--sage-light);
+}
+
+/* ── WHO THIS IS FOR ── */
+.fp-who-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 32px;
+}
+.fp-who-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 16px; background: var(--sage-pale); border-radius: 12px;
+  font-size: 0.87rem; font-weight: 500; color: var(--charcoal);
+}
+.fp-who-item::before { content: '✓'; color: var(--sage); font-weight: 700; flex-shrink: 0; }
+.fp-who-note {
+  margin-top: 24px; text-align: center;
+  font-size: 0.9rem; color: var(--mid); font-style: italic;
+}
+
+/* ── HOW YOU GET CLIENTS ── */
+.fp-steps-list { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
+.fp-step-row {
+  display: grid; grid-template-columns: 64px 1fr; gap: 20px; align-items: flex-start;
+  padding-bottom: 32px; position: relative;
+}
+.fp-step-row:not(:last-child)::after {
+  content: ''; position: absolute;
+  left: 31px; top: 52px; bottom: 0; width: 2px;
+  background: var(--border);
 }
 .fp-step-num {
-  width: 36px; height: 36px; background: var(--sage); color: #fff;
+  width: 48px; height: 48px; background: var(--sage); color: #fff;
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 0.9rem; margin-bottom: 16px;
+  font-weight: 700; font-size: 1rem; flex-shrink: 0; position: relative; z-index: 1;
 }
-.fp-step-title { font-weight: 700; color: var(--charcoal); font-size: 0.97rem; margin-bottom: 8px; }
-.fp-step-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
+.fp-step-body {}
+.fp-step-title { font-weight: 700; color: var(--charcoal); font-size: 1rem; margin-bottom: 7px; }
+.fp-step-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.65; }
 
-/* Lead distribution flow */
-.fp-dist {
-  padding: 64px 5%; background: var(--warm-white);
+/* ── WHAT YOU RECEIVE ── */
+.fp-receive-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
 }
-.fp-dist-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 24px; }
-.fp-dist-card {
-  border-radius: 20px; padding: 28px 24px; position: relative; overflow: hidden;
+.fp-receive-card {
+  background: #fff; border: 1px solid var(--border); border-radius: 18px;
+  padding: 24px 22px;
 }
-.fp-dist-card--featured { background: linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%); color: #fff; }
-.fp-dist-card--premium  { background: var(--sage-pale); color: var(--charcoal); border: 1.5px solid var(--sage-light); }
-.fp-dist-card--basic    { background: #fff; color: var(--charcoal); border: 1.5px solid var(--border); }
-.fp-dist-tier {
-  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  margin-bottom: 12px; display: inline-block; padding: 3px 10px; border-radius: 9999px;
+.fp-receive-title { font-weight: 700; color: var(--charcoal); font-size: 0.93rem; margin-bottom: 7px; }
+.fp-receive-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
+
+/* ── DARK BAND (Local Dominance + Trust) ── */
+.fp-dark-band {
+  background: linear-gradient(135deg, var(--charcoal) 0%, #1a2a3a 100%);
+  padding: 72px 5%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
 }
-.fp-dist-card--featured .fp-dist-tier { background: rgba(255,255,255,0.2); color: #fff; }
-.fp-dist-card--premium  .fp-dist-tier { background: var(--sage); color: #fff; }
-.fp-dist-card--basic    .fp-dist-tier { background: var(--border); color: var(--mid); }
-.fp-dist-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
-.fp-dist-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
-.fp-dist-card--featured .fp-dist-name { color: #fff; }
-.fp-dist-time { font-size: 0.8rem; opacity: 0.75; margin-bottom: 12px; }
-.fp-dist-desc { font-size: 0.82rem; opacity: 0.8; line-height: 1.6; }
-.fp-dist-security {
-  background: var(--cream); border: 1px solid var(--border); border-radius: 14px;
-  padding: 14px 20px; font-size: 0.85rem; color: var(--mid);
-  display: flex; align-items: center; gap: 10px;
+.fp-dominance-bullets { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+.fp-dominance-bullet {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 0.9rem; color: rgba(255,255,255,0.78);
+}
+.fp-dominance-bullet::before { content: '→'; color: var(--sage-light); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.fp-trust-block {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px; padding: 32px 28px;
+}
+.fp-trust-since {
+  font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700;
+  color: var(--sage-light); margin-bottom: 16px; display: block;
+}
+.fp-trust-desc { font-size: 0.9rem; color: rgba(255,255,255,0.68); line-height: 1.7; }
+.fp-trust-note {
+  margin-top: 16px; font-size: 0.82rem; color: rgba(255,255,255,0.45); font-style: italic;
 }
 
-/* Benefits grid */
-.fp-benefits { padding: 64px 5%; background: var(--sage-pale); }
-.fp-benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 28px; }
-.fp-benefit-card {
-  background: #fff; border-radius: 18px; padding: 24px;
-  border: 1px solid var(--border);
+/* ── WHAT IT COSTS ── */
+.fp-cost-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px;
 }
-.fp-benefit-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
-.fp-benefit-title { font-weight: 700; color: var(--charcoal); font-size: 0.95rem; margin-bottom: 8px; }
-.fp-benefit-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
-.fp-formula-box {
-  background: var(--charcoal); color: #fff; border-radius: 16px;
-  padding: 24px 28px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+.fp-cost-card {
+  border: 1.5px solid var(--border); border-radius: 18px; padding: 28px 24px;
+  background: #fff;
 }
-.fp-formula-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sage-light); margin-bottom: 6px; }
-.fp-formula-text { font-family: 'DM Sans', monospace; font-size: 0.95rem; color: rgba(255,255,255,0.9); }
-.fp-formula-text span { color: var(--sage-light); font-weight: 700; }
-
-/* Pricing */
-.fp-pricing { padding: 72px 5%; background: #fff; }
-.fp-pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
-.fp-plan-card {
-  border-radius: 24px; padding: 32px 28px;
-  border: 1.5px solid var(--border);
-  position: relative; display: flex; flex-direction: column;
-}
-.fp-plan-card--highlight {
+.fp-cost-card--highlight {
   border-color: var(--sage); background: var(--sage-pale);
-  box-shadow: 0 16px 40px rgba(122,158,126,0.2);
+  box-shadow: 0 10px 30px rgba(122,158,126,0.15);
 }
-.fp-plan-popular {
-  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-  background: var(--sage); color: #fff; border-radius: 9999px;
-  padding: 4px 16px; font-size: 0.72rem; font-weight: 700; white-space: nowrap;
+.fp-cost-card-label {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 10px; display: block;
 }
-.fp-plan-name { font-size: 0.85rem; font-weight: 700; color: var(--mid); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
-.fp-plan-price {
-  font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700;
-  color: var(--charcoal); line-height: 1; margin-bottom: 4px;
+.fp-cost-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--charcoal); margin-bottom: 10px; }
+.fp-cost-card-desc { font-size: 0.87rem; color: var(--mid); line-height: 1.65; }
+.fp-cost-note {
+  margin-top: 28px; text-align: center;
+  font-size: 0.84rem; color: var(--muted); font-style: italic;
 }
-.fp-plan-price span { font-size: 1rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
-.fp-plan-coverage { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-.fp-plan-features { list-style: none; padding: 0; margin: 0 0 24px; flex: 1; }
-.fp-plan-features li {
-  font-size: 0.85rem; color: var(--mid); padding: 7px 0;
-  display: flex; align-items: center; gap: 8px;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
-}
-.fp-plan-features li::before { content: '✓'; color: var(--sage); font-weight: 700; flex-shrink: 0; }
-.fp-plan-features li.cross::before { content: '×'; color: var(--muted); }
-.fp-plan-cta {
-  display: block; text-align: center; padding: 12px;
-  background: var(--charcoal); color: #fff; border-radius: 10px; font-weight: 600;
-  font-size: 0.87rem; text-decoration: none; transition: background 0.2s;
-}
-.fp-plan-card--highlight .fp-plan-cta { background: var(--sage); }
-.fp-plan-cta:hover { opacity: 0.9; }
 
-/* Pay-per-lead */
-.fp-ppl {
-  background: var(--cream); border: 1.5px solid var(--border); border-radius: 20px;
-  padding: 28px 32px; display: flex; align-items: center; justify-content: space-between;
-  gap: 24px; flex-wrap: wrap;
+/* ── CONTACT FORM ── */
+.fp-form-wrap {
+  max-width: 760px; margin: 0 auto;
+  background: #fff; border-radius: 24px; padding: 40px 44px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08); border: 1px solid var(--border);
 }
-.fp-ppl-left h4 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--charcoal); margin-bottom: 4px; }
-.fp-ppl-left p { font-size: 0.85rem; color: var(--mid); }
-.fp-credit-cards { display: flex; gap: 10px; flex-wrap: wrap; }
-.fp-credit-card {
-  background: #fff; border: 1.5px solid var(--border); border-radius: 14px;
-  padding: 14px 18px; text-align: center; min-width: 120px;
-  cursor: pointer; transition: border-color 0.2s;
+.fp-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.fp-form-full { grid-column: 1 / -1; }
+.fp-form-group { display: flex; flex-direction: column; gap: 6px; }
+.fp-form-group label {
+  font-size: 0.8rem; font-weight: 600; color: var(--charcoal);
 }
-.fp-credit-card:hover { border-color: var(--sage); }
-.fp-credit-card-count { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--charcoal); }
-.fp-credit-card-label { font-size: 0.72rem; color: var(--muted); margin: 2px 0; }
-.fp-credit-card-price { font-size: 0.95rem; font-weight: 700; color: var(--sage); }
+.fp-form-group input,
+.fp-form-group select,
+.fp-form-group textarea {
+  padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 10px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--charcoal);
+  background: #fff; transition: border-color 0.18s; resize: vertical;
+}
+.fp-form-group input:focus,
+.fp-form-group select:focus,
+.fp-form-group textarea:focus {
+  outline: none; border-color: var(--sage);
+}
+.fp-form-submit {
+  background: var(--sage); color: #fff; border: none;
+  padding: 14px 32px; border-radius: 12px; font-family: 'DM Sans', sans-serif;
+  font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s;
+  width: 100%; margin-top: 8px;
+}
+.fp-form-submit:hover { background: #6a8e6e; }
+.fp-form-confirm {
+  display: none; text-align: center; padding: 32px;
+}
+.fp-form-confirm-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.fp-form-confirm h4 { font-size: 1.2rem; font-weight: 700; color: var(--charcoal); margin-bottom: 8px; }
+.fp-form-confirm p { font-size: 0.9rem; color: var(--mid); }
 
-/* CTA banner */
+/* ── FINAL CTA ── */
 .fp-cta-band {
   background: linear-gradient(135deg, var(--charcoal) 0%, #1a2a3a 100%);
-  padding: 64px 5%; text-align: center; color: #fff;
+  padding: 80px 5%; text-align: center; color: #fff;
 }
 .fp-cta-band h2 {
-  font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 700; margin-bottom: 12px; color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 700; color: #fff; margin-bottom: 14px;
 }
 .fp-cta-band h2 em { font-style: italic; color: var(--sage-light); }
-.fp-cta-band p { font-size: 0.95rem; color: rgba(255,255,255,0.65); margin-bottom: 28px; }
-.fp-cta-band-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.fp-cta-bullets {
+  display: flex; justify-content: center; gap: 32px;
+  flex-wrap: wrap; margin-bottom: 36px;
+}
+.fp-cta-bullet {
+  font-size: 0.9rem; color: rgba(255,255,255,0.65);
+  display: flex; align-items: center; gap: 7px;
+}
+.fp-cta-bullet::before { content: '✓'; color: var(--sage-light); font-weight: 700; }
+.fp-cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--sage); color: #fff; padding: 16px 36px;
+  border-radius: 12px; font-size: 1rem; font-weight: 700;
+  text-decoration: none; transition: background 0.2s;
+}
+.fp-cta-btn:hover { background: #6a8e6e; }
 
 /* Responsive */
 @media (max-width: 1024px) {
   .fp-hero { grid-template-columns: 1fr; gap: 40px; }
-  .fp-hero-right { display: none; }
-  .fp-steps-grid { grid-template-columns: 1fr 1fr; }
-  .fp-dist-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto 24px; }
-  .fp-benefits-grid { grid-template-columns: 1fr 1fr; }
-  .fp-pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto 40px; }
+  .fp-hero-right-col { display: none; }
+  .fp-value-grid { grid-template-columns: 1fr; gap: 36px; }
+  .fp-diff-cards { grid-template-columns: 1fr; max-width: 480px; }
+  .fp-dark-band { grid-template-columns: 1fr; gap: 40px; }
+  .fp-receive-grid { grid-template-columns: 1fr 1fr; }
+  .fp-cost-grid { grid-template-columns: 1fr; max-width: 420px; }
+  .fp-who-grid { grid-template-columns: 1fr 1fr; }
+  .fp-form-wrap { padding: 28px 24px; }
 }
 @media (max-width: 720px) {
-  .fp-hero { padding: 48px 5% 40px; }
-  .fp-steps-grid { grid-template-columns: 1fr; }
-  .fp-benefits-grid { grid-template-columns: 1fr; }
-  .fp-trust-bar { gap: 24px; }
-  .fp-ppl { flex-direction: column; }
+  .fp-section { padding: 52px 5%; }
+  .fp-hero { padding: 52px 5% 48px; }
+  .fp-exp-grid { grid-template-columns: 1fr; }
+  .fp-receive-grid { grid-template-columns: 1fr; }
+  .fp-who-grid { grid-template-columns: 1fr; }
+  .fp-form-grid { grid-template-columns: 1fr; }
+  .fp-stat-bar { gap: 24px; }
+  .fp-cta-bullets { flex-direction: column; align-items: center; gap: 12px; }
 }
 </style>
 </head>
@@ -259,8 +369,23 @@
     <div class="modal-divider">or</div>
     <select name="state">
       <option value="">Select state…</option>
-      <option>California</option><option>Florida</option><option>Illinois</option>
-      <option>New York</option><option>Texas</option><option>Washington</option>
+      <option>Alabama</option><option>Alaska</option><option>Arizona</option>
+      <option>Arkansas</option><option>California</option><option>Colorado</option>
+      <option>Connecticut</option><option>Delaware</option><option>Florida</option>
+      <option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+      <option>Illinois</option><option>Indiana</option><option>Iowa</option>
+      <option>Kansas</option><option>Kentucky</option><option>Louisiana</option>
+      <option>Maine</option><option>Maryland</option><option>Massachusetts</option>
+      <option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+      <option>Missouri</option><option>Montana</option><option>Nebraska</option>
+      <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
+      <option>New Mexico</option><option>New York</option><option>North Carolina</option>
+      <option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+      <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+      <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option>
+      <option>Texas</option><option>Utah</option><option>Vermont</option>
+      <option>Virginia</option><option>Washington</option><option>West Virginia</option>
+      <option>Wisconsin</option><option>Wyoming</option>
     </select>
     <div class="modal-actions">
       <button class="btn-outline" type="button" data-modal-cancel>Cancel</button>
@@ -287,271 +412,401 @@
   </div>
 </nav>
 
-<!-- Hero -->
+<!-- ── HERO ── -->
 <section class="fp-hero">
-  <div class="fp-hero-left">
+  <div>
     <div class="fp-hero-eyebrow">For Care Providers</div>
-    <h1 class="fp-hero-title">A Predictable Source of <em>Qualified, Geo-Matched</em> Leads</h1>
-    <p class="fp-hero-sub">Connect with families actively searching for elder care in your city. Every lead is scored, geo-matched, and shared with a maximum of 3 providers.</p>
-    <div class="fp-hero-actions">
-      <a href="#pricing" class="fp-btn-primary">See Plans &amp; Pricing →</a>
-      <a href="provider-dashboard.html" class="fp-btn-ghost">View Demo Dashboard</a>
-    </div>
-    <div class="fp-trust-bullets">
-      <span class="fp-trust-bullet">No setup fee</span>
-      <span class="fp-trust-bullet">Cancel anytime</span>
-      <span class="fp-trust-bullet">Max 3 providers per lead</span>
+    <h1 class="fp-hero-title">Get <em>High-Intent</em> Eldercare Clients in Your Exact Service Area</h1>
+    <p class="fp-hero-sub">Families searching for elder care support are often overwhelmed. They are not casually browsing — they are actively looking for help they can trust. ElderCareMatters connects you with these families at the moment they are searching, in the locations you serve.</p>
+    <a href="#check-availability" class="fp-hero-cta">Check Availability in Your City →</a>
+    <div class="fp-hero-trust">
+      <span class="fp-hero-trust-item">Trusted since 2002</span>
+      <span class="fp-hero-trust-item">Geo-matched inquiries</span>
+      <span class="fp-hero-trust-item">High-intent families</span>
     </div>
   </div>
 
-  <div class="fp-hero-right">
-    <!-- Sample Lead Card 1 -->
-    <div class="fp-lead-card">
-      <div class="fp-lead-card-header">
-        <span class="fp-lead-type">🏠 Home Care</span>
-        <span class="fp-lead-price">$38</span>
+  <div class="fp-hero-right-col">
+    <div class="fp-hero-panel">
+      <div class="fp-hero-panel-title">What families bring to ElderCareMatters</div>
+      <div class="fp-panel-item">
+        <div class="fp-panel-icon">🏠</div>
+        <div class="fp-panel-text">
+          <strong>Health transitions</strong>
+          <span>A parent recently discharged, needs in-home support immediately.</span>
+        </div>
       </div>
-      <div class="fp-lead-meta">
-        📍 Austin, TX · Urgency: Immediate<br>
-        LQS 82 &nbsp;|&nbsp; LIS 78 &nbsp;|&nbsp; 1 of 3 slots taken
+      <div class="fp-panel-item">
+        <div class="fp-panel-icon">⚖️</div>
+        <div class="fp-panel-text">
+          <strong>Legal decisions</strong>
+          <span>Power of attorney, estate planning, or guardianship needs guidance now.</span>
+        </div>
       </div>
-      <div class="fp-lead-badge"><span class="fp-lead-badge-dot"></span> Featured Exclusive · 02:14:33 remaining</div>
-    </div>
-    <!-- Sample Lead Card 2 -->
-    <div class="fp-lead-card">
-      <div class="fp-lead-card-header">
-        <span class="fp-lead-type">⚖️ Elder Law</span>
-        <span class="fp-lead-price">$29</span>
+      <div class="fp-panel-item">
+        <div class="fp-panel-icon">🏡</div>
+        <div class="fp-panel-text">
+          <strong>Housing transitions</strong>
+          <span>The family home no longer works. Memory care or assisted living is the path forward.</span>
+        </div>
       </div>
-      <div class="fp-lead-meta">
-        📍 Round Rock, TX · Urgency: Within 1 month<br>
-        LQS 74 &nbsp;|&nbsp; LIS 65 &nbsp;|&nbsp; 0 of 3 slots taken
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;">
-        <span class="fp-new-badge">NEW</span>
-        <span style="font-size:0.75rem;color:rgba(255,255,255,0.5)">Posted 2 hours ago</span>
+      <div class="fp-panel-item">
+        <div class="fp-panel-icon">💚</div>
+        <div class="fp-panel-text">
+          <strong>Caregiver burnout</strong>
+          <span>Adult children reaching their limit. Professional support is no longer optional.</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Trust bar -->
-<div class="fp-trust-bar">
-  <div class="fp-trust-stat"><span class="fp-trust-stat-val">500+</span><span class="fp-trust-stat-label">Verified Providers</span></div>
-  <div class="fp-trust-stat"><span class="fp-trust-stat-val">12,000+</span><span class="fp-trust-stat-label">Leads Delivered</span></div>
-  <div class="fp-trust-stat"><span class="fp-trust-stat-val">Max 3</span><span class="fp-trust-stat-label">Providers Per Lead</span></div>
-  <div class="fp-trust-stat"><span class="fp-trust-stat-val">4.9 ★</span><span class="fp-trust-stat-label">Provider Rating</span></div>
+<!-- ── STAT BAR ── -->
+<div class="fp-stat-bar">
+  <div class="fp-stat"><span class="fp-stat-val">20+</span><span class="fp-stat-label">Years Focused on Elder Care</span></div>
+  <div class="fp-stat"><span class="fp-stat-val">13</span><span class="fp-stat-label">Provider Categories Served</span></div>
+  <div class="fp-stat"><span class="fp-stat-val">Local</span><span class="fp-stat-label">Geo-Matched by Service Area</span></div>
+  <div class="fp-stat"><span class="fp-stat-val">High</span><span class="fp-stat-label">Intent at Point of Search</span></div>
 </div>
 
-<!-- How It Works -->
-<section class="fp-steps">
-  <div class="fp-section-eyebrow">Provider Journey</div>
-  <h2 class="fp-section-title">How It <em>Works</em></h2>
-  <p class="fp-section-sub">From signup to your first client, it takes less than a week.</p>
-  <div class="fp-steps-grid">
-    <div class="fp-step">
-      <div class="fp-step-num">1</div>
-      <div class="fp-step-title">Create Your Profile</div>
-      <div class="fp-step-desc">Tell us about your services, coverage area, and credentials. Get your ECM Verified badge.</div>
-    </div>
-    <div class="fp-step">
-      <div class="fp-step-num">2</div>
-      <div class="fp-step-title">Browse Geo-Matched Leads</div>
-      <div class="fp-step-desc">See leads that match your service area. Each one scored for quality and intent before it reaches you.</div>
-    </div>
-    <div class="fp-step">
-      <div class="fp-step-num">3</div>
-      <div class="fp-step-title">Purchase &amp; Unlock</div>
-      <div class="fp-step-desc">Pay only for the leads you want. Name, phone, and email are revealed immediately after purchase.</div>
-    </div>
-    <div class="fp-step">
-      <div class="fp-step-num">4</div>
-      <div class="fp-step-title">Contact &amp; Convert</div>
-      <div class="fp-step-desc">Reach the family directly. Our providers average a 25% conversion rate from purchased lead to client.</div>
-    </div>
-  </div>
-</section>
-
-<!-- Lead Distribution Flow -->
-<section class="fp-dist">
-  <div class="fp-section-eyebrow">Tiered Access Model</div>
-  <h2 class="fp-section-title">Lead <em>Distribution</em> Flow</h2>
-  <p class="fp-section-sub">Leads move through three tiers. The earlier your plan, the earlier you see the lead.</p>
-  <div class="fp-dist-grid">
-    <div class="fp-dist-card fp-dist-card--featured">
-      <span class="fp-dist-tier">Featured</span>
-      <span class="fp-dist-icon">👑</span>
-      <div class="fp-dist-name">First Access</div>
-      <div class="fp-dist-time">Exclusive 24-hour window</div>
-      <div class="fp-dist-desc">See the lead before anyone else. Exclusive access window before it opens to Premium providers.</div>
-    </div>
-    <div class="fp-dist-card fp-dist-card--premium">
-      <span class="fp-dist-tier">Premium</span>
-      <span class="fp-dist-icon">⭐</span>
-      <div class="fp-dist-name">Second Access</div>
-      <div class="fp-dist-time">After Featured window closes</div>
-      <div class="fp-dist-desc">Access opens after the Featured window. Still early, with fewer providers than open access.</div>
-    </div>
-    <div class="fp-dist-card fp-dist-card--basic">
-      <span class="fp-dist-tier">Basic</span>
-      <span class="fp-dist-icon">🔓</span>
-      <div class="fp-dist-name">Open Access</div>
-      <div class="fp-dist-time">After Featured + Premium windows</div>
-      <div class="fp-dist-desc">Full marketplace access. Compete on response speed and profile quality to win the lead.</div>
-    </div>
-  </div>
-  <div class="fp-dist-security">
-    🛡️ <strong>Capped marketplace:</strong> A maximum of 3 providers can purchase any single lead. Your investment is never diluted by unlimited competition.
-  </div>
-</section>
-
-<!-- Benefits Grid -->
-<section class="fp-benefits">
-  <div class="fp-section-eyebrow">Why ECM</div>
-  <h2 class="fp-section-title">Built for <em>Provider ROI</em></h2>
-  <p class="fp-section-sub">Every feature is designed to lower your cost per acquisition and increase conversion.</p>
-  <div class="fp-benefits-grid">
-    <div class="fp-benefit-card">
-      <span class="fp-benefit-icon">📍</span>
-      <div class="fp-benefit-title">Geo-Matched Leads</div>
-      <div class="fp-benefit-desc">Leads are matched to your exact service area. No wasted spend on out-of-range inquiries.</div>
-    </div>
-    <div class="fp-benefit-card">
-      <span class="fp-benefit-icon">📊</span>
-      <div class="fp-benefit-title">Quality Scored</div>
-      <div class="fp-benefit-desc">Every lead gets an LQS (quality) and LIS (intent) score so you can prioritize high-value opportunities.</div>
-    </div>
-    <div class="fp-benefit-card">
-      <span class="fp-benefit-icon">💡</span>
-      <div class="fp-benefit-title">Transparent Pricing</div>
-      <div class="fp-benefit-desc">See exactly how each lead price was calculated before you buy. No surprises, no hidden fees.</div>
-    </div>
-    <div class="fp-benefit-card">
-      <span class="fp-benefit-icon">🏆</span>
-      <div class="fp-benefit-title">Limited Competition</div>
-      <div class="fp-benefit-desc">Never more than 3 providers per lead. Your conversion odds are dramatically higher than open directories.</div>
-    </div>
-    <div class="fp-benefit-card">
-      <span class="fp-benefit-icon">📈</span>
-      <div class="fp-benefit-title">Proven ROI</div>
-      <div class="fp-benefit-desc">Our top providers see a 30x+ return on their ECM investment, driven by high lead intent and low competition.</div>
-    </div>
-    <div class="fp-benefit-card">
-      <span class="fp-benefit-icon">✅</span>
-      <div class="fp-benefit-title">ECM Verified Badge</div>
-      <div class="fp-benefit-desc">Build trust with families. The ECM Verified badge signals credibility and is prominently displayed on your profile.</div>
-    </div>
-  </div>
-  <div class="fp-formula-box">
+<!-- ── VALUE PROP ── -->
+<section class="fp-section fp-section--white">
+  <div class="fp-value-grid">
     <div>
-      <div class="fp-formula-label">Lead Pricing Formula</div>
-      <div class="fp-formula-text">
-        Lead Price = <span>Base City Price</span> × <span>Quality Score</span> × <span>Intent Score</span> × <span>Geo Relevance</span>
+      <span class="fp-eyebrow">Why it matters</span>
+      <p class="fp-value-quote">"You Do Critical Work. We Help the Right People Find You."</p>
+      <p style="font-size:0.92rem;color:var(--mid);line-height:1.7;margin-top:20px;">This is not a typical service marketplace. Families come with urgency. Adult children come with pressure. Care decisions cannot wait. When someone searches for help, being visible at that moment matters.</p>
+    </div>
+    <div class="fp-value-points">
+      <div class="fp-value-point">
+        <div class="fp-value-point-icon">⏱️</div>
+        <div class="fp-value-point-text">
+          <strong>Families come with urgency</strong>
+          <span>These are not casual browsers. A health event, a fall, a diagnosis — they need help now, and they are searching for it actively.</span>
+        </div>
+      </div>
+      <div class="fp-value-point">
+        <div class="fp-value-point-icon">🎯</div>
+        <div class="fp-value-point-text">
+          <strong>Visibility at the decision moment</strong>
+          <span>ElderCareMatters is designed to help qualified providers show up when and where those decisions are being made.</span>
+        </div>
+      </div>
+      <div class="fp-value-point">
+        <div class="fp-value-point-icon">🤝</div>
+        <div class="fp-value-point-text">
+          <strong>Relationship-based growth</strong>
+          <span>Families choose providers they trust. Your expertise drives conversion. We provide the visibility — you build the relationship.</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Pricing -->
-<section class="fp-pricing" id="pricing">
-  <div style="text-align:center;margin-bottom:48px;">
-    <div class="fp-section-eyebrow" style="display:inline-block;margin-bottom:10px;">Simple Pricing</div>
-    <h2 class="fp-section-title" style="text-align:center;margin-bottom:8px;">Choose Your <em>Plan</em></h2>
-    <p style="font-size:0.95rem;color:var(--mid);max-width:480px;margin:0 auto;">All plans include the ECM Verified badge, access to our provider dashboard, and the Content Engine.</p>
+<!-- ── WHAT MAKES ECM DIFFERENT ── -->
+<section class="fp-section fp-section--cream">
+  <div class="fp-center" style="margin-bottom:40px;">
+    <span class="fp-eyebrow">The ECM Difference</span>
+    <h2 class="fp-h2">What Makes ElderCareMatters <em>Different</em></h2>
+    <p class="fp-lead">Not a directory. Not paid ads. Not cold leads.</p>
   </div>
-  <div class="fp-pricing-grid">
-
-    <!-- Basic -->
-    <div class="fp-plan-card">
-      <div class="fp-plan-name">Basic</div>
-      <div class="fp-plan-price">$149<span>/mo</span></div>
-      <div class="fp-plan-coverage">City coverage only</div>
-      <ul class="fp-plan-features">
-        <li>Up to 10 leads per month</li>
-        <li>Open access (after Featured + Premium)</li>
-        <li>ECM Verified badge</li>
-        <li>Provider dashboard access</li>
-        <li>Standard support</li>
-        <li class="cross">Featured lead window</li>
-        <li class="cross">Content Engine</li>
-        <li class="cross">Dedicated CSM</li>
-      </ul>
-      <a href="provider-dashboard.html" class="fp-plan-cta">Get Started</a>
+  <div class="fp-diff-cards">
+    <div class="fp-diff-card">
+      <span class="fp-diff-not">Unlike directories</span>
+      <div class="fp-diff-title">Positioned, Not Just Listed</div>
+      <p class="fp-diff-desc">Providers are positioned within eldercare-specific content journeys, not just added to a static list. Families encounter you in the context of their search, not in a random alphabetical listing.</p>
     </div>
-
-    <!-- Premium (highlighted) -->
-    <div class="fp-plan-card fp-plan-card--highlight">
-      <div class="fp-plan-popular">Most Popular</div>
-      <div class="fp-plan-name">Premium</div>
-      <div class="fp-plan-price">$299<span>/mo</span></div>
-      <div class="fp-plan-coverage">City + 25 mile radius</div>
-      <ul class="fp-plan-features">
-        <li>Up to 25 leads per month</li>
-        <li>Second access (after Featured only)</li>
-        <li>ECM Verified badge</li>
-        <li>Provider dashboard access</li>
-        <li>Priority support</li>
-        <li>Featured listing on category pages</li>
-        <li>Content Engine included</li>
-        <li class="cross">Dedicated CSM</li>
-      </ul>
-      <a href="provider-dashboard.html" class="fp-plan-cta">Get Started</a>
+    <div class="fp-diff-card">
+      <span class="fp-diff-not">Unlike paid ads</span>
+      <div class="fp-diff-title">Intent Over Bidding</div>
+      <p class="fp-diff-desc">Your visibility is tied to location and intent, not a bidding competition. You do not need to outbid larger organizations to be seen — you need to serve the right geography with the right expertise.</p>
     </div>
-
-    <!-- Featured -->
-    <div class="fp-plan-card">
-      <div class="fp-plan-name">Featured</div>
-      <div class="fp-plan-price">Custom</div>
-      <div class="fp-plan-coverage">Custom geographic coverage</div>
-      <ul class="fp-plan-features">
-        <li>Unlimited leads</li>
-        <li>Exclusive 24h first-access window</li>
-        <li>ECM Verified badge</li>
-        <li>Provider dashboard access</li>
-        <li>White-glove onboarding</li>
-        <li>Top placement on all listings</li>
-        <li>Content Engine included</li>
-        <li>Dedicated CSM</li>
-      </ul>
-      <a href="provider-dashboard.html" class="fp-plan-cta">Contact Sales</a>
+    <div class="fp-diff-card">
+      <span class="fp-diff-not">Unlike referrals</span>
+      <div class="fp-diff-title">Consistent, Not Unpredictable</div>
+      <p class="fp-diff-desc">Referral networks are helpful but unpredictable. Opportunities through ElderCareMatters are tied to ongoing search demand in your service area, providing a more consistent flow of inquiries.</p>
     </div>
-
   </div>
-
-  <!-- Pay-per-lead box -->
-  <div class="fp-ppl">
-    <div class="fp-ppl-left">
-      <h4>Not ready for a subscription?</h4>
-      <p>Buy lead credits individually. No subscription required.</p>
+  <div class="fp-result-box">
+    <div style="font-size:1.8rem;flex-shrink:0;">✦</div>
+    <div>
+      <div class="fp-result-label">The Result</div>
+      <div class="fp-result-text">You are discovered by families actively searching for your type of service in your service area — at the exact moment they are ready to make a decision.</div>
     </div>
-    <div class="fp-credit-cards">
-      <div class="fp-credit-card">
-        <div class="fp-credit-card-count">5</div>
-        <div class="fp-credit-card-label">lead credits</div>
-        <div class="fp-credit-card-price">$75</div>
+  </div>
+</section>
+
+<!-- ── WHAT PROVIDERS TYPICALLY EXPERIENCE ── -->
+<section class="fp-section fp-section--pale">
+  <div style="max-width:560px;margin-bottom:40px;">
+    <span class="fp-eyebrow">Provider Outcomes</span>
+    <h2 class="fp-h2">What Providers <em>Typically Experience</em></h2>
+  </div>
+  <div class="fp-exp-grid">
+    <div class="fp-exp-card">
+      <div class="fp-exp-icon">📬</div>
+      <div>
+        <div class="fp-exp-title">Consistent Inbound Inquiries</div>
+        <p class="fp-exp-desc">Families actively seeking help find you through the platform. Inquiries arrive based on your service area and category — not by chance.</p>
       </div>
-      <div class="fp-credit-card">
-        <div class="fp-credit-card-count">10</div>
-        <div class="fp-credit-card-label">lead credits</div>
-        <div class="fp-credit-card-price">$130</div>
+    </div>
+    <div class="fp-exp-card">
+      <div class="fp-exp-icon">🎯</div>
+      <div>
+        <div class="fp-exp-title">Higher Intent Compared to General Traffic</div>
+        <p class="fp-exp-desc">Families using ElderCareMatters are in active decision mode. They are not casually exploring — they are looking for a professional they can engage with now.</p>
       </div>
-      <div class="fp-credit-card">
-        <div class="fp-credit-card-count">25</div>
-        <div class="fp-credit-card-label">lead credits</div>
-        <div class="fp-credit-card-price">$275</div>
+    </div>
+    <div class="fp-exp-card">
+      <div class="fp-exp-icon">✅</div>
+      <div>
+        <div class="fp-exp-title">Improved Fit Between Need and Expertise</div>
+        <p class="fp-exp-desc">Matching is designed around service category, geography, and family need context — reducing irrelevant or low-fit inquiries and improving conversation quality.</p>
+      </div>
+    </div>
+    <div class="fp-exp-card">
+      <div class="fp-exp-icon">🔗</div>
+      <div>
+        <div class="fp-exp-title">Reduced Referral Network Dependency</div>
+        <p class="fp-exp-desc">Supplement or replace unpredictable referral channels with a more consistent source of inquiries tied to real-time family demand in your area.</p>
+      </div>
+    </div>
+  </div>
+  <p class="fp-disclaimer">Note: Exact volume and conversion rates vary by location, category, and response speed.</p>
+</section>
+
+<!-- ── WHO THIS IS FOR ── -->
+<section class="fp-section fp-section--white">
+  <div class="fp-center" style="margin-bottom:0;">
+    <span class="fp-eyebrow">Who Participates</span>
+    <h2 class="fp-h2">Who This Is <em>For</em></h2>
+    <p class="fp-lead">We work with professionals and organizations supporting seniors and their families, including:</p>
+  </div>
+  <div class="fp-who-grid">
+    <div class="fp-who-item">Elder Law Attorneys</div>
+    <div class="fp-who-item">Care Managers</div>
+    <div class="fp-who-item">Home Care Agencies</div>
+    <div class="fp-who-item">Assisted Living Advisors</div>
+    <div class="fp-who-item">Senior Placement Specialists</div>
+    <div class="fp-who-item">Financial Advisors</div>
+    <div class="fp-who-item">Estate Planning Professionals</div>
+    <div class="fp-who-item">Medicaid Planning Experts</div>
+    <div class="fp-who-item">Memory Care Specialists</div>
+    <div class="fp-who-item">Grief &amp; Bereavement Counselors</div>
+    <div class="fp-who-item">Senior Move Managers</div>
+    <div class="fp-who-item">Transportation &amp; Support Services</div>
+    <div class="fp-who-item">Wellness &amp; Aging Specialists</div>
+  </div>
+  <p class="fp-who-note">If your work supports older adults and their families, you can participate.</p>
+</section>
+
+<!-- ── HOW YOU GET CLIENTS ── -->
+<section class="fp-section fp-section--cream">
+  <div style="max-width:560px;margin-bottom:8px;">
+    <span class="fp-eyebrow">The Process</span>
+    <h2 class="fp-h2">How You Get Clients Through <em>ElderCareMatters</em></h2>
+  </div>
+  <div class="fp-steps-list">
+    <div class="fp-step-row">
+      <div class="fp-step-num">1</div>
+      <div class="fp-step-body">
+        <div class="fp-step-title">Location-Based Visibility</div>
+        <p class="fp-step-desc">Choose your service areas: city, multi-city, state, or multi-state. Your profile and presence are tied to the specific geography you actually serve — not a national catch-all.</p>
+      </div>
+    </div>
+    <div class="fp-step-row">
+      <div class="fp-step-num">2</div>
+      <div class="fp-step-body">
+        <div class="fp-step-title">Intent-Driven Discovery</div>
+        <p class="fp-step-desc">Families find you while searching for eldercare guidance, not generic listings. Your positioning within content journeys means you appear when and where real decisions are being researched.</p>
+      </div>
+    </div>
+    <div class="fp-step-row">
+      <div class="fp-step-num">3</div>
+      <div class="fp-step-body">
+        <div class="fp-step-title">Relevant Inquiry Matching</div>
+        <p class="fp-step-desc">You receive inquiries based on service category, geography, and family need context. Matching is designed to reduce irrelevant or low-fit inquiries so your time is spent on the right conversations.</p>
+      </div>
+    </div>
+    <div class="fp-step-row">
+      <div class="fp-step-num">4</div>
+      <div class="fp-step-body">
+        <div class="fp-step-title">Direct Engagement</div>
+        <p class="fp-step-desc">You respond directly and build the relationship. No middleman, no call center, no delayed hand-off. The family contacts you — or you contact them — on your terms.</p>
+      </div>
+    </div>
+    <div class="fp-step-row">
+      <div class="fp-step-num">5</div>
+      <div class="fp-step-body">
+        <div class="fp-step-title">Relationship-Based Growth</div>
+        <p class="fp-step-desc">Families choose providers they trust. Your expertise drives conversion. ElderCareMatters provides the visibility — your professionalism, responsiveness, and credibility close the engagement.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA Band -->
+<!-- ── WHAT YOU RECEIVE ── -->
+<section class="fp-section fp-section--pale">
+  <div class="fp-center" style="margin-bottom:40px;">
+    <span class="fp-eyebrow">Platform Benefits</span>
+    <h2 class="fp-h2">What You Receive as a <em>Provider</em></h2>
+  </div>
+  <div class="fp-receive-grid">
+    <div class="fp-receive-card">
+      <div style="font-size:1.6rem;margin-bottom:12px;">📬</div>
+      <div class="fp-receive-title">Targeted Inquiries</div>
+      <p class="fp-receive-desc">Families actively searching for elder care support — not cold leads from a purchased list. Every inquiry is connected to a real family with a real need.</p>
+    </div>
+    <div class="fp-receive-card">
+      <div style="font-size:1.6rem;margin-bottom:12px;">📍</div>
+      <div class="fp-receive-title">Geographic Control</div>
+      <p class="fp-receive-desc">Focus on your exact service areas. You are not competing nationally — you are strengthening your presence in the specific cities and regions where you actually work.</p>
+    </div>
+    <div class="fp-receive-card">
+      <div style="font-size:1.6rem;margin-bottom:12px;">🏅</div>
+      <div class="fp-receive-title">Professional Positioning</div>
+      <p class="fp-receive-desc">A profile designed to build trust and credibility with families. Your credentials, specialties, and service area are presented in the context families are already using to make decisions.</p>
+    </div>
+    <div class="fp-receive-card">
+      <div style="font-size:1.6rem;margin-bottom:12px;">✅</div>
+      <div class="fp-receive-title">Better Fit Clients</div>
+      <p class="fp-receive-desc">More relevant conversations, less wasted time. Inquiries are matched by category and geography — reducing the friction of filtering through low-fit or out-of-area requests.</p>
+    </div>
+    <div class="fp-receive-card">
+      <div style="font-size:1.6rem;margin-bottom:12px;">👁️</div>
+      <div class="fp-receive-title">Ongoing Visibility</div>
+      <p class="fp-receive-desc">Presence where eldercare decisions are being researched. You remain visible to families throughout their care search journey — not just at one moment in time.</p>
+    </div>
+    <div class="fp-receive-card">
+      <div style="font-size:1.6rem;margin-bottom:12px;">📈</div>
+      <div class="fp-receive-title">Efficient Growth</div>
+      <p class="fp-receive-desc">Less reliance on cold outreach or broad advertising. Build a consistent pipeline through a channel designed specifically for eldercare inquiry — without the guesswork of general marketing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── BUILT FOR LOCAL DOMINANCE + TRUSTED SINCE 2002 ── -->
+<div class="fp-dark-band">
+  <div>
+    <span class="fp-eyebrow" style="color:var(--sage-light);">Your Local Market</span>
+    <h2 class="fp-h2 fp-h2--white">Built for <em>Local Dominance</em></h2>
+    <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:8px;">Your visibility is tied to specific cities and regions, allowing you to:</p>
+    <div class="fp-dominance-bullets">
+      <div class="fp-dominance-bullet">Strengthen presence in key markets where you already have expertise and capacity</div>
+      <div class="fp-dominance-bullet">Compete based on expertise, not ad spend — families make decisions on trust, not bidding</div>
+      <div class="fp-dominance-bullet">Capture demand where it is actually happening, in real time, in your service area</div>
+    </div>
+  </div>
+  <div>
+    <div class="fp-trust-block">
+      <span class="fp-trust-since">Trusted Since 2002</span>
+      <p class="fp-trust-desc">ElderCareMatters has spent over two decades focused exclusively on elder care. We are not a general marketplace. We are a specialized platform built to connect families with qualified providers in moments that matter.</p>
+      <p class="fp-trust-note">For more than 20 years, we have helped bridge the gap between families in need and professionals who can guide them with clarity and care.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── WHAT IT COSTS ── -->
+<section class="fp-section fp-section--white" id="pricing">
+  <div class="fp-center" style="margin-bottom:0;">
+    <span class="fp-eyebrow">Subscription Access</span>
+    <h2 class="fp-h2">What It <em>Costs</em></h2>
+    <p class="fp-lead">Access to ElderCareMatters is subscription-based and tied to your service areas. Pricing reflects the geography and coverage level you choose.</p>
+  </div>
+  <div class="fp-cost-grid">
+    <div class="fp-cost-card">
+      <span class="fp-cost-card-label">How It Works</span>
+      <div class="fp-cost-card-title">Subscription-Based Access</div>
+      <p class="fp-cost-card-desc">Your subscription is tied to the service areas you select. Coverage can be configured at the city, multi-city, state, or multi-state level — giving you control over where your visibility is focused.</p>
+    </div>
+    <div class="fp-cost-card fp-cost-card--highlight">
+      <span class="fp-cost-card-label">Pricing Approach</span>
+      <div class="fp-cost-card-title">Based on Your Geography</div>
+      <p class="fp-cost-card-desc">Pricing varies based on geography and coverage level. Exact pricing depends on market size and category. Check availability in your city to get specific information for your service area.</p>
+    </div>
+  </div>
+  <p class="fp-cost-note">Exact pricing depends on market size and category. <a href="#check-availability" style="color:var(--sage);">Check availability in your city →</a></p>
+</section>
+
+<!-- ── CHECK AVAILABILITY FORM ── -->
+<section class="fp-section fp-section--pale" id="check-availability">
+  <div class="fp-center" style="margin-bottom:40px;">
+    <span class="fp-eyebrow">See Opportunities in Your Area</span>
+    <h2 class="fp-h2">Check Availability in <em>Your City</em></h2>
+    <p class="fp-lead">Your next client is not searching for "marketing." They are searching for guidance, answers, and someone they can trust. Enter your details to see provider opportunities in your area.</p>
+  </div>
+
+  <div class="fp-form-wrap">
+    <form id="fp-provider-form" onsubmit="return fpSubmitForm(event);">
+      <div class="fp-form-grid">
+        <div class="fp-form-group">
+          <label for="fp-fullname">Full Name *</label>
+          <input id="fp-fullname" name="fullname" type="text" placeholder="Your full name" required>
+        </div>
+        <div class="fp-form-group">
+          <label for="fp-business">Business Name *</label>
+          <input id="fp-business" name="business" type="text" placeholder="Your practice or organization" required>
+        </div>
+        <div class="fp-form-group">
+          <label for="fp-email">Email Address *</label>
+          <input id="fp-email" name="email" type="email" placeholder="you@example.com" required>
+        </div>
+        <div class="fp-form-group">
+          <label for="fp-phone">Phone Number</label>
+          <input id="fp-phone" name="phone" type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="fp-form-group">
+          <label for="fp-category">Service Category *</label>
+          <select id="fp-category" name="category" required>
+            <option value="">Select your category…</option>
+            <option>Elder Law Attorney</option>
+            <option>Care Manager</option>
+            <option>Home Care Agency</option>
+            <option>Assisted Living Advisor</option>
+            <option>Senior Placement Specialist</option>
+            <option>Financial Advisor</option>
+            <option>Estate Planning Professional</option>
+            <option>Medicaid Planning Expert</option>
+            <option>Memory Care Specialist</option>
+            <option>Grief &amp; Bereavement Counselor</option>
+            <option>Senior Move Manager</option>
+            <option>Transportation &amp; Support Services</option>
+            <option>Wellness &amp; Aging Specialist</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fp-form-group">
+          <label for="fp-location">City / State *</label>
+          <input id="fp-location" name="location" type="text" placeholder="e.g. Austin, TX" required>
+        </div>
+        <div class="fp-form-group fp-form-full">
+          <label for="fp-website">Website</label>
+          <input id="fp-website" name="website" type="url" placeholder="https://yourwebsite.com">
+        </div>
+        <div class="fp-form-group fp-form-full">
+          <label for="fp-message">Message</label>
+          <textarea id="fp-message" name="message" rows="4" placeholder="Tell us about your practice, service area, and what you're looking for…"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="fp-form-submit">Check Availability in My Area →</button>
+    </form>
+    <div class="fp-form-confirm" id="fp-form-confirm">
+      <div class="fp-form-confirm-icon">✓</div>
+      <h4>Thank you — we'll be in touch shortly.</h4>
+      <p>We've received your inquiry and will reach out within 1 business day with availability and next steps for your service area.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ── -->
 <div class="fp-cta-band">
-  <h2>Ready to start <em>receiving leads</em>?</h2>
-  <p>No setup fee. Cancel anytime. Your first lead could arrive within 24 hours.</p>
-  <div class="fp-cta-band-actions">
-    <a href="#pricing" class="fp-btn-primary">Get Started Free →</a>
-    <a href="provider-dashboard.html" class="fp-btn-ghost">View Demo Dashboard</a>
+  <h2>Start Receiving <em>Relevant Eldercare Inquiries</em></h2>
+  <div class="fp-cta-bullets">
+    <span class="fp-cta-bullet">Help more families</span>
+    <span class="fp-cta-bullet">Strengthen your local presence</span>
+    <span class="fp-cta-bullet">Grow your practice with qualified demand</span>
   </div>
+  <a href="#check-availability" class="fp-cta-btn">Become an ElderCareMatters Provider →</a>
 </div>
 
 <!-- Footer -->
@@ -594,7 +849,7 @@
   </div>
 </footer>
 
-<!-- Quick Form Modal -->
+<!-- Quick Form Modal (consumer — for nav/chat flows) -->
 <div class="modal-overlay form-modal" id="formModal">
   <div class="modal modal-lg">
     <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
@@ -611,12 +866,12 @@
       </div>
       <div id="standard-location-block">
         <div class="form-field">
-          <label>Location</label>
-          <div class="location-row">
-            <select id="form-state" name="state"><option value="">State…</option></select>
-            <select id="form-city" name="city"><option value="">City…</option></select>
+          <div class="location-label-row">
+            <label>Location</label>
+            <span id="form-state-display" class="form-state-display">Texas</span>
+            <button type="button" class="location-change-link" data-open-location-modal>Change →</button>
           </div>
-          <button type="button" class="location-change-link" data-open-location-modal>Change location →</button>
+          <select id="form-city" name="city"><option value="">City…</option></select>
         </div>
         <div class="form-field">
           <label>How soon do you need help?</label>
@@ -665,5 +920,14 @@
 <script src="assets/js/location.js"></script>
 <script src="assets/js/intake.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+// Provider inquiry form — simple client-side submit handler
+function fpSubmitForm(e) {
+  e.preventDefault();
+  document.getElementById('fp-provider-form').style.display = 'none';
+  document.getElementById('fp-form-confirm').style.display = 'block';
+  return false;
+}
+</script>
 </body>
 </html>

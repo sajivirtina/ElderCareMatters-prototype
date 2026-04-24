@@ -188,13 +188,25 @@
     try { storedLoc = JSON.parse(localStorage.getItem('eldercare_location') || '{}'); } catch (e) { /* noop */ }
     const userCoords = (storedLoc.lat && storedLoc.lon) ? { lat: storedLoc.lat, lon: storedLoc.lon } : null;
 
-    let activeTier  = 'all';
-    let searchQuery = '';
-    let activeSort  = 'recommended';
+    let activeTier   = 'all';
+    let activeSubcat = 'all';
+    let searchQuery  = '';
+    let activeSort   = 'recommended';
     let debounceTimer = null;
 
+    // Wire subcategory chips (populated in boot() before wireProviders is called)
+    const subcatChips = document.querySelectorAll('#subcategory-row .filter-chip[data-subcat]');
+    subcatChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        subcatChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeSubcat = chip.getAttribute('data-subcat');
+        applyAndRender();
+      });
+    });
+
     function applyAndRender() {
-      const cacheKey = `ecm:${cat.key}:${cityKey}:${activeTier}:${searchQuery}:${activeSort}`;
+      const cacheKey = `ecm:${cat.key}:${cityKey}:${activeTier}:${activeSubcat}:${searchQuery}:${activeSort}`;
       let list;
       try {
         const cached = sessionStorage.getItem(cacheKey);
@@ -207,6 +219,13 @@
       if (!list) {
         // Filter by tier
         let filtered = activeTier === 'all' ? providers : providers.filter(p => p.tier === activeTier);
+        // Filter by subcategory specialty
+        if (activeSubcat !== 'all') {
+          const sub = activeSubcat.toLowerCase();
+          filtered = filtered.filter(p =>
+            (p.specialties || []).some(s => s.toLowerCase() === sub)
+          );
+        }
         // Filter by search query
         if (searchQuery) {
           const q = searchQuery.toLowerCase();
@@ -311,6 +330,27 @@
     // Initial no-providers state (wireProviders handles the grid render itself)
     if (providers.length === 0) {
       noMsg.style.display = '';
+    }
+
+    // ── Subcategory chips (category-specific, e.g. grief-counselors) ──
+    const SUBCATEGORIES = {
+      'grief-counselors': [
+        'Bereavement Care',
+        'Grief Support Group',
+        'Grief Counseling',
+        'Grief Support Services',
+        'Bereavement Counseling',
+        'Grief Support Community',
+        'GriefShare'
+      ]
+    };
+    const subRow  = document.getElementById('subcategory-row');
+    const subcats = SUBCATEGORIES[cat.key];
+    if (subRow && subcats) {
+      subRow.innerHTML =
+        `<button class="filter-chip active" data-subcat="all">All</button>` +
+        subcats.map(s => `<button class="filter-chip" data-subcat="${escapeHtml(s)}">${escapeHtml(s)}</button>`).join('');
+      subRow.style.display = 'flex';
     }
 
     // Wire interactive providers section (search + sort + filter + cache)

@@ -17,8 +17,6 @@
   <div class="modal">
     <h3>Set your location</h3>
     <p>Searching for a parent in a different city? Enter their location.</p>
-    <input type="text" name="zip" placeholder="City or ZIP code…">
-    <div class="modal-divider">or</div>
     <select name="state">
       <option value="">Select state…</option>
       <option>Alabama</option><option>Alaska</option><option>Arizona</option>
@@ -39,6 +37,8 @@
       <option>Virginia</option><option>Washington</option><option>West Virginia</option>
       <option>Wisconsin</option><option>Wyoming</option>
     </select>
+    <div class="modal-divider">or</div>
+    <input type="text" name="zip" placeholder="City or ZIP code…">
     <div class="modal-actions">
       <button class="btn-outline" type="button" data-modal-cancel>Cancel</button>
       <button class="btn-sage" type="button" data-modal-submit>Update Location</button>
@@ -130,6 +130,9 @@
       </select>
     </div>
   </div>
+  <!-- Subcategory chips — populated by category.js only for applicable categories (e.g. grief-counselors) -->
+  <div class="filter-row" id="subcategory-row" style="display:none"></div>
+
   <div class="filter-row" id="filter-row">
     <button class="filter-chip active" data-filter="all">All</button>
     <button class="filter-chip" data-filter="featured">⭐ Featured</button>

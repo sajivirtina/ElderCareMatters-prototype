@@ -37,6 +37,7 @@
             <span class="provider-rating-count">(${provider.reviews})</span>
             <span>· ${escapeHtml(cat.name || '')}</span>
           </div>
+          ${provider.nonprofit ? `<span class="provider-nonprofit-badge"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="4.8" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M3.8 7.2L2.5 11l3.5-1.4L9.5 11 8.2 7.2" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/></svg>Non-Profit</span>` : ''}
         </div>
         <div class="provider-card-footer">
           <div class="provider-price">from <strong>${startingFrom(provider)}</strong></div>

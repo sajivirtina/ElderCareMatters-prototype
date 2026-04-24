@@ -63,6 +63,7 @@
             <span class="provider-rating">★ ${provider.rating.toFixed(1)}</span>
             <span class="provider-rating-count">(${provider.reviews})</span>
           </div>
+          ${provider.nonprofit ? `<span class="provider-nonprofit-badge"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="4.8" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M3.8 7.2L2.5 11l3.5-1.4L9.5 11 8.2 7.2" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/></svg>Non-Profit</span>` : ''}
         </div>
         <div class="provider-card-footer provider-card-footer--claim">
           <span class="claim-text">Is this your business?</span>
@@ -97,6 +98,7 @@
             <span class="provider-rating-count">(${provider.reviews})</span>
             <span>· ${escapeHtml(catName)}</span>
           </div>
+          ${provider.nonprofit ? `<span class="provider-nonprofit-badge"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="4.8" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M3.8 7.2L2.5 11l3.5-1.4L9.5 11 8.2 7.2" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/></svg>Non-Profit</span>` : ''}
         </div>
         <div class="provider-card-footer">
           <div class="provider-price">from <strong>${startingFrom(provider)}</strong></div>
@@ -119,6 +121,7 @@
             <span class="nearby-meta-sep">·</span>
             <span>★ ${provider.rating.toFixed(1)}</span>
           </div>
+          ${provider.nonprofit ? `<span class="provider-nonprofit-badge" style="margin-top:6px"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="4.8" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M3.8 7.2L2.5 11l3.5-1.4L9.5 11 8.2 7.2" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/></svg>Non-Profit</span>` : ''}
         </div>
         <div class="nearby-price">
           <div class="nearby-price-val">from ${startingFrom(provider)}</div>
@@ -287,7 +290,7 @@
 
     // Dynamic CTA button text
     const heroBtn = document.getElementById('hero-cta-btn');
-    if (heroBtn) heroBtn.innerHTML = `📋 Talk to a ${escapeHtml(cat.name)} Advisor <span class="btn-arrow">→</span>`;
+    if (heroBtn) heroBtn.innerHTML = `📋 Find ${escapeHtml(cat.name)} Providers <span class="btn-arrow">→</span>`;
 
     // Override .js-location-city spans with the display city name.
     // In state-only mode this is the state name ("Florida"); for a real

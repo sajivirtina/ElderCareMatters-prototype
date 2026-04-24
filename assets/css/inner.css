@@ -40,6 +40,17 @@
   max-width: 500px; margin-bottom: 24px;
 }
 .inner-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-text-links {
+  display: flex; align-items: center; gap: 12px; margin-top: 14px; flex-wrap: wrap;
+}
+.hero-text-link {
+  background: transparent; border: 1.5px solid var(--charcoal); color: var(--charcoal);
+  font-family: inherit; font-size: 0.875rem; font-weight: 500;
+  padding: 10px 20px; border-radius: 10px; cursor: pointer;
+  text-decoration: none; transition: all 0.18s; display: inline-flex; align-items: center; gap: 6px;
+}
+.hero-text-link:hover { background: rgba(44,44,44,0.06); }
+.hero-text-link-sep { display: none; }
 .inner-hero-meta {
   display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;
   font-size: 0.85rem; color: var(--mid);
@@ -139,6 +150,17 @@
 .tier-featured { background: var(--gold-light); color: #7a5a1e; }
 .tier-premium  { background: var(--sage-pale); color: var(--sage); }
 .tier-basic    { background: #EFECE6; color: var(--muted); }
+
+/* ── NON-PROFIT BADGE on provider cards ── */
+.provider-nonprofit-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em;
+  text-transform: uppercase; color: #1e6e52;
+  background: linear-gradient(135deg, #d4f0e6 0%, #e6f7f0 100%);
+  border: 1px solid #9ed4be; border-radius: 20px;
+  padding: 4px 10px; margin-top: 10px; width: fit-content;
+  box-shadow: 0 1px 4px rgba(30,110,82,0.12);
+}
 
 .provider-card-body { padding: 16px 22px 22px; flex: 1; display: flex; flex-direction: column; }
 .provider-card-tagline {

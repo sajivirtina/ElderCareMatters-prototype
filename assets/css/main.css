@@ -18,6 +18,16 @@
 
 html { scroll-behavior: smooth; }
 
+/* ── Inline location edit pin (all pages) ── */
+.location-edit-pin {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.06); border: none; border-radius: 20px;
+  padding: 3px 8px; cursor: pointer; font-size: 0.875rem; line-height: 1;
+  vertical-align: middle; margin-left: 6px;
+  transition: background 0.15s; white-space: nowrap; font-family: inherit;
+}
+.location-edit-pin:hover { background: rgba(0,0,0,0.12); }
+
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--cream);

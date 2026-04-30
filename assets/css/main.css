@@ -102,6 +102,19 @@ a { color: inherit; }
 }
 .btn-sage:hover { background: #6a8e6e; }
 
+/* ── TRUST BAR ── */
+.trust-bar {
+  background: var(--sage);
+  color: #fff;
+  text-align: center;
+  padding: 9px 5%;
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+.trust-bar-text { display: inline-flex; align-items: center; gap: 6px; }
+.trust-bar strong { font-weight: 700; }
+
 /* ── NAV ── */
 nav {
   position: sticky; top: 0; z-index: 100;

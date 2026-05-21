@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunrise Home Care | ElderCareMatters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/homepage.css">
+<link rel="stylesheet" href="assets/css/inner.css">
+<link rel="stylesheet" href="assets/css/provider-pages.css">
+</head>
+<body>
+
+<!-- Location Modal -->
+<div class="modal-overlay" id="locationModal">
+  <div class="modal">
+    <h3>Set your location</h3>
+    <p>Searching for a parent in a different city? Enter their location.</p>
+    <select name="state">
+      <option value="">Select state…</option>
+      <option>California</option><option>Florida</option><option>Illinois</option>
+      <option>New York</option><option>Texas</option><option>Washington</option>
+    </select>
+    <div class="modal-divider">or</div>
+    <input type="text" name="zip" placeholder="City or ZIP code…">
+    <div class="modal-actions">
+      <button class="btn-outline" type="button" data-modal-cancel>Cancel</button>
+      <button class="btn-sage" type="button" data-modal-submit>Update Location</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    ElderCareMatters
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="search.html">Find Care</a></li>
+    <li><a href="blog.html">Resources</a></li>
+    <li><a href="for-providers.html">For Providers</a></li>
+    <li><a href="provider-dashboard.html" class="nav-cta">Provider Login</a></li>
+  </ul>
+  <div class="nav-location-badge" data-open-location-modal>
+    📍 <span class="js-location-full">Detecting…</span> · Change
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="search.html">Categories</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="category.html?type=home-care">Home Care</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Sunrise Home Care</span>
+</div>
+
+<!-- Provider Hero -->
+<section class="provider-hero">
+  <div class="provider-hero-main">
+    <div class="plan-hero-badge plan-hero-badge--premium">⭐ Featured Provider · Premium Plan</div>
+    <div class="provider-hero-top">
+      <div class="provider-hero-logo" style="background:#E8925A">SH</div>
+      <div>
+        <h1 class="provider-hero-title">Sunrise Home Care</h1>
+        <div class="provider-hero-meta">
+          <span class="provider-hero-meta-item">
+            <span style="color:var(--gold)">★★★★★</span>&nbsp;
+            <strong>4.9</strong>
+            <span style="color:var(--muted)">(128 verified family reviews)</span>
+          </span>
+          <span class="provider-hero-meta-item">📍 Dallas, TX</span>
+          <span class="provider-verified">✓ ECM Verified</span>
+          <span class="provider-tier-badge tier-featured" style="position:static">Featured</span>
+        </div>
+      </div>
+    </div>
+    <div class="provider-specialties">
+      <span class="specialty-chip">🏠 Home Care</span>
+      <span class="specialty-chip">Personal Care</span>
+      <span class="specialty-chip">Companion Care</span>
+      <span class="specialty-chip">24/7 Care</span>
+      <span class="specialty-chip">Dementia Care</span>
+      <span class="specialty-chip">Bilingual Staff</span>
+    </div>
+    <p class="provider-hero-tagline">Compassionate in-home caregivers serving the Dallas–Fort Worth Metroplex since 2008.</p>
+    <p class="provider-hero-about">
+      📞 <a href="tel:2145550182" style="color:var(--charcoal);text-decoration:none;font-weight:500;">(214) 555-0182</a>
+      &nbsp;·&nbsp; 🌐 sunrisehomecare.com
+      &nbsp;·&nbsp; Serving Dallas, Plano, Irving, Garland &amp; surrounding areas
+    </p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;">
+      <button type="button" class="btn-primary-lg" data-open-form-modal>
+        📋 Request a Free Consultation <span class="btn-arrow">→</span>
+      </button>
+      <a href="tel:2145550182" class="btn-outline" style="display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:10px;text-decoration:none;font-weight:600;font-size:0.9rem;color:var(--charcoal);border:1.5px solid var(--charcoal);">
+        📞 Call Now
+      </a>
+    </div>
+  </div>
+
+  <div class="provider-side-card">
+    <h4>Get a free match with Sunrise Home Care</h4>
+    <p>We'll send your request privately — no spam, no calls unless you ask. Takes under a minute.</p>
+    <button type="button" class="btn-primary-lg" data-open-form-modal>
+      📋 Request a Free Match <span class="btn-arrow">→</span>
+    </button>
+    <button type="button" class="btn-text" data-open-chat>💬 Or chat with our advisor</button>
+    <div class="provider-side-stats">
+      <div>
+        <div class="provider-side-stat-val">&lt; 2 hrs</div>
+        <div class="provider-side-stat-label">Response time</div>
+      </div>
+      <div>
+        <div class="provider-side-stat-val">17+</div>
+        <div class="provider-side-stat-label">Years serving families</div>
+      </div>
+      <div>
+        <div class="provider-side-stat-val">128</div>
+        <div class="provider-side-stat-label">Verified reviews</div>
+      </div>
+      <div>
+        <div class="provider-side-stat-val">4.9 ★</div>
+        <div class="provider-side-stat-label">Average rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="inner-section inner-section--cream">
+  <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start;">
+    <div class="about-body">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,2.4vw,2rem);font-weight:700;color:var(--charcoal);margin-bottom:20px;">About Sunrise Home Care</h2>
+      <p>For over 17 years, Sunrise Home Care has been a trusted name in Dallas elder care. What started as a small family-owned agency has grown into one of the most respected home care providers in the DFW Metroplex — and our values have remained the same.</p>
+      <p>We believe elder care should feel like family. Every care plan we build starts with a conversation, not a checklist. We take time to understand your loved one's daily routine, personal preferences, medical needs, and personality — and we match them with a caregiver who fits, not just one who's available.</p>
+      <div class="about-mission">
+        Our Mission: To help older adults live with dignity, comfort, and joy in the place they love most — "home."
+      </div>
+    </div>
+    <div>
+      <p style="font-weight:700;color:var(--charcoal);margin-bottom:14px;font-size:0.92rem;letter-spacing:0.04em;text-transform:uppercase;">Why Families Choose Us:</p>
+      <ul class="about-list">
+        <li>Fully vetted, bonded, and insured caregivers</li>
+        <li>No long-term contracts — flexible, month-to-month care</li>
+        <li>Same-day starts available for urgent care needs</li>
+        <li>Dedicated care coordinator assigned to every family</li>
+        <li>Weekly family updates and 24/7 emergency line</li>
+        <li>Bilingual care staff (English &amp; Spanish)</li>
+      </ul>
+      <div class="about-hours">
+        🕐 Available 4–24 hours/day, 7 days/week, including holidays
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services & Packages -->
+<section class="inner-section inner-section--warm">
+  <div class="inner-section-header">
+    <div>
+      <h2>Services &amp; Care Packages</h2>
+      <p>Three levels of support — from essential hourly help to round-the-clock care.</p>
+    </div>
+  </div>
+  <div class="package-grid">
+    <!-- Essential Care -->
+    <div class="package-card">
+      <div class="package-tier-label">Essential Care</div>
+      <div class="package-name">Essential Care</div>
+      <p style="font-size:0.8rem;color:var(--muted);margin:-8px 0 12px;">Best for light daily support</p>
+      <div class="package-price">
+        <span class="package-price-val">28</span>
+        <span class="package-price-unit">/hr</span>
+      </div>
+      <ul class="package-features">
+        <li>Up to 4 hrs/day</li>
+        <li>Meal preparation</li>
+        <li>Medication reminders</li>
+        <li>Light housekeeping</li>
+        <li>Companion care</li>
+      </ul>
+      <button class="package-cta" type="button" data-open-form-modal>Get Started →</button>
+    </div>
+    <!-- Comprehensive Care — Most Popular -->
+    <div class="package-card package-card--popular">
+      <div class="package-popular-badge">⭐ Most Popular</div>
+      <div class="package-tier-label">Comprehensive Care</div>
+      <div class="package-name">Comprehensive Care</div>
+      <p style="font-size:0.8rem;color:var(--mid);margin:-8px 0 12px;">Best for moderate daily assistance</p>
+      <div class="package-price">
+        <span class="package-price-val">38</span>
+        <span class="package-price-unit">/hr</span>
+      </div>
+      <ul class="package-features">
+        <li>Up to 12 hrs/day</li>
+        <li>Personal care (bathing, dressing, grooming)</li>
+        <li>Medication reminders</li>
+        <li>Meal prep &amp; housekeeping</li>
+        <li>Transportation to appointments</li>
+      </ul>
+      <button class="package-cta" type="button" data-open-form-modal>Get Started →</button>
+    </div>
+    <!-- Premium 24/7 Care -->
+    <div class="package-card">
+      <div class="package-tier-label">Premium 24/7 Care</div>
+      <div class="package-name">Premium 24/7 Care</div>
+      <p style="font-size:0.8rem;color:var(--muted);margin:-8px 0 12px;">Best for full-time or overnight support</p>
+      <div class="package-price">
+        <span class="package-price-val">52</span>
+        <span class="package-price-unit">/hr</span>
+      </div>
+      <ul class="package-features">
+        <li>Round-the-clock care</li>
+        <li>Dedicated caregiver team</li>
+        <li>Medical coordination with physicians</li>
+        <li>Weekly family progress reports</li>
+        <li>Priority scheduling &amp; placement</li>
+      </ul>
+      <button class="package-cta" type="button" data-open-form-modal>Get Started →</button>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>What Families Are Saying</h2>
+      <p>4.9 average from 128 verified families across the Dallas–Fort Worth Metroplex.</p>
+    </div>
+  </div>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-author">Jennifer L.</span>
+        <span class="review-date">March 2026</span>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Within a day of contacting Sunrise, we had a caregiver lined up for my father post-surgery. The team really listened to what we needed and matched us with someone who felt like part of the family within a week."</p>
+      <p class="review-loc" style="margin-top:10px;">Daughter of client · Dallas, TX</p>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-author">Diego R.</span>
+        <span class="review-date">January 2026</span>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The care coordinator checks in every week without fail. In what was the most stressful season of our lives, Sunrise made everything so much easier. I don't know how we would have managed without them."</p>
+      <p class="review-loc" style="margin-top:10px;">Son of client · Plano, TX</p>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-author">Anita G.</span>
+        <span class="review-date">February 2026</span>
+      </div>
+      <div class="review-stars">★★★★☆</div>
+      <p class="review-text">"Professional team, clear pricing, no surprises. We needed more help on short notice, and they made it work the same day. That kind of responsiveness is rare."</p>
+      <p class="review-loc" style="margin-top:10px;">Spouse of client · Irving, TX</p>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-author">Sandra K.</span>
+        <span class="review-date">January 2026</span>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Mom resisted having a caregiver for months. After her first week with Sunrise, she didn't want anyone else. The personality match they made was remarkable."</p>
+      <p class="review-loc" style="margin-top:10px;">Daughter of client · Garland, TX</p>
+    </div>
+  </div>
+</section>
+
+<!-- Meet Our Team -->
+<section class="inner-section inner-section--warm">
+  <div class="inner-section-header">
+    <div>
+      <h2>Meet Our Team</h2>
+      <p>The experienced professionals behind every care plan at Sunrise.</p>
+    </div>
+  </div>
+  <div class="team-grid team-grid--3" style="margin-bottom:28px;">
+    <div class="team-card">
+      <div class="team-avatar" style="background:#E8925A">MV</div>
+      <div class="team-name">Maria Valdez</div>
+      <div class="team-role">Founder &amp; Director of Care</div>
+      <p class="team-bio">Maria founded Sunrise Home Care in 2008 after spending a decade as a geriatric nurse at Baylor University Medical Center. Her clinical background shapes every care protocol the agency uses today.</p>
+      <p class="team-creds">RN · Certified Dementia Practitioner (CDP) · Licensed Home Care Administrator</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#5E8A8A">JO</div>
+      <div class="team-name">James Okafor</div>
+      <div class="team-role">Care Coordinator, Senior Division</div>
+      <p class="team-bio">James has matched over 400 Dallas families with the right caregivers over the past six years. His background in social work means he understands the emotional side of the care journey as much as the practical.</p>
+      <p class="team-creds">Specialties: Dementia care transitions · Hospital-to-home discharge planning</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#7A9E7E">RH</div>
+      <div class="team-name">Rosa Hernandez</div>
+      <div class="team-role">Lead Caregiver &amp; Trainer</div>
+      <p class="team-bio">With 11 years in home care, Rosa now leads our caregiver training program and ensures every team member meets Sunrise's standards before their first placement.</p>
+      <p class="team-creds">CNA · CPR/AED · Dementia Care Specialist</p>
+    </div>
+  </div>
+
+  <!-- Employee Spotlight -->
+  <div class="spotlight-card">
+    <div class="spotlight-avatar">PM</div>
+    <div class="spotlight-body">
+      <div class="spotlight-label">Caregiver of the Quarter</div>
+      <div class="spotlight-name">Patricia Moore</div>
+      <div class="spotlight-sub">Caregiver · 4 years with Sunrise · 30+ Dallas families served</div>
+      <p class="spotlight-desc">Patricia was nominated by three different clients this quarter for her patience, warmth, and ability to bring a smile to even the hardest days.</p>
+      <div class="spotlight-quote">
+        "Patricia doesn't just help my mother get dressed. She makes her feel beautiful. That means everything." — Family of a current client
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Blog & Resources -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>Blog &amp; Resources</h2>
+      <p>Recent articles from the Sunrise Home Care team — practical guidance for families navigating elder care.</p>
+    </div>
+  </div>
+  <div class="blog-grid">
+    <a href="blog-detail.html" class="blog-card">
+      <span class="blog-icon">📖</span>
+      <div>
+        <div class="blog-title">What to Expect in the First 30 Days of Home Care</div>
+        <p class="blog-blurb">A realistic guide to starting home care — the adjustment period, what families worry about, and how to make the transition smoother.</p>
+      </div>
+    </a>
+    <a href="blog-detail.html" class="blog-card">
+      <span class="blog-icon">📖</span>
+      <div>
+        <div class="blog-title">5 Signs Your Parent May Need More Support at Home</div>
+        <p class="blog-blurb">How to recognise when light assistance isn't enough — and what your options are before considering a care facility.</p>
+      </div>
+    </a>
+    <a href="blog-detail.html" class="blog-card">
+      <span class="blog-icon">📖</span>
+      <div>
+        <div class="blog-title">How to Talk to an Aging Parent About Accepting Help</div>
+        <p class="blog-blurb">The conversation most families dread. Here's how to start it with compassion — and with less resistance than you might expect.</p>
+      </div>
+    </a>
+    <a href="blog-detail.html" class="blog-card">
+      <span class="blog-icon">📖</span>
+      <div>
+        <div class="blog-title">Understanding the Difference Between a Caregiver and a Home Health Aide</div>
+        <p class="blog-blurb">Two common terms, two different roles. Know exactly what you're hiring before you sign anything.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Credentials -->
+<section class="inner-section inner-section--warm">
+  <div class="inner-section-header">
+    <div>
+      <h2>Credentials &amp; Certifications</h2>
+      <p>Fully licensed, insured, and affiliated with leading care organisations.</p>
+    </div>
+  </div>
+  <ul class="cred-list">
+    <li>Texas HHSC Licensed Home and Community Support Services Agency</li>
+    <li>Medicare &amp; Medicaid Certified</li>
+    <li>Bonded &amp; Insured — $2M General Liability</li>
+    <li>ElderCareMatters Verified Provider (since 2014)</li>
+    <li>Home Care Association of America (HCAOA) Member</li>
+    <li>Better Business Bureau — A+ Rating</li>
+  </ul>
+</section>
+
+<!-- Coverage Area -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>Coverage Area</h2>
+      <p>Serving families across the Dallas–Fort Worth Metroplex.</p>
+    </div>
+  </div>
+  <p style="font-weight:600;color:var(--charcoal);margin-bottom:4px;font-size:0.9rem;">Primary: Dallas (all zip codes)</p>
+  <div class="coverage-chips">
+    <span class="coverage-chip">📍 Dallas</span>
+    <span class="coverage-chip">📍 Plano</span>
+    <span class="coverage-chip">📍 Irving</span>
+    <span class="coverage-chip">📍 Garland</span>
+    <span class="coverage-chip">📍 Richardson</span>
+    <span class="coverage-chip">📍 Mesquite</span>
+    <span class="coverage-chip">📍 Grand Prairie</span>
+    <span class="coverage-chip">📍 Carrollton</span>
+    <span class="coverage-chip">📍 Addison</span>
+  </div>
+  <p class="coverage-note">Not sure if we serve your neighborhood? Call us — we'll let you know within minutes.</p>
+</section>
+
+<!-- Gallery — 10 images -->
+<section class="provider-gallery">
+  <div class="gallery-header">
+    <h2>Photo Gallery</h2>
+    <p>Our team, our clients, and the environments we're proud to work in every day across Dallas.</p>
+  </div>
+  <div class="gallery-grid gallery-grid--10">
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare01/600/450" alt="Sunrise Home Care team" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare02/600/450" alt="Caregiver with client" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare03/600/450" alt="Home care visit" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare04/600/450" alt="Senior wellness activity" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare05/600/450" alt="Meal preparation" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare06/600/450" alt="Caregiver support" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare07/600/450" alt="Family meeting" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare08/600/450" alt="Daily care routine" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare09/600/450" alt="Outdoor activity" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare10/600/450" alt="Care team gathering" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- FAQ — 5 questions -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything families ask before choosing Sunrise Home Care for their loved one.</p>
+    </div>
+  </div>
+  <div class="faq-grid reveal">
+    <div class="faq-item">
+      <div class="faq-q">
+        How are caregivers screened and vetted?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Every Sunrise caregiver undergoes a thorough background check, reference verification, and skills assessment before their first placement. All caregivers are fully bonded, insured, and complete ongoing training including dementia care and CPR/AED certification.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Can you start same-day for urgent care needs?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Yes. Same-day starts are available for urgent situations such as hospital discharges or sudden changes in a loved one's condition. Call (214) 555-0182 directly to speak with a coordinator and we'll do everything we can to arrange immediate coverage.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Do you have bilingual caregivers?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Yes. Sunrise Home Care has bilingual care staff fluent in English and Spanish. If your loved one is more comfortable speaking Spanish, we'll match them with a caregiver who shares that language.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Do you specialise in dementia or Alzheimer's care?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Yes. Our founder Maria Valdez is a Certified Dementia Practitioner (CDP), and multiple team members hold advanced dementia care certifications. Care coordinator James Okafor specialises in dementia care transitions and hospital-to-home discharge planning for memory care clients.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Are there long-term contracts?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        No. Sunrise Home Care offers flexible, month-to-month care with no long-term commitment required. You can increase, decrease, or pause services at any time. Our goal is to earn your trust week by week — not lock you into a contract.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="inner-section inner-section--dark" style="text-align:center;">
+  <div style="margin-bottom:36px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.8vw,2.2rem);font-weight:700;color:#fff;margin-bottom:12px;">Get In Touch</h2>
+    <p style="color:rgba(255,255,255,0.65);font-size:1rem;max-width:520px;margin:0 auto;">Ready to talk about care for your loved one? Our care coordinators are available Monday–Saturday, 8 am–6 pm. For urgent needs, our 24-hour line is always open.</p>
+  </div>
+  <div class="contact-grid" style="max-width:760px;margin:0 auto 36px;">
+    <div class="contact-item">
+      <span class="contact-icon">📞</span>
+      <div>
+        <div class="contact-label" style="color:rgba(255,255,255,0.4);">Phone</div>
+        <div class="contact-val"><a href="tel:2145550182" style="color:#fff;">(214) 555-0182</a></div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">📧</span>
+      <div>
+        <div class="contact-label" style="color:rgba(255,255,255,0.4);">Email</div>
+        <div class="contact-val"><a href="mailto:care@sunrisehomecare.com" style="color:#fff;">care@sunrisehomecare.com</a></div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">🌐</span>
+      <div>
+        <div class="contact-label" style="color:rgba(255,255,255,0.4);">Website</div>
+        <div class="contact-val" style="color:#fff;">sunrisehomecare.com</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <button type="button" class="btn-primary-lg" data-open-form-modal>
+      📋 Request a Free Care Consultation <span class="btn-arrow">→</span>
+    </button>
+    <button type="button" class="btn-ghost" data-open-chat style="color:#fff;border-color:rgba(255,255,255,0.3);">
+      💬 Chat with advisor
+    </button>
+  </div>
+  <p style="color:rgba(255,255,255,0.35);font-size:0.8rem;margin-top:18px;">We'll call you back within 2 hours · No obligation · Free for families</p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">🌿 ElderCareMatters</a>
+      <p class="footer-tagline">Connecting families with trusted elder care providers across the United States.</p>
+      <div class="footer-trust">
+        <div class="trust-item">✓ Verified Providers</div>
+        <div class="trust-item">🔒 Privacy Protected</div>
+        <div class="trust-item">⭐ Free for Families</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>For Families</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="search.html">Find Providers</a></li>
+        <li><a href="blog.html">Guides &amp; Resources</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>For Providers</h4>
+      <ul class="footer-links">
+        <li><a href="for-providers.html">Provider Overview</a></li>
+        <li><a href="for-providers.html">Pricing &amp; Plans</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Browse Care</h4>
+      <ul class="footer-links">
+        <li><a href="search.html">All Categories</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ElderCareMatters. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Quick Form Modal -->
+<div class="modal-overlay form-modal" id="formModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
+    <h3>Tell us what you need</h3>
+    <p>We'll match you with verified providers in <em class="js-location-city">your area</em>. Takes under a minute.</p>
+    <form class="intake-form" onsubmit="return false;">
+      <div class="form-field">
+        <label for="care-type">What kind of help?</label>
+        <select id="care-type" name="care-type"><option value="">Select care type…</option></select>
+      </div>
+      <div class="form-field">
+        <label for="city">Location</label>
+        <input id="city" name="city" type="text" placeholder="City or ZIP">
+      </div>
+      <div class="form-field">
+        <label>How soon do you need help?</label>
+        <div class="urgency-chips">
+          <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
+          <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
+          <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Find Providers →</button>
+    </form>
+  </div>
+</div>
+
+<!-- Chat FAB -->
+<button class="chat-fab" id="chatFab" type="button" aria-label="Chat with our care advisor">
+  <span class="chat-fab-icon chat-fab-icon--chat">💬</span>
+  <span class="chat-fab-icon chat-fab-icon--close">×</span>
+  <span class="chat-fab-pulse"></span>
+</button>
+<div class="chat-popup" id="chatPopup">
+  <div class="chat-popup-header">
+    <div class="chat-avatar-sm">👩‍⚕️</div>
+    <div class="chat-meta">
+      <div class="chat-meta-name">ECM Care Advisor</div>
+      <div class="chat-meta-status"><span class="status-dot"></span> Online · Avg reply &lt; 1 min</div>
+    </div>
+    <div class="chat-step-badge">Step 1 of 4</div>
+    <button class="chat-popup-close" type="button" data-close-chat aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body"></div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/location.js"></script>
+<script src="assets/js/intake.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

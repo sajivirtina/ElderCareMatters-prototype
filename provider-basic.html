@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AllCare Home Services | ElderCareMatters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/homepage.css">
+<link rel="stylesheet" href="assets/css/inner.css">
+<link rel="stylesheet" href="assets/css/provider-pages.css">
+</head>
+<body>
+
+<!-- Location Modal -->
+<div class="modal-overlay" id="locationModal">
+  <div class="modal">
+    <h3>Set your location</h3>
+    <p>Searching for a parent in a different city? Enter their location.</p>
+    <select name="state">
+      <option value="">Select state…</option>
+      <option>California</option><option>Florida</option><option>Illinois</option>
+      <option>New York</option><option>Texas</option><option>Washington</option>
+    </select>
+    <div class="modal-divider">or</div>
+    <input type="text" name="zip" placeholder="City or ZIP code…">
+    <div class="modal-actions">
+      <button class="btn-outline" type="button" data-modal-cancel>Cancel</button>
+      <button class="btn-sage" type="button" data-modal-submit>Update Location</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    ElderCareMatters
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="search.html">Find Care</a></li>
+    <li><a href="blog.html">Resources</a></li>
+    <li><a href="for-providers.html">For Providers</a></li>
+    <li><a href="provider-dashboard.html" class="nav-cta">Provider Login</a></li>
+  </ul>
+  <div class="nav-location-badge" data-open-location-modal>
+    📍 <span class="js-location-full">Detecting…</span> · Change
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="search.html">Categories</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="category.html?type=home-care">Home Care</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">AllCare Home Services</span>
+</div>
+
+<!-- Unclaimed Info Bar -->
+<div class="unclaimed-info-bar">
+  <span style="font-size:1.2rem;flex-shrink:0">ℹ️</span>
+  <span>This provider has not yet claimed their full profile. Information shown is based on publicly available data.
+  Is this your business? <a href="for-providers.html">Claim this listing →</a></span>
+</div>
+
+<!-- Provider Hero -->
+<section class="provider-hero">
+  <div class="provider-hero-main">
+    <div class="plan-hero-badge plan-hero-badge--basic">Basic Plan</div>
+    <div class="provider-hero-top">
+      <div class="provider-hero-logo" style="background:#7EA6C4">AC</div>
+      <div>
+        <h1 class="provider-hero-title">AllCare Home Services</h1>
+        <div class="provider-hero-meta">
+          <span class="provider-hero-meta-item">
+            <span style="color:var(--gold)">★★★★</span><span style="color:var(--border)">★</span>&nbsp;
+            <strong>3.9</strong>
+            <span style="color:var(--muted)">(5 reviews)</span>
+          </span>
+          <span class="provider-hero-meta-item">📍 Dallas, TX</span>
+          <span class="provider-tier-badge tier-basic" style="position:static">Basic</span>
+        </div>
+      </div>
+    </div>
+    <div class="provider-specialties">
+      <span class="specialty-chip">🏠 Home Care</span>
+      <span class="specialty-chip">Companion Care</span>
+    </div>
+    <p class="provider-hero-tagline">Home care services in the Dallas area.</p>
+    <p class="provider-hero-about" style="font-size:0.92rem;color:var(--muted);margin-top:4px;">
+      Starting from <strong style="color:var(--charcoal);font-size:1.05rem;">$24/hr</strong>
+    </p>
+  </div>
+
+  <div class="provider-side-card">
+    <h4>Contact AllCare Home Services</h4>
+    <p>Submit a free match request. No spam, no fees, no obligation. Takes under a minute.</p>
+    <button type="button" class="btn-primary-lg" data-open-form-modal>
+      📋 Contact Provider <span class="btn-arrow">→</span>
+    </button>
+    <button type="button" class="btn-text" data-open-chat>💬 Or chat with our advisor</button>
+  </div>
+</section>
+
+<!-- About — ~50 words -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div><h2>About AllCare Home Services</h2></div>
+  </div>
+  <p class="about-body">AllCare Home Services provides home care assistance to older adults and families in Dallas, TX. They offer companion care and related home support services. Contact the provider directly for current pricing, scheduling availability, and to confirm coverage in your area. Detailed service information is available once the provider claims their full profile.</p>
+</section>
+
+<!-- Services — headline only -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>Services</h2>
+      <p>This provider offers the following care types in the Dallas area.</p>
+    </div>
+  </div>
+  <div class="provider-specialties" style="gap:10px;">
+    <span class="specialty-chip" style="font-size:0.88rem;padding:7px 16px;">Companion Care</span>
+    <span class="specialty-chip" style="font-size:0.88rem;padding:7px 16px;">Home Care</span>
+  </div>
+  <p style="margin-top:20px;font-size:0.88rem;color:var(--muted);">
+    Detailed service descriptions and pricing are available once this provider claims their full profile.
+    <a href="for-providers.html" style="color:var(--sage);font-weight:600;text-decoration:none;margin-left:4px;">Upgrade plan →</a>
+  </p>
+</section>
+
+<!-- Gallery — 2 images -->
+<section class="provider-gallery">
+  <div class="gallery-header">
+    <h2>Photo Gallery</h2>
+    <p>Photos provided by the provider. Upgrade to the Standard or Premium plan to showcase up to 10 photos.</p>
+  </div>
+  <div class="gallery-grid gallery-grid--2">
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare01/600/450" alt="AllCare Home Services" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare02/600/450" alt="AllCare Home Services care team" loading="lazy">
+    </div>
+  </div>
+  <p class="gallery-upgrade-note">
+    📷 2 photos included on the Basic plan.
+    <a href="for-providers.html" style="color:var(--sage);font-weight:600;text-decoration:none;margin-left:4px;">Upgrade for more →</a>
+  </p>
+</section>
+
+<!-- FAQ — 3 questions -->
+<section class="inner-section inner-section--warm">
+  <div class="inner-section-header">
+    <div>
+      <h2>Frequently Asked Questions</h2>
+      <p>Common questions about AllCare Home Services and this listing.</p>
+    </div>
+  </div>
+  <div class="faq-grid reveal">
+    <div class="faq-item">
+      <div class="faq-q">
+        How do I contact AllCare Home Services?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Use the "Contact Provider" button on this page to submit a free match request through ElderCareMatters. We'll forward your inquiry to the provider. Response times may vary as this is a basic listing.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        What areas does AllCare Home Services cover?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        This listing shows Dallas, TX as the primary service area. Contact the provider directly to confirm whether they serve your specific neighborhood or ZIP code.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Is the information on this page accurate and up to date?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Information shown is sourced from publicly available data. This provider has not yet claimed or verified their listing on ElderCareMatters. If you are the provider, you can claim this listing for free to update and manage your profile.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Band -->
+<div class="cta-band">
+  <div>
+    <h2>Ready to find the right care?</h2>
+    <p>One free match request — no spam, no fees, no obligation.</p>
+  </div>
+  <div class="cta-band-actions">
+    <button type="button" class="btn-primary-lg" data-open-form-modal>📋 Request a match →</button>
+    <button type="button" class="btn-ghost" data-open-chat style="color:#fff;border-color:rgba(255,255,255,0.3);">💬 Chat with advisor</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">🌿 ElderCareMatters</a>
+      <p class="footer-tagline">Connecting families with trusted elder care providers across the United States.</p>
+      <div class="footer-trust">
+        <div class="trust-item">✓ Verified Providers</div>
+        <div class="trust-item">🔒 Privacy Protected</div>
+        <div class="trust-item">⭐ Free for Families</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>For Families</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="search.html">Find Providers</a></li>
+        <li><a href="blog.html">Guides &amp; Resources</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>For Providers</h4>
+      <ul class="footer-links">
+        <li><a href="for-providers.html">Provider Overview</a></li>
+        <li><a href="for-providers.html">Pricing &amp; Plans</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Browse Care</h4>
+      <ul class="footer-links">
+        <li><a href="search.html">All Categories</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ElderCareMatters. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Quick Form Modal -->
+<div class="modal-overlay form-modal" id="formModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
+    <h3>Tell us what you need</h3>
+    <p>We'll match you with verified providers in <em class="js-location-city">your area</em>. Takes under a minute.</p>
+    <form class="intake-form" onsubmit="return false;">
+      <div class="form-field">
+        <label for="care-type">What kind of help?</label>
+        <select id="care-type" name="care-type"><option value="">Select care type…</option></select>
+      </div>
+      <div class="form-field">
+        <label for="city">Location</label>
+        <input id="city" name="city" type="text" placeholder="City or ZIP">
+      </div>
+      <div class="form-field">
+        <label>How soon do you need help?</label>
+        <div class="urgency-chips">
+          <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
+          <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
+          <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Find Providers →</button>
+    </form>
+  </div>
+</div>
+
+<!-- Chat FAB -->
+<button class="chat-fab" id="chatFab" type="button" aria-label="Chat with our care advisor">
+  <span class="chat-fab-icon chat-fab-icon--chat">💬</span>
+  <span class="chat-fab-icon chat-fab-icon--close">×</span>
+  <span class="chat-fab-pulse"></span>
+</button>
+<div class="chat-popup" id="chatPopup">
+  <div class="chat-popup-header">
+    <div class="chat-avatar-sm">👩‍⚕️</div>
+    <div class="chat-meta">
+      <div class="chat-meta-name">ECM Care Advisor</div>
+      <div class="chat-meta-status"><span class="status-dot"></span> Online · Avg reply &lt; 1 min</div>
+    </div>
+    <div class="chat-step-badge">Step 1 of 4</div>
+    <button class="chat-popup-close" type="button" data-close-chat aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body"></div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/location.js"></script>
+<script src="assets/js/intake.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

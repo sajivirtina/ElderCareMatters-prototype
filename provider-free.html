@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Provider Listing (Free) | ElderCareMatters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/homepage.css">
+<link rel="stylesheet" href="assets/css/inner.css">
+<link rel="stylesheet" href="assets/css/provider-pages.css">
+</head>
+<body>
+
+<!-- Location Modal -->
+<div class="modal-overlay" id="locationModal">
+  <div class="modal">
+    <h3>Set your location</h3>
+    <p>Searching for a parent in a different city? Enter their location.</p>
+    <select name="state">
+      <option value="">Select state…</option>
+      <option>California</option><option>Florida</option><option>Illinois</option>
+      <option>New York</option><option>Texas</option><option>Washington</option>
+    </select>
+    <div class="modal-divider">or</div>
+    <input type="text" name="zip" placeholder="City or ZIP code…">
+    <div class="modal-actions">
+      <button class="btn-outline" type="button" data-modal-cancel>Cancel</button>
+      <button class="btn-sage" type="button" data-modal-submit>Update Location</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    ElderCareMatters
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="search.html">Find Care</a></li>
+    <li><a href="blog.html">Resources</a></li>
+    <li><a href="for-providers.html">For Providers</a></li>
+    <li><a href="provider-dashboard.html" class="nav-cta">Provider Login</a></li>
+  </ul>
+  <div class="nav-location-badge" data-open-location-modal>
+    📍 <span class="js-location-full">Detecting…</span> · Change
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="search.html">Categories</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="category.html?type=home-care">Home Care</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Provider Listing</span>
+</div>
+
+<!-- Unclaimed Info Bar -->
+<div class="unclaimed-info-bar">
+  <span style="font-size:1.2rem;flex-shrink:0">ℹ️</span>
+  <span>This provider has not yet claimed their full profile. Information shown is based on publicly available data.
+  Is this your business? <a href="for-providers.html">Claim this listing →</a></span>
+</div>
+
+<!-- Provider Hero (no side card for free) -->
+<section class="provider-hero provider-hero--no-side">
+  <div class="provider-hero-main">
+    <div class="plan-hero-badge plan-hero-badge--free">Free Listing</div>
+    <div class="provider-hero-top">
+      <div class="provider-hero-logo" style="background:#B0B0B0">?</div>
+      <div>
+        <h1 class="provider-hero-title">[Provider Name]</h1>
+        <div class="provider-hero-meta">
+          <span class="provider-hero-meta-item">📍 Dallas, TX</span>
+          <span class="provider-tier-badge tier-free" style="position:static">Free</span>
+        </div>
+      </div>
+    </div>
+    <div class="provider-specialties">
+      <span class="specialty-chip">Home Care</span>
+    </div>
+    <p class="provider-hero-tagline">Home care services in the Dallas area.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+      <button type="button" class="btn-primary-lg" data-open-form-modal>
+        📋 Contact Provider <span class="btn-arrow">→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- About — ~25 words -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div><h2>About</h2></div>
+  </div>
+  <p class="about-body">[Provider Name] offers home care services to families in the Dallas, TX area. Contact the provider directly to learn more about their services and availability.</p>
+</section>
+
+<!-- Gallery — 1 image -->
+<section class="provider-gallery">
+  <div class="gallery-header">
+    <h2>Photo Gallery</h2>
+    <p>Upgrade your plan to showcase more photos of your facility and team.</p>
+  </div>
+  <div class="gallery-grid gallery-grid--1">
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare01/600/450" alt="Provider photo" loading="lazy">
+    </div>
+  </div>
+  <p class="gallery-upgrade-note">
+    📷 Only 1 photo included on the Free plan.
+    <a href="for-providers.html" style="color:var(--sage);font-weight:600;text-decoration:none;margin-left:4px">Upgrade to add more →</a>
+  </p>
+</section>
+
+<!-- FAQ — 2 questions -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>Frequently Asked Questions</h2>
+      <p>Common questions about this listing and ElderCareMatters.</p>
+    </div>
+  </div>
+  <div class="faq-grid reveal">
+    <div class="faq-item">
+      <div class="faq-q">
+        What is ElderCareMatters?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        ElderCareMatters is a free directory that helps families find and connect with trusted elder care providers across Texas and the United States. We list verified and unverified providers so families have access to every option in their area.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        How do I contact this provider?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Use the "Contact Provider" button above to submit a free match request through ElderCareMatters. If the provider has claimed their listing, they typically respond within a few business days. You can also search online for their direct contact details.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Band — sage (claim listing) -->
+<div class="cta-band--sage">
+  <h2>Is this your business?</h2>
+  <p>Claim your free listing on ElderCareMatters and start connecting with families in the Dallas area.<br>It takes less than 10 minutes to get started — no credit card required.</p>
+  <a href="for-providers.html" class="btn-primary-lg" style="display:inline-flex;text-decoration:none;">
+    🌿 Claim Your Free Listing <span class="btn-arrow">→</span>
+  </a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">🌿 ElderCareMatters</a>
+      <p class="footer-tagline">Connecting families with trusted elder care providers across the United States.</p>
+      <div class="footer-trust">
+        <div class="trust-item">✓ Verified Providers</div>
+        <div class="trust-item">🔒 Privacy Protected</div>
+        <div class="trust-item">⭐ Free for Families</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>For Families</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="search.html">Find Providers</a></li>
+        <li><a href="blog.html">Guides &amp; Resources</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>For Providers</h4>
+      <ul class="footer-links">
+        <li><a href="for-providers.html">Provider Overview</a></li>
+        <li><a href="for-providers.html">Pricing &amp; Plans</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Browse Care</h4>
+      <ul class="footer-links">
+        <li><a href="search.html">All Categories</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ElderCareMatters. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Quick Form Modal -->
+<div class="modal-overlay form-modal" id="formModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
+    <h3>Tell us what you need</h3>
+    <p>We'll match you with verified providers in <em class="js-location-city">your area</em>. Takes under a minute.</p>
+    <form class="intake-form" onsubmit="return false;">
+      <div class="form-field">
+        <label for="care-type">What kind of help?</label>
+        <select id="care-type" name="care-type"><option value="">Select care type…</option></select>
+      </div>
+      <div class="form-field">
+        <label for="city">Location</label>
+        <input id="city" name="city" type="text" placeholder="City or ZIP">
+      </div>
+      <div class="form-field">
+        <label>How soon do you need help?</label>
+        <div class="urgency-chips">
+          <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
+          <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
+          <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Find Providers →</button>
+    </form>
+  </div>
+</div>
+
+<!-- Chat FAB -->
+<button class="chat-fab" id="chatFab" type="button" aria-label="Chat with our care advisor">
+  <span class="chat-fab-icon chat-fab-icon--chat">💬</span>
+  <span class="chat-fab-icon chat-fab-icon--close">×</span>
+  <span class="chat-fab-pulse"></span>
+</button>
+<div class="chat-popup" id="chatPopup">
+  <div class="chat-popup-header">
+    <div class="chat-avatar-sm">👩‍⚕️</div>
+    <div class="chat-meta">
+      <div class="chat-meta-name">ECM Care Advisor</div>
+      <div class="chat-meta-status"><span class="status-dot"></span> Online · Avg reply &lt; 1 min</div>
+    </div>
+    <div class="chat-step-badge">Step 1 of 4</div>
+    <button class="chat-popup-close" type="button" data-close-chat aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body"></div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/location.js"></script>
+<script src="assets/js/intake.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ComfortCare Plano | ElderCareMatters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/homepage.css">
+<link rel="stylesheet" href="assets/css/inner.css">
+<link rel="stylesheet" href="assets/css/provider-pages.css">
+</head>
+<body>
+
+<!-- Location Modal -->
+<div class="modal-overlay" id="locationModal">
+  <div class="modal">
+    <h3>Set your location</h3>
+    <p>Searching for a parent in a different city? Enter their location.</p>
+    <select name="state">
+      <option value="">Select state…</option>
+      <option>California</option><option>Florida</option><option>Illinois</option>
+      <option>New York</option><option>Texas</option><option>Washington</option>
+    </select>
+    <div class="modal-divider">or</div>
+    <input type="text" name="zip" placeholder="City or ZIP code…">
+    <div class="modal-actions">
+      <button class="btn-outline" type="button" data-modal-cancel>Cancel</button>
+      <button class="btn-sage" type="button" data-modal-submit>Update Location</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    ElderCareMatters
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="search.html">Find Care</a></li>
+    <li><a href="blog.html">Resources</a></li>
+    <li><a href="for-providers.html">For Providers</a></li>
+    <li><a href="provider-dashboard.html" class="nav-cta">Provider Login</a></li>
+  </ul>
+  <div class="nav-location-badge" data-open-location-modal>
+    📍 <span class="js-location-full">Detecting…</span> · Change
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="search.html">Categories</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="category.html?type=home-care">Home Care</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">ComfortCare Plano</span>
+</div>
+
+<!-- Provider Hero -->
+<section class="provider-hero">
+  <div class="provider-hero-main">
+    <div class="plan-hero-badge plan-hero-badge--standard">✓ Standard Plan</div>
+    <div class="provider-hero-top">
+      <div class="provider-hero-logo" style="background:#7A9E7E">CP</div>
+      <div>
+        <h1 class="provider-hero-title">ComfortCare Plano</h1>
+        <div class="provider-hero-meta">
+          <span class="provider-hero-meta-item">
+            <span style="color:var(--gold)">★★★★</span><span style="color:var(--border)">★</span>&nbsp;
+            <strong>4.5</strong>
+            <span style="color:var(--muted)">(41 verified reviews)</span>
+          </span>
+          <span class="provider-hero-meta-item">📍 Plano, TX</span>
+          <span class="provider-verified">✓ Verified</span>
+          <span class="provider-tier-badge tier-premium" style="position:static">Standard</span>
+        </div>
+      </div>
+    </div>
+    <div class="provider-specialties">
+      <span class="specialty-chip">🏠 Home Care</span>
+      <span class="specialty-chip">Personal Care</span>
+      <span class="specialty-chip">Companion Care</span>
+      <span class="specialty-chip">Live-In Care</span>
+    </div>
+    <p class="provider-hero-tagline">Hourly and live-in home care for older adults in North Dallas.</p>
+    <p class="provider-hero-about">📞 (972) 555-0241 · Serving Plano, Frisco &amp; Allen</p>
+  </div>
+
+  <div class="provider-side-card">
+    <h4>Contact ComfortCare Plano</h4>
+    <p>Submit a free match request — no spam, no calls unless you ask. Takes under a minute.</p>
+    <button type="button" class="btn-primary-lg" data-open-form-modal>
+      📋 Contact ComfortCare <span class="btn-arrow">→</span>
+    </button>
+    <button type="button" class="btn-text" data-open-chat>💬 Or chat with our advisor</button>
+    <div class="provider-side-stats">
+      <div>
+        <div class="provider-side-stat-val">&lt; 4 hrs</div>
+        <div class="provider-side-stat-label">Response time</div>
+      </div>
+      <div>
+        <div class="provider-side-stat-val">14+</div>
+        <div class="provider-side-stat-label">Years in care</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>About ComfortCare Plano</h2>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+    <div class="about-body">
+      <p>ComfortCare Plano is a locally owned home care agency serving families across Collin County. We focus on straightforward, flexible support — whether your parent needs a few hours of help each week or consistent daily care.</p>
+      <p>Our caregivers are thoroughly screened, reference-checked, and trained before their first placement. We keep things simple: clear hourly rates, no hidden fees, and no long-term contracts.</p>
+    </div>
+    <div>
+      <p style="font-weight:600;color:var(--charcoal);margin-bottom:12px;font-size:0.92rem;">What We Offer:</p>
+      <ul class="about-list">
+        <li>Personal care (bathing, dressing, grooming)</li>
+        <li>Companion care and social engagement</li>
+        <li>Meal preparation and light housekeeping</li>
+        <li>Medication reminders</li>
+        <li>Transportation to medical appointments</li>
+        <li>Flexible scheduling, from 4 hours/week to full-time</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Services & Pricing -->
+<section class="inner-section inner-section--warm">
+  <div class="inner-section-header">
+    <div>
+      <h2>Services &amp; Pricing</h2>
+      <p>Transparent hourly rates, no hidden fees. No long-term contracts required.</p>
+    </div>
+  </div>
+  <div class="package-grid">
+    <!-- Companion Care -->
+    <div class="package-card">
+      <div class="package-tier-label">Companion Care</div>
+      <div class="package-name">Companion Care</div>
+      <div class="package-price">
+        <span style="font-size:0.8rem;color:var(--muted);margin-right:4px;">From</span>
+        <span class="package-price-val">26</span>
+        <span class="package-price-unit">/hr</span>
+      </div>
+      <ul class="package-features">
+        <li>Friendly company and social engagement</li>
+        <li>Errands and light grocery shopping</li>
+        <li>Light meal preparation</li>
+        <li>Gentle support for independent seniors</li>
+        <li>Flexible scheduling</li>
+      </ul>
+      <button class="package-cta" type="button" data-open-form-modal>Get Started →</button>
+    </div>
+    <!-- Personal Care — Most Popular -->
+    <div class="package-card package-card--popular">
+      <div class="package-popular-badge">⭐ Most Popular</div>
+      <div class="package-tier-label">Personal Care</div>
+      <div class="package-name">Personal Care</div>
+      <div class="package-price">
+        <span style="font-size:0.8rem;color:var(--muted);margin-right:4px;">From</span>
+        <span class="package-price-val">32</span>
+        <span class="package-price-unit">/hr</span>
+      </div>
+      <ul class="package-features">
+        <li>Hands-on daily assistance</li>
+        <li>Bathing, dressing &amp; grooming</li>
+        <li>Medication reminders</li>
+        <li>Meal preparation</li>
+        <li>Light housekeeping</li>
+      </ul>
+      <button class="package-cta" type="button" data-open-form-modal>Get Started →</button>
+    </div>
+    <!-- Live-In Care -->
+    <div class="package-card">
+      <div class="package-tier-label">Live-In Care</div>
+      <div class="package-name">Live-In Care</div>
+      <div class="package-price">
+        <span style="font-size:0.8rem;color:var(--muted);margin-right:4px;">From</span>
+        <span class="package-price-val">280</span>
+        <span class="package-price-unit">/day</span>
+      </div>
+      <ul class="package-features">
+        <li>Dedicated caregiver present in the home</li>
+        <li>Full-time support without facility placement</li>
+        <li>All personal care services included</li>
+        <li>Overnight coverage</li>
+        <li>Ideal for post-hospital recovery</li>
+      </ul>
+      <button class="package-cta" type="button" data-open-form-modal>Get Started →</button>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>What Families Are Saying</h2>
+      <p>4.5 average from 41 verified families in Plano, Frisco &amp; Allen.</p>
+    </div>
+  </div>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-author">Robert M.</span>
+        <span class="review-date">February 2026</span>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Simple pricing, reliable caregivers. We needed someone for weekday mornings, and ComfortCare had someone placed within three days. My mother took to her caregiver right away."</p>
+      <p class="review-loc" style="margin-top:10px;">Son of client · Plano, TX</p>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-author">Anita G.</span>
+        <span class="review-date">March 2026</span>
+      </div>
+      <div class="review-stars">★★★★☆</div>
+      <p class="review-text">"Easy to work with, clear about what's included. Exactly what we needed — no fuss, no overselling."</p>
+      <p class="review-loc" style="margin-top:10px;">Daughter of client · Frisco, TX</p>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-author">Sandra K.</span>
+        <span class="review-date">January 2026</span>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Our caregiver is kind, patient, and punctual. Mom looks forward to her visits. That says everything."</p>
+      <p class="review-loc" style="margin-top:10px;">Daughter of client · Allen, TX</p>
+    </div>
+    <div class="review-card" style="display:flex;align-items:center;justify-content:center;text-align:center;background:var(--sage-pale);border:1.5px dashed var(--sage-light);">
+      <div>
+        <div style="font-size:1.8rem;margin-bottom:8px;">⭐</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--charcoal);margin-bottom:6px;">41 verified reviews</div>
+        <div style="font-size:0.82rem;color:var(--muted);">4.5 average rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Team -->
+<section class="inner-section inner-section--warm">
+  <div class="inner-section-header">
+    <div>
+      <h2>Our Team</h2>
+      <p>Experienced professionals dedicated to Collin County families.</p>
+    </div>
+  </div>
+  <div class="team-grid team-grid--2">
+    <div class="team-card">
+      <div class="team-avatar" style="background:#7A9E7E">LC</div>
+      <div class="team-name">Linda Chow</div>
+      <div class="team-role">Owner &amp; Lead Coordinator</div>
+      <p class="team-bio">Linda has worked in senior home care for 14 years and opened ComfortCare Plano to bring personal, relationship-based care to North Dallas families.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#5E8A8A">CM</div>
+      <div class="team-name">Carlos Mendez</div>
+      <div class="team-role">Scheduling &amp; Client Liaison</div>
+      <p class="team-bio">Carlos manages caregiver placements and is the first point of contact for families with questions, schedule changes, or new care needs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Credentials -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>Credentials &amp; Certifications</h2>
+    </div>
+  </div>
+  <ul class="cred-list">
+    <li>Texas HHSC Licensed Agency</li>
+    <li>Bonded &amp; Insured</li>
+    <li>ElderCareMatters Verified Provider</li>
+    <li>All caregivers background-checked &amp; reference-verified</li>
+  </ul>
+</section>
+
+<!-- Coverage Area -->
+<section class="inner-section inner-section--warm">
+  <div class="inner-section-header">
+    <div>
+      <h2>Coverage Area</h2>
+      <p>Serving families throughout Collin County.</p>
+    </div>
+  </div>
+  <div class="coverage-chips">
+    <span class="coverage-chip">📍 Plano</span>
+    <span class="coverage-chip">📍 Frisco</span>
+    <span class="coverage-chip">📍 Allen</span>
+    <span class="coverage-chip">📍 McKinney</span>
+  </div>
+  <p class="coverage-note">Not sure if we serve your neighborhood? Call (972) 555-0241 — we'll confirm right away.</p>
+</section>
+
+<!-- Gallery — 5 images -->
+<section class="provider-gallery">
+  <div class="gallery-header">
+    <h2>Photo Gallery</h2>
+    <p>A glimpse of our team and care environment in Plano.</p>
+  </div>
+  <div class="gallery-grid gallery-grid--5">
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare01/600/450" alt="ComfortCare Plano" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare02/600/450" alt="Caregiver with client" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare03/600/450" alt="Home care visit" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare04/600/450" alt="Senior wellness" loading="lazy">
+    </div>
+    <div class="gallery-grid-item">
+      <img src="https://picsum.photos/seed/eldercare05/600/450" alt="Care team" loading="lazy">
+    </div>
+  </div>
+  <p class="gallery-upgrade-note">
+    📷 5 photos included on the Standard plan.
+    <a href="for-providers.html" style="color:var(--sage);font-weight:600;text-decoration:none;margin-left:4px;">Upgrade to Premium for 10 →</a>
+  </p>
+</section>
+
+<!-- FAQ — 4 questions -->
+<section class="inner-section inner-section--cream">
+  <div class="inner-section-header">
+    <div>
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything families commonly ask before getting started with ComfortCare Plano.</p>
+    </div>
+  </div>
+  <div class="faq-grid reveal">
+    <div class="faq-item">
+      <div class="faq-q">
+        How do I get started with ComfortCare Plano?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Call (972) 555-0241 or use the "Contact ComfortCare" button on this page. A coordinator will reach out within 4 hours to discuss your needs, explain options, and arrange a free in-home consultation if needed.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        What are your service hours and availability?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Caregivers are available 7 days a week with flexible scheduling from as little as 4 hours per week up to full-time live-in care. Holiday coverage is also available.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Do you require a long-term contract?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        No. ComfortCare Plano offers flexible, no-contract arrangements. You can adjust your care schedule or stop services at any time without penalties.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Which cities and zip codes do you serve?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        ComfortCare Plano serves Plano, Frisco, Allen, and McKinney. If you're unsure whether your neighborhood is covered, call (972) 555-0241 and we'll confirm right away — usually in under a minute.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact / CTA -->
+<section class="inner-section inner-section--dark" style="text-align:center;">
+  <div class="inner-section-header" style="justify-content:center;text-align:center;margin-bottom:36px;">
+    <div>
+      <h2 style="color:#fff;">Get In Touch</h2>
+      <p style="color:rgba(255,255,255,0.65);">Ready to talk about care for your loved one? We respond within 4 hours.</p>
+    </div>
+  </div>
+  <div class="contact-grid" style="max-width:680px;margin:0 auto 32px;">
+    <div class="contact-item">
+      <span class="contact-icon">📞</span>
+      <div>
+        <div class="contact-label" style="color:rgba(255,255,255,0.45);">Phone</div>
+        <div class="contact-val"><a href="tel:9725550241" style="color:#fff;">(972) 555-0241</a></div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">📧</span>
+      <div>
+        <div class="contact-label" style="color:rgba(255,255,255,0.45);">Email</div>
+        <div class="contact-val"><a href="mailto:info@comfortcareplano.com" style="color:#fff;">info@comfortcareplano.com</a></div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">🕐</span>
+      <div>
+        <div class="contact-label" style="color:rgba(255,255,255,0.45);">Response Time</div>
+        <div class="contact-val" style="color:#fff;">Within 4 hours</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <button type="button" class="btn-primary-lg" data-open-form-modal>
+      📋 Contact Us Today <span class="btn-arrow">→</span>
+    </button>
+    <button type="button" class="btn-ghost" data-open-chat style="color:#fff;border-color:rgba(255,255,255,0.3);">
+      💬 Chat with advisor
+    </button>
+  </div>
+  <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin-top:18px;">Free consultation · No obligation · We respond within 4 hours</p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">🌿 ElderCareMatters</a>
+      <p class="footer-tagline">Connecting families with trusted elder care providers across the United States.</p>
+      <div class="footer-trust">
+        <div class="trust-item">✓ Verified Providers</div>
+        <div class="trust-item">🔒 Privacy Protected</div>
+        <div class="trust-item">⭐ Free for Families</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>For Families</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="search.html">Find Providers</a></li>
+        <li><a href="blog.html">Guides &amp; Resources</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>For Providers</h4>
+      <ul class="footer-links">
+        <li><a href="for-providers.html">Provider Overview</a></li>
+        <li><a href="for-providers.html">Pricing &amp; Plans</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Browse Care</h4>
+      <ul class="footer-links">
+        <li><a href="search.html">All Categories</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ElderCareMatters. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Quick Form Modal -->
+<div class="modal-overlay form-modal" id="formModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
+    <h3>Tell us what you need</h3>
+    <p>We'll match you with verified providers in <em class="js-location-city">your area</em>. Takes under a minute.</p>
+    <form class="intake-form" onsubmit="return false;">
+      <div class="form-field">
+        <label for="care-type">What kind of help?</label>
+        <select id="care-type" name="care-type"><option value="">Select care type…</option></select>
+      </div>
+      <div class="form-field">
+        <label for="city">Location</label>
+        <input id="city" name="city" type="text" placeholder="City or ZIP">
+      </div>
+      <div class="form-field">
+        <label>How soon do you need help?</label>
+        <div class="urgency-chips">
+          <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
+          <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
+          <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Find Providers →</button>
+    </form>
+  </div>
+</div>
+
+<!-- Chat FAB -->
+<button class="chat-fab" id="chatFab" type="button" aria-label="Chat with our care advisor">
+  <span class="chat-fab-icon chat-fab-icon--chat">💬</span>
+  <span class="chat-fab-icon chat-fab-icon--close">×</span>
+  <span class="chat-fab-pulse"></span>
+</button>
+<div class="chat-popup" id="chatPopup">
+  <div class="chat-popup-header">
+    <div class="chat-avatar-sm">👩‍⚕️</div>
+    <div class="chat-meta">
+      <div class="chat-meta-name">ECM Care Advisor</div>
+      <div class="chat-meta-status"><span class="status-dot"></span> Online · Avg reply &lt; 1 min</div>
+    </div>
+    <div class="chat-step-badge">Step 1 of 4</div>
+    <button class="chat-popup-close" type="button" data-close-chat aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body"></div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/location.js"></script>
+<script src="assets/js/intake.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

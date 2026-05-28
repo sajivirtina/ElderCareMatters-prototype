@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Plans | ElderCareMatters for Providers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/homepage.css">
+<link rel="stylesheet" href="assets/css/inner.css">
+<link rel="stylesheet" href="assets/css/provider-pages.css">
+</head>
+<body>
+
+<!-- Location Modal -->
+<div class="modal-overlay" id="locationModal">
+  <div class="modal">
+    <h3>Set your location</h3>
+    <p>Searching for a parent in a different city? Enter their location.</p>
+    <select name="state">
+      <option value="">Select state…</option>
+      <option>California</option><option>Florida</option><option>Illinois</option>
+      <option>New York</option><option>Texas</option><option>Washington</option>
+    </select>
+    <div class="modal-divider">or</div>
+    <input type="text" name="zip" placeholder="City or ZIP code…">
+    <div class="modal-actions">
+      <button class="btn-outline" type="button" data-modal-cancel>Cancel</button>
+      <button class="btn-sage" type="button" data-modal-submit>Update Location</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    ElderCareMatters
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="search.html">Find Care</a></li>
+    <li><a href="blog.html">Resources</a></li>
+    <li><a href="for-providers.html">For Providers</a></li>
+    <li><a href="provider-dashboard.html" class="nav-cta">Provider Login</a></li>
+  </ul>
+  <div class="nav-location-badge" data-open-location-modal>
+    📍 <span class="js-location-full">Detecting…</span> · Change
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="for-providers.html">For Providers</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Compare Plans</span>
+</div>
+
+<!-- 1 ▸ Hero -->
+<section class="plans-hero">
+  <div class="plans-hero-eyebrow">Pricing &amp; Plans</div>
+  <h1 class="plans-hero-title">Choose the plan that fits <em>your business</em>.</h1>
+  <p class="plans-hero-sub">Four plans designed for every stage — from a free directory listing to a fully featured premium presence. No long-term contracts. Cancel or change tier any time.</p>
+</section>
+
+<!-- 2 ▸ Pricing cards -->
+<section class="plans-cards-section">
+  <div class="plans-cards">
+
+    <!-- FREE -->
+    <div class="plan-card plan-card--free">
+      <div class="plan-card-badge-row">
+        <span class="plan-hero-badge plan-hero-badge--free">Free Listing</span>
+      </div>
+      <div class="plan-card-name">Free</div>
+      <p class="plan-card-tagline">Get listed in the ElderCareMatters directory and start receiving family inquiries.</p>
+      <div class="plan-card-price">
+        <span class="plan-card-price-val plan-card-price-val--free">0</span>
+        <span class="plan-card-price-unit">/ forever</span>
+      </div>
+      <ul class="plan-card-features">
+        <li class="plan-card-feature--strong">Provider name &amp; tagline</li>
+        <li>Listed in the ECM directory</li>
+        <li>Specialty chips (e.g. Home Care)</li>
+        <!-- <li>1 gallery photo</li> -->
+        <li>Basic contact button</li>
+        <!-- <li>2 FAQ items</li> -->
+      </ul>
+      <a href="for-providers.html#join-form" class="plan-card-cta-btn">Claim Free Listing →</a>
+      <a href="provider-free.html" class="plan-card-preview-link">See live example →</a>
+    </div>
+
+    <!-- BASIC -->
+    <div class="plan-card">
+      <div class="plan-card-badge-row">
+        <span class="plan-hero-badge plan-hero-badge--basic">Basic Plan</span>
+      </div>
+      <div class="plan-card-name">Basic</div>
+      <p class="plan-card-tagline">Build initial trust with a star rating, verified family reviews, and a short bio.</p>
+      <div class="plan-card-price">
+        <span class="plan-card-price-val">49</span>
+        <span class="plan-card-price-unit">/ month</span>
+      </div>
+      <ul class="plan-card-features">
+        <li class="plan-card-feature--strong">Everything in Free</li>
+        <li>Star rating &amp; family reviews</li>
+        <li>Short About section (~50 words)</li>
+        <li>Starting price display</li>
+        <li>2 gallery photos</li>
+        <li>Side contact card</li>
+        <li>3 FAQ items</li>
+      </ul>
+      <a href="for-providers.html#join-form" class="plan-card-cta-btn">Choose Basic →</a>
+      <a href="provider-basic.html" class="plan-card-preview-link">See live example →</a>
+    </div>
+
+    <!-- STANDARD (Most Popular) -->
+    <div class="plan-card plan-card--popular">
+      <span class="plan-ribbon plan-ribbon--popular">⭐ Most Popular</span>
+      <div class="plan-card-badge-row">
+        <span class="plan-hero-badge plan-hero-badge--standard">✓ Standard Plan</span>
+      </div>
+      <div class="plan-card-name">Standard</div>
+      <p class="plan-card-tagline">Showcase your full team, service tiers, testimonials, and credentials.</p>
+      <div class="plan-card-price">
+        <span class="plan-card-price-val">149</span>
+        <span class="plan-card-price-unit">/ month</span>
+      </div>
+      <ul class="plan-card-features">
+        <li class="plan-card-feature--strong">Everything in Basic</li>
+        <li>ECM Verified badge</li>
+        <li>3 service tiers with detail &amp; pricing</li>
+        <li>3 family testimonials</li>
+        <li>2 team member bios</li>
+        <li>4 credentials + 4-city coverage</li>
+        <li>5 gallery photos</li>
+        <li>Branded contact CTA + service hours</li>
+      </ul>
+      <a href="for-providers.html#join-form" class="plan-card-cta-btn">Choose Standard →</a>
+      <a href="provider-standard.html" class="plan-card-preview-link">See live example →</a>
+    </div>
+
+    <!-- PREMIUM (Featured) -->
+    <div class="plan-card plan-card--featured">
+      <span class="plan-ribbon plan-ribbon--featured">★ Featured</span>
+      <div class="plan-card-badge-row">
+        <span class="plan-hero-badge plan-hero-badge--premium">⭐ Premium Plan</span>
+      </div>
+      <div class="plan-card-name">Premium</div>
+      <p class="plan-card-tagline">Full marketing presence with story, blog, employee spotlight, and priority placement.</p>
+      <div class="plan-card-price">
+        <span class="plan-card-price-val">299</span>
+        <span class="plan-card-price-unit">/ month</span>
+      </div>
+      <ul class="plan-card-features">
+        <li class="plan-card-feature--strong">Everything in Standard</li>
+        <li>⭐ Featured Provider banner</li>
+        <li>Full story + mission + why-list</li>
+        <li>4+ testimonials &amp; full team bios</li>
+        <li>Employee spotlight card</li>
+        <li>4 blog articles + insights</li>
+        <li>6 credentials + 9-city coverage</li>
+        <li>10 gallery photos</li>
+        <li>Priority placement in search results</li>
+        <li>5 FAQ items + 2-hour callback promise</li>
+      </ul>
+      <a href="for-providers.html#join-form" class="plan-card-cta-btn">Choose Premium →</a>
+      <a href="provider-premium.html" class="plan-card-preview-link">See live example →</a>
+    </div>
+
+  </div>
+  <p class="plans-pricing-note">Pricing shown is illustrative for design purposes. Final plan pricing will be confirmed at launch.</p>
+</section>
+
+<!-- 3 ▸ Detailed comparison table -->
+<section class="plans-table-section">
+  <div class="plans-table-header">
+    <h2>Compare every feature, side by side</h2>
+    <p>Each row shows exactly what's included on your public provider landing page at each tier.</p>
+  </div>
+  <div class="plans-table-wrap">
+    <table class="plans-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Free</th>
+          <th>Basic</th>
+          <th class="col-popular">Standard<span class="col-tag">★ Popular</span></th>
+          <th class="col-featured">Premium<span class="col-tag">★ Featured</span></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- Listing & Visibility -->
+        <tr class="plans-table-category"><td colspan="5">Listing &amp; Visibility</td></tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Provider name &amp; tagline</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Star rating &amp; verified family reviews</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">"ECM Verified" badge</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">"⭐ Featured Provider" badge</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Priority placement in search results</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+
+        <!-- Profile Content -->
+        <tr class="plans-table-category"><td colspan="5">Profile Content</td></tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">About section</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--text">Short<br>(~50 words)</td>
+          <td class="plans-table-val plans-table-val--text">Short story</td>
+          <td class="plans-table-val plans-table-val--text">Full story<br>+ mission</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">"Why families choose us" list</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Service hours displayed</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+
+        <!-- Services & Pricing -->
+        <tr class="plans-table-category"><td colspan="5">Services &amp; Pricing</td></tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Specialty chips (care types)</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Pricing display</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--text">Starting price<br>only</td>
+          <td class="plans-table-val plans-table-val--text">3 tiers with<br>details</td>
+          <td class="plans-table-val plans-table-val--text">3 tiers with<br>full features</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">"Most popular" tier highlight</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+
+        <!-- Customer Trust -->
+        <tr class="plans-table-category"><td colspan="5">Customer Trust</td></tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Family testimonials</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--text">3 reviews</td>
+          <td class="plans-table-val plans-table-val--text">4+ reviews</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Team member bios</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--text">2 key staff</td>
+          <td class="plans-table-val plans-table-val--text">3+ staff<br>+ spotlight</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Employee spotlight card</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Credentials &amp; certifications</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--text">4 items</td>
+          <td class="plans-table-val plans-table-val--text">6 items<br>+ affiliations</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Coverage area</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--text">4 cities</td>
+          <td class="plans-table-val plans-table-val--text">9 cities<br>+ zip detail</td>
+        </tr>
+
+        <!-- Photos & Engagement -->
+        <tr class="plans-table-category"><td colspan="5">Photos &amp; Engagement</td></tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Gallery photos</td>
+          <td class="plans-table-val plans-table-val--num">1</td>
+          <td class="plans-table-val plans-table-val--num">2</td>
+          <td class="plans-table-val plans-table-val--num">5</td>
+          <td class="plans-table-val plans-table-val--num">10</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">FAQ questions</td>
+          <td class="plans-table-val plans-table-val--num">2</td>
+          <td class="plans-table-val plans-table-val--num">3</td>
+          <td class="plans-table-val plans-table-val--num">4</td>
+          <td class="plans-table-val plans-table-val--num">5</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Contact CTA</td>
+          <td class="plans-table-val plans-table-val--text">Basic<br>button</td>
+          <td class="plans-table-val plans-table-val--text">Branded<br>button</td>
+          <td class="plans-table-val plans-table-val--text">Branded<br>+ hours</td>
+          <td class="plans-table-val plans-table-val--text">Full CTA<br>+ 2-hr callback</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Side contact card with stats</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Click-to-call phone link</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+
+        <!-- Marketing -->
+        <tr class="plans-table-category"><td colspan="5">Marketing</td></tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Blog &amp; Resources section</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--text">4 articles</td>
+        </tr>
+        <tr class="plans-table-row">
+          <td class="plans-table-feature">Featured-banner at top of page</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--dash">—</td>
+          <td class="plans-table-val plans-table-val--check">✓</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 4 ▸ FAQ about plans -->
+<section class="plans-faq">
+  <div class="plans-faq-layout">
+    <div class="plans-faq-left">
+      <div class="section-tag">Plan FAQ</div>
+      <h2>Common questions about plans &amp; billing</h2>
+      <p>If you're weighing options, these are the questions providers ask us most often before signing up. Still unsure? <a href="for-providers.html#contact" style="color:var(--sage);font-weight:600;">Talk to our team</a>.</p>
+    </div>
+    <div class="faq-grid reveal">
+      <div class="faq-item">
+        <div class="faq-q">
+          Can I upgrade or downgrade later?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Yes. You can move between any of the four tiers at any time — instantly upgrade to unlock more features, or downgrade if your needs change. Pricing is pro-rated for the remainder of your billing cycle.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          Is there a long-term contract?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          No. All paid plans are month-to-month with no minimum commitment. You can cancel at any time and your listing will revert to a Free directory listing — your reviews and basic info stay live.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          What payment methods do you accept?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          We accept all major credit cards (Visa, Mastercard, American Express, Discover) and ACH bank transfers. Invoices and payment receipts are available from your provider dashboard at any time.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          Do families pay anything to contact me?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          No — ElderCareMatters is always free for families. They search, compare, and contact providers at no cost. Your subscription covers the visibility and tools you receive as a listed provider.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          How quickly does my listing go live?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Free listings are live within minutes of claiming. Paid plans go live within 24 hours after our verification team confirms your business credentials. Premium plans receive priority onboarding and a kickoff call.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 ▸ Sage CTA band -->
+<div class="cta-band--sage">
+  <h2>Not sure which plan is right for you?</h2>
+  <p>Tell us about your business and we'll recommend the best fit — and walk you through what each tier looks like in practice.<br>No hard sell, no commitment.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <button type="button" class="btn-primary-lg" data-open-chat>
+      💬 Talk to our team <span class="btn-arrow">→</span>
+    </button>
+    <a href="for-providers.html#join-form" class="btn-outline" style="display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:10px;text-decoration:none;font-weight:600;font-size:0.9rem;color:var(--charcoal);border:1.5px solid var(--charcoal);background:transparent;">
+      📋 Start free listing
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">🌿 ElderCareMatters</a>
+      <p class="footer-tagline">Connecting families with trusted elder care providers across the United States.</p>
+      <div class="footer-trust">
+        <div class="trust-item">✓ Verified Providers</div>
+        <div class="trust-item">🔒 Privacy Protected</div>
+        <div class="trust-item">⭐ Free for Families</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>For Families</h4>
+      <ul class="footer-links">
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="search.html">Find Providers</a></li>
+        <li><a href="blog.html">Guides &amp; Resources</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>For Providers</h4>
+      <ul class="footer-links">
+        <li><a href="for-providers.html">Provider Overview</a></li>
+        <li><a href="provider-plans.html">Pricing &amp; Plans</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Browse Care</h4>
+      <ul class="footer-links">
+        <li><a href="search.html">All Categories</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ElderCareMatters. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Quick Form Modal -->
+<div class="modal-overlay form-modal" id="formModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
+    <h3>Tell us what you need</h3>
+    <p>We'll match you with verified providers in <em class="js-location-city">your area</em>. Takes under a minute.</p>
+    <form class="intake-form" onsubmit="return false;">
+      <div class="form-field">
+        <label for="care-type">What kind of help?</label>
+        <select id="care-type" name="care-type"><option value="">Select care type…</option></select>
+      </div>
+      <div class="form-field">
+        <label for="city">Location</label>
+        <input id="city" name="city" type="text" placeholder="City or ZIP">
+      </div>
+      <div class="form-field">
+        <label>How soon do you need help?</label>
+        <div class="urgency-chips">
+          <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
+          <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
+          <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Find Providers →</button>
+    </form>
+  </div>
+</div>
+
+<!-- Chat FAB -->
+<button class="chat-fab" id="chatFab" type="button" aria-label="Chat with our care advisor">
+  <span class="chat-fab-icon chat-fab-icon--chat">💬</span>
+  <span class="chat-fab-icon chat-fab-icon--close">×</span>
+  <span class="chat-fab-pulse"></span>
+</button>
+<div class="chat-popup" id="chatPopup">
+  <div class="chat-popup-header">
+    <div class="chat-avatar-sm">👩‍⚕️</div>
+    <div class="chat-meta">
+      <div class="chat-meta-name">ECM Care Advisor</div>
+      <div class="chat-meta-status"><span class="status-dot"></span> Online · Avg reply &lt; 1 min</div>
+    </div>
+    <div class="chat-step-badge">Step 1 of 4</div>
+    <button class="chat-popup-close" type="button" data-close-chat aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body"></div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/location.js"></script>
+<script src="assets/js/intake.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

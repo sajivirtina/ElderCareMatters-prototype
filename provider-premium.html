@@ -61,6 +61,24 @@
   <span class="breadcrumb-current">Sunrise Home Care</span>
 </div>
 
+<!-- Hero Carousel (5-up strip) -->
+<section class="hero-carousel" id="heroCarousel">
+  <div class="hc-track">
+    <div class="hc-slide"><img src="https://picsum.photos/seed/sunrise1/600/400" alt="Sunrise Home Care — caregiver with senior" loading="eager"></div>
+    <div class="hc-slide"><img src="https://picsum.photos/seed/sunrise2/600/400" alt="Sunrise Home Care — warm home environment" loading="lazy"></div>
+    <div class="hc-slide"><img src="https://picsum.photos/seed/sunrise3/600/400" alt="Sunrise Home Care — companion care visit" loading="lazy"></div>
+    <div class="hc-slide"><img src="https://picsum.photos/seed/sunrise4/600/400" alt="Sunrise Home Care — personalised care plan" loading="lazy"></div>
+    <div class="hc-slide"><img src="https://picsum.photos/seed/sunrise5/600/400" alt="Sunrise Home Care — caregiver team" loading="lazy"></div>
+    <div class="hc-slide"><img src="https://picsum.photos/seed/sunrise6/600/400" alt="Sunrise Home Care — daily living support" loading="lazy"></div>
+    <div class="hc-slide"><img src="https://picsum.photos/seed/sunrise7/600/400" alt="Sunrise Home Care — memory care" loading="lazy"></div>
+    <div class="hc-slide"><img src="https://picsum.photos/seed/sunrise8/600/400" alt="Sunrise Home Care — medication support" loading="lazy"></div>
+    <div class="hc-slide"><img src="https://picsum.photos/seed/sunrise9/600/400" alt="Sunrise Home Care — family consultation" loading="lazy"></div>
+    <div class="hc-slide"><img src="https://picsum.photos/seed/sunrise10/600/400" alt="Sunrise Home Care — 24/7 overnight care" loading="lazy"></div>
+  </div>
+  <button class="hc-arrow hc-arrow--prev" aria-label="Previous" disabled>&#8249;</button>
+  <button class="hc-arrow hc-arrow--next" aria-label="Next">&#8250;</button>
+</section>
+
 <!-- Provider Hero -->
 <section class="provider-hero">
   <div class="provider-hero-main">
@@ -95,11 +113,11 @@
       &nbsp;·&nbsp; 🌐 sunrisehomecare.com
       &nbsp;·&nbsp; Serving Dallas, Plano, Irving, Garland &amp; surrounding areas
     </p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;">
+    <div style="align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px;">
       <button type="button" class="btn-primary-lg" data-open-form-modal>
         📋 Request a Free Consultation <span class="btn-arrow">→</span>
       </button>
-      <a href="tel:2145550182" class="btn-outline" style="display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:10px;text-decoration:none;font-weight:600;font-size:0.9rem;color:var(--charcoal);border:1.5px solid var(--charcoal);">
+      <a href="tel:2145550182" class="btn-outline" style="display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:10px;text-decoration:none;font-weight:600;font-size:0.9rem;color:var(--charcoal);border:1.5px solid var(--charcoal);width:fit-content;white-space:nowrap;flex-shrink:0;">
         📞 Call Now
       </a>
     </div>
@@ -108,10 +126,7 @@
   <div class="provider-side-card">
     <h4>Get a free match with Sunrise Home Care</h4>
     <p>We'll send your request privately — no spam, no calls unless you ask. Takes under a minute.</p>
-    <button type="button" class="btn-primary-lg" data-open-form-modal>
-      📋 Request a Free Match <span class="btn-arrow">→</span>
-    </button>
-    <button type="button" class="btn-text" data-open-chat>💬 Or chat with our advisor</button>
+    <button type="button" class="btn-text" data-open-chat>💬 Chat with our advisor</button>
     <div class="provider-side-stats">
       <div>
         <div class="provider-side-stat-val">&lt; 2 hrs</div>
@@ -565,7 +580,7 @@
       <h4>For Providers</h4>
       <ul class="footer-links">
         <li><a href="for-providers.html">Provider Overview</a></li>
-        <li><a href="for-providers.html">Pricing &amp; Plans</a></li>
+        <li><a href="provider-plans.html">Pricing &amp; Plans</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -631,5 +646,49 @@
 <script src="assets/js/location.js"></script>
 <script src="assets/js/intake.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+(function(){
+  var carousel = document.getElementById('heroCarousel');
+  if (!carousel) return;
+  var track   = carousel.querySelector('.hc-track');
+  var slides  = carousel.querySelectorAll('.hc-slide');
+  var prevBtn = carousel.querySelector('.hc-arrow--prev');
+  var nextBtn = carousel.querySelector('.hc-arrow--next');
+  var VISIBLE = 5;
+  var GAP     = 12;
+  var current = 0;
+  var maxPos  = slides.length - VISIBLE;
+  var timer;
+
+  function slideWidth() {
+    return slides[0].offsetWidth + GAP;
+  }
+
+  function goTo(n) {
+    // Loop back to start when end is reached, loop to end from start
+    if (n > maxPos) n = 0;
+    if (n < 0) n = maxPos;
+    current = n;
+    track.style.transform = 'translateX(-' + (current * slideWidth()) + 'px)';
+    prevBtn.disabled = false;
+    nextBtn.disabled = false;
+  }
+
+  function start()   { timer = setInterval(function(){ goTo(current + 1); }, 3000); }
+  function restart() { clearInterval(timer); start(); }
+
+  nextBtn.addEventListener('click', function(){ goTo(current + 1); restart(); });
+  prevBtn.addEventListener('click', function(){ goTo(current - 1); restart(); });
+
+  // Pause on hover, resume on leave
+  carousel.addEventListener('mouseenter', function(){ clearInterval(timer); });
+  carousel.addEventListener('mouseleave', start);
+
+  window.addEventListener('resize', function(){ goTo(current); });
+
+  goTo(0);
+  start();
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inline Variation Select — UI Demo | SpicerCart</title>
+  <style>
+    :root {
+      --orange:        #CE6621;
+      --orange-grad:   linear-gradient(135deg, #CE6621 0%, #E8924A 100%);
+      --orange-pale:   #FEF6F0;
+      --bg:            #F5EEE6;
+      --card:          #fff;
+      --border:        #e0d6cf;
+      --border-light:  #f0e8e0;
+      --text:          #1a1a1a;
+      --sub:           #666;
+      --muted:         #999;
+      --green:         #2e9c5c;
+      --r-card:        12px;
+      --r-chip:        20px;
+      --r-btn:         8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 28px 16px 60px;
+    }
+
+    /* ── Demo header ─────────────────────────────── */
+    .demo-header {
+      max-width: 1080px;
+      margin: 0 auto 24px;
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--orange);
+      border-radius: var(--r-card);
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      padding: 20px 24px;
+    }
+    .demo-header h1 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+    .demo-header p {
+      font-size: 13px;
+      color: var(--sub);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+    .tag {
+      display: inline-block;
+      background: var(--orange-pale);
+      color: var(--orange);
+      border: 1px solid rgba(206,102,33,.22);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 11px;
+      margin-right: 6px;
+    }
+
+    /* ── Section label ───────────────────────────── */
+    .section-label {
+      max-width: 1080px;
+      margin: 0 auto 12px;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.1px;
+      color: var(--muted);
+    }
+
+    /* ── Product grid ────────────────────────────── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 16px;
+      max-width: 1080px;
+      margin: 0 auto 36px;
+    }
+
+    /* ── Product card ────────────────────────────── */
+    .product-card {
+      background: var(--card);
+      border-radius: var(--r-card);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .18s, transform .18s;
+    }
+    .product-card:hover {
+      box-shadow: 0 6px 22px rgba(0,0,0,.1);
+      transform: translateY(-3px);
+    }
+
+    /* ── Product image placeholder ───────────────── */
+    .product-img {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      position: relative;
+    }
+    .badge-organic, .badge-new {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .badge-organic { background: #4a9c6e; color: #fff; }
+    .badge-new     { background: var(--orange); color: #fff; }
+
+    /* ── Product body ────────────────────────────── */
+    .product-body {
+      padding: 13px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 0;
+    }
+    .product-name {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 3px;
+    }
+    .product-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 12px;
+      min-height: 20px;
+      transition: color .12s;
+    }
+    .spacer { flex: 1; }
+
+    /* ── Variation chips ─────────────────────────── */
+    .var-section { margin-bottom: 11px; }
+    .var-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .chip {
+      padding: 5px 11px;
+      border-radius: var(--r-chip);
+      border: 1.5px solid var(--border);
+      background: #fff;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--sub);
+      cursor: pointer;
+      transition: border-color .12s, background .12s, color .12s, transform .08s;
+      user-select: none;
+      line-height: 1;
+    }
+    .chip:hover:not(:disabled) { border-color: var(--orange); color: var(--orange); }
+    .chip.selected {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #fff;
+      font-weight: 600;
+    }
+    .chip:active:not(:disabled) { transform: scale(.93); }
+    .chip.oos {
+      opacity: .38;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+    .select-hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      min-height: 16px;
+    }
+
+    /* ── Add to Cart button ──────────────────────── */
+    .btn-atc {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--orange-grad);
+      color: #fff;
+      border: none;
+      border-radius: var(--r-btn);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: opacity .15s, transform .12s, background .2s;
+    }
+    .btn-atc:disabled {
+      background: #e4dcd4;
+      color: #b0a09a;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+    .btn-atc:not(:disabled):hover { opacity: .9; transform: translateY(-1px); }
+    .btn-atc.loading { opacity: .65; pointer-events: none; }
+    .btn-atc.added   { background: linear-gradient(135deg, #2e9c5c, #45c07a) !important; }
+
+    /* ── Divider ─────────────────────────────────── */
+    .section-divider {
+      max-width: 1080px;
+      margin: 0 auto 28px;
+      border: none;
+      border-top: 1px dashed var(--border);
+    }
+
+    /* ── Implementation cards ────────────────────── */
+    .impl-grid {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 14px;
+    }
+    .impl-card {
+      background: var(--card);
+      border-radius: var(--r-card);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 6px rgba(0,0,0,.04);
+      padding: 18px 20px;
+    }
+    .impl-card h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+    .impl-card ul { list-style: none; }
+    .impl-card li {
+      font-size: 12px;
+      color: var(--sub);
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      line-height: 1.5;
+    }
+    .impl-card li::before { content: '→'; color: var(--orange); flex-shrink: 0; margin-top: 1px; }
+    .impl-card li:last-child { border-bottom: none; }
+    code {
+      background: #f5ede6;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 10.5px;
+      color: #aa4812;
+      font-family: 'Menlo', 'Consolas', monospace;
+    }
+
+    /* ── Callout box ─────────────────────────────── */
+    .callout {
+      max-width: 1080px;
+      margin: 0 auto 28px;
+      background: var(--orange-pale);
+      border: 1px solid rgba(206,102,33,.2);
+      border-radius: var(--r-card);
+      padding: 14px 20px;
+      font-size: 12.5px;
+      color: var(--sub);
+      line-height: 1.6;
+    }
+    .callout strong { color: var(--orange); }
+
+    /* ── Responsive ──────────────────────────────── */
+    @media (max-width: 600px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 11px; }
+      body { padding: 16px 11px 48px; }
+      .demo-header { padding: 16px; }
+    }
+    @media (max-width: 360px) {
+      .chip { padding: 4px 8px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Header ─────────────────────────────────────── -->
+<div class="demo-header">
+  <h1>Inline Variation Select — UI Proposal</h1>
+  <p>
+    Weight / size options appear directly on every product card.
+    Shoppers pick a variant and tap <strong>Add to Cart</strong> without leaving the shop listing page —
+    reducing friction and improving conversion especially on mobile.
+  </p>
+  <span class="tag">Interactive Demo</span>
+  <span class="tag">Click the weight chips below</span>
+</div>
+
+<!-- ─── Product grid ───────────────────────────────── -->
+<div class="section-label">Shop Page — Product Listing</div>
+<div class="product-grid">
+
+  <!-- 1. Variable — unselected -->
+  <div class="product-card" data-type="variable">
+    <div class="product-img" style="background:linear-gradient(135deg,#fdf0e0,#fde0c0)">
+      🌿
+      <span class="badge-organic">Organic</span>
+    </div>
+    <div class="product-body">
+      <div class="product-name">Turmeric Powder</div>
+      <div class="product-price js-price">₹89 – ₹699</div>
+      <div class="var-section">
+        <div class="var-label">Weight</div>
+        <div class="chips">
+          <button class="chip" data-price="₹89">100g</button>
+          <button class="chip" data-price="₹199">250g</button>
+          <button class="chip" data-price="₹369">500g</button>
+          <button class="chip" data-price="₹699">1kg</button>
+        </div>
+      </div>
+      <div class="select-hint js-hint">Select a weight to continue</div>
+      <button class="btn-atc" disabled>Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 2. Variable — 250g pre-selected (shows active state) -->
+  <div class="product-card" data-type="variable">
+    <div class="product-img" style="background:linear-gradient(135deg,#f0ede0,#e4e0ce)">
+      🌾
+    </div>
+    <div class="product-body">
+      <div class="product-name">Coriander Powder</div>
+      <div class="product-price js-price">₹109</div>
+      <div class="var-section">
+        <div class="var-label">Weight</div>
+        <div class="chips">
+          <button class="chip" data-price="₹49">100g</button>
+          <button class="chip selected" data-price="₹109">250g</button>
+          <button class="chip" data-price="₹199">500g</button>
+        </div>
+      </div>
+      <div class="select-hint js-hint" style="visibility:hidden"> </div>
+      <button class="btn-atc">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 3. Simple product (no variation) -->
+  <div class="product-card" data-type="simple">
+    <div class="product-img" style="background:linear-gradient(135deg,#e8f0e0,#d8e8c8)">
+      🌿
+    </div>
+    <div class="product-body">
+      <div class="product-name">Bay Leaves</div>
+      <div class="product-price">₹45 / pack</div>
+      <div class="spacer"></div>
+      <button class="btn-atc">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 4. Variable — out-of-stock option -->
+  <div class="product-card" data-type="variable">
+    <div class="product-img" style="background:linear-gradient(135deg,#f8e4e4,#f0d0d0)">
+      🌶️
+      <span class="badge-new">Hot</span>
+    </div>
+    <div class="product-body">
+      <div class="product-name">Red Chili Powder</div>
+      <div class="product-price js-price">₹69 – ₹279</div>
+      <div class="var-section">
+        <div class="var-label">Weight</div>
+        <div class="chips">
+          <button class="chip" data-price="₹69">100g</button>
+          <button class="chip" data-price="₹149">250g</button>
+          <button class="chip oos" data-price="₹279" disabled>500g</button>
+        </div>
+      </div>
+      <div class="select-hint js-hint">Select a weight to continue</div>
+      <button class="btn-atc" disabled>Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 5. Variable -->
+  <div class="product-card" data-type="variable">
+    <div class="product-img" style="background:linear-gradient(135deg,#e8e4f4,#d8d0ec)">
+      🌰
+    </div>
+    <div class="product-body">
+      <div class="product-name">Black Pepper Whole</div>
+      <div class="product-price js-price">₹149 – ₹289</div>
+      <div class="var-section">
+        <div class="var-label">Weight</div>
+        <div class="chips">
+          <button class="chip" data-price="₹149">100g</button>
+          <button class="chip" data-price="₹289">250g</button>
+        </div>
+      </div>
+      <div class="select-hint js-hint">Select a weight to continue</div>
+      <button class="btn-atc" disabled>Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 6. Variable — 4 options -->
+  <div class="product-card" data-type="variable">
+    <div class="product-img" style="background:linear-gradient(135deg,#f4f0e0,#ece4c8)">
+      🫘
+    </div>
+    <div class="product-body">
+      <div class="product-name">Cumin Seeds</div>
+      <div class="product-price js-price">₹79 – ₹599</div>
+      <div class="var-section">
+        <div class="var-label">Weight</div>
+        <div class="chips">
+          <button class="chip" data-price="₹79">100g</button>
+          <button class="chip" data-price="₹179">250g</button>
+          <button class="chip" data-price="₹329">500g</button>
+          <button class="chip" data-price="₹599">1kg</button>
+        </div>
+      </div>
+      <div class="select-hint js-hint">Select a weight to continue</div>
+      <button class="btn-atc" disabled>Add to Cart</button>
+    </div>
+  </div>
+
+</div><!-- /product-grid -->
+
+<hr class="section-divider">
+
+<!-- ─── Callout ────────────────────────────────────── -->
+<div class="callout">
+  <strong>How it works:</strong>
+  Chips are generated server-side (PHP) from WooCommerce variation data and embedded as
+  <code>data-variations</code> JSON on the card. On selection the matching
+  <code>variation_id</code> is resolved client-side, the price updates instantly,
+  and the Add to Cart fires a WooCommerce AJAX request — no page reload required.
+  The 500g chip above shows the <strong>out-of-stock</strong> state (strikethrough, disabled).
+</div>
+
+<!-- ─── Implementation overview ───────────────────── -->
+<div class="section-label">Implementation Plan — 3 Files</div>
+<div class="impl-grid">
+
+  <div class="impl-card">
+    <h3>⚙️ functions.php</h3>
+    <ul>
+      <li>Hook <code>woocommerce_after_shop_loop_item</code> (priority 8) to render chips for variable products</li>
+      <li>Filter <code>woocommerce_loop_add_to_cart_link</code> to replace "Select options" with a disabled Add to Cart button for variable products</li>
+      <li>Embed <code>data-variations</code> JSON (variation_id, attributes, price, stock) on wrapper element</li>
+      <li>Uses <code>$product->get_available_variations()</code> — safe for small catalogs</li>
+    </ul>
+  </div>
+
+  <div class="impl-card">
+    <h3>🎨 style.css</h3>
+    <ul>
+      <li>Chip / pill styles matching brand orange <code>#CE6621</code></li>
+      <li>Selected state: filled orange background</li>
+      <li>Out-of-stock state: strikethrough + 40% opacity, pointer disabled</li>
+      <li>Disabled Add to Cart: muted gray, re-enabled on selection</li>
+      <li>Loading and "Added ✓" green feedback states</li>
+      <li>Fully responsive — chips wrap on narrow cards</li>
+    </ul>
+  </div>
+
+  <div class="impl-card">
+    <h3>⚡ custom.js</h3>
+    <ul>
+      <li>Chip click: deselects siblings in group, marks clicked chip <code>.selected</code></li>
+      <li>Resolves matching <code>variation_id</code> from embedded JSON using selected attribute values</li>
+      <li>Updates displayed price instantly (no server round-trip)</li>
+      <li>Enables Add to Cart button only when a valid in-stock variation is matched</li>
+      <li>AJAX add-to-cart via <code>wc_add_to_cart_params.ajax_url</code></li>
+      <li>Button shows loading spinner → "✓ Added" → resets after 2 s</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  /* ── Chip selection ─────────────────────────────── */
+  document.querySelectorAll('.chip:not(.oos)').forEach(chip => {
+    chip.addEventListener('click', function () {
+      const row  = this.closest('.chips');
+      const card = this.closest('.product-card');
+
+      row.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+
+      /* Update price */
+      const priceEl = card.querySelector('.js-price');
+      if (priceEl) priceEl.textContent = this.dataset.price;
+
+      /* Hide hint */
+      const hint = card.querySelector('.js-hint');
+      if (hint) { hint.style.visibility = 'hidden'; hint.textContent = ' '; }
+
+      /* Enable button */
+      const btn = card.querySelector('.btn-atc');
+      if (btn) btn.disabled = false;
+    });
+  });
+
+  /* ── Add to Cart feedback ───────────────────────── */
+  document.querySelectorAll('.product-card').forEach(card => {
+    const btn = card.querySelector('.btn-atc');
+    if (!btn) return;
+
+    btn.addEventListener('click', function () {
+      if (this.disabled) return;
+      const orig = this.textContent;
+
+      this.classList.add('loading');
+      this.textContent = 'Adding…';
+
+      setTimeout(() => {
+        this.classList.remove('loading');
+        this.classList.add('added');
+        this.textContent = '✓ Added to Cart';
+
+        setTimeout(() => {
+          this.classList.remove('added');
+          this.textContent = orig;
+        }, 2000);
+      }, 550);
+    });
+  });
+</script>
+</body>
+</html>

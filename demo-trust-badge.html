@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stamp Badge — Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f4f0e8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    padding: 60px 20px;
+  }
+
+  .demo-row {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .demo-label {
+    text-align: center;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  .badge-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* ── Stamp Badge SVG shared font usage ── */
+  .stamp-svg text { font-synthesis: none; }
+</style>
+</head>
+<body>
+
+<div class="demo-row">
+
+  <!-- ── VARIANT 1: Sage Green ── -->
+  <div class="badge-wrap">
+    <svg class="stamp-svg" viewBox="0 0 220 220" width="220" height="220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Top arc path: counter-clockwise from left → through top → right -->
+        <path id="topArc1" d="M 17,110 A 93,93 0 0,0 203,110"/>
+        <!-- Bottom arc path: clockwise from left → through bottom → right -->
+        <path id="botArc1" d="M 27,110 A 83,83 0 0,1 193,110"/>
+      </defs>
+
+      <!-- Outer double ring -->
+      <circle cx="110" cy="110" r="105" fill="none" stroke="#4e7055" stroke-width="3"/>
+      <circle cx="110" cy="110" r="98"  fill="none" stroke="#4e7055" stroke-width="1.2"/>
+
+      <!-- Inner double ring -->
+      <circle cx="110" cy="110" r="65"  fill="none" stroke="#4e7055" stroke-width="2"/>
+      <circle cx="110" cy="110" r="59"  fill="none" stroke="#4e7055" stroke-width="1"/>
+
+      <!-- Top curved text -->
+      <text font-family="'DM Sans', Arial, sans-serif" font-size="10.5" font-weight="700"
+            letter-spacing="2.8" fill="#4e7055" text-anchor="middle">
+        <textPath href="#topArc1" startOffset="50%">· ALL 50 STATES ·</textPath>
+      </text>
+
+      <!-- Bottom curved text -->
+      <text font-family="'DM Sans', Arial, sans-serif" font-size="10.5" font-weight="700"
+            letter-spacing="3.5" fill="#4e7055" text-anchor="middle">
+        <textPath href="#botArc1" startOffset="50%">· TRUSTED CARE MATCHING ·</textPath>
+      </text>
+
+      <!-- Stars top (inside inner ring) -->
+      <text x="110" y="50" text-anchor="middle"
+            font-family="Arial" font-size="9" fill="#4e7055" letter-spacing="7">★  ★  ★</text>
+
+      <!-- Stars bottom -->
+      <text x="110" y="172" text-anchor="middle"
+            font-family="Arial" font-size="9" fill="#4e7055" letter-spacing="7">★  ★  ★</text>
+
+      <!-- Thin decorative lines flanking year -->
+      <line x1="73" y1="98" x2="147" y2="98" stroke="#4e7055" stroke-width="0.8" opacity="0.45"/>
+      <line x1="73" y1="140" x2="147" y2="140" stroke="#4e7055" stroke-width="0.8" opacity="0.45"/>
+
+      <!-- SINCE label -->
+      <text x="110" y="114" text-anchor="middle"
+            font-family="'DM Sans', Arial, sans-serif" font-size="9.5" font-weight="700"
+            letter-spacing="5" fill="#4e7055">SINCE</text>
+
+      <!-- 2002 year -->
+      <text x="110" y="137" text-anchor="middle"
+            font-family="'Playfair Display', Georgia, serif" font-size="34" font-weight="700"
+            fill="#4e7055">2002</text>
+    </svg>
+    <div class="demo-label">Sage Green</div>
+  </div>
+
+  <!-- ── VARIANT 2: Gold ── -->
+  <div class="badge-wrap">
+    <svg class="stamp-svg" viewBox="0 0 220 220" width="220" height="220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="topArc2" d="M 17,110 A 93,93 0 0,0 203,110"/>
+        <path id="botArc2" d="M 27,110 A 83,83 0 0,1 193,110"/>
+      </defs>
+
+      <circle cx="110" cy="110" r="105" fill="none" stroke="#b8860b" stroke-width="3"/>
+      <circle cx="110" cy="110" r="98"  fill="none" stroke="#b8860b" stroke-width="1.2"/>
+      <circle cx="110" cy="110" r="65"  fill="none" stroke="#b8860b" stroke-width="2"/>
+      <circle cx="110" cy="110" r="59"  fill="none" stroke="#b8860b" stroke-width="1"/>
+
+      <text font-family="'DM Sans', Arial, sans-serif" font-size="10.5" font-weight="700"
+            letter-spacing="2.8" fill="#b8860b" text-anchor="middle">
+        <textPath href="#topArc2" startOffset="50%">· ALL 50 STATES ·</textPath>
+      </text>
+
+      <text font-family="'DM Sans', Arial, sans-serif" font-size="10.5" font-weight="700"
+            letter-spacing="3.5" fill="#b8860b" text-anchor="middle">
+        <textPath href="#botArc2" startOffset="50%">· TRUSTED CARE MATCHING ·</textPath>
+      </text>
+
+      <text x="110" y="50" text-anchor="middle"
+            font-family="Arial" font-size="9" fill="#b8860b" letter-spacing="7">★  ★  ★</text>
+      <text x="110" y="172" text-anchor="middle"
+            font-family="Arial" font-size="9" fill="#b8860b" letter-spacing="7">★  ★  ★</text>
+
+      <line x1="73" y1="98" x2="147" y2="98" stroke="#b8860b" stroke-width="0.8" opacity="0.45"/>
+      <line x1="73" y1="140" x2="147" y2="140" stroke="#b8860b" stroke-width="0.8" opacity="0.45"/>
+
+      <text x="110" y="114" text-anchor="middle"
+            font-family="'DM Sans', Arial, sans-serif" font-size="9.5" font-weight="700"
+            letter-spacing="5" fill="#b8860b">SINCE</text>
+
+      <text x="110" y="137" text-anchor="middle"
+            font-family="'Playfair Display', Georgia, serif" font-size="34" font-weight="700"
+            fill="#b8860b">2002</text>
+    </svg>
+    <div class="demo-label">Gold</div>
+  </div>
+
+  <!-- ── VARIANT 3: Dark Charcoal ── -->
+  <div class="badge-wrap">
+    <svg class="stamp-svg" viewBox="0 0 220 220" width="220" height="220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="topArc3" d="M 17,110 A 93,93 0 0,0 203,110"/>
+        <path id="botArc3" d="M 27,110 A 83,83 0 0,1 193,110"/>
+      </defs>
+
+      <circle cx="110" cy="110" r="105" fill="none" stroke="#2d3a2e" stroke-width="3"/>
+      <circle cx="110" cy="110" r="98"  fill="none" stroke="#2d3a2e" stroke-width="1.2"/>
+      <circle cx="110" cy="110" r="65"  fill="none" stroke="#2d3a2e" stroke-width="2"/>
+      <circle cx="110" cy="110" r="59"  fill="none" stroke="#2d3a2e" stroke-width="1"/>
+
+      <text font-family="'DM Sans', Arial, sans-serif" font-size="10.5" font-weight="700"
+            letter-spacing="2.8" fill="#2d3a2e" text-anchor="middle">
+        <textPath href="#topArc3" startOffset="50%">· ALL 50 STATES ·</textPath>
+      </text>
+
+      <text font-family="'DM Sans', Arial, sans-serif" font-size="10.5" font-weight="700"
+            letter-spacing="3.5" fill="#2d3a2e" text-anchor="middle">
+        <textPath href="#botArc3" startOffset="50%">· TRUSTED CARE MATCHING ·</textPath>
+      </text>
+
+      <text x="110" y="50" text-anchor="middle"
+            font-family="Arial" font-size="9" fill="#2d3a2e" letter-spacing="7">★  ★  ★</text>
+      <text x="110" y="172" text-anchor="middle"
+            font-family="Arial" font-size="9" fill="#2d3a2e" letter-spacing="7">★  ★  ★</text>
+
+      <line x1="73" y1="98" x2="147" y2="98" stroke="#2d3a2e" stroke-width="0.8" opacity="0.45"/>
+      <line x1="73" y1="140" x2="147" y2="140" stroke="#2d3a2e" stroke-width="0.8" opacity="0.45"/>
+
+      <text x="110" y="114" text-anchor="middle"
+            font-family="'DM Sans', Arial, sans-serif" font-size="9.5" font-weight="700"
+            letter-spacing="5" fill="#2d3a2e">SINCE</text>
+
+      <text x="110" y="137" text-anchor="middle"
+            font-family="'Playfair Display', Georgia, serif" font-size="34" font-weight="700"
+            fill="#2d3a2e">2002</text>
+    </svg>
+    <div class="demo-label">Dark Charcoal</div>
+  </div>
+
+</div>
+
+</body>
+</html>

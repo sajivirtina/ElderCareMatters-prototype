@@ -55,17 +55,19 @@
 <!-- Nav -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <img src="assets/logo.png" alt="ElderCareMatters" style="height:44px;width:auto;display:block;">
+    <img src="assets/logo.png" alt="ElderCareMatters" class="nav-logo-image">
   </a>
   <ul class="nav-links">
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="search.html">Find Care</a></li>
     <li><a href="blog.html">Resources</a></li>
     <li><a href="for-providers.html">For Providers</a></li>
-    <li><a href="provider-dashboard.html" class="nav-cta">Provider Login</a></li>
   </ul>
-  <div class="nav-location-badge" data-open-location-modal>
-    📍 <span class="js-location-full">Detecting…</span> · Change
+  <div class="nav-right">
+    <div class="nav-location-badge" data-open-location-modal>
+      📍 <span class="js-location-full">Detecting…</span><span class="nav-location-change">Change</span>
+    </div>
+    <a href="provider-dashboard.html" class="nav-cta">Provider Login</a>
   </div>
 </nav>
 
@@ -74,47 +76,8 @@
   <div class="hero-bg-shape"></div>
 
   <div class="hero-left">
-    <div class="badge-wrap">
-    <svg class="stamp-svg" viewBox="0 0 220 220" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <path id="topArc2" d="M 17,110 A 93,93 0 0,0 203,110"/>
-        <path id="botArc2" d="M 27,110 A 83,83 0 0,1 193,110"/>
-      </defs>
-
-      <circle cx="110" cy="110" r="105" fill="none" stroke="#b8860b" stroke-width="3"/>
-      <circle cx="110" cy="110" r="98"  fill="none" stroke="#b8860b" stroke-width="1.2"/>
-      <circle cx="110" cy="110" r="65"  fill="none" stroke="#b8860b" stroke-width="2"/>
-      <circle cx="110" cy="110" r="59"  fill="none" stroke="#b8860b" stroke-width="1"/>
-
-      <text font-family="'DM Sans', Arial, sans-serif" font-size="10.5" font-weight="700"
-            letter-spacing="2.8" fill="#b8860b" text-anchor="middle">
-        <textPath href="#topArc2" startOffset="50%">· ALL 50 STATES ·</textPath>
-      </text>
-
-      <text font-family="'DM Sans', Arial, sans-serif" font-size="10.5" font-weight="700"
-            letter-spacing="3.5" fill="#b8860b" text-anchor="middle">
-        <textPath href="#botArc2" startOffset="50%">· TRUSTED CARE MATCHING ·</textPath>
-      </text>
-
-      <text x="110" y="50" text-anchor="middle"
-            font-family="Arial" font-size="9" fill="#b8860b" letter-spacing="7">★  ★  ★</text>
-      <text x="110" y="172" text-anchor="middle"
-            font-family="Arial" font-size="9" fill="#b8860b" letter-spacing="7">★  ★  ★</text>
-
-      <line x1="73" y1="98" x2="147" y2="98" stroke="#b8860b" stroke-width="0.8" opacity="0.45"/>
-      <line x1="73" y1="140" x2="147" y2="140" stroke="#b8860b" stroke-width="0.8" opacity="0.45"/>
-
-      <text x="110" y="114" text-anchor="middle"
-            font-family="'DM Sans', Arial, sans-serif" font-size="9.5" font-weight="700"
-            letter-spacing="5" fill="#b8860b">SINCE</text>
-
-      <text x="110" y="137" text-anchor="middle"
-            font-family="'Playfair Display', Georgia, serif" font-size="34" font-weight="700"
-            fill="#b8860b">2002</text>
-    </svg>
-  </div>
     <!-- <div class="hero-eyebrow">✦ Trusted Care Matching · Free for Families</div> -->
-    <h1 class="hero-title">Find Trusted Elder Care in <span style="white-space:nowrap"><em class="js-location-city">your area</em> <button type="button" class="location-edit-pin" data-open-location-modal>📍</button></span></h1>
+    <h1 class="hero-title">Find Trusted Elder Care in <span class="hero-title-location"><em class="js-location-city">your area</em> <button type="button" class="location-edit-pin" data-open-location-modal>📍</button></span></h1>
     <p class="hero-sub">One need. One location. Matched in under 2 minutes. Our free care advisor connects you with verified local providers — no spam, no obligation.</p>
 
     <div class="hero-cta-row">
@@ -122,7 +85,7 @@
         📋 Start Your Free Match
         <span class="btn-arrow">→</span>
       </button>
-      <button type="button" class="btn-text" data-open-chat>💬 Prefer to chat? Talk to Carrie</button>
+      <button type="button" class="btn-ghost" data-open-chat>💬 Prefer to chat? Talk to Carrie</button>
     </div>
 
     <div class="hero-badges">
@@ -131,20 +94,6 @@
       <div class="hero-badge"><div class="hero-badge-dot"></div> No spam, ever</div>
     </div>
 
-    <!-- Quick category shortcuts -->
-    <div class="hero-quick-cats">
-      <span class="quick-cats-label">Quick start:</span>
-      <a class="quick-cat js-category-card" data-category="home-care" href="category.html?type=home-care">🏠 Home Care</a>
-      <a class="quick-cat js-category-card" data-category="memory-care" href="category.html?type=memory-care">🧠 Memory Care</a>
-      <a class="quick-cat js-category-card" data-category="assisted-living" href="category.html?type=assisted-living">🏡 Assisted Living</a>
-      <a class="quick-cat js-category-card" data-category="elder-law" href="category.html?type=elder-law">⚖️ Elder Law</a>
-    </div>
-
-    <!-- Since 2002 trust line -->
-    <div class="hero-since">
-      <img src="assets/logo-icon.png" alt="ECM" style="height:38px;width:auto;flex-shrink:0;">
-      <span style="font-size:0.8rem;color:var(--muted);line-height:1.6;">Trusted since <strong style="color:var(--charcoal);font-weight:600;">2002</strong> &nbsp;·&nbsp; America's oldest &amp; most respected elder care directory &nbsp;·&nbsp; <strong style="color:var(--charcoal);font-weight:600;">Operating in all 50 states</strong></span>
-    </div>
   </div>
 
   <!-- Editorial hero photo + floating trust tiles -->
@@ -154,14 +103,54 @@
         <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1000&auto=format&fit=crop&q=80" alt="Compassionate caregiver with elderly patient">
       </div>
 
+      <div class="badge-wrap">
+        <svg class="stamp-svg" viewBox="0 0 220 220" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="topArc2" d="M 17,110 A 93,93 0 0,0 203,110"/>
+            <path id="botArc2" d="M 27,110 A 83,83 0 0,1 193,110"/>
+          </defs>
+
+          <circle cx="110" cy="110" r="105" fill="none" stroke="#b8860b" stroke-width="3"/>
+          <circle cx="110" cy="110" r="98"  fill="none" stroke="#b8860b" stroke-width="1.2"/>
+          <circle cx="110" cy="110" r="65"  fill="none" stroke="#b8860b" stroke-width="2"/>
+          <circle cx="110" cy="110" r="59"  fill="none" stroke="#b8860b" stroke-width="1"/>
+
+          <text font-family="'DM Sans', Arial, sans-serif" font-size="10.5" font-weight="700"
+                letter-spacing="2.8" fill="#b8860b" text-anchor="middle">
+            <textPath href="#topArc2" startOffset="50%">· ALL 50 STATES ·</textPath>
+          </text>
+
+          <text font-family="'DM Sans', Arial, sans-serif" font-size="10.5" font-weight="700"
+                letter-spacing="3.5" fill="#b8860b" text-anchor="middle">
+            <textPath href="#botArc2" startOffset="50%">· TRUSTED CARE MATCHING ·</textPath>
+          </text>
+
+          <text x="110" y="50" text-anchor="middle"
+                font-family="Arial" font-size="9" fill="#b8860b" letter-spacing="7">★  ★  ★</text>
+          <text x="110" y="172" text-anchor="middle"
+                font-family="Arial" font-size="9" fill="#b8860b" letter-spacing="7">★  ★  ★</text>
+
+          <line x1="73" y1="98" x2="147" y2="98" stroke="#b8860b" stroke-width="0.8" opacity="0.45"/>
+          <line x1="73" y1="140" x2="147" y2="140" stroke="#b8860b" stroke-width="0.8" opacity="0.45"/>
+
+          <text x="110" y="114" text-anchor="middle"
+                font-family="'DM Sans', Arial, sans-serif" font-size="9.5" font-weight="700"
+                letter-spacing="5" fill="#b8860b">SINCE</text>
+
+          <text x="110" y="137" text-anchor="middle"
+                font-family="'Playfair Display', Georgia, serif" font-size="34" font-weight="700"
+                fill="#b8860b">2002</text>
+        </svg>
+      </div>
+
       <!-- Rating / families tile (top-left) -->
       <div class="hero-float-card hero-float-card--rating">
         <div class="hero-float-stars">★★★★★</div>
         <div class="hero-float-title"><strong>4.9</strong> · 12k+ families matched</div>
         <div class="hero-float-avatars">
-          <span class="hero-float-avatar" style="background-image:url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=80&auto=format&fit=crop')"></span>
-          <span class="hero-float-avatar" style="background-image:url('https://images.unsplash.com/photo-1552058544-f2b08422138a?w=80&auto=format&fit=crop')"></span>
-          <span class="hero-float-avatar" style="background-image:url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=80&auto=format&fit=crop')"></span>
+          <span class="hero-float-avatar hero-float-avatar--1"></span>
+          <span class="hero-float-avatar hero-float-avatar--2"></span>
+          <span class="hero-float-avatar hero-float-avatar--3"></span>
           <span class="hero-float-avatar hero-float-avatar--more">+12k</span>
         </div>
       </div>
@@ -188,20 +177,20 @@
 <div class="stats-bar">
   <div class="stat-item"><div class="stat-number">12k+</div><div class="stat-label">Families matched</div></div>
   <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Verified providers</div></div>
-  <div class="stat-item"><div class="stat-number">4.9★</div><div class="stat-label">Average rating</div></div>
+  <div class="stat-item"><div class="stat-number">4.9<span class="stat-number-star">★</span></div><div class="stat-label">Average rating</div></div>
   <div class="stat-item"><div class="stat-number">&lt;2min</div><div class="stat-label">To get matched</div></div>
 </div>
 
 <!-- Category cards -->
 <section class="care-types" id="care-types">
   <div class="section-header reveal">
-    <div class="section-tag">One need at a time</div>
-    <h2 class="section-title">What kind of help do you need in <em class="js-location-city">your area</em><button type="button" class="location-edit-pin" data-open-location-modal>📍</button>?</h2>
-    <p class="section-sub">Select one category — we'll instantly show verified local providers and guide you to a free, no-obligation match.</p>
-    <div class="section-divider"></div>
+    <div class="care-types-header-main">
+      <div class="section-tag">One need at a time</div>
+      <h2 class="section-title">What kind of help do you need in <em class="js-location-city">your area</em><button type="button" class="location-edit-pin" data-open-location-modal>📍</button>?</h2>
+      <p class="section-sub">Select one category — we'll instantly show verified local providers and guide you to a free, no-obligation match.</p>
+      <div class="section-divider"></div>
+    </div>
   </div>
-
-  <div class="verified-strip"><span class="verified-strip-dot"></span> All providers ECM Verified — credential-reviewed &amp; locally licensed since 2002</div>
   <div class="care-grid">
     <a class="care-card reveal js-category-card" data-category="home-care" href="category.html?type=home-care">
       <div class="care-card-img">
@@ -215,7 +204,7 @@
       </div>
     </a>
 
-    <a class="care-card reveal js-category-card" data-category="assisted-living" href="category.html?type=assisted-living" style="transition-delay:0.05s">
+    <a class="care-card reveal reveal-delay-1 js-category-card" data-category="assisted-living" href="category.html?type=assisted-living">
       <div class="care-card-img">
         <span class="care-icon-chip">🏡</span>
         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop" alt="Assisted Living">
@@ -227,7 +216,7 @@
       </div>
     </a>
 
-    <a class="care-card reveal js-category-card" data-category="memory-care" href="category.html?type=memory-care" style="transition-delay:0.1s">
+    <a class="care-card reveal reveal-delay-2 js-category-card" data-category="memory-care" href="category.html?type=memory-care">
       <div class="care-card-img">
         <span class="care-icon-chip">🧠</span>
         <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop" alt="Memory Care">
@@ -239,7 +228,7 @@
       </div>
     </a>
 
-    <a class="care-card reveal js-category-card" data-category="elder-law" href="category.html?type=elder-law" style="transition-delay:0.15s">
+    <a class="care-card reveal reveal-delay-3 js-category-card" data-category="elder-law" href="category.html?type=elder-law">
       <div class="care-card-img">
         <span class="care-icon-chip">⚖️</span>
         <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&auto=format&fit=crop" alt="Elder Law Attorney">
@@ -251,7 +240,7 @@
       </div>
     </a>
 
-    <a class="care-card reveal js-category-card" data-category="care-management" href="category.html?type=care-management" style="transition-delay:0.2s">
+    <a class="care-card reveal reveal-delay-4 js-category-card" data-category="care-management" href="category.html?type=care-management">
       <div class="care-card-img">
         <span class="care-icon-chip">📋</span>
         <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&auto=format&fit=crop" alt="Care Management">
@@ -263,7 +252,7 @@
       </div>
     </a>
 
-    <a class="care-card reveal js-category-card" data-category="hospice" href="category.html?type=hospice" style="transition-delay:0.25s">
+    <a class="care-card reveal reveal-delay-5 js-category-card" data-category="hospice" href="category.html?type=hospice">
       <div class="care-card-img">
         <span class="care-icon-chip">🤝</span>
         <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=800&auto=format&fit=crop" alt="Hospice">
@@ -275,7 +264,7 @@
       </div>
     </a>
 
-    <a class="care-card reveal js-category-card" data-category="grief-counselors" href="category.html?type=grief-counselors" style="transition-delay:0.3s">
+    <a class="care-card reveal reveal-delay-6 js-category-card" data-category="grief-counselors" href="category.html?type=grief-counselors">
       <div class="care-card-img">
         <span class="care-icon-chip">💜</span>
         <img src="https://images.unsplash.com/photo-1573497491765-dccce02b29df?w=800&auto=format&fit=crop" alt="Grief Counselors">
@@ -286,16 +275,26 @@
         <span class="care-cta">See counselors in <span class="js-location-city">your area</span> →</span>
       </div>
     </a>
+
+    <div class="care-card care-card--cta reveal reveal-delay-7">
+      <div class="care-card-body care-card-body--cta">
+        <div class="care-cta-kicker">Need help deciding?</div>
+        <div class="care-name care-name--cta">Not sure which care type fits best?</div>
+        <p class="care-desc care-desc--cta">Tell us what is happening, and we will guide you to the right kind of support in <span class="js-location-city">your area</span>.</p>
+        <button type="button" class="care-cta-button" data-open-form-modal>Start your free match</button>
+      </div>
+    </div>
   </div>
+  <div class="verified-strip verified-strip--below"><span class="verified-strip-dot"></span> All providers ECM Verified — credential-reviewed &amp; locally licensed since 2002</div>
 </section>
 
 <!-- How It Works -->
 <section class="how-it-works" id="how-it-works">
-  <div class="section-header reveal" style="text-align:center;max-width:560px;margin:0 auto 52px;">
-    <div class="section-tag" style="display:block;text-align:center;border-left:none;border-bottom:3px solid var(--sage);padding:0 0 6px;width:fit-content;margin:0 auto 14px;">Simple Process</div>
+  <div class="section-header reveal section-header--centered section-header--simple-process">
+    <div class="section-tag section-tag--centered">Simple Process</div>
     <h2 class="section-title">How It Works</h2>
-    <p class="section-sub" style="max-width:100%">From your first question to a confirmed match — in under 2 minutes.</p>
-    <div class="section-divider" style="margin:16px auto 0;"></div>
+    <p class="section-sub section-sub--full">From your first question to a confirmed match — in under 2 minutes.</p>
+    <div class="section-divider section-divider--centered"></div>
   </div>
   <div class="steps-grid">
     <div class="step-card reveal">
@@ -303,12 +302,12 @@
       <h3 class="step-title">Tell us what you need</h3>
       <p class="step-desc">One category. One location. Takes about a minute — chat or form, your call.</p>
     </div>
-    <div class="step-card reveal" style="transition-delay:0.1s">
+    <div class="step-card reveal reveal-delay-2">
       <div class="step-number-wrap"><div class="step-number">2</div></div>
       <h3 class="step-title">Get matched instantly</h3>
       <p class="step-desc">Our geo-aware system finds verified providers in <span class="js-location-city">your area</span> that fit your exact need.</p>
     </div>
-    <div class="step-card reveal" style="transition-delay:0.2s">
+    <div class="step-card reveal reveal-delay-4">
       <div class="step-number-wrap"><div class="step-number">3</div></div>
       <h3 class="step-title">Connect &amp; choose</h3>
       <p class="step-desc">Providers reach out directly. Compare, message, and choose — always free for families.</p>
@@ -318,10 +317,10 @@
 
 <!-- Why ECM -->
 <section class="why-ecm">
-  <div class="section-header reveal" style="text-align:center;max-width:560px;margin:0 auto 40px;">
-    <div class="section-tag" style="display:block;text-align:center;border-left:none;border-bottom:3px solid var(--sage);padding:0 0 6px;width:fit-content;margin:0 auto 14px;">Why Families Choose Us</div>
+  <div class="section-header reveal section-header--centered section-header--why">
+    <div class="section-tag section-tag--centered">Why Families Choose Us</div>
     <h2 class="section-title">Built around your urgent need</h2>
-    <div class="section-divider" style="margin:16px auto 0;"></div>
+    <div class="section-divider section-divider--centered"></div>
   </div>
   <div class="why-grid">
     <div class="why-card reveal">
@@ -329,17 +328,17 @@
       <div class="why-title">Geo-aware matching</div>
       <p class="why-desc">Providers are matched to your exact city — not a generic state-wide list.</p>
     </div>
-    <div class="why-card reveal" style="transition-delay:0.05s">
+    <div class="why-card reveal reveal-delay-1">
       <div class="why-icon">✓</div>
       <div class="why-title">Verified providers</div>
       <p class="why-desc">Every provider is credential-reviewed and licensed locally before being listed.</p>
     </div>
-    <div class="why-card reveal" style="transition-delay:0.1s">
+    <div class="why-card reveal reveal-delay-2">
       <div class="why-icon">💚</div>
       <div class="why-title">Free for families</div>
       <p class="why-desc">You are never charged. Providers subscribe to the platform to reach you.</p>
     </div>
-    <div class="why-card reveal" style="transition-delay:0.15s">
+    <div class="why-card reveal reveal-delay-3">
       <div class="why-icon">🔒</div>
       <div class="why-title">Privacy-first</div>
       <p class="why-desc">Max 3 providers per request. No mass-blast. No spam, ever.</p>
@@ -349,7 +348,7 @@
 
 <!-- Testimonials -->
 <section class="testimonials">
-  <div class="section-header reveal" style="max-width:520px;margin-bottom:52px;">
+  <div class="section-header reveal section-header--testimonials">
     <div class="section-tag">Trusted by Families</div>
     <h2 class="section-title">What Families Are Saying</h2>
     <p class="section-sub">Real experiences from caregivers and families across the United States.</p>
@@ -364,7 +363,7 @@
         <div><div class="testi-name">Jennifer L.</div><div class="testi-loc">Austin, TX</div></div>
       </div>
     </div>
-    <div class="testi-card reveal" style="transition-delay:0.1s">
+    <div class="testi-card reveal reveal-delay-2">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-text">"I was overwhelmed trying to find memory care options for my mother. ElderCareMatters matched us with three excellent facilities in our area within the same day."</p>
       <div class="testi-author">
@@ -372,7 +371,7 @@
         <div><div class="testi-name">Michael R.</div><div class="testi-loc">Chicago, IL</div></div>
       </div>
     </div>
-    <div class="testi-card reveal" style="transition-delay:0.2s">
+    <div class="testi-card reveal reveal-delay-4">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-text">"The chat advisor was surprisingly helpful — it asked exactly the right questions and within hours we had verified home care providers reaching out to us."</p>
       <div class="testi-author">
@@ -385,12 +384,12 @@
 
 <!-- FAQ -->
 <section class="faq" id="faq">
-  <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;">
+  <div class="faq-layout">
     <div class="reveal">
       <div class="section-tag">Common Questions</div>
       <h2 class="section-title">Frequently Asked Questions</h2>
       <p class="section-sub">Everything you need to know before getting started — no pressure, no commitment.</p>
-      <a href="blog.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;color:var(--sage);font-weight:600;text-decoration:none;font-size:0.9rem;">Browse all FAQs →</a>
+      <a href="blog.html" class="faq-browse-link">Browse all FAQs →</a>
     </div>
     <div class="faq-grid reveal">
       <div class="faq-item">
@@ -424,7 +423,7 @@
 <!-- Provider CTA -->
 <div class="provider-cta reveal" id="provider-cta">
   <div class="cta-left">
-    <div class="section-tag" style="margin-bottom:14px;color:var(--sage-light);border-color:var(--sage-light);">For Providers</div>
+    <div class="section-tag">For Providers</div>
     <h2 class="cta-title">Are you an elder care provider?</h2>
     <p class="cta-sub">Join 500+ verified providers already using ElderCareMatters to receive scored, geo-matched leads from families actively searching for your services. Measurable ROI. No guesswork.</p>
     <div class="cta-btns">
@@ -437,8 +436,8 @@
       <div class="cta-stat"><div class="cta-stat-val">Max 3</div><div class="cta-stat-label">providers per lead</div></div>
       <div class="cta-stat"><div class="cta-stat-val">24h</div><div class="cta-stat-label">Featured exclusive window</div></div>
     </div>
-    <div class="cta-stat" style="width:100%;text-align:center;">
-      <div class="cta-stat-val" style="font-size:2.4rem;">34×</div>
+    <div class="cta-stat cta-stat--full">
+      <div class="cta-stat-val cta-stat-val--large">34×</div>
       <div class="cta-stat-label">Average ROI on spend</div>
     </div>
   </div>
@@ -449,8 +448,7 @@
   <div class="footer-top">
     <div>
       <a href="index.html" class="footer-logo">
-        <img src="assets/logo.png" alt="ElderCareMatters" style="height:36px;width:auto;display:inline-block;vertical-align:middle;margin-right:10px;">
-        <span style="vertical-align:middle;">ElderCareMatters.com</span>
+        <img src="assets/logo.png" alt="ElderCareMatters" class="footer-logo-image">
       </a>
       <p class="footer-tagline">Connecting families with trusted elder care providers across the United States.</p>
       <div class="footer-trust">
@@ -514,7 +512,7 @@
       </div>
 
       <!-- "Other" description — hidden by default -->
-      <div class="form-field" id="other-desc-field" style="display:none;">
+      <div class="form-field is-hidden" id="other-desc-field">
         <label for="other-desc">Briefly describe what you need</label>
         <textarea id="other-desc" name="other-desc" rows="3" placeholder="E.g. looking for overnight respite care for a week…"></textarea>
       </div>
@@ -543,7 +541,7 @@
       </div>
 
       <!-- "Other" contact block — hidden by default -->
-      <div id="other-contact-block" style="display:none;">
+      <div id="other-contact-block" class="is-hidden">
         <div class="form-field">
           <label for="other-phone">Phone number</label>
           <input id="other-phone" name="phone" type="tel" placeholder="(555) 000-0000">

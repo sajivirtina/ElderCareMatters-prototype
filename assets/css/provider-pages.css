@@ -3,7 +3,7 @@
 /* ── PLAN HERO BADGES ── */
 .plan-hero-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+  font-size: 0.92rem; font-weight: 700; letter-spacing: 0.06em;
   text-transform: uppercase; padding: 5px 13px; border-radius: 20px;
   margin-bottom: 14px;
 }
@@ -18,20 +18,20 @@
 }
 
 /* ── ABOUT SECTION ── */
-.about-body { font-size: 0.95rem; color: var(--mid); line-height: 1.75; }
+.about-body { font-size: 1rem; color: var(--mid); line-height: 1.8; }
 .about-body p { margin-bottom: 16px; }
 .about-body strong { color: var(--charcoal); }
 
 .about-mission {
   background: var(--sage-pale); border-left: 4px solid var(--sage);
   border-radius: 0 12px 12px 0; padding: 16px 20px; margin: 20px 0;
-  font-size: 0.92rem; color: var(--charcoal); font-weight: 500; line-height: 1.6;
+  font-size: 1rem; color: var(--charcoal); font-weight: 600; line-height: 1.7;
 }
 
 .about-list { list-style: none; margin: 14px 0; padding: 0; }
 .about-list li {
   display: flex; align-items: flex-start; gap: 10px;
-  font-size: 0.9rem; color: var(--mid); padding: 5px 0; line-height: 1.5;
+  font-size: 1rem; color: var(--mid); padding: 5px 0; line-height: 1.6;
 }
 .about-list li::before {
   content: '●'; color: var(--sage); flex-shrink: 0;
@@ -42,7 +42,7 @@
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--sage-pale); color: var(--sage);
   border-radius: 10px; padding: 7px 16px;
-  font-size: 0.84rem; font-weight: 600; margin-top: 18px;
+  font-size: 1rem; font-weight: 700; margin-top: 18px;
 }
 
 /* ── GALLERY SECTION ── */
@@ -54,7 +54,7 @@
   font-size: clamp(1.4rem, 2.4vw, 2rem); font-weight: 700;
   color: var(--charcoal); margin-bottom: 8px;
 }
-.gallery-header p { font-size: 0.92rem; color: var(--mid); }
+.gallery-header p { font-size: 1rem; color: var(--mid); }
 
 .gallery-grid { display: grid; gap: 12px; }
 .gallery-grid--1 { grid-template-columns: 1fr; max-width: 480px; }
@@ -70,7 +70,7 @@
 .gallery-grid-item:hover img { transform: scale(1.04); }
 
 .gallery-upgrade-note {
-  margin-top: 18px; font-size: 0.82rem; color: var(--muted);
+  margin-top: 18px; font-size: 1rem; color: var(--muted);
   display: flex; align-items: center; gap: 7px; font-style: italic;
 }
 
@@ -101,11 +101,11 @@
   font-weight: 600; color: var(--charcoal); margin-bottom: 2px;
 }
 .team-role {
-  font-size: 0.74rem; color: var(--sage); font-weight: 700;
+  font-size: 0.92rem; color: var(--sage); font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px;
 }
-.team-bio { font-size: 0.88rem; color: var(--mid); line-height: 1.6; margin-bottom: 10px; }
-.team-creds { font-size: 0.78rem; color: var(--muted); font-style: italic; line-height: 1.5; }
+.team-bio { font-size: 1rem; color: var(--mid); line-height: 1.7; margin-bottom: 10px; }
+.team-creds { font-size: 1rem; color: var(--muted); font-style: italic; line-height: 1.6; }
 
 /* ── EMPLOYEE SPOTLIGHT ── */
 .spotlight-card {
@@ -129,19 +129,19 @@
 }
 .spotlight-body { position: relative; z-index: 1; }
 .spotlight-label {
-  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--sage); margin-bottom: 6px;
 }
 .spotlight-name {
   font-family: 'Playfair Display', serif; font-size: 1.25rem;
   font-weight: 600; color: var(--charcoal); margin-bottom: 4px;
 }
-.spotlight-sub { font-size: 0.82rem; color: var(--mid); margin-bottom: 12px; }
+.spotlight-sub { font-size: 1rem; color: var(--mid); margin-bottom: 12px; }
 .spotlight-desc {
-  font-size: 0.9rem; color: var(--mid); line-height: 1.7; margin-bottom: 16px;
+  font-size: 1rem; color: var(--mid); line-height: 1.75; margin-bottom: 16px;
 }
 .spotlight-quote {
-  font-size: 0.9rem; color: var(--charcoal); font-style: italic; line-height: 1.6;
+  font-size: 1rem; color: var(--charcoal); font-style: italic; line-height: 1.7;
   padding-left: 16px; border-left: 3px solid var(--sage);
 }
 
@@ -159,10 +159,10 @@
 }
 .blog-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
 .blog-title {
-  font-weight: 600; font-size: 0.92rem; color: var(--charcoal);
+  font-weight: 700; font-size: 1rem; color: var(--charcoal);
   margin-bottom: 5px; line-height: 1.35;
 }
-.blog-blurb { font-size: 0.82rem; color: var(--mid); line-height: 1.55; }
+.blog-blurb { font-size: 1rem; color: var(--mid); line-height: 1.65; }
 
 /* ── CREDENTIALS LIST ── */
 .cred-list {
@@ -171,7 +171,7 @@
 }
 .cred-list li {
   display: flex; align-items: flex-start; gap: 10px;
-  font-size: 0.9rem; color: var(--mid); line-height: 1.5;
+  font-size: 1rem; color: var(--mid); line-height: 1.6;
 }
 .cred-list li::before {
   content: '✓'; color: var(--sage); font-weight: 700;
@@ -183,10 +183,10 @@
 .coverage-chip {
   background: var(--sage-pale); color: var(--sage);
   border-radius: 20px; padding: 5px 15px;
-  font-size: 0.82rem; font-weight: 500;
+  font-size: 1rem; font-weight: 600;
 }
 .coverage-note {
-  font-size: 0.84rem; color: var(--muted); margin-top: 14px; font-style: italic;
+  font-size: 1rem; color: var(--muted); margin-top: 14px; font-style: italic;
 }
 
 /* ── CONTACT GRID ── */
@@ -194,7 +194,7 @@
 .contact-item { display: flex; align-items: flex-start; gap: 12px; }
 .contact-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
 .contact-label {
-  font-size: 0.7rem; color: var(--muted); text-transform: uppercase;
+  font-size: 0.9rem; color: var(--muted); text-transform: uppercase;
   letter-spacing: 0.07em; margin-bottom: 3px; font-weight: 600;
 }
 .contact-val { font-size: 0.95rem; font-weight: 600; color: var(--charcoal); }
@@ -202,7 +202,7 @@
 .contact-val a:hover { color: var(--sage); }
 .contact-promise {
   display: inline-flex; align-items: center; gap: 6px;
-  font-size: 0.82rem; color: var(--mid); margin-top: 20px;
+  font-size: 1rem; color: var(--mid); margin-top: 20px;
   background: var(--sage-pale); padding: 8px 16px; border-radius: 10px;
 }
 
@@ -211,7 +211,7 @@
   background: #fffbe6; border: 1.5px dashed #e6c84a;
   border-radius: 14px; padding: 16px 22px;
   display: flex; align-items: flex-start; gap: 12px;
-  font-size: 0.88rem; color: #6b5900;
+  font-size: 1rem; color: #6b5900;
   margin: 0 5% 32px;
 }
 .unclaimed-info-bar a {
@@ -229,10 +229,10 @@
   font-size: clamp(1.5rem, 2.6vw, 2.1rem);
   font-weight: 700; color: var(--charcoal); margin-bottom: 12px;
 }
-.cta-band--sage p { color: var(--mid); font-size: 0.95rem; margin-bottom: 26px; line-height: 1.6; }
+.cta-band--sage p { color: var(--mid); font-size: 1rem; margin-bottom: 26px; line-height: 1.7; }
 
 /* ── REVIEW ATTRIBUTION ── */
-.review-loc { font-size: 0.76rem; color: var(--muted); }
+.review-loc { font-size: 1rem; color: var(--muted); }
 
 /* ── RESPONSIVE (shared) ── */
 @media (max-width: 1024px) {

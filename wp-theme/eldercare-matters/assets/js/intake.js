@@ -67,7 +67,7 @@
       + '<p class="crosssell-label">You may also need…</p>'
       + '<div class="crosssell-cards">'
       + items.map(function (c) {
-          return '<a href="category.html?type=' + c.key
+          return '<a href="/category/?type=' + c.key
             + '&city=' + encodeURIComponent(loc.city)
             + '&state=' + encodeURIComponent(loc.state || '')
             + '" class="crosssell-card">' + c.icon + ' ' + escHtml(c.label) + '</a>';

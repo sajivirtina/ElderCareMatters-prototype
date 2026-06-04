@@ -1,0 +1,173 @@
+/* ── Intake v2: 7-step form modal + extended chat ── */
+
+/* Progress bar */
+.intake-stepper { min-height: 280px; }
+.intake-stepper-progress {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.step-bar {
+  flex: 1; height: 4px; background: var(--border, #e8e8e8);
+  border-radius: 2px; overflow: hidden;
+}
+.step-bar-fill {
+  height: 100%; background: var(--sage, #7a9e7e);
+  border-radius: 2px; transition: width 0.4s ease; width: 0%;
+}
+.step-label { font-size: 0.78rem; color: var(--muted, #999); white-space: nowrap; font-weight: 500; }
+
+/* Step headings */
+.step-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 16px; color: var(--charcoal, #2c2c2c); }
+.step-hint { font-size: 0.85rem; color: var(--mid, #666); margin-bottom: 14px; line-height: 1.5; }
+
+/* Form input (shared text/email/tel/textarea) */
+.form-input {
+  display: block; width: 100%; box-sizing: border-box;
+  padding: 12px 14px; border: 1.5px solid var(--border, #ddd);
+  border-radius: 8px; font-size: 0.95rem; color: var(--charcoal);
+  margin-bottom: 12px; font-family: inherit; background: #fff;
+  transition: border-color 0.2s;
+}
+.form-input:focus { outline: none; border-color: var(--sage, #7a9e7e); }
+textarea.form-input { resize: vertical; min-height: 80px; }
+
+/* Care type icon grid */
+.care-type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+.care-type-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  padding: 13px 6px; border: 1.5px solid var(--border, #ddd);
+  border-radius: 10px; background: #fff; cursor: pointer;
+  font-size: 0.79rem; font-weight: 500; color: var(--charcoal);
+  transition: all 0.15s; text-align: center; line-height: 1.3;
+  font-family: inherit;
+}
+.care-type-btn:hover { border-color: var(--sage); background: #f5faf5; }
+.care-type-btn.selected { border-color: var(--sage); background: var(--sage); color: #fff; }
+.care-type-icon { font-size: 1.5rem; }
+
+/* Name inputs side by side */
+.name-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.name-field-row .form-input { margin-bottom: 0; }
+
+/* Location confirm box */
+.location-confirm-box {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 16px; background: #f5faf5;
+  border: 1.5px solid var(--border, #ddd);
+  border-radius: 10px; margin-bottom: 14px; font-size: 0.93rem;
+}
+.loc-pin { font-size: 1.1rem; flex-shrink: 0; }
+.loc-text { flex: 1; font-weight: 600; color: var(--charcoal); }
+.location-confirm-box .location-change-link {
+  font-size: 0.82rem; color: var(--sage); background: none;
+  border: none; cursor: pointer; font-family: inherit; padding: 0;
+}
+.location-confirm-box .location-change-link:hover { text-decoration: underline; }
+
+/* Verification hint banner */
+.verify-hint {
+  padding: 10px 12px; background: #f0f8f0; border-radius: 8px;
+  font-size: 0.84rem; color: var(--charcoal); margin-bottom: 14px;
+  border-left: 3px solid var(--sage, #7a9e7e); line-height: 1.5;
+}
+
+/* Verification status pill */
+.verify-status {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.84rem; margin-bottom: 12px;
+  padding: 8px 12px; border-radius: 8px;
+}
+.verify-status.loading { background: #fafafa; color: var(--mid, #666); }
+.verify-status.verified { background: #f0f8f0; color: #3a7a3e; font-weight: 600; }
+
+/* Submit verification summary */
+.submit-summary {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  font-size: 0.82rem; color: #3a7a3e; margin-bottom: 14px; font-weight: 600;
+}
+
+/* Button row (verify + skip) */
+.form-btn-row { display: flex; gap: 10px; margin-top: 4px; }
+.form-btn-row .form-submit { flex: 1; }
+.form-btn-row .btn-outline-skip {
+  padding: 12px 18px; border: 1.5px solid var(--border); border-radius: 10px;
+  background: #fff; cursor: pointer; font-family: inherit;
+  font-size: 0.88rem; color: var(--mid); transition: border-color 0.2s; white-space: nowrap;
+}
+.form-btn-row .btn-outline-skip:hover { border-color: var(--sage); color: var(--sage); }
+
+/* Step nav (← Back  /  Next →) */
+.step-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 18px; gap: 10px;
+}
+.step-back {
+  padding: 10px 18px; border: 1.5px solid var(--border, #ddd);
+  border-radius: 8px; background: #fff; cursor: pointer;
+  font-size: 0.88rem; color: var(--mid); font-family: inherit; transition: all 0.2s;
+}
+.step-back:hover { border-color: var(--sage); color: var(--sage); }
+.step-next { width: auto; padding: 12px 26px; }
+
+/* Cross-sell cards (after success) */
+.crosssell-section { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border, #ddd); text-align: left; }
+.crosssell-label { font-size: 0.78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+.crosssell-cards { display: flex; gap: 10px; flex-wrap: wrap; }
+.crosssell-card {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 14px; background: #f5faf5;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 0.85rem; color: var(--sage); font-weight: 600;
+  text-decoration: none; transition: all 0.15s;
+}
+.crosssell-card:hover { background: var(--sage); color: #fff; border-color: var(--sage); }
+
+/* ── Chat v2 additions ── */
+
+/* Name inputs in chat */
+.chat-name-wrap { display: flex; flex-direction: column; gap: 8px; margin: 8px 0; }
+.chat-name-wrap .chat-text-input { width: 100%; box-sizing: border-box; }
+.chat-name-wrap .chat-name-submit { align-self: flex-end; }
+
+/* Text input row in chat */
+.chat-text-input-wrap { margin: 8px 0; }
+.chat-text-input-row { display: flex; gap: 8px; align-items: stretch; }
+.chat-text-input {
+  flex: 1; padding: 9px 12px; border: 1.5px solid var(--border, #ddd);
+  border-radius: 8px; font-size: 0.9rem; font-family: inherit;
+  color: var(--charcoal); background: #fff; transition: border-color 0.2s;
+}
+.chat-text-input:focus { outline: none; border-color: var(--sage); }
+.chat-text-input.shake { animation: inputShake 0.3s ease; }
+@keyframes inputShake {
+  0%,100% { transform: translateX(0); }
+  25%      { transform: translateX(-4px); }
+  75%      { transform: translateX(4px); }
+}
+.chat-text-submit {
+  padding: 9px 14px; background: var(--sage); color: #fff;
+  border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; font-family: inherit; white-space: nowrap; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.chat-text-submit:hover { background: #6a8e6e; }
+.chat-text-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Skip / optional button in chat */
+.chat-skip-btn {
+  display: block; width: 100%; margin-top: 8px; padding: 8px;
+  background: none; border: none; font-size: 0.82rem; color: var(--muted);
+  cursor: pointer; font-family: inherit; text-align: center;
+}
+.chat-skip-btn:hover { color: var(--charcoal); text-decoration: underline; }
+
+/* Chat phone verify row */
+.chat-phone-verify-row { display: flex; gap: 8px; align-items: stretch; }
+.chat-phone-verify-row .chat-text-input { flex: 1; }
+
+/* Responsive */
+@media (max-width: 480px) {
+  .care-type-grid { grid-template-columns: repeat(2, 1fr); }
+  .name-field-row { grid-template-columns: 1fr; }
+  .form-btn-row { flex-direction: column; }
+}

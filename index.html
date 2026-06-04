@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="assets/css/homepage.css">
 <link rel="stylesheet" href="assets/css/homepage-enhanced.css">
 <link rel="stylesheet" href="assets/css/homepage-v2.css">
+<link rel="stylesheet" href="assets/css/intake-v2.css">
 </head>
 <body>
 
@@ -500,62 +501,13 @@
 <div class="modal-overlay form-modal" id="formModal">
   <div class="modal modal-lg">
     <button class="modal-close" type="button" data-close-form-modal aria-label="Close">×</button>
-    <h3>Tell us what you need</h3>
-    <p>We'll match you with verified providers in your city. Takes under a minute.</p>
-    <form class="intake-form" onsubmit="return false;">
-
-      <!-- Care type -->
-      <div class="form-field">
-        <label for="care-type">What kind of help?</label>
-        <select id="care-type" name="care-type">
-          <option value="">Select care type…</option>
-          <!-- populated by intake.js -->
-        </select>
+    <div class="intake-stepper">
+      <div class="intake-stepper-progress">
+        <div class="step-bar"><div class="step-bar-fill" id="stepBarFill"></div></div>
+        <span class="step-label" id="stepLabel">Step 1 of 7</span>
       </div>
-
-      <!-- "Other" description — hidden by default -->
-      <div class="form-field" id="other-desc-field" style="display:none;">
-        <label for="other-desc">Briefly describe what you need</label>
-        <textarea id="other-desc" name="other-desc" rows="3" placeholder="E.g. looking for overnight respite care for a week…"></textarea>
-      </div>
-
-      <!-- Standard location + urgency block -->
-      <div id="standard-location-block">
-        <div class="form-field">
-          <div class="location-label-row">
-            <label>Location</label>
-            <span id="form-state-display" class="form-state-display">Texas</span>
-            <button type="button" class="location-change-link" data-open-location-modal>Change →</button>
-          </div>
-          <select id="form-city" name="city">
-            <option value="">City…</option>
-            <!-- populated & filtered by intake.js -->
-          </select>
-        </div>
-        <div class="form-field">
-          <label>How soon do you need help?</label>
-          <div class="urgency-chips">
-            <button type="button" class="urgency-chip" data-value="immediately">Immediately</button>
-            <button type="button" class="urgency-chip" data-value="2-3-days">2–3 days</button>
-            <button type="button" class="urgency-chip" data-value="1-week">Within a week</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- "Other" contact block — hidden by default -->
-      <div id="other-contact-block" style="display:none;">
-        <div class="form-field">
-          <label for="other-phone">Phone number</label>
-          <input id="other-phone" name="phone" type="tel" placeholder="(555) 000-0000">
-        </div>
-        <div class="form-field">
-          <label for="other-email">Email address</label>
-          <input id="other-email" name="email" type="email" placeholder="you@example.com">
-        </div>
-      </div>
-
-      <button type="submit" class="form-submit" id="form-submit-btn">Find Providers →</button>
-    </form>
+      <div id="intakeStepContent"><!-- rendered by intake.js --></div>
+    </div>
   </div>
 </div>
 
@@ -573,7 +525,7 @@
       <div class="chat-meta-name">ECM Care Advisor</div>
       <div class="chat-meta-status"><span class="status-dot"></span> Online · Avg reply &lt; 1 min</div>
     </div>
-    <div class="chat-step-badge">Step 1 of 4</div>
+    <div class="chat-step-badge">Step 1 of 7</div>
     <button class="chat-popup-close" type="button" data-close-chat aria-label="Close chat">×</button>
   </div>
   <div class="chat-body"><!-- built by intake.js --></div>

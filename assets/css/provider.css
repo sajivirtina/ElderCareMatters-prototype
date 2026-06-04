@@ -77,11 +77,15 @@ a { text-decoration: none; color: inherit; }
   transition: box-shadow var(--transition);
 }
 .prov-topbar-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem; font-weight: 700; color: #fff;
-  text-decoration: none; letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
 }
-.prov-topbar-logo span { color: var(--blue-500); }
+.prov-topbar-logo-image {
+  display: block;
+  height: 36px;
+  width: auto;
+}
 .prov-topbar-right { display: flex; align-items: center; gap: 14px; }
 .prov-topbar-link {
   font-size: 1rem; color: rgba(255,255,255,0.82);

@@ -979,6 +979,74 @@ acf_add_local_field_group( [
         ],
 
         // ═══════════════════════════════════════════════════════════════════
+        // TAB: Location Modal & UI
+        // ═══════════════════════════════════════════════════════════════════
+        [
+            'key'   => 'field_ecm_tab_location',
+            'label' => 'Location Modal & UI',
+            'name'  => '',
+            'type'  => 'tab',
+        ],
+        [
+            'key'           => 'field_ecm_location_badge_detecting',
+            'label'         => 'Location Badge — Detecting Text',
+            'name'          => 'location_badge_detecting',
+            'type'          => 'text',
+            'default_value' => 'Detecting…',
+            'instructions'  => 'Shown in the nav location badge while geolocation is running.',
+        ],
+        [
+            'key'           => 'field_ecm_location_badge_change',
+            'label'         => 'Location Badge — Change Suffix',
+            'name'          => 'location_badge_change',
+            'type'          => 'text',
+            'default_value' => '· Change',
+            'instructions'  => 'Text appended after the city name in the nav badge.',
+        ],
+        [
+            'key'           => 'field_ecm_location_modal_title',
+            'label'         => 'Location Modal — Title',
+            'name'          => 'location_modal_title',
+            'type'          => 'text',
+            'default_value' => 'Set your location',
+        ],
+        [
+            'key'           => 'field_ecm_location_modal_sub',
+            'label'         => 'Location Modal — Subtitle',
+            'name'          => 'location_modal_sub',
+            'type'          => 'text',
+            'default_value' => 'Searching for a parent in a different city? Enter their location.',
+        ],
+        [
+            'key'           => 'field_ecm_location_modal_city_placeholder',
+            'label'         => 'Location Modal — City Input Placeholder',
+            'name'          => 'location_modal_city_placeholder',
+            'type'          => 'text',
+            'default_value' => 'City or ZIP code…',
+        ],
+        [
+            'key'           => 'field_ecm_location_modal_divider',
+            'label'         => 'Location Modal — Divider Text',
+            'name'          => 'location_modal_divider',
+            'type'          => 'text',
+            'default_value' => 'or',
+        ],
+        [
+            'key'           => 'field_ecm_location_modal_cancel',
+            'label'         => 'Location Modal — Cancel Button',
+            'name'          => 'location_modal_cancel',
+            'type'          => 'text',
+            'default_value' => 'Cancel',
+        ],
+        [
+            'key'           => 'field_ecm_location_modal_submit',
+            'label'         => 'Location Modal — Submit Button',
+            'name'          => 'location_modal_submit',
+            'type'          => 'text',
+            'default_value' => 'Update Location',
+        ],
+
+        // ═══════════════════════════════════════════════════════════════════
         // TAB: Modals & Chat
         // ═══════════════════════════════════════════════════════════════════
         [
@@ -1023,6 +1091,40 @@ acf_add_local_field_group( [
             'type'          => 'text',
             'default_value' => 'ecm',
             'instructions'  => 'The data-app attribute value for the Dotiq widget.',
+        ],
+        [
+            'key'           => 'field_ecm_chat_fab_icon',
+            'label'         => 'Chat FAB — Open Icon',
+            'name'          => 'chat_fab_icon',
+            'type'          => 'text',
+            'default_value' => '💬',
+            'instructions'  => 'Emoji/icon shown on the floating chat button when popup is closed.',
+        ],
+        [
+            'key'           => 'field_ecm_chat_fab_close_icon',
+            'label'         => 'Chat FAB — Close Icon',
+            'name'          => 'chat_fab_close_icon',
+            'type'          => 'text',
+            'default_value' => '×',
+            'instructions'  => 'Icon shown on the chat FAB when popup is open (to close it).',
+        ],
+        [
+            'key'           => 'field_ecm_form_modal_close_icon',
+            'label'         => 'Form Modal — Close Icon',
+            'name'          => 'form_modal_close_icon',
+            'type'          => 'text',
+            'default_value' => '×',
+            'instructions'  => 'Icon on the × close button of the 7-step intake form modal.',
+        ],
+        [
+            'key'           => 'field_ecm_chat_steps_total',
+            'label'         => 'Intake — Total Steps',
+            'name'          => 'chat_steps_total',
+            'type'          => 'number',
+            'default_value' => 7,
+            'instructions'  => 'Total step count shown in "Step 1 of N" labels in both the form modal and chat popup.',
+            'min'           => 1,
+            'max'           => 20,
         ],
 
     ], // end fields

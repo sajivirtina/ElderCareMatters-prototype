@@ -4,7 +4,7 @@
  */
 
 $footer_logo   = get_field( 'footer_logo' );
-$logo_url      = $footer_logo['url'] ?? get_template_directory_uri() . '/assets/images/logo.png';
+$logo_url      = $footer_logo['url'] ?? get_template_directory_uri() . '/assets/images/logo.svg';
 $logo_alt      = $footer_logo['alt'] ?? 'ElderCareMatters';
 $brand_name    = ecm_get_field( 'footer_brand_name', 'ElderCareMatters.com' );
 $tagline       = ecm_get_field( 'footer_tagline', 'Connecting families with trusted elder care providers across the United States.' );
@@ -23,8 +23,7 @@ $dotiq_app_id  = ecm_get_field( 'dotiq_app_id', 'ecm' );
         <!-- Brand column -->
         <div class="footer-brand">
             <div class="footer-logo">
-                <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $logo_alt ); ?>" style="height:38px;width:auto;">
-                <span class="footer-brand-name"><?php echo esc_html( $brand_name ); ?></span>
+                <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $logo_alt ); ?>" class="footer-logo-image">
             </div>
             <p class="footer-tagline"><?php echo esc_html( $tagline ); ?></p>
 

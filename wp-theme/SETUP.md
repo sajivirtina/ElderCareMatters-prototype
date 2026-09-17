@@ -23,7 +23,7 @@ prototype/assets/logo-icon.png  →  wp-theme/eldercare-matters/assets/images/lo
 
 **CSS files to copy:**
 - `main.css`
-- `homepage.css`
+- `homepagev3.css`
 - `homepage-enhanced.css`
 - `homepage-v2.css`
 - `intake-v2.css`

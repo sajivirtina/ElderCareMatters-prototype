@@ -11,7 +11,7 @@ $testimonials = get_field( 'testimonials' );
 
 <!-- Testimonials -->
 <section class="testimonials">
-    <div class="section-header reveal">
+    <div class="section-header reveal section-header--testimonials">
         <div class="section-tag"><?php echo esc_html( $tag ); ?></div>
         <h2 class="section-title"><?php echo esc_html( $title ); ?></h2>
         <p class="section-sub"><?php echo esc_html( $subtitle ); ?></p>

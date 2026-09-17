@@ -119,26 +119,37 @@
     }
   }
 
+  function populateModalFromLocation(overlay, loc) {
+    if (!overlay) return;
+
+    const zipInput = overlay.querySelector('input[name="zip"]');
+    const stateSel = overlay.querySelector('select[name="state"]');
+
+    if (zipInput) zipInput.value = '';
+    if (stateSel && loc.state) {
+      const fullName = Object.keys(STATE_ABBR).find(k => STATE_ABBR[k] === loc.state.toUpperCase());
+      stateSel.value = fullName || '';
+    }
+  }
+
+  function openLocationModal() {
+    const overlay = document.getElementById('locationModal');
+    if (!overlay) return;
+
+    populateModalFromLocation(overlay, read() || DEFAULT_LOCATION);
+    overlay.classList.add('active');
+  }
+
   // Modal wiring
   function wireModal() {
     const overlay = document.getElementById('locationModal');
     if (!overlay) return;
 
-    const badges = document.querySelectorAll('[data-open-location-modal]');
-    badges.forEach(b => b.addEventListener('click', () => {
-      // Pre-populate inputs from current stored/detected location
-      const loc = read() || DEFAULT_LOCATION;
-      const zipInput = overlay.querySelector('input[name="zip"]');
-      const stateSel = overlay.querySelector('select[name="state"]');
-      if (zipInput) zipInput.value = '';  // Clear ZIP — stored city names aren't valid ZIPs
-      if (stateSel && loc.state) {
-        // Stored state is a 2-letter abbreviation (e.g. "TX");
-        // the <select> uses full names ("Texas"), so reverse-map via STATE_ABBR
-        const fullName = Object.keys(STATE_ABBR).find(k => STATE_ABBR[k] === loc.state.toUpperCase());
-        stateSel.value = fullName || '';
-      }
-      overlay.classList.add('active');
-    }));
+    document.addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-open-location-modal]');
+      if (!trigger) return;
+      openLocationModal();
+    });
 
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) overlay.classList.remove('active');
@@ -174,6 +185,7 @@
   window.ECM = window.ECM || {};
   window.ECM.getLocation = function () { return read() || DEFAULT_LOCATION; };
   window.ECM.setLocation = setLocation;
+  window.ECM.openLocationModal = openLocationModal;
   window.ECM._onRender = null; // page scripts can set this to react to location updates
 
   document.addEventListener('DOMContentLoaded', () => {

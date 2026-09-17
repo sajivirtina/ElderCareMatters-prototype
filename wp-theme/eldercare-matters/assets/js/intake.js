@@ -1,15 +1,19 @@
 (function () {
   'use strict';
 
-  var CARE_TYPES = [
-    { key: 'home-care',        icon: '🏠', label: 'Home Care' },
-    { key: 'assisted-living',  icon: '🏡', label: 'Assisted Living' },
-    { key: 'memory-care',      icon: '🧠', label: 'Memory Care' },
-    { key: 'elder-law',        icon: '⚖️', label: 'Elder Law' },
-    { key: 'care-management',  icon: '📋', label: 'Care Management' },
-    { key: 'hospice',          icon: '🤝', label: 'Hospice' },
-    { key: 'grief-counselors', icon: '💙', label: 'Grief Counselors' }
-  ];
+  // Use live categories emitted by home-categories.php (window.ECM_CARE_TYPES),
+  // falling back to the hardcoded list when running outside WordPress.
+  var CARE_TYPES = (window.ECM_CARE_TYPES && window.ECM_CARE_TYPES.length)
+    ? window.ECM_CARE_TYPES
+    : [
+        { key: 'home-care',        icon: '🏠', label: 'Home Care' },
+        { key: 'assisted-living',  icon: '🏡', label: 'Assisted Living' },
+        { key: 'memory-care',      icon: '🧠', label: 'Memory Care' },
+        { key: 'elder-law',        icon: '⚖️', label: 'Elder Law' },
+        { key: 'care-management',  icon: '📋', label: 'Care Management' },
+        { key: 'hospice',          icon: '🤝', label: 'Hospice' },
+        { key: 'grief-counselors', icon: '💙', label: 'Grief Counselors' }
+      ];
 
   var URGENCY_OPTIONS = [
     { key: 'immediately', label: 'Immediately' },

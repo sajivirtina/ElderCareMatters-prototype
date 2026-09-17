@@ -1,373 +1,418 @@
+/**
+ * ECM Category Page — live data from /wp-json/ecm/v1/category
+ *
+ * Replaces the data.js dependency for providers and category metadata.
+ * City images/taglines/nearby still use data.js as geographic reference data.
+ */
 (function () {
   'use strict';
 
-  const DEFAULT_CITY_KEY = 'dallas';
+  var API_BASE = (window.ECM_SEARCH_API && window.ECM_SEARCH_API.root) || '/wp-json/ecm/v1';
 
-  function escapeHtml(s) {
-    return String(s || '').replace(/[&<>"']/g, ch => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-    }[ch]));
+  // ── Utilities ────────────────────────────────────────────────────────────────
+
+  function esc(s) {
+    return String(s || '').replace(/[&<>"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+
+  function el(id) { return document.getElementById(id); }
+
+  function setText(sel, text) {
+    document.querySelectorAll(sel).forEach(function (node) { node.textContent = text; });
   }
 
   function getParams() {
-    const p = new URLSearchParams(location.search);
+    var p = new URLSearchParams(location.search);
     return {
-      type: p.get('type') || 'home-care',
-      cityHint: p.get('city') || ''
+      type:     p.get('type')  || 'home-care',
+      cityHint: p.get('city')  || '',
+      state:    p.get('state') || '',
     };
   }
 
-  function resolveCityKey(hintName) {
-    const D = window.ECM_DATA;
-    // Prefer persisted user location (authoritative)
-    const loc = (window.ECM && window.ECM.getLocation && window.ECM.getLocation()) || {};
-    let key = D.normalizeCityKey(loc.city || hintName || DEFAULT_CITY_KEY);
-    if (!D.cities[key]) key = DEFAULT_CITY_KEY;
-    return key;
-  }
+  // ── Card renderers ───────────────────────────────────────────────────────────
 
-  function setText(sel, text) {
-    document.querySelectorAll(sel).forEach(el => { el.textContent = text; });
-  }
+  function renderProviderCard(p, displayCity) {
+    var logo = p.logo_url
+      ? '<img src="' + esc(p.logo_url) + '" alt="' + esc(p.name) + '" style="width:100%;height:100%;object-fit:cover;border-radius:14px" loading="lazy">'
+      : esc(p.initials);
+    var logoBg  = p.logo_url ? '#fff' : p.color;
+    var logoPad = p.logo_url ? 'overflow:hidden;padding:0' : '';
 
-  function priceLabel(pkg) {
-    if (pkg.unit === 'covered') return '<span class="package-price-covered">Medicare covered</span>';
-    return `<span class="package-price-val">${pkg.price.toLocaleString()}</span><span class="package-price-unit">${pkg.unit}</span>`;
-  }
+    var tierBadge = p.tier
+      ? '<span class="provider-tier-badge tier-' + esc(p.tier) + '">' + esc(p.tier) + '</span>'
+      : '';
 
-  function startingFrom(provider) {
-    const p = provider.packages[0];
-    if (!p || !p.price) return '';
-    return `$${p.price.toLocaleString()}<span style="font-size:0.72rem;color:var(--muted);font-weight:400">${p.unit}</span>`;
-  }
+    var cityLine = (p.city_label || displayCity)
+      ? '<div class="provider-card-city">📍 ' + esc(p.city_label || displayCity) + '</div>'
+      : '';
 
-  // ── Free listing card (unclaimed providers) ──
-  function renderFreeListingCard(provider, cityInfo) {
-    const specialties = (provider.specialties || []).slice(0, 2)
-      .map(s => `<span class="specialty-chip">${escapeHtml(s)}</span>`).join('');
-    return `
-      <div class="provider-card provider-card--unclaimed">
-        <div class="unclaimed-banner">🏷️ Unclaimed listing</div>
-        <div class="provider-card-header">
-          <div class="provider-logo" style="background:${provider.color}">${escapeHtml(provider.initials)}</div>
-          <div class="provider-heading">
-            <div class="provider-card-name">${escapeHtml(provider.name)}</div>
-            <div class="provider-card-city">📍 ${escapeHtml(cityInfo.name)}, ${escapeHtml(cityInfo.state)}</div>
-          </div>
-          <span class="provider-tier-badge tier-free">Free</span>
-        </div>
-        <div class="provider-card-body">
-          <div class="provider-specialties">${specialties}</div>
-          <div class="provider-card-tagline">${escapeHtml(provider.tagline)}</div>
-          <div class="provider-card-row">
-            <span class="provider-rating">★ ${provider.rating.toFixed(1)}</span>
-            <span class="provider-rating-count">(${provider.reviews})</span>
-          </div>
-          ${provider.nonprofit ? `<span class="provider-nonprofit-badge"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="4.8" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M3.8 7.2L2.5 11l3.5-1.4L9.5 11 8.2 7.2" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/></svg>Non-Profit</span>` : ''}
-        </div>
-        <div class="provider-card-footer provider-card-footer--claim">
-          <span class="claim-text">Is this your business?</span>
-          <a href="#" class="claim-link">Claim this listing →</a>
-        </div>
-      </div>`;
-  }
+    var chips = (p.specialties || []).slice(0, 2).map(function (s) {
+      return '<span class="specialty-chip">' + esc(s) + '</span>';
+    }).join('');
 
-  function renderProviderCard(provider, cityInfo) {
-    // Free tier gets its own card style
-    if (provider.tier === 'free') return renderFreeListingCard(provider, cityInfo);
-
-    const D = window.ECM_DATA;
-    const catName = (D.categories[provider.category] || {}).name || '';
-    const specialties = (provider.specialties || []).slice(0, 2)
-      .map(s => `<span class="specialty-chip">${escapeHtml(s)}</span>`).join('');
-    return `
-      <a class="provider-card" href="provider.html?id=${encodeURIComponent(provider.id)}">
-        <div class="provider-card-header">
-          <div class="provider-logo" style="background:${provider.color}">${escapeHtml(provider.initials)}</div>
-          <div class="provider-heading">
-            <div class="provider-card-name">${escapeHtml(provider.name)}</div>
-            <div class="provider-card-city">📍 ${escapeHtml(cityInfo.name)}, ${escapeHtml(cityInfo.state)}</div>
-          </div>
-          <span class="provider-tier-badge tier-${provider.tier}">${provider.tier}</span>
-        </div>
-        <div class="provider-card-body">
-          <div class="provider-specialties">${specialties}</div>
-          <div class="provider-card-tagline">${escapeHtml(provider.tagline)}</div>
-          <div class="provider-card-row">
-            <span class="provider-rating">★ ${provider.rating.toFixed(1)}</span>
-            <span class="provider-rating-count">(${provider.reviews})</span>
-            <span>· ${escapeHtml(catName)}</span>
-          </div>
-          ${provider.nonprofit ? `<span class="provider-nonprofit-badge"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="4.8" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M3.8 7.2L2.5 11l3.5-1.4L9.5 11 8.2 7.2" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/></svg>Non-Profit</span>` : ''}
-        </div>
-        <div class="provider-card-footer">
-          <div class="provider-price">from <strong>${startingFrom(provider)}</strong></div>
-          <span class="provider-card-arrow">View details →</span>
-        </div>
-      </a>
-    `;
-  }
-
-  function renderNearbyCard(provider) {
-    const D = window.ECM_DATA;
-    const city = D.cities[provider.city] || {};
-    return `
-      <a class="nearby-card" href="provider.html?id=${encodeURIComponent(provider.id)}">
-        <div class="nearby-logo" style="background:${provider.color}">${escapeHtml(provider.initials)}</div>
-        <div class="nearby-body">
-          <div class="nearby-name">${escapeHtml(provider.name)}</div>
-          <div class="nearby-meta">
-            <span>📍 ${escapeHtml(city.name || '')}</span>
-            <span class="nearby-meta-sep">·</span>
-            <span>★ ${provider.rating.toFixed(1)}</span>
-          </div>
-          ${provider.nonprofit ? `<span class="provider-nonprofit-badge" style="margin-top:6px"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="4.8" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M3.8 7.2L2.5 11l3.5-1.4L9.5 11 8.2 7.2" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/></svg>Non-Profit</span>` : ''}
-        </div>
-        <div class="nearby-price">
-          <div class="nearby-price-val">from ${startingFrom(provider)}</div>
-        </div>
-      </a>
-    `;
-  }
-
-  function renderCrossSell(categories, cityKey) {
-    return categories.map(c => `
-      <a class="cross-sell-card" href="/category/?type=${encodeURIComponent(c.key)}&city=${encodeURIComponent(cityKey)}">
-        <div class="cross-sell-icon">${c.icon}</div>
-        <div class="cross-sell-body">
-          <div class="cross-sell-name">${escapeHtml(c.name)}</div>
-          <div class="cross-sell-meta">Explore ${escapeHtml(c.name.toLowerCase())} in your area</div>
-        </div>
-        <span class="cross-sell-arrow">→</span>
-      </a>
-    `).join('');
-  }
-
-  // ── Distance helper ──
-  function haversineKm(lat1, lon1, lat2, lon2) {
-    const R = 6371;
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a = Math.sin(dLat / 2) ** 2 +
-      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
-    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  }
-
-  function sortProviders(list, sortKey, userCoords) {
-    const D = window.ECM_DATA;
-    const TIER = { featured: 0, premium: 1, basic: 2, free: 3 };
-    const sorted = list.slice();
-    if (sortKey === 'rating') {
-      sorted.sort((a, b) => b.rating - a.rating);
-    } else if (sortKey === 'price') {
-      sorted.sort((a, b) => (a.packages[0] ? a.packages[0].price : 9999) - (b.packages[0] ? b.packages[0].price : 9999));
-    } else if (sortKey === 'distance' && userCoords) {
-      sorted.sort((a, b) => {
-        const cA = D.cities[a.city] || {}, cB = D.cities[b.city] || {};
-        const dA = (cA.lat != null) ? haversineKm(userCoords.lat, userCoords.lon, cA.lat, cA.lon) : 9999;
-        const dB = (cB.lat != null) ? haversineKm(userCoords.lat, userCoords.lon, cB.lat, cB.lon) : 9999;
-        return dA - dB;
-      });
-    } else {
-      // recommended: tier order then rating
-      sorted.sort((a, b) => ((TIER[a.tier] || 0) - (TIER[b.tier] || 0)) || (b.rating - a.rating));
+    var ratingBlock = '';
+    if (p.rating > 0) {
+      ratingBlock = '<div class="provider-card-row">'
+        + '<span class="provider-rating">★ ' + p.rating.toFixed(1) + '</span>'
+        + (p.reviews ? '<span class="provider-rating-count">(' + p.reviews + ')</span>' : '')
+        + (p.cat_name ? '<span>· ' + esc(p.cat_name) + '</span>' : '')
+        + '</div>';
     }
-    return sorted;
+
+    var nonprofitBadge = p.nonprofit
+      ? '<span class="provider-nonprofit-badge"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="4.8" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M3.8 7.2L2.5 11l3.5-1.4L9.5 11 8.2 7.2" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/></svg>Non-Profit</span>'
+      : '';
+
+    return '<a class="provider-card" href="' + esc(p.permalink) + '" data-tier="' + esc(p.tier) + '">'
+      + '<div class="provider-card-header">'
+      +   '<div class="provider-logo" style="background:' + esc(logoBg) + ';color:#fff;font-weight:700;' + logoPad + '">' + logo + '</div>'
+      +   '<div class="provider-heading">'
+      +     '<div class="provider-card-name">' + esc(p.name) + '</div>'
+      +     cityLine
+      +   '</div>'
+      +   tierBadge
+      + '</div>'
+      + '<div class="provider-card-body">'
+      +   (chips ? '<div class="provider-specialties">' + chips + '</div>' : '')
+      +   (p.tagline ? '<div class="provider-card-tagline">' + esc(p.tagline) + '</div>' : '')
+      +   ratingBlock
+      +   nonprofitBadge
+      + '</div>'
+      + '<div class="provider-card-footer">'
+      +   '<span class="provider-card-arrow">View details →</span>'
+      + '</div>'
+      + '</a>';
   }
 
-  // ── Providers section: search + sort + tier filter + sessionStorage cache ──
-  function wireProviders(providers, cityInfo, cat, cityKey) {
-    const grid     = document.getElementById('all-providers-grid');
-    const empty    = document.getElementById('no-providers-msg');
-    const chips    = document.querySelectorAll('#filter-row .filter-chip');
-    const searchEl = document.getElementById('providers-search');
-    const sortEl   = document.getElementById('providers-sort');
+  function renderNearbyCard(p) {
+    var logo = p.logo_url
+      ? '<img src="' + esc(p.logo_url) + '" alt="' + esc(p.name) + '" style="width:100%;height:100%;object-fit:cover;border-radius:10px" loading="lazy">'
+      : esc(p.initials);
+    var logoBg  = p.logo_url ? '#fff' : p.color;
+    var logoPad = p.logo_url ? 'overflow:hidden;padding:0' : '';
+    return '<a class="nearby-card" href="' + esc(p.permalink) + '">'
+      + '<div class="nearby-logo" style="background:' + esc(logoBg) + ';color:#fff;font-weight:700;' + logoPad + '">' + logo + '</div>'
+      + '<div class="nearby-body">'
+      +   '<div class="nearby-name">' + esc(p.name) + '</div>'
+      +   '<div class="nearby-meta">'
+      +     (p.city_label ? '<span>📍 ' + esc(p.city_label) + '</span>' : '')
+      +     (p.rating > 0 ? '<span class="nearby-meta-sep">·</span><span>★ ' + p.rating.toFixed(1) + '</span>' : '')
+      +   '</div>'
+      + '</div>'
+      + '<div class="nearby-price"><span class="provider-card-arrow">View →</span></div>'
+      + '</a>';
+  }
 
-    // Read user coords from localStorage (stored by location.js on geolocation success)
-    let storedLoc = {};
-    try { storedLoc = JSON.parse(localStorage.getItem('eldercare_location') || '{}'); } catch (e) { /* noop */ }
-    const userCoords = (storedLoc.lat && storedLoc.lon) ? { lat: storedLoc.lat, lon: storedLoc.lon } : null;
+  function renderCrossSellCard(c, cityHint) {
+    var href = home_url('/category/') + '?type=' + encodeURIComponent(c.key)
+      + (cityHint ? '&city=' + encodeURIComponent(cityHint) : '');
+    return '<a class="cross-sell-card" href="' + esc(href) + '">'
+      + '<div class="cross-sell-icon">' + esc(c.icon) + '</div>'
+      + '<div class="cross-sell-body">'
+      +   '<div class="cross-sell-name">' + esc(c.name) + '</div>'
+      +   '<div class="cross-sell-meta">Explore ' + esc(c.name.toLowerCase()) + ' in your area</div>'
+      + '</div>'
+      + '<span class="cross-sell-arrow">→</span>'
+      + '</a>';
+  }
 
-    let activeTier   = 'all';
-    let activeSubcat = 'all';
-    let searchQuery  = '';
-    let activeSort   = 'recommended';
-    let debounceTimer = null;
+  // home_url helper — reads from localized data or falls back to origin.
+  function home_url(path) {
+    var base = (window.ECM_SEARCH_API && window.ECM_SEARCH_API.home) || window.location.origin;
+    return base.replace(/\/$/, '') + path;
+  }
 
-    // Wire subcategory chips (populated in boot() before wireProviders is called)
-    const subcatChips = document.querySelectorAll('#subcategory-row .filter-chip[data-subcat]');
-    subcatChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        subcatChips.forEach(c => c.classList.remove('active'));
+  // ── Provider grid wiring (search + sort + tier filter) ───────────────────────
+
+  function wireProviders(allProviders, displayCity, fetchPage) {
+    var grid      = el('all-providers-grid');
+    var empty     = el('no-providers-msg');
+    var chips     = document.querySelectorAll('#filter-row .filter-chip');
+    var searchEl  = el('providers-search');
+    var sortEl    = el('providers-sort');
+    var activeTier   = 'all';
+    var activeSubcat = 'all';
+    var searchQuery  = '';
+    var debounce     = null;
+
+    // Subcategory chips
+    var subcatChips = document.querySelectorAll('#subcategory-row .filter-chip[data-subcat]');
+    subcatChips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        subcatChips.forEach(function (c) { c.classList.remove('active'); });
         chip.classList.add('active');
         activeSubcat = chip.getAttribute('data-subcat');
-        applyAndRender();
+        render();
       });
     });
 
-    function applyAndRender() {
-      const cacheKey = `ecm:${cat.key}:${cityKey}:${activeTier}:${activeSubcat}:${searchQuery}:${activeSort}`;
-      let list;
-      try {
-        const cached = sessionStorage.getItem(cacheKey);
-        if (cached) {
-          const ids = JSON.parse(cached);
-          list = ids.map(id => providers.find(p => p.id === id)).filter(Boolean);
-        }
-      } catch (e) { /* noop */ }
+    function render() {
+      var list = allProviders.slice();
 
-      if (!list) {
-        // Filter by tier
-        let filtered = activeTier === 'all' ? providers : providers.filter(p => p.tier === activeTier);
-        // Filter by subcategory specialty
-        if (activeSubcat !== 'all') {
-          const sub = activeSubcat.toLowerCase();
-          filtered = filtered.filter(p =>
-            (p.specialties || []).some(s => s.toLowerCase() === sub)
-          );
-        }
-        // Filter by search query
-        if (searchQuery) {
-          const q = searchQuery.toLowerCase();
-          filtered = filtered.filter(p =>
-            p.name.toLowerCase().includes(q) ||
-            (p.tagline || '').toLowerCase().includes(q) ||
-            (p.specialties || []).some(s => s.toLowerCase().includes(q))
-          );
-        }
-        list = sortProviders(filtered, activeSort, userCoords);
-        try {
-          sessionStorage.setItem(cacheKey, JSON.stringify(list.map(p => p.id)));
-        } catch (e) { /* noop */ }
+      // Tier filter
+      if (activeTier !== 'all') {
+        list = list.filter(function (p) { return p.tier === activeTier; });
+      }
+      // Subcategory filter
+      if (activeSubcat !== 'all') {
+        var sub = activeSubcat.toLowerCase();
+        list = list.filter(function (p) {
+          return (p.specialties || []).some(function (s) { return s.toLowerCase() === sub; });
+        });
+      }
+      // Text search
+      if (searchQuery) {
+        var q = searchQuery.toLowerCase();
+        list = list.filter(function (p) {
+          return p.name.toLowerCase().includes(q)
+            || (p.tagline || '').toLowerCase().includes(q)
+            || (p.specialties || []).some(function (s) { return s.toLowerCase().includes(q); });
+        });
+      }
+      // Sort (client-side; data already arrives sorted by recommended)
+      if (sortEl && sortEl.value === 'rating') {
+        list.sort(function (a, b) { return b.rating - a.rating; });
+      } else if (sortEl && sortEl.value === 'newest') {
+        // already date-sorted from server; no re-sort needed
       }
 
-      grid.innerHTML = list.map(p => renderProviderCard(p, cityInfo)).join('');
-      grid.style.display = list.length ? '' : 'none';
-      empty.style.display = (!list.length && providers.length > 0) ? '' : 'none';
+      grid.innerHTML = list.map(function (p) { return renderProviderCard(p, displayCity); }).join('');
+      grid.style.display   = list.length ? '' : 'none';
+      if (empty) empty.style.display = (!list.length) ? '' : 'none';
     }
 
-    chips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        chips.forEach(c => c.classList.remove('active'));
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.classList.remove('active'); });
         chip.classList.add('active');
         activeTier = chip.getAttribute('data-filter');
-        applyAndRender();
+        render();
       });
     });
 
     if (searchEl) {
-      searchEl.addEventListener('input', () => {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
+      searchEl.addEventListener('input', function () {
+        clearTimeout(debounce);
+        debounce = setTimeout(function () {
           searchQuery = searchEl.value.trim().toLowerCase();
-          applyAndRender();
+          render();
         }, 250);
       });
     }
 
     if (sortEl) {
-      sortEl.addEventListener('change', () => {
-        activeSort = sortEl.value;
-        applyAndRender();
+      sortEl.addEventListener('change', function () {
+        if (sortEl.value === 'recommended' || sortEl.value === 'newest') {
+          // re-fetch from server for these sort modes
+          fetchPage(sortEl.value);
+        } else {
+          render();
+        }
       });
     }
 
-    applyAndRender(); // initial render
+    render();
+    return render; // expose for external re-render
   }
 
+  // ── Boot ─────────────────────────────────────────────────────────────────────
+
   function boot() {
-    const D = window.ECM_DATA;
+    var params   = getParams();
+    var type     = params.type;
+    var cityHint = params.cityHint;
+    var state    = params.state;
+
+    // City display name: use URL ?city= param, or location.js city, or 'your area'
+    var loc = (window.ECM && window.ECM.getLocation && window.ECM.getLocation()) || {};
+    var displayCity = cityHint || loc.city || 'your area';
+
+    // City hero image/tagline from data.js (geographic reference data — stays static)
+    var D = window.ECM_DATA;
+    var cityKey = D && D.normalizeCityKey ? D.normalizeCityKey(displayCity) : displayCity.toLowerCase().replace(/\s+/g, '-');
+    var cityInfo = (D && D.cities && D.cities[cityKey]) || { name: displayCity, state: state || '', tagline: '', image: '' };
+    var cityName = cityInfo.name || displayCity;
+
+    // Update all city spans immediately (before fetch)
+    document.querySelectorAll('.js-location-city').forEach(function (node) {
+      node.textContent = cityName;
+    });
+
+    // City hero image
+    var cityImg = el('city-image');
+    if (cityImg && cityInfo.image) {
+      cityImg.src = cityInfo.image;
+      cityImg.alt = cityName;
+    }
+    if (el('city-badge-name'))    el('city-badge-name').textContent    = cityName + (cityInfo.state ? ', ' + cityInfo.state : '');
+    if (el('city-badge-tagline')) el('city-badge-tagline').textContent = cityInfo.tagline || '';
+
+    // ── Fetch category + providers ──────────────────────────────────────────
+    var currentSort = 'recommended';
+
+    function fetchPage(sort) {
+      currentSort = sort || currentSort;
+      var params = new URLSearchParams({ type: type, per_page: '50', sort: currentSort });
+      if (cityHint) params.set('city', cityHint);
+
+      fetch(API_BASE + '/category?' + params.toString())
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var cat       = data.category || {};
+          var providers = data.providers || [];
+          var total     = data.total || 0;
+
+          // ── Hero ──
+          var catName  = cat.name || type;
+          var catIcon  = cat.icon || '🏥';
+          var catBlurb = cat.blurb || '';
+
+          document.title = catName + ' in ' + cityName + ' | ElderCareMatters';
+          setText('#breadcrumb-current', catName + ' in ' + cityName);
+          setText('#category-icon',      catIcon);
+          setText('#category-name',      catName);
+          setText('#category-inline',    catName.toLowerCase());
+          setText('#category-inline-3',  catName.toLowerCase());
+          setText('#category-blurb',     catBlurb);
+          setText('#hero-meta-count',    total ? total + ' providers verified' : 'Grow your Business');
+
+          var heroBtn = el('hero-cta-btn');
+          if (heroBtn) heroBtn.innerHTML = '📋 Find ' + esc(catName) + ' Providers <span class="btn-arrow">→</span>';
+
+          // ── Providers grid ──
+          var grid  = el('all-providers-grid');
+          var empty = el('no-providers-msg');
+
+          if (providers.length === 0) {
+            if (grid)  grid.style.display  = 'none';
+            if (empty) empty.style.display = '';
+            // Fetch without city filter as "nearby" fallback
+            fetchNearby(type, cityHint);
+          } else {
+            if (empty) empty.style.display = 'none';
+
+            // Subcategory chips (for grief-counselors etc.)
+            var SUBCATS = { 'grief-counselors': ['Bereavement Care','Grief Support Group','Grief Counseling','Grief Support Services','Bereavement Counseling'] };
+            var subRow = el('subcategory-row');
+            if (subRow && SUBCATS[type]) {
+              subRow.innerHTML = '<button class="filter-chip active" data-subcat="all">All</button>'
+                + SUBCATS[type].map(function (s) {
+                    return '<button class="filter-chip" data-subcat="' + esc(s) + '">' + esc(s) + '</button>';
+                  }).join('');
+              subRow.style.display = 'flex';
+            }
+
+            wireProviders(providers, cityName, fetchPage);
+          }
+
+          // ── Cross-sell ──
+          var crossGrid = el('cross-sell-grid');
+          if (crossGrid && cat.cross_sell && cat.cross_sell.length) {
+            crossGrid.innerHTML = cat.cross_sell.map(function (c) {
+              return renderCrossSellCard(c, cityHint);
+            }).join('');
+            var crossSection = el('cross-sell-section');
+            if (crossSection) crossSection.style.display = '';
+          } else {
+            // Fallback cross-sell from data.js
+            if (D && D.getCrossSell) {
+              var cross = D.getCrossSell(type);
+              if (crossGrid && cross.length) {
+                crossGrid.innerHTML = cross.map(function (c) {
+                  return renderCrossSellCard(c, cityHint);
+                }).join('');
+              }
+            }
+          }
+        })
+        .catch(function (err) {
+          console.warn('ECM category fetch failed', err);
+          // Fall back to data.js if API fails
+          if (D) fallbackToDataJs(type, cityKey, cityInfo, cityName, cityHint);
+        });
+    }
+
+    fetchPage('recommended');
+
+    // React to city changes made via the header location modal.
+    // location.js calls window.ECM._onRender(loc) whenever the city is updated.
+    if (window.ECM) {
+      window.ECM._onRender = function (newLoc) {
+        if (!newLoc || !newLoc.city) return;
+
+        // Update closed-over variables so fetchPage() uses the new city.
+        cityHint    = newLoc.city;
+        displayCity = newLoc.city;
+        cityName    = newLoc.city;
+        state       = newLoc.state || state;
+
+        // Update city image/badge from data.js
+        var newKey  = D && D.normalizeCityKey ? D.normalizeCityKey(cityHint) : cityHint.toLowerCase().replace(/\s+/g, '-');
+        var newInfo = (D && D.cities && D.cities[newKey]) || { name: cityHint, state: newLoc.state || '', tagline: '', image: '' };
+        cityName = newInfo.name || cityHint;
+
+        document.querySelectorAll('.js-location-city').forEach(function (node) {
+          node.textContent = cityName;
+        });
+        var img = el('city-image');
+        if (img && newInfo.image) { img.src = newInfo.image; img.alt = cityName; }
+        if (el('city-badge-name'))    el('city-badge-name').textContent    = cityName + (newInfo.state ? ', ' + newInfo.state : '');
+        if (el('city-badge-tagline')) el('city-badge-tagline').textContent = newInfo.tagline || '';
+
+        // Re-fetch providers for the new city.
+        fetchPage(currentSort);
+      };
+    }
+  }
+
+  // ── Nearby providers (shown when city returns 0 results) ──────────────────
+
+  function fetchNearby(type, excludeCity) {
+    var params = new URLSearchParams({ type: type, per_page: '12', sort: 'recommended' });
+    // Don't filter by city — get all providers for the category
+    fetch(API_BASE + '/category?' + params.toString())
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var providers = (data.providers || []).filter(function (p) {
+          // Exclude providers already in the current city
+          return !excludeCity || !p.city || p.city.toLowerCase() !== excludeCity.toLowerCase();
+        }).slice(0, 9);
+
+        var nearbySection = el('nearby-section');
+        var nearbyGrid    = el('nearby-grid');
+        if (providers.length && nearbyGrid) {
+          nearbyGrid.innerHTML = providers.map(renderNearbyCard).join('');
+          if (nearbySection) nearbySection.style.display = '';
+        }
+      })
+      .catch(function () {});
+  }
+
+  // ── Fallback to data.js if REST API is unavailable ────────────────────────
+
+  function fallbackToDataJs(type, cityKey, cityInfo, cityName, cityHint) {
+    var D = window.ECM_DATA;
     if (!D) return;
+    var cat       = D.getCategory(type) || D.getCategory('home-care');
+    var providers = D.getProvidersByCategoryCity(cat.key, cityKey);
 
-    const { type, cityHint } = getParams();
-    const cat = D.getCategory(type) || D.getCategory('home-care');
-    const cityKey = resolveCityKey(cityHint);
-    const cityInfo = D.cities[cityKey];
-
-    // ── Determine heading display name ──
-    // When the user selected a state only (e.g. "Florida") with no specific city,
-    // loc.city is the full state name and won't match any DB city key.
-    // In that case show the state name in all headings instead of the fallback
-    // city ("Dallas"), which would be misleading.
-    const loc = (window.ECM && window.ECM.getLocation && window.ECM.getLocation()) || {};
-    const locCityKey = D.normalizeCityKey(loc.city || '');
-    const stateOnlyMode = loc.city && !D.cities[locCityKey];
-    const displayCityName = stateOnlyMode ? loc.city : cityInfo.name;
-
-    // ── Hero + breadcrumb ──
-    document.title = `${cat.name} in ${displayCityName} | ElderCareMatters`;
-    setText('#breadcrumb-current', `${cat.name} in ${displayCityName}`);
-    setText('#category-icon', cat.icon);
-    setText('#category-name', cat.name);
+    document.title = cat.name + ' in ' + cityName + ' | ElderCareMatters';
+    setText('#breadcrumb-current', cat.name + ' in ' + cityName);
+    setText('#category-icon',   cat.icon);
+    setText('#category-name',   cat.name);
     setText('#category-inline', cat.name.toLowerCase());
-    setText('#category-inline-3', cat.name.toLowerCase());
-    setText('#category-blurb', cat.blurb);
-    setText('#city-badge-name', `${cityInfo.name}, ${cityInfo.state}`);
-    setText('#city-badge-tagline', cityInfo.tagline);
-    const cityImg = document.getElementById('city-image');
-    if (cityImg) cityImg.src = cityInfo.image;
+    setText('#category-blurb',  cat.blurb);
 
-    // Dynamic CTA button text
-    const heroBtn = document.getElementById('hero-cta-btn');
-    if (heroBtn) heroBtn.innerHTML = `📋 Find ${escapeHtml(cat.name)} Providers <span class="btn-arrow">→</span>`;
-
-    // Override .js-location-city spans with the display city name.
-    // In state-only mode this is the state name ("Florida"); for a real
-    // city selection it is the resolved city ("Dallas", "Austin", etc.).
-    document.querySelectorAll('.js-location-city').forEach(el => { el.textContent = displayCityName; });
-
-    // Re-apply whenever location.js fires async updates (fix geolocation race)
-    window.ECM._onRender = function () {
-      document.querySelectorAll('.js-location-city').forEach(el => { el.textContent = displayCityName; });
-    };
-
-    // ── Providers in city ──
-    const providers = D.getProvidersByCategoryCity(cat.key, cityKey);
-    const noMsg     = document.getElementById('no-providers-msg');
-
-    setText('#hero-meta-count', 'Grow your Business');
-
-    // Initial no-providers state (wireProviders handles the grid render itself)
-    if (providers.length === 0) {
-      noMsg.style.display = '';
+    var grid = el('all-providers-grid');
+    if (grid) {
+      // data.js providers don't have permalinks; link to find-care instead
+      grid.innerHTML = providers.map(function (p) {
+        return renderProviderCard(Object.assign({}, p, { permalink: home_url('/find-care/') }), cityName);
+      }).join('');
     }
-
-    // ── Subcategory chips (category-specific, e.g. grief-counselors) ──
-    const SUBCATEGORIES = {
-      'grief-counselors': [
-        'Bereavement Care',
-        'Grief Support Group',
-        'Grief Counseling',
-        'Grief Support Services',
-        'Bereavement Counseling',
-        'Grief Support Community',
-        'GriefShare'
-      ]
-    };
-    const subRow  = document.getElementById('subcategory-row');
-    const subcats = SUBCATEGORIES[cat.key];
-    if (subRow && subcats) {
-      subRow.innerHTML =
-        `<button class="filter-chip active" data-subcat="all">All</button>` +
-        subcats.map(s => `<button class="filter-chip" data-subcat="${escapeHtml(s)}">${escapeHtml(s)}</button>`).join('');
-      subRow.style.display = 'flex';
-    }
-
-    // Wire interactive providers section (search + sort + filter + cache)
-    wireProviders(providers, cityInfo, cat, cityKey);
-
-    // ── Nearby city packages ──
-    const nearby = D.getProvidersInNearbyCities(cat.key, cityKey, 6);
-    const nearbySection = document.getElementById('nearby-section');
-    const nearbyGrid    = document.getElementById('nearby-grid');
-    if (nearby.length > 0) {
-      nearbySection.style.display = '';
-      nearbyGrid.innerHTML = nearby.map(renderNearbyCard).join('');
-    }
-
-    // ── Cross-sell ──
-    const cross = D.getCrossSell(cat.key);
-    document.getElementById('cross-sell-grid').innerHTML = renderCrossSell(cross, cityKey);
   }
 
   document.addEventListener('DOMContentLoaded', boot);

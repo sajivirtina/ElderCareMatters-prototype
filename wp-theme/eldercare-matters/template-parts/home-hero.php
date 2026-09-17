@@ -37,7 +37,7 @@ $fc_ver_sub   = ecm_get_field( 'hero_fc_verified_sub',   'Pre-screened & trusted
 $fc_time_val  = ecm_get_field( 'hero_fc_time_value', '< 2 min' );
 $fc_time_lbl  = ecm_get_field( 'hero_fc_time_label', 'to your first match · always free' );
 
-$logo_icon_url = get_template_directory_uri() . '/assets/images/logo-icon.png';
+$logo_icon_url = get_template_directory_uri() . '/assets/images/logo.png';
 $footer_logo = get_field( 'footer_logo' );
 if ( $footer_logo ) { $logo_icon_url = $footer_logo['url']; }
 ?>
@@ -124,37 +124,6 @@ if ( $footer_logo ) { $logo_icon_url = $footer_logo['url']; }
         </div>
         <?php endif; ?>
 
-        <!-- Quick-start category chips -->
-        <div class="hero-quick-cats">
-            <span class="quick-cats-label"><?php echo esc_html( $quick_cats_label ); ?></span>
-            <?php if ( $quick_cats ) : ?>
-                <?php foreach ( $quick_cats as $cat ) :
-                    $slug  = sanitize_title( $cat['slug'] ?? '' );
-                    $emoji = $cat['emoji'] ?? '';
-                    $label = $cat['label'] ?? '';
-                ?>
-                <a class="quick-cat js-category-card"
-                   data-category="<?php echo esc_attr( $slug ); ?>"
-                   href="<?php echo esc_url( home_url( '/category/?type=' . $slug ) ); ?>">
-                    <?php echo esc_html( $emoji . ' ' . $label ); ?>
-                </a>
-                <?php endforeach; ?>
-            <?php else : ?>
-                <a class="quick-cat js-category-card" data-category="home-care" href="<?php echo esc_url( home_url( '/category/?type=home-care' ) ); ?>">🏠 Home Care</a>
-                <a class="quick-cat js-category-card" data-category="memory-care" href="<?php echo esc_url( home_url( '/category/?type=memory-care' ) ); ?>">🧠 Memory Care</a>
-                <a class="quick-cat js-category-card" data-category="assisted-living" href="<?php echo esc_url( home_url( '/category/?type=assisted-living' ) ); ?>">🏡 Assisted Living</a>
-                <a class="quick-cat js-category-card" data-category="elder-law" href="<?php echo esc_url( home_url( '/category/?type=elder-law' ) ); ?>">⚖️ Elder Law</a>
-            <?php endif; ?>
-        </div>
-
-        <!-- Trust line -->
-        <div class="hero-since">
-            <img src="<?php echo esc_url( $logo_icon_url ); ?>" alt="ECM" style="height:38px;width:auto;flex-shrink:0;">
-            <span style="font-size:0.8rem;color:var(--muted);line-height:1.6;">
-                Trusted since <strong style="color:var(--charcoal);font-weight:600;"><?php echo esc_html( $trust_year ); ?></strong>
-                &nbsp;·&nbsp; <?php echo esc_html( $trust_text ); ?>
-            </span>
-        </div>
     </div><!-- /.hero-left -->
 
     <!-- Hero right — photo + floating cards -->

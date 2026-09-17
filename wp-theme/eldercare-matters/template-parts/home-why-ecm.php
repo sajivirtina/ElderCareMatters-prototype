@@ -10,10 +10,10 @@ $cards = get_field( 'why_cards' );
 
 <!-- Why ECM -->
 <section class="why-ecm">
-    <div class="section-header reveal">
-        <div class="section-tag"><?php echo esc_html( $tag ); ?></div>
+    <div class="section-header reveal section-header--centered section-header--why">
+        <div class="section-tag section-tag--centered"><?php echo esc_html( $tag ); ?></div>
         <h2 class="section-title"><?php echo esc_html( $title ); ?></h2>
-        <div class="section-divider"></div>
+        <div class="section-divider section-divider--centered"></div>
     </div>
 
     <div class="why-grid">

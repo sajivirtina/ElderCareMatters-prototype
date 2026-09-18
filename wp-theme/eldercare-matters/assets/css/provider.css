@@ -110,6 +110,26 @@ a { text-decoration: none; color: inherit; }
   display: flex; flex-direction: column;
   flex-shrink: 0;
 }
+/*
+ * main.css has a bare `nav { position:sticky; background:rgba(250,247,242,0.92);
+ * backdrop-filter:blur(12px); border-bottom:…; padding:0 20px; display:flex; … }`
+ * rule that leaks into the sidebar's <nav>, painting a cream background over the
+ * first two items and adding unwanted padding. Reset every affected property here
+ * so the sidebar nav is always a plain column regardless of stylesheet load order.
+ */
+.dash-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: static;
+  top: auto;
+  z-index: auto;
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
+  padding: 0;
+  align-items: stretch;
+}
 .sidebar-section { padding: 8px 0; }
 .sidebar-section + .sidebar-section {
   border-top: 1px solid rgba(255,255,255,0.07);
@@ -917,6 +937,7 @@ img.emoji, img.wp-smiley { display: inline !important; height: 1em !important; w
 .pd-auth-card .login-button:hover { background: var(--blue-700,#1d4ed8); }
 .pd-auth-card .login-button:disabled { opacity: 0.7; cursor: default; }
 .pd-auth-card .button-loader { display: none !important; }
+.pd-auth-card .login-button .button-text { display: inline !important; }
 .pd-auth-card .login-button .spinner { width: 20px; height: 20px; vertical-align: middle; }
 .pd-auth-card .remember-me { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--gray-600,#4b5563); margin-top: 12px; }
 .pd-auth-card .remember-me input { width: auto; margin: 0; }
@@ -991,6 +1012,264 @@ img.emoji, img.wp-smiley { display: inline !important; height: 1em !important; w
 .pd-btn--primary      { background: var(--blue-600); color: #fff; }
 .pd-btn--primary:hover{ background: var(--blue-700); }
 
+/*
+ * WP Job Manager's embedded edit-listing form (My Listings → Edit) ships its
+ * own layout CSS (frontend.css) but leaves .button's color/border to the
+ * theme, same as it would on WPJM's own pages. This theme never styled the
+ * generic WP .button convention, so give it the dashboard's look here.
+ */
+.job-manager-form input[type="submit"],
+.job-manager-form input[type="button"].button {
+	background: var(--blue-600, #2563eb); color: #fff; border: none;
+	padding: 10px 20px; border-radius: var(--radius, 8px); cursor: pointer;
+	font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600;
+}
+.job-manager-form input[type="submit"]:hover,
+.job-manager-form input[type="button"].button:hover { background: var(--blue-700, #1d4ed8); }
+
+/* Hide Preview button on Add Listing and Edit Listing pages */
+.job-manager-form input[name="preview_job"] { display: none !important; }
+
+/*
+ * Add Listing: package-selection step. WP Job Manager Listing Payments renders
+ * this as a standalone form (#job_package_selection), not .job-manager-form.
+ */
+.dash-main #job_package_selection {
+	max-width: 920px;
+}
+.dash-main .job_listing_packages_title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 20px 22px;
+	background: linear-gradient(135deg, var(--blue-50), #fff);
+	border: 1px solid var(--gray-200);
+	border-bottom: none;
+	border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.dash-main .job_listing_packages_title h2 {
+	clear: none;
+	margin: 0;
+	font-size: 1.25rem;
+	font-weight: 700;
+	line-height: 1.2;
+	color: var(--gray-900);
+	order: -1;
+}
+.dash-main .job_listing_packages_title .button,
+.dash-main #job_package_selection .button {
+	float: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 40px;
+	padding: 9px 18px;
+	border: 0;
+	border-radius: var(--radius);
+	background: var(--blue-600);
+	color: #fff;
+	font-family: 'DM Sans', sans-serif;
+	font-size: 0.9rem;
+	font-weight: 700;
+	line-height: 1.2;
+	cursor: pointer;
+	transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.dash-main .job_listing_packages_title .button:hover,
+.dash-main #job_package_selection .button:hover {
+	background: var(--blue-700);
+	box-shadow: var(--shadow-sm);
+	transform: translateY(-1px);
+}
+.dash-main .job_listing_packages {
+	padding: 22px;
+	border: 1px solid var(--gray-200);
+	border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+	background: #fff;
+}
+.dash-main .job_listing_packages > p {
+	position: relative;
+	margin: 0;
+	padding: 18px 20px 18px 48px;
+	border: 1px solid var(--amber-100);
+	border-radius: var(--radius);
+	background: #fffbeb;
+	color: var(--gray-800);
+	font-size: 0.95rem;
+	line-height: 1.5;
+}
+.dash-main .job_listing_packages > p::before {
+	content: "!";
+	position: absolute;
+	left: 18px;
+	top: 18px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	border-radius: var(--radius-full);
+	background: var(--amber-500);
+	color: #fff;
+	font-size: 0.78rem;
+	font-weight: 800;
+	line-height: 1;
+}
+.dash-main .job_listing_packages > p a {
+	color: var(--blue-600);
+	font-weight: 700;
+	text-decoration: none;
+}
+.dash-main .job_listing_packages > p a:hover {
+	text-decoration: underline;
+}
+.dash-main ul.job_packages {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.dash-main ul.job_packages li {
+	margin: 0;
+	padding: 14px 16px;
+	border: 1px solid var(--gray-200);
+	border-radius: var(--radius);
+	background: #fff;
+	list-style: none;
+	color: var(--gray-700);
+	font-size: 0.9rem;
+}
+.dash-main ul.job_packages li.package-section {
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--gray-500);
+	font-size: 0.78rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+.dash-main ul.job_packages li.user-job-package,
+.dash-main ul.job_packages li.job-package {
+	transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.dash-main ul.job_packages li.user-job-package:hover,
+.dash-main ul.job_packages li.job-package:hover {
+	border-color: var(--blue-100);
+	background: var(--gray-50);
+	box-shadow: var(--shadow-sm);
+}
+.dash-main ul.job_packages input[type="radio"] {
+	accent-color: var(--blue-600);
+	width: 16px;
+	height: 16px;
+	margin-right: 8px;
+	vertical-align: -2px;
+}
+.dash-main ul.job_packages label {
+	font-weight: 700;
+	color: var(--gray-900);
+	cursor: pointer;
+}
+
+/*
+ * WPJM's edit-listing form fields (fieldset > label + div.field > input) ship
+ * with no field-row styling of their own — match the look of .form-group
+ * elsewhere in the dashboard (Settings, Profile): stacked label, bordered
+ * input, consistent padding.
+ */
+.job-manager-form { max-width: 100%; }
+.job-manager-form fieldset {
+	display: flex; flex-direction: column;
+	margin: 0 0 18px; padding: 0; border: none; max-width: 100%;
+}
+.job-manager-form fieldset > label {
+	display: block; font-size: 0.78rem; font-weight: 600; color: var(--gray-700);
+	margin-bottom: 5px;
+}
+.job-manager-form .field { max-width: 100%; }
+.job-manager-form .field input[type="text"],
+.job-manager-form .field input[type="email"],
+.job-manager-form .field input[type="url"],
+.job-manager-form .field input[type="tel"],
+.job-manager-form .field input[type="number"],
+.job-manager-form .field input[type="password"],
+.job-manager-form .field textarea,
+.job-manager-form .field select:not([multiple]) {
+	width: 100%; max-width: 100%; box-sizing: border-box;
+	padding: 9px 13px; border: 1px solid var(--gray-300); border-radius: var(--radius);
+	font-family: 'DM Sans', sans-serif; font-size: 0.875rem; color: var(--gray-900);
+	background: #fff; transition: border-color var(--transition);
+}
+.job-manager-form .field select[multiple] {
+	width: 100%; max-width: 100%; box-sizing: border-box;
+	padding: 6px; border: 1px solid var(--gray-300); border-radius: var(--radius);
+	font-family: 'DM Sans', sans-serif; font-size: 0.875rem; color: var(--gray-900);
+}
+.job-manager-form .field input:focus,
+.job-manager-form .field select:focus,
+.job-manager-form .field textarea:focus { outline: none; border-color: var(--blue-500); }
+.job-manager-form .field textarea { resize: vertical; min-height: 90px; }
+.job-manager-form .field small.description {
+	display: block; font-size: 0.78rem; color: var(--gray-500); margin-top: 5px;
+}
+/* Radio / checkbox option rows (e.g. Payment Package) */
+.job-manager-form .field label {
+	display: flex; align-items: flex-start; gap: 8px;
+	font-size: 0.875rem; font-weight: 400; color: var(--gray-800);
+	margin-bottom: 10px; cursor: pointer; max-width: 100%;
+}
+.job-manager-form .field input[type="radio"],
+.job-manager-form .field input[type="checkbox"] {
+	accent-color: var(--blue-600); width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;
+}
+.job-manager-form .field br { display: none; } /* radio-field.php separates options with <br>, not needed once they're flex rows */
+
+/* WP Job Manager Listing Payments' own "Payment Package" picker — different
+   markup (ul.job-packages-field > li > label[for]) from generic radio fields. */
+.job-manager-form .field .job-packages-field { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; max-width: 480px; }
+.job-manager-form .field .job-packages-field .job-package-field { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 12px 14px; margin: 0; }
+.job-manager-form .field .job-packages-field .job-package-field p { margin: 0 0 4px; font-size: 0.875rem; color: var(--gray-800); }
+.job-manager-form .field .job-packages-field .job-package-field p:last-child { margin-bottom: 0; font-size: 0.78rem; color: var(--gray-500); }
+.job-manager-form .field .job-packages-field .job-package-field input[type="radio"] { accent-color: var(--blue-600); width: 16px; height: 16px; vertical-align: middle; margin-right: 6px; }
+.job-manager-form .field .job-packages-field .job-package-field label { display: inline; font-weight: 600; color: var(--gray-900); cursor: pointer; }
+
+/*
+ * WooCommerce order/subscription detail tables (Order details, Related
+ * orders/subscriptions, Subscription totals) all share the `.shop_table`
+ * class — style consistently with .pd-listings-table used elsewhere.
+ */
+.shop_table {
+	width: 100%; border-collapse: collapse; font-size: 0.88rem; background: #fff;
+	margin: 0 0 20px;
+}
+.shop_table th {
+	padding: 11px 14px; text-align: left; font-size: 0.78rem; font-weight: 600;
+	text-transform: uppercase; letter-spacing: .04em; color: var(--gray-500);
+	border-bottom: 1px solid var(--gray-200); background: var(--gray-50); white-space: nowrap;
+}
+.shop_table td {
+	padding: 12px 14px; vertical-align: middle; border-bottom: 1px solid var(--gray-100); color: var(--gray-700);
+}
+.shop_table tbody tr:last-child td { border-bottom: none; }
+.shop_table tfoot th, .shop_table tfoot td { padding: 10px 14px; }
+
+/* WC wraps the order #/date/status in <mark> — neutralize the browser default yellow highlight */
+mark.order-number, mark.order-date, mark.order-status,
+mark.subscription-number, mark.subscription-date, mark.subscription-status {
+	background: none; color: var(--gray-900); font-weight: 700; padding: 0;
+}
+
+/*
+ * Contain wide embedded content (WPJM's form, WC's tables) to the card, so it
+ * scrolls internally instead of forcing the whole dashboard layout wider —
+ * that width overflow was pushing the sidebar/nav past the viewport edge.
+ */
+.dash-main .pd-card { max-width: 100%; overflow-x: auto; box-sizing: border-box; }
+
 /* ── Stats bar ── */
 .pd-bar-track { flex: 1; height: 8px; background: var(--gray-100); border-radius: var(--radius-full); overflow: hidden; min-width: 60px; }
 .pd-bar-fill  { height: 100%; background: var(--blue-500); border-radius: var(--radius-full); transition: width .3s; }
@@ -1036,9 +1315,387 @@ img.emoji, img.wp-smiley { display: inline !important; height: 1em !important; w
 /* ── Billing kpi sub ── */
 .kpi-sub { font-size: 0.78rem; color: var(--gray-400); margin-top: 4px; }
 
+/* ── Edit Listing: file upload inputs ── */
+.job-manager-form .field input[type="file"] {
+	display: block;
+	width: 100%; max-width: 480px;
+	padding: 8px 12px;
+	border: 1.5px dashed var(--gray-300);
+	border-radius: var(--radius);
+	background: var(--gray-50);
+	font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--gray-600);
+	cursor: pointer;
+	transition: border-color var(--transition), background var(--transition);
+}
+.job-manager-form .field input[type="file"]:hover {
+	border-color: var(--blue-400, #60a5fa);
+	background: var(--blue-50);
+}
+
+/* uploaded file preview: image thumbnail + remove link side by side */
+.job-manager-form .job-manager-uploaded-file-preview {
+	display: inline-flex; align-items: center; gap: 10px;
+}
+.job-manager-form .job-manager-remove-uploaded-file {
+	font-size: 0.8rem; font-weight: 600; color: var(--red-700);
+	text-decoration: underline; text-underline-offset: 2px;
+}
+.job-manager-form .job-manager-remove-uploaded-file:hover {
+	color: #dc2626;
+}
+
+/* "Your account" signed-in notice (fieldset-logged_in) */
+.job-manager-form fieldset.fieldset-logged_in {
+	background: var(--blue-50); border: 1px solid var(--blue-100) !important;
+	border-radius: var(--radius); padding: 12px 14px !important; margin-bottom: 24px;
+}
+.job-manager-form fieldset.fieldset-logged_in label {
+	font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+	letter-spacing: 0.05em; color: var(--blue-700); margin-bottom: 4px;
+}
+.job-manager-form fieldset.fieldset-logged_in .field {
+	font-size: 0.875rem; color: var(--gray-700); max-width: 100%;
+}
+.job-manager-form fieldset.fieldset-logged_in .field strong { color: var(--gray-900); font-weight: 700; }
+.job-manager-form fieldset.fieldset-logged_in .field a { color: var(--blue-600); font-weight: 600; }
+.job-manager-form fieldset.fieldset-logged_in .field a:hover { text-decoration: underline; }
+
+/* Section heading (e.g. "Company Details") */
+.job-manager-form h2 {
+	font-size: 1rem; font-weight: 700; color: var(--gray-800);
+	margin: 28px 0 16px; padding-bottom: 10px;
+	border-bottom: 1px solid var(--gray-200);
+}
+
+/* Current uploaded image preview thumbnail */
+.job-manager-form .field img {
+	display: block;
+	max-width: 120px; max-height: 120px;
+	border-radius: var(--radius); object-fit: cover;
+	border: 1px solid var(--gray-200); margin-bottom: 8px;
+}
+
+/* ── "Choose a package" — style the Submit button to match dashboard ── */
+#job_package_selection .job_listing_packages_title input[type="submit"].button {
+	display: inline-flex;
+	align-items: center;
+	padding: 10px 22px;
+	border-radius: var(--radius);
+	font-size: 0.9rem;
+	font-weight: 600;
+	background: var(--blue-600);
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	transition: background var(--transition);
+	white-space: nowrap;
+}
+#job_package_selection .job_listing_packages_title input[type="submit"].button:hover {
+	background: var(--blue-700);
+}
+
+/* ════════════════════════════════════════════════════════════
+   Add / Edit Listing form — 2-column responsive grid layout
+   ════════════════════════════════════════════════════════════ */
+
+/* Upgrade the form container to a 2-column CSS grid */
+.dash-main .job-manager-form {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 32px;
+	align-items: start;
+}
+
+/* Full-width items (span both columns) */
+.job-manager-form .fieldset-logged_in,
+.job-manager-form .fieldset-application,
+.job-manager-form .fieldset-job_category,
+.job-manager-form .fieldset-gallery_images,
+.job-manager-form .fieldset-type-wp-editor,
+.job-manager-form .fieldset-type-repeater,
+.job-manager-form .fieldset-company_video,
+.job-manager-form > h2,
+.job-manager-form > p { grid-column: span 2; }
+
+/* "Company Details" h2 — style as a section divider label */
+.job-manager-form > h2 {
+	font-size: 0.68rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--gray-400, #9ca3af);
+	margin: 20px 0 0;
+	padding: 20px 0 0;
+	border-top: 1.5px solid var(--gray-200, #e5e7eb);
+}
+
+/* ── Section: Media (Logo + Cover Image) ── */
+.job-manager-form .fieldset-company_avatar {
+	margin-top: 4px;
+	padding-top: 20px;
+	border-top: 1.5px solid var(--gray-200, #e5e7eb);
+}
+.job-manager-form .fieldset-company_avatar::before {
+	content: 'Media';
+	display: block;
+	font-size: 0.68rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--gray-400, #9ca3af);
+	margin-bottom: 12px;
+}
+.job-manager-form .fieldset-featured_image {
+	margin-top: 4px;
+	padding-top: 20px;
+	border-top: 1.5px solid var(--gray-200, #e5e7eb);
+}
+
+/* ── Section: Social Media ── */
+.job-manager-form .fieldset-company_facebook {
+	padding-top: 4px;
+}
+.job-manager-form .fieldset-company_facebook::before {
+	content: 'Social Media';
+	display: block;
+	font-size: 0.68rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--gray-400, #9ca3af);
+	margin-bottom: 12px;
+}
+
+/* Submit / Preview / Save Draft button row */
+.job-manager-form > p {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 10px;
+	margin: 8px 0 0;
+	padding-top: 20px;
+	border-top: 1.5px solid var(--gray-200, #e5e7eb);
+}
+.job-manager-form > p input[type="submit"] {
+	margin: 0;
+}
+
 /* ── Responsive tweaks ── */
+@media (max-width: 768px) {
+	.dash-main .job-manager-form { grid-template-columns: 1fr; }
+	.job-manager-form .fieldset-featured_image {
+		border-top: none; padding-top: 0; margin-top: 0;
+	}
+}
 @media (max-width: 640px) {
   .pd-listings-table th, .pd-listings-table td { padding: 9px 10px; }
   .pd-reviews-summary { flex-direction: column; }
   .pd-grid-2col { grid-template-columns: 1fr !important; }
+  .dash-main .job_listing_packages_title { align-items: flex-start; flex-direction: column; padding: 18px; }
+  .dash-main .job_listing_packages_title .button,
+  .dash-main #job_package_selection .button { width: 100%; }
+  .dash-main .job_listing_packages { padding: 16px; }
+  .job-manager-form .field input[type="file"] { max-width: 100%; }
+  .job-manager-form .field .job-packages-field { max-width: 100%; }
 }
+.job_listing_packages, .resume_packages {
+  padding: 15px;
+}
+/* Hide payment package selection on Edit Listing page */
+.edit-listing #job_package_selection,
+.edit-listing .job_listing_packages,
+.edit-listing .job_listing_packages_title { display: none !important; }
+
+/* pagination styles live in inner.css (loaded on all pages) */
+.job-manager-form fieldset div.field:not(.full-line-checkbox-field) {
+      width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Repeater sections — per-type distinct card designs
+   Each targets its fieldset class (.fieldset-lp_*) to win over
+   the generic .ecm-repeater-row inline <style> (same specificity
+   level but .fieldset-lp_* wrapper adds one class, giving 0,2,0
+   vs 0,1,0).
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── FAQ Items: Blue left-border Q&A cards ────────────────────── */
+.fieldset-lp_faq .ecm-repeater-row {
+    background: #fff;
+    border: none;
+    border-left: 4px solid var(--blue-600, #2563eb);
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 1px 5px rgba(37, 99, 235, 0.09);
+    padding: 16px 18px 16px 20px;
+    margin-bottom: 12px;
+}
+.fieldset-lp_faq .ecm-repeater-row label:first-of-type {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--blue-600, #2563eb);
+}
+.fieldset-lp_faq .ecm-repeater-row label:not(:first-of-type) {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-400, #9ca3af);
+    margin-top: 12px;
+}
+.fieldset-lp_faq .ecm-repeater-row textarea {
+    background: #f8faff;
+    border-color: #dbeafe;
+}
+.fieldset-lp_faq .ecm-repeater-add {
+    background: var(--blue-600, #2563eb);
+}
+.fieldset-lp_faq .ecm-repeater-add:hover { background: var(--blue-700, #1d4ed8); opacity: 1; }
+
+/* ── Testimonials: Soft indigo quote cards ────────────────────── */
+.fieldset-lp_testimonials .ecm-repeater-row {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 14px;
+    padding: 18px 20px 16px;
+    margin-bottom: 14px;
+    position: relative;
+}
+.fieldset-lp_testimonials .ecm-repeater-row::before {
+    content: '\201C';
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: #bfdbfe;
+    font-family: Georgia, 'Times New Roman', serif;
+    pointer-events: none;
+}
+.fieldset-lp_testimonials .ecm-repeater-row label {
+    color: #3b82f6;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 10px;
+}
+.fieldset-lp_testimonials .ecm-repeater-row textarea {
+    font-style: italic;
+    background: #fff;
+    border-color: #bfdbfe;
+}
+.fieldset-lp_testimonials .ecm-repeater-row input[type="number"] {
+    max-width: 90px;
+}
+.fieldset-lp_testimonials .ecm-repeater-add {
+    background: #1e40af;
+}
+.fieldset-lp_testimonials .ecm-repeater-add:hover { background: #1e3a8a; opacity: 1; }
+
+/* ── Team Members: Dark top-bordered profile cards ────────────── */
+.fieldset-lp_team .ecm-repeater-row {
+    background: #fff;
+    border: 1px solid var(--gray-200, #e5e7eb);
+    border-top: 4px solid var(--gray-900, #111827);
+    border-radius: 0 0 10px 10px;
+    padding: 16px;
+    margin-bottom: 14px;
+}
+.fieldset-lp_team .ecm-repeater-row label {
+    color: var(--gray-500, #6b7280);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.fieldset-lp_team .ecm-repeater-row input[type="text"]:first-of-type {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.fieldset-lp_team .ecm-repeater-add {
+    background: var(--gray-900, #111827);
+}
+.fieldset-lp_team .ecm-repeater-add:hover { background: #374151; opacity: 1; }
+
+/* ── Credentials & Certifications: Compact green check rows ───── */
+.fieldset-lp_credentials .ecm-repeater-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-left: 4px solid #16a34a;
+    border-radius: 0 8px 8px 0;
+    background: #f0fdf4;
+    padding: 8px 10px 8px 14px;
+    margin-bottom: 6px;
+    position: relative;
+}
+.fieldset-lp_credentials .ecm-repeater-row::before {
+    content: '✓';
+    color: #16a34a;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+.fieldset-lp_credentials .ecm-repeater-row label { display: none !important; }
+.fieldset-lp_credentials .ecm-repeater-row input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    padding: 7px 10px;
+    border-radius: 6px;
+    border-color: #bbf7d0;
+    background: #fff;
+}
+.fieldset-lp_credentials .ecm-repeater-row .ecm-repeater-remove {
+    position: static;
+    font-size: 0.78rem;
+    padding: 2px 6px;
+    flex-shrink: 0;
+}
+.fieldset-lp_credentials .ecm-repeater-add {
+    background: #16a34a;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+}
+.fieldset-lp_credentials .ecm-repeater-add:hover { background: #15803d; opacity: 1; }
+
+/* ── Coverage Cities: Inline location-pin compact rows ───────── */
+.fieldset-lp_cities .ecm-repeater-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--gray-200, #e5e7eb);
+    border-radius: 8px;
+    background: #f9fafb;
+    padding: 7px 10px;
+    margin-bottom: 6px;
+    position: relative;
+}
+.fieldset-lp_cities .ecm-repeater-row::before {
+    content: '📍';
+    font-size: 1rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+.fieldset-lp_cities .ecm-repeater-row label { display: none !important; }
+.fieldset-lp_cities .ecm-repeater-row input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border-color: var(--gray-200, #e5e7eb);
+}
+.fieldset-lp_cities .ecm-repeater-row .ecm-repeater-remove {
+    position: static;
+    font-size: 0.78rem;
+    padding: 2px 6px;
+    flex-shrink: 0;
+}
+.fieldset-lp_cities .ecm-repeater-add {
+    background: #0f766e;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+}
+.fieldset-lp_cities .ecm-repeater-add:hover { background: #0d6b63; opacity: 1; }

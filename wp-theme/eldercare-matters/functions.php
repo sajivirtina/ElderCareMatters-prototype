@@ -58,6 +58,8 @@ add_action( 'wp_enqueue_scripts', function () {
     $v  = wp_get_theme()->get( 'Version' );
     $tu = get_template_directory_uri();
     $data_version = filemtime( get_template_directory() . '/assets/js/data.js' );
+    $intake_version = filemtime( get_template_directory() . '/assets/js/intake.js' );
+    $intake_style_version = filemtime( get_template_directory() . '/assets/css/intake-v2.css' );
     $category_version = filemtime( get_template_directory() . '/assets/js/category.js' );
     $search_version = filemtime( get_template_directory() . '/assets/js/search.js' );
     // inner.css is shared across several page types below and gets edited
@@ -77,7 +79,7 @@ add_action( 'wp_enqueue_scripts', function () {
     // Prototype CSS (global)
     wp_enqueue_style( 'ecm-main',      $tu . '/assets/css/main.css',      [ 'ecm-google-fonts' ], $v );
     wp_enqueue_style( 'ecm-homepage',  $tu . '/assets/css/homepagev3.css',  [ 'ecm-main' ], $v );
-    wp_enqueue_style( 'ecm-intake-v2', $tu . '/assets/css/intake-v2.css', [ 'ecm-homepage' ], $v );
+    wp_enqueue_style( 'ecm-intake-v2', $tu . '/assets/css/intake-v2.css', [ 'ecm-homepage' ], $intake_style_version );
 
     // Inner-page CSS — loaded on category/search/blog/blog-detail templates, single posts, and Job Manager category archive
     // Detect /category/?type=X — template_redirect bypasses is_page_template()
@@ -136,7 +138,43 @@ add_action( 'wp_enqueue_scripts', function () {
         'gsv_key' => defined( 'ECM_GOOGLE_MAPS_KEY' ) ? ECM_GOOGLE_MAPS_KEY : get_option( 'ecm_google_maps_key', '' ),
     ] );
     wp_enqueue_script( 'ecm-location', $tu . '/assets/js/location.js', [ 'ecm-data' ], $v, true );
-    wp_enqueue_script( 'ecm-intake',   $tu . '/assets/js/intake.js',   [ 'ecm-location' ], $v, true );
+    wp_enqueue_script( 'ecm-intake',   $tu . '/assets/js/intake.js',   [ 'ecm-location' ], $intake_version, true );
+    $main_care_terms = get_terms( [
+        'taxonomy'   => 'job_listing_category',
+        'parent'     => 0,
+        'hide_empty' => false,
+        'orderby'    => 'name',
+        'order'      => 'ASC',
+    ] );
+    $main_care_types = [];
+    if ( ! is_wp_error( $main_care_terms ) ) {
+        $main_care_order = [
+            'home-care'        => 0,
+            'assisted-living'  => 1,
+            'memory-care'      => 2,
+            'elder-law'        => 3,
+            'care-management'  => 4,
+            'hospice'          => 5,
+            'grief-counselors' => 6,
+        ];
+        usort( $main_care_terms, function ( $a, $b ) use ( $main_care_order ) {
+            $a_order = $main_care_order[ $a->slug ] ?? 99;
+            $b_order = $main_care_order[ $b->slug ] ?? 99;
+            if ( $a_order === $b_order ) {
+                return strcasecmp( $a->name, $b->name );
+            }
+            return $a_order <=> $b_order;
+        } );
+        foreach ( $main_care_terms as $term ) {
+            $main_care_types[] = [
+                'key'   => $term->slug,
+                'label' => wp_strip_all_tags( html_entity_decode( $term->name, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ),
+            ];
+        }
+    }
+    wp_localize_script( 'ecm-intake', 'ECM_INTAKE', [
+        'careTypes' => $main_care_types,
+    ] );
     wp_enqueue_script( 'ecm-main',     $tu . '/assets/js/main.js',     [ 'ecm-intake' ], $v, true );
 
     // Category page logic
@@ -436,4 +474,12 @@ add_action( 'init', function () {
     if ( function_exists( 'is_shop' ) ) {
         remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
     }
+} );
+
+// Add 'edit-listing' body class on the provider dashboard edit listing page.
+add_filter( 'body_class', function ( $classes ) {
+    if ( isset( $_GET['action'] ) && $_GET['action'] === 'edit' && isset( $_GET['job_id'] ) ) {
+        $classes[] = 'edit-listing';
+    }
+    return $classes;
 } );

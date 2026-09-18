@@ -747,3 +747,23 @@
   .blog-subscribe { padding: 28px 24px; margin: 0 4% 48px; }
   .blog-subscribe-form { flex-direction: column; }
 }
+
+/* ── JOB MANAGER CATEGORY ARCHIVE: pagination + sort label ── */
+.search-meta-sort { font-size: 0.85rem; color: var(--muted); font-weight: 500; }
+.provider-pagination {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 8px; margin-top: 40px;
+}
+.provider-pagination .page-numbers {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 40px; height: 40px; padding: 0 12px;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  background: var(--warm-white); color: var(--mid);
+  font-size: 0.9rem; font-weight: 600; text-decoration: none;
+  transition: all 0.2s;
+}
+.provider-pagination a.page-numbers:hover { border-color: var(--sage); color: var(--sage); }
+.provider-pagination .page-numbers.current {
+  background: var(--sage); border-color: var(--sage); color: #fff;
+}
+.provider-pagination .page-numbers.dots { border: none; background: transparent; }

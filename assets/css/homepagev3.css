@@ -1,4 +1,4 @@
-/* ── HERO ── */
+/*  HERO  */
 .nav-logo-image {
   height: 44px;
   width: auto;
@@ -64,7 +64,7 @@
 }
 .hero-badge-dot { width: 7px; height: 7px; background: var(--sage); border-radius: 50%; }
 
-/* ── HERO CTA ROW ── */
+/*  HERO CTA ROW  */
 .hero-cta-row {
   display: flex; align-items: center;
   gap: 14px; margin: 8px 0 40px;
@@ -108,7 +108,7 @@
 }
 .btn-text:hover { color: var(--sage); }
 
-/* ── FLOATING CHAT FAB ── */
+/*  FLOATING CHAT FAB  */
 .chat-fab {
   position: fixed;
   bottom: 24px; right: 24px;
@@ -146,7 +146,7 @@
   100% { transform: scale(1.6); opacity: 0; }
 }
 
-/* ── CHAT POPUP (anchored to FAB) ── */
+/*  CHAT POPUP (anchored to FAB)  */
 .chat-popup {
   position: fixed;
   bottom: 100px; right: 24px;
@@ -186,7 +186,7 @@
   padding: 18px;
 }
 
-/* ── QUICK FORM MODAL (extends .modal-overlay / .modal from main.css) ── */
+/*  QUICK FORM MODAL (extends .modal-overlay / .modal from main.css)  */
 .modal-lg { max-width: 520px; padding: 36px 40px 32px; position: relative; }
 .modal-close {
   position: absolute; top: 16px; right: 18px;
@@ -326,7 +326,7 @@
 }
 .intake-summary strong { color: var(--charcoal); }
 
-/* ── EDITORIAL HERO VISUAL + FLOATING TRUST TILES ── */
+/*  EDITORIAL HERO VISUAL + FLOATING TRUST TILES  */
 .hero-right { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; }
 
 .hero-visual {
@@ -418,7 +418,7 @@
   50%      { transform: translateY(-10px); }
 }
 
-/* ── STATS BAR ── */
+/*  STATS BAR  */
 .stats-bar {
   background: var(--charcoal); padding: 36px 5%;
   display: flex; align-items: center; justify-content: center; gap: 0;
@@ -442,7 +442,7 @@
 }
 .stat-label { font-size: 1rem; color: rgba(255,255,255,0.82); margin-top: 6px; letter-spacing: 0.03em;    line-height: 20px; }
 
-/* ── CARE TYPES (category cards) ── */
+/*  CARE TYPES (category cards)  */
 .care-types { background: var(--warm-white); }
 .section-divider {
   width: 84px;
@@ -591,7 +591,7 @@
   transform: translateY(-1px);
 }
 
-/* ── HOW IT WORKS ── */
+/*  HOW IT WORKS  */
 .section-header--centered {
   text-align: center;
   margin-left: auto;
@@ -642,7 +642,7 @@
 .step-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; }
 .step-desc { font-size: 1rem; color: var(--mid); line-height: 1.7; max-width: 260px; margin: 0 auto; }
 
-/* ── WHY ECM (feature row) ── */
+/*  WHY ECM (feature row)  */
 .why-ecm { background: var(--warm-white); padding-top: 80px; padding-bottom: 80px; }
 .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .why-card {
@@ -676,7 +676,7 @@
   color: #fff;
 }
 
-/* ── TESTIMONIALS ── */
+/*  TESTIMONIALS  */
 .testimonials { background: var(--charcoal); }
 .testimonials .section-tag { color: var(--sage); border-color: var(--sage); }
 .testimonials .section-title { color: #fff; }
@@ -702,7 +702,7 @@
 .testi-name { font-weight: 700; color: #fff; font-size: 1rem; }
 .testi-loc  { font-size: 0.95rem; color: rgba(255,255,255,0.72); margin-top: 2px; }
 
-/* ── FAQ ── */
+/*  FAQ  */
 .faq { background: var(--cream); }
 .faq-layout {
   display: grid;
@@ -741,7 +741,7 @@
 }
 .faq-item.open .faq-a { max-height: 240px; padding: 0 24px 18px; }
 
-/* ── PROVIDER CTA ── */
+/*  PROVIDER CTA  */
 .provider-cta {
   background: linear-gradient(135deg, var(--sage-pale) 0%, #d0e8d4 100%);
   border-radius: 28px; padding: 72px 64px;
@@ -792,7 +792,7 @@
 }
 .is-hidden { display: none; }
 
-/* ── RESPONSIVE ── */
+/*  RESPONSIVE  */
 @media (max-width: 1399px) {
   .nav-logo-image {
         height: 35px;

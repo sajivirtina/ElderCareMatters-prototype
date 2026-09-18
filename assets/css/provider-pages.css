@@ -1044,3 +1044,94 @@
   .hero-carousel { padding: 16px 44px; }
   .hc-arrow { width: 34px; height: 34px; font-size: 1.2rem; }
 }
+
+/* ── Plans Add-on Section ────────────────────────────────── */
+.plans-addon-section {
+  background: var(--warm-bg, #f9f7f4);
+  padding: 72px 5%;
+}
+.plans-addon-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.plans-addon-head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.plans-addon-head h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 10px 0 14px;
+}
+.plans-addon-head p {
+  color: var(--mid, #666);
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 0.97rem;
+  line-height: 1.7;
+}
+.plans-addon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 36px;
+}
+.plans-addon-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.plans-addon-card .plan-hero-badge {
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.plans-addon-slots {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--dark, #1a1a1a);
+  margin-bottom: 6px;
+}
+.plans-addon-price {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--sage, #6B8F71);
+}
+.plans-addon-price span {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--muted, #999);
+}
+.plans-addon-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 32px;
+}
+.plans-addon-rules li {
+  color: var(--mid, #666);
+  font-size: 0.93rem;
+  line-height: 1.6;
+  padding-left: 1.4em;
+  position: relative;
+}
+.plans-addon-rules li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--sage, #6B8F71);
+  font-weight: 700;
+}
+@media (max-width: 760px) {
+  .plans-addon-grid { grid-template-columns: repeat(2, 1fr); }
+  .plans-addon-rules { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .plans-addon-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+
+/* plan-hero-badge variants needed for add-on cards */
+.plan-hero-badge--free  { background: var(--warm-bg, #f0ede8); color: var(--mid, #666); }
+.plan-hero-badge--basic { background: var(--sage-pale, #e8f0e9); color: var(--sage, #6B8F71); }
